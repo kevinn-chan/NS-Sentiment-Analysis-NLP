@@ -1,9 +1,9 @@
-# NS Sentiment — Project Handoff (updated 2026-05-22)
+# NS Sentiment — Project Handoff (updated 2026-05-23)
 
 ## Goal
 
-Quantify Singaporean public sentiment and commitment to National Service (NS) defence
-over time, using Reddit data from three subreddits:
+Quantify Singaporean public sentiment and commitment to National Service (NS) over time,
+using Reddit data from three subreddits:
 - r/singapore
 - r/askSingapore
 - r/NationalServiceSG
@@ -11,7 +11,7 @@ over time, using Reddit data from three subreddits:
 The end product is a Streamlit dashboard with Seaborn visualisations showing:
 - Topic distribution across NS discourse (BERTopic, hierarchical)
 - Sentiment trends over time (monthly rollups, score-weighted)
-- Commitment-to-defence scoring (zero-shot + lexicon hybrid)
+- Commitment-to-defence scoring (zero-shot NLI)
 - Divergence between post sentiment and comment section sentiment
 - Thread depth analysis
 
@@ -27,9 +27,9 @@ The end product is a Streamlit dashboard with Seaborn visualisations showing:
 | 4 | BERTopic topic modelling (v3) | ✅ Done |
 | 4b | Noise topic removal | ✅ Done |
 | 4c | Manual 4-layer taxonomy + hierarchy encoding | ✅ Done |
-| 5a | Sentiment classification (3-tier hybrid) | ✅ Done |
-| 5a-verify | Human annotation accuracy check | ✅ Done |
-| 5a-xlm | XLM base model evaluation + corpus-weighted comparison | ✅ Done |
+| 5a | Sentiment classification — XLM base (all 737k chunks) | ✅ Done |
+| 5a-verify | Human annotation (197 chunks, 81.3% corpus-weighted) | ✅ Done |
+| 5a-xlm | XLM base vs RoBERTa corpus-weighted comparison | ✅ Done |
 | 5a-spot | Manual spot-check (100 chunks, 78.0% accuracy) | ✅ Done |
 | **5b** | **Commitment scoring (zero-shot NLI)** | ⏳ **NEXT STEP** |
 | 6 | Document-level aggregation | ⏳ Not started |
@@ -48,11 +48,12 @@ All live files are under `data/processed/new/` and `models/new/`.
 | `data/processed/new/comments_chunks.parquet` | 637,660 | Post-noise-removal |
 | `data/processed/new/submissions_chunks.parquet` | 101,159 | Post-noise-removal |
 | `data/processed/new/chunk_topics.parquet` | 737,583 | `topic_id_fine`, `topic_id_coarse`; 20,486 outliers (-1) |
-| `data/processed/new/chunk_sentiment.parquet` | 737,274 | ★ `chunk_id`, `sent_neg`, `sent_neu`, `sent_pos` — XLM-patched |
+| `data/processed/new/chunk_sentiment.parquet` | 737,274 | ★ `chunk_id`, `sent_neg`, `sent_neu`, `sent_pos` — XLM base (FINAL) |
 | `data/processed/new/chunk_sentiment_lexicon.parquet` | 738,819 | `chunk_id`, `sent_lexicon_compound` (VADER+NS lexicon) |
 | `data/processed/new/annotation_sample.parquet` | 197 | Stratified sample for human labelling |
-| `data/processed/new/annotations.csv` | in progress | Human labels — run `annotator.py --report` when done |
-| `data/processed/new/sentiment_audit.parquet` | 500 | llama3.2:3b gold labels vs roberta (see caveats below) |
+| `data/processed/new/annotations.csv` | 197 | Human labels (complete — 81.3% corpus-weighted vs XLM) |
+| `data/processed/new/spot_check.csv` | 100 | Manual spot-check results (78.0% accuracy) |
+| `data/processed/new/sentiment_audit.parquet` | 500 | llama3.2:3b gold labels vs roberta (supplementary, use with caution) |
 | `data/processed/new/topic_keywords_fine.csv` | 359 topics | Post-noise-removal keywords |
 | `data/processed/new/topic_keywords_coarse.csv` | — | Coarse model keywords |
 | `data/processed/new/hierarchical_topics_manual.parquet` | 358 rows | Manual 4-layer taxonomy as binary dendrogram |
@@ -76,17 +77,20 @@ ns_sentiment/
 │   │   └── cleaner.py                   # NS filter, bot removal, thread depth
 │   ├── features/
 │   │   ├── chunker.py                   # Semantic chunking + embeddings
-│   │   ├── lexicon_scorer.py            # ★ Tier 2: VADER + NS/Singlish lexicon
-│   │   ├── patch_sentiment_xlm.py       # ★ Tier 1b: XLM patch for Singlish chunks
+│   │   ├── lexicon_scorer.py            # VADER + NS/Singlish lexicon (supplementary)
+│   │   ├── patch_sentiment_xlm.py       # Singlish patch (SUPERSEDED — kept as record)
 │   │   ├── sentiment_audit.py           # Tier 3: Ollama audit (llama3.2:3b)
-│   │   └── annotator.py                 # ★ Human annotation CLI (resume-safe)
+│   │   ├── annotator.py                 # ★ Human annotation CLI (complete, 197 chunks)
+│   │   └── spot_checker.py              # ★ Manual spot-check CLI (complete, 100 chunks)
 │   └── models/
 │       ├── topic_model.py
 │       ├── topic_labels.py              # ★ Full 4-layer taxonomy (359 topics)
 │       ├── build_manual_dendrogram.py
 │       └── plot_manual_dendrogram.py
 ├── notebooks/
-│   ├── kaggle_sentiment_v1.ipynb        # ★ Stage 5a Kaggle run (already executed)
+│   ├── kaggle_xlm_base_v1.ipynb         # ★ Stage 5a FINAL — XLM base all 737k chunks
+│   ├── kaggle_xlm_patch_v1.ipynb        # Stage 5a Singlish patch (SUPERSEDED — kept as record)
+│   ├── kaggle_sentiment_v1.ipynb        # Stage 5a original RoBERTa run (SUPERSEDED)
 │   ├── kaggle_chunker_v2.ipynb
 │   ├── kaggle_topic_model_v3.ipynb
 │   └── kaggle_noise_removal.ipynb
@@ -132,7 +136,7 @@ Career & Sign-on · Gender & Diversity
 **Notebook:** `notebooks/kaggle_xlm_base_v1.ipynb` (Kaggle T4 x2)
 **Output:** `chunk_sentiment.parquet` — `chunk_id`, `sent_neg`, `sent_neu`, `sent_pos`
 
-Final corpus distribution: negative 40.3% / neutral 47.6% / positive 12.2%
+Final corpus distribution: **negative 40.3% / neutral 47.6% / positive 12.2%**
 
 ### Why XLM over the initial RoBERTa hybrid
 
@@ -142,55 +146,81 @@ revealed the annotation sample over-represented Singlish by **15.2x** (71.6% of 
 vs 4.7% of real corpus), making RoBERTa appear to win overall (75.6% vs 69.5%).
 
 Corpus-weighted accuracy (95.3% English / 4.7% Singlish):
-- RoBERTa base: 76.7%
+- RoBERTa base: **76.7%**
 - **XLM base: 81.3%** ← winner
 
 XLM is stronger on English-dominant text (82.1% vs 76.8%), which is 95.3% of the corpus.
-The hybrid was the worst of both worlds. XLM as sole model is simpler and more accurate.
+The hybrid was the worst of both worlds — extra complexity with lower accuracy.
+XLM as sole model is simpler and more accurate.
+
+**How the 4.7% Singlish density was measured:**
+The Singlish detector (word-boundary regex over ~50 NS/Singlish terms) was applied
+to all 738,819 chunks. Result: 34,834 chunks matched (4.7%). Corpus proportion used
+for weighting is 95.3% English / 4.7% Singlish.
 
 ### What was evaluated and dropped
 
-- **Fine-tuned transformer:** requires 500+ labelled examples — deferred, not permanently dropped
-- **Zero-shot NLI (bart-large-mnli):** wrong tool for sentiment — retained for Stage 5b
-- **Lexicon only:** 47.7% human agreement — supplementary signal, not classifier
-- **gemma3:1b Ollama:** 92.8% negative — unusable
-- **llama3.2:3b Ollama:** misleading audit metric; human annotation is the reliable path
-- **RoBERTa+XLM patch hybrid:** annotation sample bias masked XLM's corpus-level superiority
+| Approach | Outcome |
+|---|---|
+| `cardiffnlp/twitter-roberta-base-sentiment-latest` | 76.7% corpus-weighted — dropped in favour of XLM |
+| RoBERTa + XLM Singlish patch hybrid | Complex, still loses to plain XLM — dropped |
+| `facebook/bart-large-mnli` (zero-shot NLI) | Wrong tool for sentiment — retained for Stage 5b |
+| VADER + NS lexicon | 47.7% human agreement — supplementary signal only |
+| `gemma3:1b` (Ollama) | 92.8% negative — unusable |
+| `llama3.2:3b` (Ollama audit) | Misleading metric; human annotation is ground truth |
+| Fine-tuned transformer | Requires 500+ labelled examples — deferred, not dropped |
 
 ### Validation results
 
-| Method | Accuracy |
-|---|---|
-| Human annotation (197 chunks, sample-weighted) | 69.5% |
-| Human annotation (197 chunks, corpus-weighted) | **81.3%** |
-| Manual spot-check (100 chunks) | **78.0%** |
+| Method | Accuracy | Notes |
+|---|---|---|
+| Human annotation — sample-weighted | 69.5% | Misleading (Singlish 15x over-represented in sample) |
+| Human annotation — corpus-weighted | **81.3%** | True accuracy; use this number |
+| Manual spot-check (100 chunks) | **78.0%** | Independent random-ish sample, no model anchoring |
 
-Spot-check by stratum: high_neu=100%, high_pos=95.5%, high_neg=81.8%,
-singlish=65.0%, low_conf=44.4%
+Spot-check by stratum: `high_neu`=100%, `high_pos`=95.5%, `high_neg`=81.8%,
+`singlish`=65.0%, `low_conf`=44.4%
 
-Known failure modes:
+### Known failure modes
 - Over-predicts negative for factual NS questions ("Forced to downpes due to rash problem?")
-- Misses Singlish sentiment cues in both directions ("sian max" called neutral, "lepak" called neutral)
-- Low-confidence chunks (18.4%) are genuinely ambiguous — acceptable at aggregation level
+- Misses Singlish sentiment cues in both directions ("sian max" → neutral, "lepak" → neutral)
+- Low-confidence chunks (18.4% of corpus) are genuinely ambiguous — acceptable at aggregation level
+- Chunks that are reactions to other posts (not standalone NS sentiment) are correctly labelled
+  for surface tone but may not reflect NS-directed sentiment specifically
+
+### Unresolved: Fair head-to-head annotation
+The 197-chunk annotation was not model-neutral:
+- Strata were selected partly on RoBERTa confidence scores (not XLM)
+- The annotator CLI displayed RoBERTa predictions and scores on-screen while labelling
+  (anchoring bias toward RoBERTa)
+- English stratum (n=56) had 30 chunks cherry-picked from high-confidence RoBERTa predictions
+- These biases likely understate XLM's true advantage
+
+**Decision to make:** Run a fair blind h2h (hide all model scores, annotate text only,
+compare both models post-hoc) — ~1.5 hrs annotation time, ~100 chunks.
+Direction of result is unlikely to change; XLM's 4.5pp corpus-weighted advantage is robust.
+A fair h2h closes the methodological gap for any academic or professional audience.
+
+If you skip it, document the limitation explicitly in the final report.
 
 ### Validation files
-- `data/processed/new/annotations.csv` — 197 human labels
-- `data/processed/new/annotation_sample.parquet` — stratified annotation sample
-- `data/processed/new/spot_check.csv` — 100-chunk manual spot-check results
+- `data/processed/new/annotations.csv` — 197 human labels (chunk_id, human_label, stratum)
+- `data/processed/new/annotation_sample.parquet` — stratified annotation sample with chunk text
+- `data/processed/new/spot_check.csv` — 100-chunk manual spot-check (human_verdict, corrected_label)
 
 ### Lexicon cross-check (supplementary)
 **Script:** `src/features/lexicon_scorer.py`
 **Output:** `chunk_sentiment_lexicon.parquet` — `sent_lexicon_compound` [-1, +1]
 VADER + 60-entry custom NS/Singlish lexicon. 65.5% directional agreement with XLM.
-Use as interpretability signal, not primary classifier.
+Use as interpretability signal only, not primary classifier.
 
 ---
 
 ## Stage 5b — Commitment Scoring (NEXT)
 
 **Model:** `facebook/bart-large-mnli` (zero-shot NLI)
-**Input:** `chunk_sentiment.parquet` chunk_ids + text from chunk parquets
-**Run on:** Kaggle GPU (T4 x2) — most expensive step, multiple forward passes per chunk
+**Input:** chunk text from chunk parquets + chunk_ids (all 737k chunks)
+**Run on:** Kaggle GPU (T4 x2) — most expensive step; NLI runs 3 forward passes per chunk
 
 Hypotheses to score per chunk:
 ```
@@ -201,42 +231,117 @@ Hypotheses to score per chunk:
 
 **Output:** `chunk_commitment.parquet` — `chunk_id`, `commit_support`, `commit_critical`, `commit_positive`
 
-Build a new Kaggle notebook following the same pattern as `kaggle_sentiment_v1.ipynb`.
-Use BATCH_SIZE=64 (smaller than sentiment — NLI runs 3 passes per chunk).
-Checkpoint every 25k rows.
+Build a new Kaggle notebook: `notebooks/kaggle_commitment_v1.ipynb`
+Use `kaggle_xlm_base_v1.ipynb` as the structural template.
+Key differences from sentiment run:
+- `BATCH_SIZE=64` (NLI is much heavier than classification — 3 passes per chunk)
+- `CHECKPOINT_N=25_000` (smaller to guard against session timeouts)
+- Model: `facebook/bart-large-mnli` — classification labels will be `ENTAILMENT`, `NEUTRAL`, `CONTRADICTION`
+- For each hypothesis, the `ENTAILMENT` score is the commitment score
+- Run each hypothesis as a separate pipeline call OR batch all 3 together as NLI pairs
+
+Input dataset on Kaggle: `ns-sentiment-chunks-v3` (same as Stage 5a — no new upload needed).
+
+---
+
+## Stage 6 — Document-level Aggregation (after 5b)
+
+Join: `chunk_sentiment` + `chunk_commitment` + `chunk_topics` + chunk parquets (for `log_weight`, `doc_id`)
+Group by `doc_id`, aggregate scores weighted by `log_weight` (already in chunk parquets).
+
+Before joining, add taxonomy columns to `chunk_topics`:
+```python
+from src.models.topic_labels import TOPIC_LABELS
+chunk_topics['topic_macro']   = chunk_topics['topic_id_fine'].map(lambda t: TOPIC_LABELS.get(t, {}).get('macro'))
+chunk_topics['topic_sub']     = chunk_topics['topic_id_fine'].map(lambda t: TOPIC_LABELS.get(t, {}).get('sub'))
+chunk_topics['topic_sub_sub'] = chunk_topics['topic_id_fine'].map(lambda t: TOPIC_LABELS.get(t, {}).get('sub_sub'))
+```
+
+Output: `doc_sentiment.parquet`
+
+---
+
+## Stage 7 — Divergence Score
+
+For each `post_id`, compare submission chunk scores vs comment chunk scores.
+Divergence metric: e.g. mean(sent_neg_comments) − mean(sent_neg_submissions) per post.
+Output: `doc_divergence.parquet`
+
+---
+
+## Stage 8 — Temporal Aggregation
+
+**Must normalise datetime first** (see Known Issues).
+Monthly rollup grouped by subreddit + topic_macro.
+Output: `temporal_sentiment.parquet`
+
+---
+
+## Stage 9 — Streamlit Dashboard + Seaborn Viz
+
+Key views to build:
+1. Topic distribution (BERTopic hierarchical dendrogram, macro-coloured)
+2. Sentiment trend over time (monthly, score-weighted, by topic_macro)
+3. Commitment-to-defence score trend (from Stage 5b)
+4. Post vs comment divergence heatmap (from Stage 7)
+5. Thread depth analysis
+
+---
+
+## Emotion Classification — Deferred Optional Layer
+
+Model: `cardiffnlp/twitter-roberta-base-emotion-multilabel-latest`
+Output: `chunk_emotion.parquet` — 11 emotions (anger, anticipation, disgust, fear, joy, love, optimism, pessimism, sadness, surprise, trust)
+
+**Status:** Deferred pending supervisor consultation. Gate already cleared (81.3% > 70%).
+Do NOT add until Stages 5b–9 have a working v1.
+If added, this is a second Kaggle notebook (~45 min effort) alongside `chunk_sentiment.parquet`.
+Known limitation: no XLM version for Singlish — acceptable caveat.
 
 ---
 
 ## What Worked
 
 - **Kaggle "Save & Run All"** (committed mode) — only reliable way to run long jobs
+- **Corpus-weighted accuracy** — always weight annotation results by actual corpus proportions,
+  not stratified sample proportions. Sample bias can flip the apparent winner.
+  Formula: Σ (corpus_proportion_i × accuracy_i) over strata.
 - **Batched cosine similarity** for outlier rescue — avoids OOM
 - **UMAP checkpoint** (monkey-patch saves `umap_embeddings.npy`) — saves 2+ hours if HDBSCAN fails
 - **Noise removal via `update_topics()`** — cleanly removes noise and recalculates c-TF-IDF
 - **Manual taxonomy top-down** — macro → sub → sub_sub semantically, then assign fine topics
 - **Dendrogram via scipy `link_color_func`** — only reliable way to get macro-coloured dendrograms
 - **`top_k=None` in HuggingFace pipeline** — correct replacement for deprecated `return_all_scores=True`
-- **XLM-RoBERTa as sole base model** — 81.3% corpus-weighted accuracy vs 76.7% for RoBERTa; annotation sample bias (15.2x Singlish over-representation) initially masked this
-- **Corpus-weighted accuracy** — always weight annotation results by actual corpus proportions, not stratified sample proportions
+- **XLM-RoBERTa as sole base model** — 81.3% corpus-weighted accuracy vs 76.7% for RoBERTa;
+  annotation sample bias (15.2x Singlish over-representation) initially masked this
 - **VADER + custom NS lexicon** — fast interpretable signal; 60 entries covering key NS/Singlish terms
 - **Ollama `format: "json"`** — enforces valid JSON output from local LLMs reliably
+- **Resume-safe CLIs** — both `annotator.py` and `spot_checker.py` save after every keypress;
+  safe to quit at any time and resume
 
 ---
 
 ## What Didn't Work / Gotchas
 
-- **`return_all_scores=True` in transformers pipeline** — deprecated; silently returns single score dict instead of list; use `top_k=None`
-- **gemma3:1b for sentiment labelling** — 92.8% of labels were "negative"; model too small and miscalibrated for this task
-- **llama3.2:3b audit agreement % as primary metric** — 39% overall agreement sounds bad but sample was deliberately 50% Singlish-heavy; actual corpus-weighted accuracy is ~73–75%. Use human annotation, not LLM agreement, as the truth signal.
-- **Singlish density via exact whitespace token match** — undercounts; "sian." (with period) doesn't match "sian". Use `re.findall(r'\b\w+\b', text)` instead.
+- **`return_all_scores=True` in transformers pipeline** — deprecated; use `top_k=None`
+- **gemma3:1b for sentiment labelling** — 92.8% of labels were "negative"; too small, miscalibrated
+- **llama3.2:3b audit agreement % as primary metric** — misleading; use human annotation as ground truth
+- **Singlish density via exact whitespace token match** — undercounts; "sian." (with period) misses.
+  Use `re.findall(r'\b\w+\b', text)` or word-boundary regex instead
 - **BERTopic `visualize_hierarchy` with filtered `topics=` list** — crashes; use scipy directly
-- **`color_threshold` in `visualize_hierarchy`** — doesn't apply colours with custom hierarchical_topics; all traces one colour
+- **`color_threshold` in `visualize_hierarchy`** — doesn't apply colours with custom hierarchical_topics
 - **`set_topic_labels()` with partial topic coverage** — crashes if max topic ID > len(custom_labels_)
 - **Bottom-up dendrogram clustering** — cutting at distance thresholds gave meaningless groupings
 - **MPS (Apple GPU) for embeddings** — OOM at batch_size=256; use CPU
-- **Local HDBSCAN with core_dist_n_jobs=-1** — spawns 9 workers on 809k points → OOM; fix: core_dist_n_jobs=1
+- **Local HDBSCAN with core_dist_n_jobs=-1** — spawns 9 workers on 809k points → OOM; fix: n_jobs=1
 - **`calculate_probabilities=True` in BERTopic** — OOM on Kaggle
-- **Hierarchical `reduce_topics()` return value** — newer BERTopic returns model object, not (topics, probs) tuple
+- **Hierarchical `reduce_topics()` return value** — newer BERTopic returns model object, not tuple
+- **`sentencepiece` missing for XLM locally** — add to pip install; also ensure venv python is used,
+  not system anaconda (`python` → `.venv/bin/python`)
+- **Annotation CSV merge with parquet sample** — both had 'stratum' column; pandas renames to
+  stratum_x/stratum_y. Fix: drop 'stratum' from one side before merging.
+- **Spot-checker UI quirk** — pressing N on an already-negative chunk shows [negative → negative]
+  in the mislabelled list. Not a bug; the verdict is still "disagree".
 
 ---
 
@@ -249,12 +354,7 @@ Checkpoint every 25k rows.
 
 ### chunk_topics.parquet missing taxonomy columns
 - No `topic_macro` / `topic_sub` / `topic_sub_sub` columns yet
-- Join from `topic_labels.py` before Stage 6:
-  ```python
-  chunk_topics['topic_macro'] = chunk_topics['topic_id_fine'].map(
-      lambda t: TOPIC_LABELS.get(t, {}).get('macro')
-  )
-  ```
+- Join from `topic_labels.py` before Stage 6 (see Stage 6 section above)
 
 ### chunk_sentiment row count vs chunk parquets
 - `chunk_sentiment.parquet`: 737,274 rows (unique chunk_ids)
@@ -262,7 +362,7 @@ Checkpoint every 25k rows.
 - Coverage is 100% of unique chunks — the 1,545 gap is duplicates in source, not missing scores
 
 ### hierarchical_topics.parquet is stale
-- Auto-generated BERTopic dendrogram was pre-noise-removal (contains t71, t117 etc.)
+- Auto-generated BERTopic dendrogram was pre-noise-removal (contains removed topic IDs)
 - Use `hierarchical_topics_manual.parquet` (current) for all downstream work
 
 ---
@@ -282,23 +382,34 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
 
 ## Immediate Next Actions (in order)
 
-1. **Finish human annotation** — `python -m src.features.annotator` (~1.5 hrs remaining)
-   Then run `python -m src.features.annotator --report` to get accuracy verdict.
+1. **[Optional] Fair head-to-head annotation (XLM vs RoBERTa)**
+   The 197-chunk annotation was not model-neutral — strata selected on RoBERTa confidence,
+   scores shown on-screen while labelling. A fair h2h requires blind annotation:
+   - Modify `annotator.py` to hide all model scores (show text + subreddit + doc_type only)
+   - Stratify on text characteristics only (length, Singlish presence, subreddit)
+   - ~100 chunks, ~1.5 hrs annotation time
+   - Both XLM and RoBERTa evaluated post-hoc, not shown during annotation
+   - Skip if time-constrained; document limitation in final report instead
 
-2. **Build Stage 5b Kaggle notebook** — commitment scoring via `facebook/bart-large-mnli`
-   Follow `kaggle_sentiment_v1.ipynb` as template. BATCH_SIZE=64, checkpoint every 25k.
-   Input datasets: `ns-sentiment-chunks-v3` (for text) — no new dataset needed.
+2. **Build Stage 5b Kaggle notebook** — `notebooks/kaggle_commitment_v1.ipynb`
+   Model: `facebook/bart-large-mnli` (zero-shot NLI, 3 hypotheses per chunk)
+   Template: `kaggle_xlm_base_v1.ipynb`
+   BATCH_SIZE=64, checkpoint every 25k rows
+   Input: `ns-sentiment-chunks-v3` dataset (already on Kaggle — no new upload needed)
+   Output: `chunk_commitment.parquet` — chunk_id, commit_support, commit_critical, commit_positive
 
-3. **Stage 6 — document-level aggregation**
+3. **Stage 6 — Document-level aggregation**
    Join: `chunk_sentiment` + `chunk_commitment` + `chunk_topics` + chunk parquets
-   Group by `doc_id`, aggregate weighted by `log_weight` (already in chunk parquets).
-   Add `topic_macro` column from `TOPIC_LABELS` dict.
+   Group by `doc_id`, weight by `log_weight`. Add taxonomy columns from TOPIC_LABELS dict.
    Output: `doc_sentiment.parquet`
 
-4. **Stage 7 — divergence score**
+4. **Stage 7 — Divergence score**
    For each `post_id`, compare submission chunk scores vs comment chunk scores.
    Output divergence metric per post.
 
-5. **Stage 8 — temporal aggregation**
-   Normalise datetime to `ms` first (see known issues above).
+5. **Stage 8 — Temporal aggregation**
+   Normalise datetime to `ms` first (see known issues).
    Monthly rollup grouped by subreddit + topic_macro.
+
+6. **Stage 9 — Streamlit dashboard + Seaborn viz**
+   See Stage 9 section above for required views.
