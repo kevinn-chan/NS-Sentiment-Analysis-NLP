@@ -289,7 +289,7 @@ def _print_report():
     sample = pd.read_parquet(SAMPLE_PATH)
     df     = ann.merge(sample[["chunk_id","roberta_label","lex_label",
                                 "sent_neg","sent_neu","sent_pos",
-                                "sent_lexicon_compound","sg_density","stratum"]],
+                                "sent_lexicon_compound","sg_density"]],
                        on="chunk_id", how="left")
 
     n = len(df)
