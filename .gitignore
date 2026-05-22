@@ -24,6 +24,20 @@ Untitled1.ipynb
 anaconda_projects/
 logs/
 
+# Deprecated / superseded code
+src/features/ns_filter.py
+src/analysis/
+
+# Old notebook versions (keep only final)
+notebooks/kaggle_topic_model.ipynb
+notebooks/kaggle_topic_model.py
+notebooks/kaggle_topic_model_recovery.ipynb
+notebooks/kaggle_topic_model_v2.ipynb
+notebooks/kaggle_comments_chunker.py
+
+# BERTopic save artifact (duplicate subdir)
+models/new/bertopic_fine/bertopic_fine/
+
 # Raw data (large ZST dumps)
 data/raw/
 
