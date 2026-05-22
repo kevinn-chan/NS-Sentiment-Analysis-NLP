@@ -28,7 +28,9 @@ The end product is a Streamlit dashboard with Seaborn visualisations showing:
 | 4b | Noise topic removal | ✅ Done |
 | 4c | Manual 4-layer taxonomy + hierarchy encoding | ✅ Done |
 | 5a | Sentiment classification (3-tier hybrid) | ✅ Done |
-| 5a-verify | Human annotation accuracy check | 🔄 In progress |
+| 5a-verify | Human annotation accuracy check | ✅ Done |
+| 5a-xlm | XLM base model evaluation + corpus-weighted comparison | ✅ Done |
+| 5a-spot | Manual spot-check (100 chunks, 78.0% accuracy) | ✅ Done |
 | **5b** | **Commitment scoring (zero-shot NLI)** | ⏳ **NEXT STEP** |
 | 6 | Document-level aggregation | ⏳ Not started |
 | 7 | Divergence score (post vs comments) | ⏳ Not started |
@@ -123,86 +125,64 @@ Career & Sign-on · Gender & Diversity
 
 ---
 
-## Stage 5a — Sentiment Classification (DONE)
+## Stage 5a — Sentiment Classification (DONE ✅)
 
-### Why a 3-tier hybrid was chosen
-
-Four options were evaluated: fine-tuned transformer, zero-shot NLI, lexicon, LLM.
-Key constraints:
-- No pre-built SG-Reddit sentiment model exists
-- SingBERT (`zanelim/singbert`) was trained on r/singapore but is MLM-only (no sentiment head, no benchmarks)
-- 737k chunks → LLM API cost prohibitive for full corpus
-- Singlish/NS jargon causes systematic neutral bias in English-only models
-
-### Tier 1 — Base scores (Kaggle, all 737k chunks) ✅
-**Model:** `cardiffnlp/twitter-roberta-base-sentiment-latest`
-**Notebook:** `notebooks/kaggle_sentiment_v1.ipynb`
+### Final model
+**Model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment` — run on all 737,274 chunks
+**Notebook:** `notebooks/kaggle_xlm_base_v1.ipynb` (Kaggle T4 x2)
 **Output:** `chunk_sentiment.parquet` — `chunk_id`, `sent_neg`, `sent_neu`, `sent_pos`
 
-Critical fix: use `top_k=None` not `return_all_scores=True` (deprecated in newer
-transformers — silently falls back to single-score mode causing a TypeError).
+Final corpus distribution: negative 40.3% / neutral 47.6% / positive 12.2%
 
-### Tier 1b — XLM patch for Singlish chunks (local) ✅
-**Model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment`
-**Script:** `src/features/patch_sentiment_xlm.py`
+### Why XLM over the initial RoBERTa hybrid
 
-Controlled test on 15 Singlish sentences:
-- twitter-roberta: **40% accuracy** (calls "sian lah kena guard duty" neutral)
-- twitter-xlm-roberta: **80% accuracy** (correctly classifies Singlish sentiment)
+Initial design used `cardiffnlp/twitter-roberta-base-sentiment-latest` as base with
+an XLM patch on Singlish chunks. Head-to-head evaluation on 197 human-annotated chunks
+revealed the annotation sample over-represented Singlish by **15.2x** (71.6% of sample
+vs 4.7% of real corpus), making RoBERTa appear to win overall (75.6% vs 69.5%).
 
-XLM works because its multilingual pretraining covers Malay vocabulary that
-overlaps with Singlish particles (lah, leh, lor) and loan words (jialat, sian etc.).
+Corpus-weighted accuracy (95.3% English / 4.7% Singlish):
+- RoBERTa base: 76.7%
+- **XLM base: 81.3%** ← winner
 
-Re-ran on **34,459 Singlish-containing chunks** (~4.7% of corpus) identified via
-word-boundary regex. Patched `chunk_sentiment.parquet` in-place. English chunks unchanged.
+XLM is stronger on English-dominant text (82.1% vs 76.8%), which is 95.3% of the corpus.
+The hybrid was the worst of both worlds. XLM as sole model is simpler and more accurate.
 
-Remaining failures (both models): heavy NS jargon combos ("saikang everyday bo liao",
-"chao keng gao gao") — would require NS-specific fine-tuning to fix.
+### What was evaluated and dropped
 
-### Tier 2 — Lexicon signal (local, all chunks) ✅
+- **Fine-tuned transformer:** requires 500+ labelled examples — deferred, not permanently dropped
+- **Zero-shot NLI (bart-large-mnli):** wrong tool for sentiment — retained for Stage 5b
+- **Lexicon only:** 47.7% human agreement — supplementary signal, not classifier
+- **gemma3:1b Ollama:** 92.8% negative — unusable
+- **llama3.2:3b Ollama:** misleading audit metric; human annotation is the reliable path
+- **RoBERTa+XLM patch hybrid:** annotation sample bias masked XLM's corpus-level superiority
+
+### Validation results
+
+| Method | Accuracy |
+|---|---|
+| Human annotation (197 chunks, sample-weighted) | 69.5% |
+| Human annotation (197 chunks, corpus-weighted) | **81.3%** |
+| Manual spot-check (100 chunks) | **78.0%** |
+
+Spot-check by stratum: high_neu=100%, high_pos=95.5%, high_neg=81.8%,
+singlish=65.0%, low_conf=44.4%
+
+Known failure modes:
+- Over-predicts negative for factual NS questions ("Forced to downpes due to rash problem?")
+- Misses Singlish sentiment cues in both directions ("sian max" called neutral, "lepak" called neutral)
+- Low-confidence chunks (18.4%) are genuinely ambiguous — acceptable at aggregation level
+
+### Validation files
+- `data/processed/new/annotations.csv` — 197 human labels
+- `data/processed/new/annotation_sample.parquet` — stratified annotation sample
+- `data/processed/new/spot_check.csv` — 100-chunk manual spot-check results
+
+### Lexicon cross-check (supplementary)
 **Script:** `src/features/lexicon_scorer.py`
 **Output:** `chunk_sentiment_lexicon.parquet` — `sent_lexicon_compound` [-1, +1]
-
-VADER extended with 60-entry custom NS+Singlish lexicon. Runs in <1 min locally.
-Adds interpretability: token-level explanation of what drove each score.
-Use this as a cross-check signal, especially for Singlish-heavy chunks.
-
-Full corpus distribution:
-- Positive (>0.05): 45.7%
-- Neutral (-0.05–0.05): 28.7%
-- Negative (<-0.05): 25.7%
-
-### Tier 3 — Human annotation accuracy check 🔄
-**Script:** `src/features/annotator.py`
-**Resume:** `python -m src.features.annotator` (saves after every keypress)
-**Report:** `python -m src.features.annotator --report`
-
-197 chunks stratified by:
-- high_singlish (sg_density >6%): 78 chunks
-- medium_singlish (2–6%): 59 chunks
-- high_conf_english (zero Singlish, roberta conf >0.85): 30 chunks
-- model_disagree (roberta vs lexicon strongly diverge): 30 chunks
-
-Decision gate in --report output:
-- ≥80% agreement → ship XLM-patched roberta scores as primary signal ✓
-- 70–80% → acceptable with noted limitations
-- <70% → fine-tune SingBERT on annotation data
-
-### Singlish prevalence in corpus
-- 97.2% of chunks have zero Singlish markers (exact token match)
-- ~4.5–5% have at least one Singlish marker (word-boundary regex)
-- ~1.4% are high-density Singlish (>4% of tokens)
-- NOTE: vocabulary-only detection — grammatical Singlish and code-switching not captured
-
-### What was explored but not pursued
-- **SingBERT fine-tuning:** viable but requires 500+ labelled chunks. Revisit after annotation.
-- **facebook/bart-large-mnli for sentiment:** wrong tool — kept for Stage 5b commitment scoring
-- **gemma3:1b via Ollama for validation:** labelled 92.8% as negative, unusable
-- **llama3.2:3b via Ollama audit:** gave 39% agreement but sample was 50% Singlish-heavy by
-  design; actual weighted accuracy ~73–75%. Audit metric is misleading; human annotation is
-  the reliable path.
-- **Twitter datasets for fine-tuning:** general English, doesn't address Singapore gap without
-  pairing with NS-specific annotations.
+VADER + 60-entry custom NS/Singlish lexicon. 65.5% directional agreement with XLM.
+Use as interpretability signal, not primary classifier.
 
 ---
 
@@ -236,8 +216,8 @@ Checkpoint every 25k rows.
 - **Manual taxonomy top-down** — macro → sub → sub_sub semantically, then assign fine topics
 - **Dendrogram via scipy `link_color_func`** — only reliable way to get macro-coloured dendrograms
 - **`top_k=None` in HuggingFace pipeline** — correct replacement for deprecated `return_all_scores=True`
-- **XLM-RoBERTa for Singlish** — 80% controlled accuracy vs 40% for English-only RoBERTa
-- **Targeted XLM patch** — re-score only Singlish chunks (~4.7%), keep RoBERTa for the rest
+- **XLM-RoBERTa as sole base model** — 81.3% corpus-weighted accuracy vs 76.7% for RoBERTa; annotation sample bias (15.2x Singlish over-representation) initially masked this
+- **Corpus-weighted accuracy** — always weight annotation results by actual corpus proportions, not stratified sample proportions
 - **VADER + custom NS lexicon** — fast interpretable signal; 60 entries covering key NS/Singlish terms
 - **Ollama `format: "json"`** — enforces valid JSON output from local LLMs reliably
 
