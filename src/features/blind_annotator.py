@@ -298,8 +298,9 @@ def run_comparison():
     }
 
     MODELS = {
-        "XLM":     "cardiffnlp/twitter-xlm-roberta-base-sentiment",
-        "RoBERTa": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        "XLM":       "cardiffnlp/twitter-xlm-roberta-base-sentiment",
+        "RoBERTa":   "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        "RoBERTa-L": "j-hartmann/sentiment-roberta-large-english-3-classes",
     }
 
     model_preds = {}
@@ -406,14 +407,15 @@ def run_comparison():
     margin = abs(delta)
 
     print(f"\n  ── Verdict ──")
-    if margin < 0.03:
-        print(f"    ⚠️  {winner} wins by {margin:.1f}pp — too close to call at this sample size.")
+    margin_pp = margin * 100
+    if margin_pp < 3:
+        print(f"    ⚠️  {winner} wins by {margin_pp:.1f}pp — too close to call at this sample size.")
         print(f"       Cannot conclude one model is definitively better.")
-    elif margin < 0.07:
-        print(f"    {winner} wins by {margin:.1f}pp corpus-weighted accuracy.")
+    elif margin_pp < 7:
+        print(f"    {winner} wins by {margin_pp:.1f}pp corpus-weighted accuracy.")
         print(f"    Modest margin — direction is reliable, exact magnitude uncertain.")
     else:
-        print(f"    {winner} wins clearly by {margin:.1f}pp corpus-weighted accuracy.")
+        print(f"    {winner} wins clearly by {margin_pp:.1f}pp corpus-weighted accuracy.")
 
     print(f"{'═'*65}\n")
 
