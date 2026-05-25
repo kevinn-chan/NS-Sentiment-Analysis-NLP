@@ -13,6 +13,8 @@ Usage:
     python -m src.features.blind_annotator --report     # progress only
     python -m src.features.blind_annotator --compare    # run both models + h2h report
     python -m src.features.blind_annotator --reset      # start fresh
+    python -m src.features.blind_annotator --extend N   # add N more to training set
+    python -m src.features.blind_annotator --holdout N  # annotate N chunks into HELD-OUT test set
 
 Keys during annotation:
     P   — POSITIVE
@@ -20,6 +22,10 @@ Keys during annotation:
     U   — NEUTRAL
     S   — skip (genuinely ambiguous / not NS-related enough)
     Q   — quit and save progress
+
+IMPORTANT — two separate files:
+    blind_annotation.csv  → training data   (used by llm_annotator --build-dataset)
+    holdout_test.csv      → evaluation only (NEVER used for training)
 """
 
 import argparse
@@ -33,9 +39,10 @@ import pandas as pd
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-DATA_DIR = Path(__file__).parent.parent.parent / "data" / "processed" / "new"
-ANN_PATH = DATA_DIR / "blind_annotation.csv"
-CMP_PATH = DATA_DIR / "blind_annotation_comparison.csv"
+DATA_DIR     = Path(__file__).parent.parent.parent / "data" / "processed" / "new"
+ANN_PATH     = DATA_DIR / "blind_annotation.csv"
+HOLDOUT_PATH = DATA_DIR / "holdout_test.csv"
+CMP_PATH     = DATA_DIR / "blind_annotation_comparison.csv"
 
 CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
@@ -187,6 +194,19 @@ def load_results() -> pd.DataFrame:
 
 def save_results(df: pd.DataFrame):
     df.to_csv(ANN_PATH, index=False)
+
+
+def load_holdout() -> pd.DataFrame:
+    if HOLDOUT_PATH.exists():
+        return pd.read_csv(HOLDOUT_PATH)
+    return pd.DataFrame(columns=[
+        "chunk_id", "stratum", "doc_type", "subreddit",
+        "has_sg", "wc", "text", "human_label",
+    ])
+
+
+def save_holdout(df: pd.DataFrame):
+    df.to_csv(HOLDOUT_PATH, index=False)
 
 
 # ---------------------------------------------------------------------------
@@ -543,6 +563,112 @@ def run_extended(n: int):
 
 
 # ---------------------------------------------------------------------------
+# Holdout annotation loop — saves to holdout_test.csv, NEVER to blind_annotation.csv
+# ---------------------------------------------------------------------------
+def run_holdout(n: int):
+    """Annotate N chunks into a separate held-out test set.
+
+    These labels are used ONLY for final model evaluation.
+    They are never passed to llm_annotator --build-dataset.
+    """
+    import tty, termios
+
+    def getch() -> str:
+        fd  = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            return sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+    print(f"\n{'█'*60}")
+    print(f"  HOLDOUT SET — {n} chunks")
+    print(f"  These labels go to holdout_test.csv ONLY.")
+    print(f"  They will NEVER be used for training.")
+    print(f"  Purpose: honest final evaluation of fine-tuned SingBERT.")
+    print(f"{'█'*60}\n")
+
+    print("Loading chunk data ...")
+    sub    = pd.read_parquet(DATA_DIR / "submissions_chunks.parquet", columns=CHUNK_COLS)
+    com    = pd.read_parquet(DATA_DIR / "comments_chunks.parquet",    columns=CHUNK_COLS)
+    chunks = pd.concat([sub, com], ignore_index=True).drop_duplicates("chunk_id")
+    del sub, com
+
+    # Exclude ALL known IDs — training set AND existing holdout
+    exclude_ids = set()
+    exclude_ids.update(load_results()["chunk_id"].dropna())
+    holdout     = load_holdout()
+    exclude_ids.update(holdout["chunk_id"].dropna())
+
+    already_n = len(holdout.dropna(subset=["human_label"]))
+
+    # Use seed=99 so samples differ from --extend (seed=42)
+    extension = build_extension_sample(chunks, exclude_ids=exclude_ids,
+                                       n_total=n, seed=99)
+    extension = extension[~extension["chunk_id"].isin(exclude_ids)].reset_index(drop=True)
+
+    if len(extension) == 0:
+        print("No new chunks available for holdout.")
+        return
+
+    total    = already_n + len(extension)
+    reviewed = already_n
+
+    print(f"  {already_n} holdout already done — annotating {len(extension)} new chunks\n")
+    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [Q]=quit\n")
+    print("  ⚠️  No model predictions shown. Label on text alone.\n")
+
+    for _, row in extension.iterrows():
+        reviewed += 1
+        sg_flag  = "🇸🇬 " if row["has_sg"] else "   "
+        text     = str(row["text"]).strip().replace("\n", " ")
+
+        print(f"  ── [{reviewed}/{total}] {sg_flag} {row['stratum']:<18} "
+              f"({row['doc_type']}, r/{row['subreddit']}, {row['wc']}w) ──")
+        print(f"\n  {text[:350]}\n")
+        print("  > ", end="", flush=True)
+
+        while True:
+            ch = getch().lower()
+            if ch == "p":
+                label = "positive"; print("→ POSITIVE"); break
+            elif ch == "n":
+                label = "negative"; print("→ NEGATIVE"); break
+            elif ch == "u":
+                label = "neutral";  print("→ NEUTRAL");  break
+            elif ch == "s":
+                label = "skip";     print("skip");       break
+            elif ch == "q":
+                print("quit")
+                print(f"\n  Holdout saved: {reviewed - 1} annotations → {HOLDOUT_PATH.name}\n")
+                return
+
+        new_row = row.to_dict()
+        new_row["human_label"] = label
+        holdout = pd.concat([holdout, pd.DataFrame([new_row])], ignore_index=True)
+        save_holdout(holdout)
+        print()
+
+    # Summary
+    done     = holdout.dropna(subset=["human_label"])
+    labelled = done[done["human_label"] != "skip"]
+    skipped  = (done["human_label"] == "skip").sum()
+
+    print(f"\n{'═'*55}")
+    print(f"  Holdout set complete — {len(labelled)} labelled, {skipped} skipped")
+    print(f"{'═'*55}")
+    vc = labelled["human_label"].value_counts()
+    for lbl in ["negative", "neutral", "positive"]:
+        cnt = int(vc.get(lbl, 0))
+        bar = "█" * int((cnt / len(labelled) * 25) if len(labelled) else 0)
+        print(f"    {lbl:<10} {cnt:>3}  {bar}")
+    print(f"\n  Saved → {HOLDOUT_PATH}")
+    print(f"  ⚠️  Do NOT pass this file to --build-dataset. Evaluation only.")
+    print(f"{'═'*55}\n")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -553,7 +679,9 @@ def main():
     parser.add_argument("--compare", action="store_true", help="Run both models and print h2h report")
     parser.add_argument("--reset",   action="store_true", help="Delete annotation file and start fresh")
     parser.add_argument("--extend",  type=int, metavar="N",
-                        help="Annotate N more chunks beyond the original 100 (e.g. --extend 100)")
+                        help="Annotate N more chunks beyond the original 100 (added to training set)")
+    parser.add_argument("--holdout", type=int, metavar="N",
+                        help="Annotate N chunks into a separate held-out test set (NEVER used for training)")
     args = parser.parse_args()
 
     if args.reset:
@@ -573,6 +701,10 @@ def main():
 
     if args.extend:
         run_extended(args.extend)
+        return
+
+    if args.holdout:
+        run_holdout(args.holdout)
         return
 
     run()
