@@ -47,7 +47,8 @@ CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
 # Groq config
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_MODEL    = "llama-3.3-70b-versatile"   # best free model on Groq
+GROQ_MODEL    = "llama-3.1-8b-instant"   # 131,072 TPM free — fits our ~1,700 token prompt
+# llama-3.3-70b-versatile only gets 6,000 TPM free → rate limits immediately at our prompt size
 RATE_LIMIT_SLEEP = 2.1   # seconds between calls → ~28 req/min (under 30 limit)
 
 # ---------------------------------------------------------------------------
@@ -90,28 +91,40 @@ Ranks/roles:
 # Few-shot examples (drawn from human golden labels)
 # ---------------------------------------------------------------------------
 FEW_SHOT_EXAMPLES = [
-    # NEGATIVE
-    ("NSmen in the campus will be ready to take pic and report u for malingering around on campus, go in vest slack so cant see ur name instead",
-     "negative"),
+    # NEGATIVE — direct complaint
     ("bro I have know of people from a neighbouring country who got their PR dam easily while we serve NS, they took our jobs not only in blue collar sector the thing is they no serve ns and they got both the job and the citizenship",
      "negative"),
+
+    # NEGATIVE — complaint phrased as a question (key failure mode)
+    ("Are the sergeants still unreasonable, tekan them like hell for no reason? I've seen so many posts ranting about this, is it still happening?",
+     "negative"),
+
+    # NEGATIVE — narrative with clear frustration
     ("Another 2 hours gone by, at this point bodoh mentally breakdown liao. He getting interogated by the sergeants, the PS, other platoon PS and SM.",
      "negative"),
 
-    # NEUTRAL
-    ("Was granted PES E due to some health issues but I do want to keep options open for a future career in army. Was told however that PES E very hard to get career and have to up pes which I don't actually want to do.",
-     "neutral"),
-    ("Singaporean, 21, going to ORD in ~4 months. I studied primary in Malaysia (UPSR) and did secondary in SG till Sec 3.",
-     "neutral"),
-    ("If you are having any doubts, best not to do it. The military life is not something that is for everyone, and signing on just because you love to do a certain part of your job does not guarantee you will enjoy the rest.",
+    # NEUTRAL — factual question, no emotional charge
+    ("Was granted PES E due to some health issues but I do want to keep options open for a future career in army. Was told however that PES E very hard to get career and have to up pes.",
      "neutral"),
 
-    # POSITIVE
-    ("For me i ooced and my current vocation very lepak one 8-5 mostly end early one sometimes the days are like sleeping in aircon room from morning till afternoon eat lunch go back sleep again",
+    # NEUTRAL — describes hard NS things matter-of-factly (not complaining)
+    ("During BMT the tekan sessions were intense. We would do pushups and leopard crawls. That's just how it works in the first few weeks.",
+     "neutral"),
+
+    # NEUTRAL — Singlish humour/exaggeration, not real frustration
+    ("In my time hor, 2.5 years hor, and when go Tekong we literally swim there without boat. For lunch we eat the tree bark.",
+     "neutral"),
+
+    # POSITIVE — mild satisfaction with easy vocation (not enthusiastic, just content)
+    ("Managed to get a desk vocation, mostly 8 to 5, can book out most nights. Not what I expected from NS but I'll take it.",
      "positive"),
+
+    # POSITIVE — warm congratulations (mild positive counts)
     ("Ayy but grats on signal must have been a relief on posting day",
      "positive"),
-    ("Just want to mention that there is the medic vocation within the commando unit. If you do well during Commando BMT you can indicate to your sergeant that you are interested in being a medic.",
+
+    # POSITIVE — encouraging helpful advice with upbeat tone
+    ("Just want to mention that there is the medic vocation within the commando unit. If you do well during Commando BMT you can indicate to your sergeant that you are interested. Good lobang if you want a meaningful vocation.",
      "positive"),
 ]
 
@@ -120,23 +133,54 @@ FEW_SHOT_EXAMPLES = [
 # ---------------------------------------------------------------------------
 SYSTEM_PROMPT = f"""You are a sentiment classifier for Singapore National Service (NS) Reddit posts.
 
-TASK: Classify the sentiment as negative, neutral, or positive.
+TASK: Classify the author's emotional state as negative, neutral, or positive.
 
-DEFINITIONS:
-  negative = author expresses frustration, complaint, criticism, distress, anger, resentment, or bitterness
-  neutral  = author asks questions, shares facts, gives advice without strong feeling, or describes experiences matter-of-factly
-  positive = author expresses satisfaction, relief, pride, excitement, gratitude, or encouragement
+━━━ LABEL DEFINITIONS ━━━
 
-RULES:
-  1. Label the SURFACE TONE — what emotion is the author expressing right now?
-  2. Do NOT label based on whether NS is good or bad as a policy
-  3. Obvious sarcasm: label the true underlying meaning
-  4. Singlish particles (lah, leh, lor, sia) are tone-softeners — ignore them for sentiment
-  5. If text replies to another post, label THIS text only, not what it replies to
+NEGATIVE — author is frustrated, complaining, resentful, distressed, bitter, or angry.
+  ✓ Includes: complaints phrased as questions ("Are the enciks still unreasonable?"),
+    stories told with frustration, rhetorical questions expressing grievance,
+    describing unfair treatment with clear displeasure.
+  ✗ Does NOT include: mentioning that NS is tough/hard without personal frustration,
+    or objectively describing negative events without emotional charge.
+
+NEUTRAL — author is informing, asking, advising, or describing without strong emotion.
+  ✓ Includes: factual questions about admin/logistics, balanced advice, experience-sharing
+    without frustration or satisfaction, describing hardship matter-of-factly,
+    humorous exaggeration told without real bitterness.
+  ✗ Does NOT include: texts where frustration or satisfaction is clearly felt even if
+    not stated explicitly.
+
+POSITIVE — author feels satisfied, relieved, encouraged, proud, grateful, or happy.
+  ✓ Includes: mild satisfaction (not just enthusiasm) — e.g. liking an easy vocation,
+    relief at good news, giving warm helpful advice, expressing that NS was worthwhile,
+    congratulating someone, sharing a silver lining.
+  ✗ Does NOT include: purely informational advice with no warm tone.
+
+━━━ CRITICAL DISTINCTIONS ━━━
+
+"Talking about negative things" ≠ "author being negative"
+  → "During tekan sessions, we had to do 50 pushups" = NEUTRAL (describing, not complaining)
+  → "I hate getting tekan all the time, it's demoralising" = NEGATIVE (complaining)
+
+Phrasing as a question does not make it neutral:
+  → "Are the enciks still unreasonable and tekan everyone for no reason?" = NEGATIVE
+  → "What does an encik do?" = NEUTRAL
+
+Mild positivity counts as positive:
+  → Relaxed tone sharing that vocation is easy/comfortable = POSITIVE
+  → Warm congratulations to someone = POSITIVE
+  → Helpful upbeat advice = POSITIVE (not neutral)
+
+Singlish humour and exaggeration:
+  → "In my time we swim to Tekong without boat" = NEUTRAL (obviously joking, not bitter)
+  → "wah shag lah" in a clearly exhausted/frustrated context = NEGATIVE
+  → "haha" or "HAHAH" alone does not make something positive
 
 {NS_LEXICON}
 
-OUTPUT: Reply with ONLY this JSON, nothing else:
+━━━ OUTPUT ━━━
+Reply with ONLY this JSON, nothing else:
 {{"label": "negative"}}   or   {{"label": "neutral"}}   or   {{"label": "positive"}}"""
 
 
