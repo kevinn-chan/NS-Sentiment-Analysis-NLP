@@ -1,24 +1,32 @@
 """
 LLM-based auto-annotation pipeline for SingBERT fine-tuning golden dataset.
 
-Uses Groq (free tier) with Llama 3.3 70B to auto-annotate NS Reddit chunks.
+Uses Cerebras Cloud (free tier) with gpt-oss-120b to auto-annotate NS Reddit chunks.
 Human blind labels (blind_annotation.csv) serve as the golden validation set.
 
-Free tier limits (Groq):
-  - llama-3.3-70b-versatile: 14,400 requests/day, 30 req/min
-  - At 30 req/min: 8,000 chunks ≈ 4.5 hours (within daily limit)
+Why Cerebras over Groq:
+  - Groq 8B: 6k TPM cap → rate limits at our prompt size (avg 442 tok/call)
+  - Groq 70B: only 1,000 RPD free → exhausted in one session
+  - Cerebras: 30k TPM, 1M tokens/day, 120B model — no walls at our usage level
+
+Free tier limits (Cerebras — https://cloud.cerebras.ai, no credit card):
+  - gpt-oss-120b: 5 RPM, 30,000 TPM, 1,000,000 TPD
+  - At 13s sleep (4.6 RPM × 447 tok avg = 2,056 TPM): well under all limits
+  - Validation (197 chunks): ~43 min, uses 8.8% of daily token budget
+  - Bulk 8k: run --annotate 2000 for 4 nights (~7 hrs each)
 
 Setup:
-    1. Get free API key at https://console.groq.com
-    2. pip install openai   (Groq is OpenAI-compatible)
-    3. export GROQ_API_KEY=gsk_...
+    1. Sign up free at https://cloud.cerebras.ai  (no credit card)
+    2. Settings → API Keys → create key
+    3. pip install openai   (Cerebras endpoint is OpenAI-compatible)
+    4. export CEREBRAS_API_KEY=csk_...
 
 Usage:
     # Step 1 — validate LLM against human labels, compute Cohen's Kappa
     python -m src.features.llm_annotator --validate
 
-    # Step 2 — bulk annotate N chunks (only after kappa >= 0.70)
-    python -m src.features.llm_annotator --annotate 8000
+    # Step 2 — bulk annotate 2000 chunks per night for 4 nights
+    python -m src.features.llm_annotator --annotate 2000
 
     # Step 3 — combine into final training dataset
     python -m src.features.llm_annotator --build-dataset
@@ -45,13 +53,15 @@ TRAIN_PATH     = DATA_DIR / "singbert_train.csv"
 
 CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
-# Groq config
-GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_MODEL    = "llama-3.1-8b-instant"   # 14,400 RPD / 6,000 TPM — no daily wall
-# llama-3.3-70b-versatile: only 1,000 RPD on free tier — exhausted quickly across sessions
-# Previously 8B failed because we used a 1,700-token complex prompt; simplified prompt is ~357 tokens
-RATE_LIMIT_SLEEP = 8.0   # seconds → 7.5 RPM; p90 call=663 tok → 4,973 TPM (under 6k cap)
-# 4s was too fast: avg 442 tok × 15 RPM = 6,626 TPM — over the 6k limit on long chunks
+# Cerebras Cloud config (free tier — https://cloud.cerebras.ai)
+API_BASE_URL     = "https://api.cerebras.ai/v1"
+API_MODEL        = "gpt-oss-120b"   # 120B model; free tier: 5 RPM, 30k TPM, 1M TPD
+RATE_LIMIT_SLEEP = 13.0             # 60s/5RPM=12s min; 13s gives ~4.6 RPM × 447tok = 2,056 TPM
+
+# Provider history (why we switched):
+#   Groq llama-3.1-8b: 6k TPM — avg call 442 tok × 15 RPM = 6,626 TPM → constant rate limits
+#   Groq llama-3.3-70b: 1,000 RPD — exhausted in one session with failed retries
+#   Cerebras gpt-oss-120b: 30k TPM, 1M TPD → 2,237 safe calls/day, no walls at our rate
 
 # ---------------------------------------------------------------------------
 # Few-shot examples — 3 targeted examples (one per class)
@@ -119,7 +129,7 @@ def call_llm(text: str, client, retries: int = 3) -> str | None:
     while parse_attempts < retries:
         try:
             resp  = client.chat.completions.create(
-                model=GROQ_MODEL,
+                model=API_MODEL,
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}]
                          + build_messages(text),
                 max_tokens=15,
@@ -159,14 +169,15 @@ def get_client():
         print("Run: pip install openai")
         sys.exit(1)
 
-    api_key = os.environ.get("GROQ_API_KEY")
+    api_key = os.environ.get("CEREBRAS_API_KEY")
     if not api_key:
-        print("GROQ_API_KEY not set.")
-        print("  1. Get a free key at https://console.groq.com")
-        print("  2. export GROQ_API_KEY=gsk_...")
+        print("CEREBRAS_API_KEY not set.")
+        print("  1. Sign up free (no credit card) at https://cloud.cerebras.ai")
+        print("  2. Settings → API Keys → create key")
+        print("  3. export CEREBRAS_API_KEY=csk_...")
         sys.exit(1)
 
-    return OpenAI(api_key=api_key, base_url=GROQ_BASE_URL)
+    return OpenAI(api_key=api_key, base_url=API_BASE_URL)
 
 
 # ---------------------------------------------------------------------------
@@ -209,7 +220,7 @@ def run_validate():
         golden["human_label"].notna() & (golden["human_label"] != "skip")
     ].copy().reset_index(drop=True)
 
-    print(f"Validating {len(golden)} golden labels with {GROQ_MODEL} ...")
+    print(f"Validating {len(golden)} golden labels with {API_MODEL} ...")
     print(f"Estimated time: ~{len(golden) * RATE_LIMIT_SLEEP / 60:.0f} min\n")
 
     llm_labels = []
@@ -239,7 +250,7 @@ def run_validate():
     kappa = cohen_kappa_score(valid["human_label"], valid["llm_label"])
 
     print(f"\n{'═'*58}")
-    print(f"  Kappa Validation — {GROQ_MODEL}")
+    print(f"  Kappa Validation — {API_MODEL}")
     print(f"{'═'*58}")
     print(f"  Chunks evaluated : {len(valid)}  ({failed} failed/skipped)")
     print(f"  Cohen's Kappa    : {kappa:.3f}")
