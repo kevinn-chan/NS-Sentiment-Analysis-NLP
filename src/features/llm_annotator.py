@@ -47,141 +47,48 @@ CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
 # Groq config
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_MODEL    = "llama-3.1-8b-instant"   # 131,072 TPM free — fits our ~1,700 token prompt
-# llama-3.3-70b-versatile only gets 6,000 TPM free → rate limits immediately at our prompt size
-RATE_LIMIT_SLEEP = 2.1   # seconds between calls → ~28 req/min (under 30 limit)
+GROQ_MODEL    = "llama-3.3-70b-versatile"  # 6,000 TPM free; trimmed prompt ~700 tok → ~8 RPM
+# llama-3.1-8b-instant: 131k TPM but too small for nuanced sentiment — kappa degrades with complex prompts
+RATE_LIMIT_SLEEP = 8.0   # seconds between calls → ~7.5 req/min (safely under 8 RPM at 700 tok/call)
 
 # ---------------------------------------------------------------------------
-# NS / SAF lexicon — injected into system prompt
-# ---------------------------------------------------------------------------
-NS_LEXICON = """
-NS/SAF VOCABULARY (use this to interpret domain-specific terms):
-
-Attitude & slang:
-  chao keng / keng = shirking duties (discussing it = usually negative)
-  saikang = dirty menial tasks like guard duty, cleaning (complaining = negative)
-  siong = tough/demanding training (complaining = negative; pride = positive)
-  wayang = putting on a show for superiors, not genuine (negative connotation)
-  tekan = being punished or pressured (negative)
-  lepak = relaxed, easy posting (positive when describing own situation)
-  lobang = useful tip or shortcut (positive)
-  jialat = bad situation, serious trouble (negative)
-  sian = bored, tired, fed up (negative)
-  shiok = great, satisfying (positive)
-  steady = reliable, impressive (positive)
-  bochap = don't care, apathetic
-  suay = unlucky (negative)
-
-Key acronyms:
-  ORD = end of full-time NS service ("ORD loh" = relief/celebration = positive)
-  PES = physical fitness classification (lower PES = medical condition, often neutral)
-  IPPT = annual fitness test (failing = negative; gold/pass = positive/neutral)
-  BMT = Basic Military Training (recruit phase)
-  ICT/Reservist = annual in-camp training for working adults
-  MC = medical certificate, excuse from duties
-  FFI = fit-for-inspection medical status
-
-Ranks/roles:
-  encik = warrant officer / senior NCO
-  vocation = job/role assignment in NS
-  recourse = repeat training for those who fail
-"""
-
-# ---------------------------------------------------------------------------
-# Few-shot examples (drawn from human golden labels)
+# Few-shot examples — 3 targeted examples (one per class)
+# Chosen to cover the hardest failure modes: question-as-complaint,
+# factual-not-emotional, mild-positive-not-neutral
 # ---------------------------------------------------------------------------
 FEW_SHOT_EXAMPLES = [
-    # NEGATIVE — direct complaint
-    ("bro I have know of people from a neighbouring country who got their PR dam easily while we serve NS, they took our jobs not only in blue collar sector the thing is they no serve ns and they got both the job and the citizenship",
-     "negative"),
-
-    # NEGATIVE — complaint phrased as a question (key failure mode)
+    # NEGATIVE — complaint phrased as a question (not neutral just because it's a question)
     ("Are the sergeants still unreasonable, tekan them like hell for no reason? I've seen so many posts ranting about this, is it still happening?",
      "negative"),
 
-    # NEGATIVE — narrative with clear frustration
-    ("Another 2 hours gone by, at this point bodoh mentally breakdown liao. He getting interogated by the sergeants, the PS, other platoon PS and SM.",
-     "negative"),
-
-    # NEUTRAL — factual question, no emotional charge
-    ("Was granted PES E due to some health issues but I do want to keep options open for a future career in army. Was told however that PES E very hard to get career and have to up pes.",
-     "neutral"),
-
-    # NEUTRAL — describes hard NS things matter-of-factly (not complaining)
+    # NEUTRAL — describes hard NS things matter-of-factly (mentioning hardship ≠ complaining)
     ("During BMT the tekan sessions were intense. We would do pushups and leopard crawls. That's just how it works in the first few weeks.",
      "neutral"),
 
-    # NEUTRAL — Singlish humour/exaggeration, not real frustration
-    ("In my time hor, 2.5 years hor, and when go Tekong we literally swim there without boat. For lunch we eat the tree bark.",
-     "neutral"),
-
-    # POSITIVE — mild satisfaction with easy vocation (not enthusiastic, just content)
+    # POSITIVE — mild satisfaction counts (not just enthusiasm)
     ("Managed to get a desk vocation, mostly 8 to 5, can book out most nights. Not what I expected from NS but I'll take it.",
-     "positive"),
-
-    # POSITIVE — warm congratulations (mild positive counts)
-    ("Ayy but grats on signal must have been a relief on posting day",
-     "positive"),
-
-    # POSITIVE — encouraging helpful advice with upbeat tone
-    ("Just want to mention that there is the medic vocation within the commando unit. If you do well during Commando BMT you can indicate to your sergeant that you are interested. Good lobang if you want a meaningful vocation.",
      "positive"),
 ]
 
 # ---------------------------------------------------------------------------
-# System + user prompt builder
+# System prompt — concise, ~300 tokens; 70B doesn't need hand-holding
 # ---------------------------------------------------------------------------
-SYSTEM_PROMPT = f"""You are a sentiment classifier for Singapore National Service (NS) Reddit posts.
+SYSTEM_PROMPT = """You are a sentiment classifier for Singapore National Service (NS) Reddit posts.
 
-TASK: Classify the author's emotional state as negative, neutral, or positive.
+Classify the AUTHOR'S emotional state — not the topic — as negative, neutral, or positive.
 
-━━━ LABEL DEFINITIONS ━━━
+NEGATIVE: author is frustrated, complaining, resentful, bitter, or distressed.
+NEUTRAL:  author is informing, asking, advising, or describing without strong emotion.
+POSITIVE: author feels satisfied, relieved, proud, grateful, or happy (mild counts).
 
-NEGATIVE — author is frustrated, complaining, resentful, distressed, bitter, or angry.
-  ✓ Includes: complaints phrased as questions ("Are the enciks still unreasonable?"),
-    stories told with frustration, rhetorical questions expressing grievance,
-    describing unfair treatment with clear displeasure.
-  ✗ Does NOT include: mentioning that NS is tough/hard without personal frustration,
-    or objectively describing negative events without emotional charge.
+Key rules:
+1. Describing hard/tough NS experiences without frustration = NEUTRAL (not NEGATIVE).
+2. A complaint phrased as a question is still NEGATIVE.
+3. Mild satisfaction or relief = POSITIVE (not NEUTRAL).
+4. Singlish slang (lah, leh, sian, tekan, ORD, encik) is normal NS vocabulary — read tone, not just words.
 
-NEUTRAL — author is informing, asking, advising, or describing without strong emotion.
-  ✓ Includes: factual questions about admin/logistics, balanced advice, experience-sharing
-    without frustration or satisfaction, describing hardship matter-of-factly,
-    humorous exaggeration told without real bitterness.
-  ✗ Does NOT include: texts where frustration or satisfaction is clearly felt even if
-    not stated explicitly.
-
-POSITIVE — author feels satisfied, relieved, encouraged, proud, grateful, or happy.
-  ✓ Includes: mild satisfaction (not just enthusiasm) — e.g. liking an easy vocation,
-    relief at good news, giving warm helpful advice, expressing that NS was worthwhile,
-    congratulating someone, sharing a silver lining.
-  ✗ Does NOT include: purely informational advice with no warm tone.
-
-━━━ CRITICAL DISTINCTIONS ━━━
-
-"Talking about negative things" ≠ "author being negative"
-  → "During tekan sessions, we had to do 50 pushups" = NEUTRAL (describing, not complaining)
-  → "I hate getting tekan all the time, it's demoralising" = NEGATIVE (complaining)
-
-Phrasing as a question does not make it neutral:
-  → "Are the enciks still unreasonable and tekan everyone for no reason?" = NEGATIVE
-  → "What does an encik do?" = NEUTRAL
-
-Mild positivity counts as positive:
-  → Relaxed tone sharing that vocation is easy/comfortable = POSITIVE
-  → Warm congratulations to someone = POSITIVE
-  → Helpful upbeat advice = POSITIVE (not neutral)
-
-Singlish humour and exaggeration:
-  → "In my time we swim to Tekong without boat" = NEUTRAL (obviously joking, not bitter)
-  → "wah shag lah" in a clearly exhausted/frustrated context = NEGATIVE
-  → "haha" or "HAHAH" alone does not make something positive
-
-{NS_LEXICON}
-
-━━━ OUTPUT ━━━
 Reply with ONLY this JSON, nothing else:
-{{"label": "negative"}}   or   {{"label": "neutral"}}   or   {{"label": "positive"}}"""
+{"label": "negative"}   or   {"label": "neutral"}   or   {"label": "positive"}"""
 
 
 def build_messages(text: str) -> list:
@@ -198,7 +105,16 @@ def build_messages(text: str) -> list:
 # Single API call
 # ---------------------------------------------------------------------------
 def call_llm(text: str, client, retries: int = 3) -> str | None:
-    for attempt in range(retries):
+    """Call Groq LLM with separate budgets for parse errors vs rate limits.
+
+    Rate limit hits do NOT consume the retry budget — they back off and retry
+    indefinitely with exponential backoff (60 → 120 → 240 → 300s cap).
+    Parse errors (bad JSON, unexpected label) consume the retry budget.
+    """
+    parse_attempts = 0
+    rate_wait      = 60   # seconds; doubles on each consecutive rate limit hit
+
+    while parse_attempts < retries:
         try:
             resp  = client.chat.completions.create(
                 model=GROQ_MODEL,
@@ -210,19 +126,27 @@ def call_llm(text: str, client, retries: int = 3) -> str | None:
             raw   = resp.choices[0].message.content.strip()
             label = json.loads(raw).get("label", "").lower()
             if label in ("negative", "neutral", "positive"):
+                rate_wait = 60   # reset backoff on success
                 return label
-            print(f"  ⚠️  Unexpected label: {raw!r}")
+            print(f"  ⚠️  Unexpected label (attempt {parse_attempts+1}): {raw!r}")
+            parse_attempts += 1
+
         except json.JSONDecodeError:
-            print(f"  ⚠️  JSON error attempt {attempt+1}: {raw!r}")
+            parse_attempts += 1
+            print(f"  ⚠️  JSON error attempt {parse_attempts}: {raw!r}")
+
         except Exception as e:
             err = str(e)
             if "rate_limit" in err.lower() or "429" in err:
-                wait = 60
-                print(f"  Rate limit hit — waiting {wait}s ...")
-                time.sleep(wait)
+                # Rate limit — back off but don't burn retry budget
+                print(f"  Rate limit hit — waiting {rate_wait}s ...")
+                time.sleep(rate_wait)
+                rate_wait = min(rate_wait * 2, 300)  # 60 → 120 → 240 → 300 cap
             else:
-                print(f"  ⚠️  API error attempt {attempt+1}: {e}")
-                time.sleep(2 ** attempt)
+                parse_attempts += 1
+                print(f"  ⚠️  API error (attempt {parse_attempts}): {e}")
+                time.sleep(min(2 ** parse_attempts, 30))
+
     return None
 
 
@@ -287,19 +211,24 @@ def run_validate():
     print(f"Estimated time: ~{len(golden) * RATE_LIMIT_SLEEP / 60:.0f} min\n")
 
     llm_labels = []
-    t0 = time.time()
+    t0         = time.time()
+    out        = DATA_DIR / "llm_validation.csv"   # save incrementally
 
     for i, (_, row) in enumerate(golden.iterrows()):
         label = call_llm(str(row["text"]), client)
         llm_labels.append(label)
         time.sleep(RATE_LIMIT_SLEEP)
 
-        if (i + 1) % 25 == 0:
+        if (i + 1) % 25 == 0 or (i + 1) == len(golden):
             done    = [l for l in llm_labels if l]
             elapsed = time.time() - t0
             rate    = (i + 1) / elapsed
             eta     = (len(golden) - i - 1) / rate
             print(f"  {i+1}/{len(golden)}  {rate:.1f}/s  ETA {eta/60:.0f}min")
+            # Incremental save — safe to kill at any 25-chunk boundary
+            partial = golden.iloc[: i + 1].copy()
+            partial["llm_label"] = llm_labels
+            partial.dropna(subset=["llm_label"]).to_csv(out, index=False)
 
     golden["llm_label"] = llm_labels
     valid = golden.dropna(subset=["llm_label"])
@@ -335,7 +264,6 @@ def run_validate():
         labels=["negative", "neutral", "positive"], digits=3
     ))
 
-    out = DATA_DIR / "llm_validation.csv"
     valid.to_csv(out, index=False)
     print(f"  Results saved → {out}")
     print(f"{'═'*58}\n")
