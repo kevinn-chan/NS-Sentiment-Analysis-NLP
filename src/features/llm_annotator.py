@@ -1,32 +1,35 @@
 """
 LLM-based auto-annotation pipeline for SingBERT fine-tuning golden dataset.
 
-Uses Cerebras Cloud (free tier) with gpt-oss-120b to auto-annotate NS Reddit chunks.
+Uses OpenAI gpt-4.1-mini to auto-annotate NS Reddit chunks.
 Human blind labels (blind_annotation.csv) serve as the golden validation set.
 
-Why Cerebras over Groq:
-  - Groq 8B: 6k TPM cap → rate limits at our prompt size (avg 442 tok/call)
-  - Groq 70B: only 1,000 RPD free → exhausted in one session
-  - Cerebras: 30k TPM, 1M tokens/day, 120B model — no walls at our usage level
+Why OpenAI over free tiers:
+  - Groq 8B:    6k TPM  → rate limits at avg 442 tok/call
+  - Groq 70B:   1k RPD  → exhausted in one session
+  - Cerebras:   5 RPM   → 43 min validation, 28 hrs bulk (4 nights)
+  - OpenAI 4.1-mini: 500 RPM, 200k TPM, $1.52 total → 7 min + 4.4 hrs (one night)
 
-Free tier limits (Cerebras — https://cloud.cerebras.ai, no credit card):
-  - gpt-oss-120b: 5 RPM, 30,000 TPM, 1,000,000 TPD
-  - At 13s sleep (4.6 RPM × 447 tok avg = 2,056 TPM): well under all limits
-  - Validation (197 chunks): ~43 min, uses 8.8% of daily token budget
-  - Bulk 8k: run --annotate 2000 for 4 nights (~7 hrs each)
+Cost for entire project (measured avg 442 input + 5 output tok/call):
+  - Validation (197 calls): $0.036
+  - Bulk 8k    (8000 calls): $1.478
+  - Total: ~$1.52
+
+Model choice rationale:
+  - gpt-4o-mini  : $0.57 total — excellent value, strong quality
+  - gpt-4.1-mini : $1.52 total — newer 4.1 architecture, better instruction-following ← chosen
+  - gpt-4.1      : $7.57 total — overkill; marginal quality gain doesn't justify cost
 
 Setup:
-    1. Sign up free at https://cloud.cerebras.ai  (no credit card)
-    2. Settings → API Keys → create key
-    3. pip install openai   (Cerebras endpoint is OpenAI-compatible)
-    4. export CEREBRAS_API_KEY=csk_...
+    1. export OPENAI_API_KEY=sk_...  (use existing credits)
+    2. pip install openai  (already installed)
 
 Usage:
     # Step 1 — validate LLM against human labels, compute Cohen's Kappa
     python -m src.features.llm_annotator --validate
 
-    # Step 2 — bulk annotate 2000 chunks per night for 4 nights
-    python -m src.features.llm_annotator --annotate 2000
+    # Step 2 — bulk annotate all 8000 chunks in one overnight run
+    python -m src.features.llm_annotator --annotate 8000
 
     # Step 3 — combine into final training dataset
     python -m src.features.llm_annotator --build-dataset
@@ -53,15 +56,15 @@ TRAIN_PATH     = DATA_DIR / "singbert_train.csv"
 
 CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
-# Cerebras Cloud config (free tier — https://cloud.cerebras.ai)
-API_BASE_URL     = "https://api.cerebras.ai/v1"
-API_MODEL        = "gpt-oss-120b"   # 120B model; free tier: 5 RPM, 30k TPM, 1M TPD
-RATE_LIMIT_SLEEP = 13.0             # 60s/5RPM=12s min; 13s gives ~4.6 RPM × 447tok = 2,056 TPM
+# OpenAI config
+API_BASE_URL     = "https://api.openai.com/v1"
+API_MODEL        = "gpt-4.1-mini"   # $0.40/M in, $1.60/M out → $1.52 total for validation+8k bulk
+RATE_LIMIT_SLEEP = 2.0              # 30 RPM — well under Tier1 500 RPM / 200k TPM limits
 
-# Provider history (why we switched):
-#   Groq llama-3.1-8b: 6k TPM — avg call 442 tok × 15 RPM = 6,626 TPM → constant rate limits
-#   Groq llama-3.3-70b: 1,000 RPD — exhausted in one session with failed retries
-#   Cerebras gpt-oss-120b: 30k TPM, 1M TPD → 2,237 safe calls/day, no walls at our rate
+# To switch models, change API_MODEL:
+#   "gpt-4o-mini"  → $0.57 total, strong quality
+#   "gpt-4.1-mini" → $1.52 total, newest architecture  ← current
+#   "gpt-4.1"      → $7.57 total, maximum quality (overkill)
 
 # ---------------------------------------------------------------------------
 # Few-shot examples — 3 targeted examples (one per class)
@@ -169,15 +172,13 @@ def get_client():
         print("Run: pip install openai")
         sys.exit(1)
 
-    api_key = os.environ.get("CEREBRAS_API_KEY")
+    api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        print("CEREBRAS_API_KEY not set.")
-        print("  1. Sign up free (no credit card) at https://cloud.cerebras.ai")
-        print("  2. Settings → API Keys → create key")
-        print("  3. export CEREBRAS_API_KEY=csk_...")
+        print("OPENAI_API_KEY not set.")
+        print("  export OPENAI_API_KEY=sk_...")
         sys.exit(1)
 
-    return OpenAI(api_key=api_key, base_url=API_BASE_URL)
+    return OpenAI(api_key=api_key)  # uses default api.openai.com/v1
 
 
 # ---------------------------------------------------------------------------
