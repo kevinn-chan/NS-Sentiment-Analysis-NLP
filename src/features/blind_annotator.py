@@ -130,6 +130,49 @@ def build_sample(chunks: pd.DataFrame) -> pd.DataFrame:
                    "has_sg", "wc", "text"]]
 
 
+def build_extension_sample(chunks: pd.DataFrame, exclude_ids: set,
+                           n_total: int, seed: int = 42) -> pd.DataFrame:
+    """Draw n_total additional chunks, proportional to stratum sizes, excluding already-done IDs."""
+    df = chunks.copy()
+    df["has_sg"] = df["text"].fillna("").apply(has_singlish)
+    df["wc"]     = df["text"].fillna("").apply(word_count)
+    df["text"]   = df["text"].fillna("").str.strip()
+    df           = df[(df["text"].str.len() > 0) & (~df["chunk_id"].isin(exclude_ids))]
+
+    # Same proportions as original STRATA (each stratum gets equal share)
+    n_per_stratum = n_total // len(STRATA)
+    remainder     = n_total % len(STRATA)
+
+    parts = []
+    already_sampled = set()
+    for i, (stratum, filters, _) in enumerate(STRATA):
+        g = df.copy()
+        if "singlish" in filters:
+            g = g[g["has_sg"] == filters["singlish"]]
+        if "doc_type" in filters:
+            g = g[g["doc_type"] == filters["doc_type"]]
+        if "wc_min" in filters:
+            g = g[g["wc"] >= filters["wc_min"]]
+        if "wc_max" in filters:
+            g = g[g["wc"] <  filters["wc_max"]]
+        g = g[~g["chunk_id"].isin(already_sampled)]
+        # Give remainder chunks to first stratum
+        n = n_per_stratum + (remainder if i == 0 else 0)
+        sampled            = g.sample(min(n, len(g)), random_state=seed + i)
+        sampled            = sampled.copy()
+        sampled["stratum"] = stratum
+        already_sampled.update(sampled["chunk_id"].values)
+        parts.append(sampled)
+
+    extension = (
+        pd.concat(parts, ignore_index=True)
+        .sample(frac=1, random_state=seed + 99)
+        .reset_index(drop=True)
+    )
+    return extension[["chunk_id", "stratum", "doc_type", "subreddit",
+                       "has_sg", "wc", "text"]]
+
+
 # ---------------------------------------------------------------------------
 # Persistence
 # ---------------------------------------------------------------------------
@@ -425,6 +468,81 @@ def run_comparison():
 
 
 # ---------------------------------------------------------------------------
+# Extended annotation loop (for golden dataset beyond initial 100)
+# ---------------------------------------------------------------------------
+def run_extended(n: int):
+    import tty, termios
+
+    def getch() -> str:
+        fd  = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            return sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+    print(f"Loading chunk data for {n} additional annotations ...")
+    sub    = pd.read_parquet(DATA_DIR / "submissions_chunks.parquet", columns=CHUNK_COLS)
+    com    = pd.read_parquet(DATA_DIR / "comments_chunks.parquet",    columns=CHUNK_COLS)
+    chunks = pd.concat([sub, com], ignore_index=True).drop_duplicates("chunk_id")
+    del sub, com
+
+    results     = load_results()
+    done_ids    = set(results["chunk_id"].dropna())
+    already_n   = len(results.dropna(subset=["human_label"]))
+
+    extension   = build_extension_sample(chunks, exclude_ids=done_ids, n_total=n)
+    # Filter any that slipped through (race condition safety)
+    extension   = extension[~extension["chunk_id"].isin(done_ids)].reset_index(drop=True)
+
+    if len(extension) == 0:
+        print("No new chunks to annotate.")
+        return
+
+    total    = already_n + len(extension)
+    reviewed = already_n
+
+    print(f"  {already_n} already done — adding {len(extension)} new chunks (target: {total})\n")
+    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [Q]=quit\n")
+    print("  ⚠️  No model predictions shown. Label on text alone.\n")
+
+    for _, row in extension.iterrows():
+        reviewed += 1
+        sg_flag  = "🇸🇬 " if row["has_sg"] else "   "
+        text     = str(row["text"]).strip().replace("\n", " ")
+
+        print(f"  ── [{reviewed}/{total}] {sg_flag} {row['stratum']:<18} "
+              f"({row['doc_type']}, r/{row['subreddit']}, {row['wc']}w) ──")
+        print(f"\n  {text[:350]}\n")
+        print("  > ", end="", flush=True)
+
+        while True:
+            ch = getch().lower()
+            if ch == "p":
+                label = "positive"; print("→ POSITIVE"); break
+            elif ch == "n":
+                label = "negative"; print("→ NEGATIVE"); break
+            elif ch == "u":
+                label = "neutral";  print("→ NEUTRAL");  break
+            elif ch == "s":
+                label = "skip";     print("skip");       break
+            elif ch == "q":
+                print("quit")
+                print_progress(results)
+                return
+
+        new_row = row.to_dict()
+        new_row["human_label"] = label
+        results = pd.concat([results, pd.DataFrame([new_row])], ignore_index=True)
+        save_results(results)
+        print()
+
+    print(f"\nDone — {reviewed} total annotations.")
+    print_progress(results)
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -434,6 +552,8 @@ def main():
     parser.add_argument("--report",  action="store_true", help="Print annotation progress only")
     parser.add_argument("--compare", action="store_true", help="Run both models and print h2h report")
     parser.add_argument("--reset",   action="store_true", help="Delete annotation file and start fresh")
+    parser.add_argument("--extend",  type=int, metavar="N",
+                        help="Annotate N more chunks beyond the original 100 (e.g. --extend 100)")
     args = parser.parse_args()
 
     if args.reset:
@@ -449,6 +569,10 @@ def main():
 
     if args.compare:
         run_comparison()
+        return
+
+    if args.extend:
+        run_extended(args.extend)
         return
 
     run()
