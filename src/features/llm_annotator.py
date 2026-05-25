@@ -50,7 +50,8 @@ GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 GROQ_MODEL    = "llama-3.1-8b-instant"   # 14,400 RPD / 6,000 TPM — no daily wall
 # llama-3.3-70b-versatile: only 1,000 RPD on free tier — exhausted quickly across sessions
 # Previously 8B failed because we used a 1,700-token complex prompt; simplified prompt is ~357 tokens
-RATE_LIMIT_SLEEP = 4.0   # seconds → 15 RPM × 357 tok = 5,355 TPM (safely under 6k TPM cap)
+RATE_LIMIT_SLEEP = 8.0   # seconds → 7.5 RPM; p90 call=663 tok → 4,973 TPM (under 6k cap)
+# 4s was too fast: avg 442 tok × 15 RPM = 6,626 TPM — over the 6k limit on long chunks
 
 # ---------------------------------------------------------------------------
 # Few-shot examples — 3 targeted examples (one per class)
