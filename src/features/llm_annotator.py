@@ -47,9 +47,9 @@ CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
 # Groq config
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_MODEL    = "llama-3.3-70b-versatile"  # 6,000 TPM free; trimmed prompt ~700 tok → ~8 RPM
+GROQ_MODEL    = "llama-3.3-70b-versatile"  # 6,000 TPM free; ~357 tok/call → 4 RPM safe
 # llama-3.1-8b-instant: 131k TPM but too small for nuanced sentiment — kappa degrades with complex prompts
-RATE_LIMIT_SLEEP = 8.0   # seconds between calls → ~7.5 req/min (safely under 8 RPM at 700 tok/call)
+RATE_LIMIT_SLEEP = 15.0  # seconds between calls → 4 req/min × 357 tok = 1,428 TPM (24% of 6k cap)
 
 # ---------------------------------------------------------------------------
 # Few-shot examples — 3 targeted examples (one per class)
