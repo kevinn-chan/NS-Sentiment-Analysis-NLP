@@ -21,6 +21,7 @@ Keys during annotation:
     N   — NEGATIVE
     U   — NEUTRAL
     S   — skip (genuinely ambiguous / not NS-related enough)
+    B   — go back and re-label the previous chunk
     Q   — quit and save progress
 
 IMPORTANT — two separate files:
@@ -285,38 +286,52 @@ def run():
         return
 
     print(f"  {reviewed}/{total} done — resuming from #{reviewed + 1}\n")
-    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [Q]=quit\n")
+    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [B]=back  [Q]=quit\n")
     print("  ⚠️  No model predictions shown. Label on text alone.\n")
 
-    for _, row in todo.iterrows():
-        reviewed += 1
+    rows = list(todo.iterrows())
+    i    = 0
+    while i < len(rows):
+        _, row   = rows[i]
+        position = reviewed + i + 1
         sg_flag  = "🇸🇬 " if row["has_sg"] else "   "
         text     = str(row["text"]).strip().replace("\n", " ")
 
-        print(f"  ── [{reviewed}/{total}] {sg_flag} {row['stratum']:<18} "
+        print(f"  ── [{position}/{total}] {sg_flag} {row['stratum']:<18} "
               f"({row['doc_type']}, r/{row['subreddit']}, {row['wc']}w) ──")
         print(f"\n  {text[:350]}\n")
         print("  > ", end="", flush=True)
 
+        action = label = None
         while True:
             ch = getch().lower()
-            if ch == "p":
-                label = "positive"; print("→ POSITIVE"); break
-            elif ch == "n":
-                label = "negative"; print("→ NEGATIVE"); break
-            elif ch == "u":
-                label = "neutral";  print("→ NEUTRAL");  break
-            elif ch == "s":
-                label = "skip";     print("skip");       break
-            elif ch == "q":
-                print("quit")
-                print_progress(results)
-                return
+            if   ch == "p": label = "positive"; print("→ POSITIVE"); action = "label"; break
+            elif ch == "n": label = "negative"; print("→ NEGATIVE"); action = "label"; break
+            elif ch == "u": label = "neutral";  print("→ NEUTRAL");  action = "label"; break
+            elif ch == "s": label = "skip";     print("skip");       action = "label"; break
+            elif ch == "q": print("quit");                            action = "quit";  break
+            elif ch == "b": print("↩");                               action = "back";  break
+
+        if action == "quit":
+            print_progress(results)
+            return
+
+        if action == "back":
+            if i > 0:
+                i -= 1
+                results = results.iloc[:-1].reset_index(drop=True)
+                save_results(results)
+                print("  ↩  Re-labelling previous chunk")
+            else:
+                print("  (already at first chunk this session)")
+            print()
+            continue
 
         new_row = row.to_dict()
         new_row["human_label"] = label
         results = pd.concat([results, pd.DataFrame([new_row])], ignore_index=True)
         save_results(results)
+        i += 1
         print()
 
     print("\nAll done!")
@@ -524,41 +539,55 @@ def run_extended(n: int):
     reviewed = already_n
 
     print(f"  {already_n} already done — adding {len(extension)} new chunks (target: {total})\n")
-    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [Q]=quit\n")
+    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [B]=back  [Q]=quit\n")
     print("  ⚠️  No model predictions shown. Label on text alone.\n")
 
-    for _, row in extension.iterrows():
-        reviewed += 1
+    rows = list(extension.iterrows())
+    i    = 0
+    while i < len(rows):
+        _, row   = rows[i]
+        position = already_n + i + 1
         sg_flag  = "🇸🇬 " if row["has_sg"] else "   "
         text     = str(row["text"]).strip().replace("\n", " ")
 
-        print(f"  ── [{reviewed}/{total}] {sg_flag} {row['stratum']:<18} "
+        print(f"  ── [{position}/{total}] {sg_flag} {row['stratum']:<18} "
               f"({row['doc_type']}, r/{row['subreddit']}, {row['wc']}w) ──")
         print(f"\n  {text[:350]}\n")
         print("  > ", end="", flush=True)
 
+        action = label = None
         while True:
             ch = getch().lower()
-            if ch == "p":
-                label = "positive"; print("→ POSITIVE"); break
-            elif ch == "n":
-                label = "negative"; print("→ NEGATIVE"); break
-            elif ch == "u":
-                label = "neutral";  print("→ NEUTRAL");  break
-            elif ch == "s":
-                label = "skip";     print("skip");       break
-            elif ch == "q":
-                print("quit")
-                print_progress(results)
-                return
+            if   ch == "p": label = "positive"; print("→ POSITIVE"); action = "label"; break
+            elif ch == "n": label = "negative"; print("→ NEGATIVE"); action = "label"; break
+            elif ch == "u": label = "neutral";  print("→ NEUTRAL");  action = "label"; break
+            elif ch == "s": label = "skip";     print("skip");       action = "label"; break
+            elif ch == "q": print("quit");                            action = "quit";  break
+            elif ch == "b": print("↩");                               action = "back";  break
+
+        if action == "quit":
+            print_progress(results)
+            return
+
+        if action == "back":
+            if i > 0:
+                i -= 1
+                results = results.iloc[:-1].reset_index(drop=True)
+                save_results(results)
+                print("  ↩  Re-labelling previous chunk")
+            else:
+                print("  (already at first chunk this session)")
+            print()
+            continue
 
         new_row = row.to_dict()
         new_row["human_label"] = label
         results = pd.concat([results, pd.DataFrame([new_row])], ignore_index=True)
         save_results(results)
+        i += 1
         print()
 
-    print(f"\nDone — {reviewed} total annotations.")
+    print(f"\nDone — {already_n + i} total annotations.")
     print_progress(results)
 
 
@@ -616,38 +645,52 @@ def run_holdout(n: int):
     reviewed = already_n
 
     print(f"  {already_n} holdout already done — annotating {len(extension)} new chunks\n")
-    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [Q]=quit\n")
+    print("  Keys: [P]=positive  [N]=negative  [U]=neutral  [S]=skip  [B]=back  [Q]=quit\n")
     print("  ⚠️  No model predictions shown. Label on text alone.\n")
 
-    for _, row in extension.iterrows():
-        reviewed += 1
+    rows = list(extension.iterrows())
+    i    = 0
+    while i < len(rows):
+        _, row   = rows[i]
+        position = already_n + i + 1
         sg_flag  = "🇸🇬 " if row["has_sg"] else "   "
         text     = str(row["text"]).strip().replace("\n", " ")
 
-        print(f"  ── [{reviewed}/{total}] {sg_flag} {row['stratum']:<18} "
+        print(f"  ── [{position}/{total}] {sg_flag} {row['stratum']:<18} "
               f"({row['doc_type']}, r/{row['subreddit']}, {row['wc']}w) ──")
         print(f"\n  {text[:350]}\n")
         print("  > ", end="", flush=True)
 
+        action = label = None
         while True:
             ch = getch().lower()
-            if ch == "p":
-                label = "positive"; print("→ POSITIVE"); break
-            elif ch == "n":
-                label = "negative"; print("→ NEGATIVE"); break
-            elif ch == "u":
-                label = "neutral";  print("→ NEUTRAL");  break
-            elif ch == "s":
-                label = "skip";     print("skip");       break
-            elif ch == "q":
-                print("quit")
-                print(f"\n  Holdout saved: {reviewed - 1} annotations → {HOLDOUT_PATH.name}\n")
-                return
+            if   ch == "p": label = "positive"; print("→ POSITIVE"); action = "label"; break
+            elif ch == "n": label = "negative"; print("→ NEGATIVE"); action = "label"; break
+            elif ch == "u": label = "neutral";  print("→ NEUTRAL");  action = "label"; break
+            elif ch == "s": label = "skip";     print("skip");       action = "label"; break
+            elif ch == "q": print("quit");                            action = "quit";  break
+            elif ch == "b": print("↩");                               action = "back";  break
+
+        if action == "quit":
+            print(f"\n  Holdout saved: {already_n + i} annotations → {HOLDOUT_PATH.name}\n")
+            return
+
+        if action == "back":
+            if i > 0:
+                i -= 1
+                holdout = holdout.iloc[:-1].reset_index(drop=True)
+                save_holdout(holdout)
+                print("  ↩  Re-labelling previous chunk")
+            else:
+                print("  (already at first chunk this session)")
+            print()
+            continue
 
         new_row = row.to_dict()
         new_row["human_label"] = label
         holdout = pd.concat([holdout, pd.DataFrame([new_row])], ignore_index=True)
         save_holdout(holdout)
+        i += 1
         print()
 
     # Summary
