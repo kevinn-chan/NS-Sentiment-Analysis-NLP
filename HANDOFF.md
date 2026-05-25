@@ -1,4 +1,4 @@
-# NS Sentiment — Project Handoff (updated 2026-05-23)
+# NS Sentiment — Project Handoff (updated 2026-05-25)
 
 ## Goal
 
@@ -27,11 +27,12 @@ The end product is a Streamlit dashboard with Seaborn visualisations showing:
 | 4 | BERTopic topic modelling (v3) | ✅ Done |
 | 4b | Noise topic removal | ✅ Done |
 | 4c | Manual 4-layer taxonomy + hierarchy encoding | ✅ Done |
-| 5a | Sentiment classification — XLM base (all 737k chunks) | ✅ Done |
-| 5a-verify | Human annotation (197 chunks, 81.3% corpus-weighted) | ✅ Done |
+| 5a | Sentiment classification — XLM base (all 737k chunks) | ⚠️ Superseded — see 5a-h2h |
+| 5a-verify | Human annotation (197 chunks, 81.3% corpus-weighted) | ✅ Done (anchored — see 5a-h2h) |
 | 5a-xlm | XLM base vs RoBERTa corpus-weighted comparison | ✅ Done |
 | 5a-spot | Manual spot-check (100 chunks, 78.0% accuracy) | ✅ Done |
-| **5b** | **Commitment scoring (zero-shot NLI)** | ⏳ **NEXT STEP** |
+| 5a-h2h | Fair blind head-to-head — RoBERTa wins, fine-tune decision pending | 🔄 Decision pending |
+| **5b** | **Commitment scoring (zero-shot NLI)** | 🔄 **IN PROGRESS (separate session)** |
 | 6 | Document-level aggregation | ⏳ Not started |
 | 7 | Divergence score (post vs comments) | ⏳ Not started |
 | 8 | Temporal aggregation | ⏳ Not started |
@@ -131,14 +132,23 @@ Career & Sign-on · Gender & Diversity
 
 ## Stage 5a — Sentiment Classification (DONE ✅)
 
-### Final model
+### ⚠️ Current state: model selection decision pending
+
+`chunk_sentiment.parquet` currently contains **XLM base scores** (40.3% neg / 47.6% neu / 12.2% pos).
+This file needs to be **replaced** — see fair h2h findings below. Do not proceed to Stage 6
+until the model decision is resolved and the full corpus is re-scored.
+
+**Two paths open:**
+1. **Re-run full corpus with RoBERTa-base** — 65.9% blind accuracy, 1 Kaggle job (~2 hrs)
+2. **Fine-tune SingBERT** — expected 72–76% blind accuracy, requires ~500 more annotation hours + training job
+
+### Model that was run (XLM base — now superseded)
 **Model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment` — run on all 737,274 chunks
 **Notebook:** `notebooks/kaggle_xlm_base_v1.ipynb` (Kaggle T4 x2)
 **Output:** `chunk_sentiment.parquet` — `chunk_id`, `sent_neg`, `sent_neu`, `sent_pos`
+**Status:** XLM was shown to over-predict negative (54% predicted vs 32% human) — do not use
 
-Final corpus distribution: **negative 40.3% / neutral 47.6% / positive 12.2%**
-
-### Why XLM over the initial RoBERTa hybrid
+### Why XLM over the initial RoBERTa hybrid (historical — now reversed)
 
 Initial design used `cardiffnlp/twitter-roberta-base-sentiment-latest` as base with
 an XLM patch on Singlish chunks. Head-to-head evaluation on 197 human-annotated chunks
@@ -188,20 +198,32 @@ Spot-check by stratum: `high_neu`=100%, `high_pos`=95.5%, `high_neg`=81.8%,
 - Chunks that are reactions to other posts (not standalone NS sentiment) are correctly labelled
   for surface tone but may not reflect NS-directed sentiment specifically
 
-### Unresolved: Fair head-to-head annotation
-The 197-chunk annotation was not model-neutral:
-- Strata were selected partly on RoBERTa confidence scores (not XLM)
-- The annotator CLI displayed RoBERTa predictions and scores on-screen while labelling
-  (anchoring bias toward RoBERTa)
-- English stratum (n=56) had 30 chunks cherry-picked from high-confidence RoBERTa predictions
-- These biases likely understate XLM's true advantage
+### Fair blind head-to-head — COMPLETED (2026-05-25)
 
-**Decision to make:** Run a fair blind h2h (hide all model scores, annotate text only,
-compare both models post-hoc) — ~1.5 hrs annotation time, ~100 chunks.
-Direction of result is unlikely to change; XLM's 4.5pp corpus-weighted advantage is robust.
-A fair h2h closes the methodological gap for any academic or professional audience.
+**Script:** `src/features/blind_annotator.py`
+**Annotation:** 98 blind-labelled chunks (no model scores shown during annotation)
+**Strata:** model-agnostic — singlish/submissions/short+medium+long comments (20 each)
+**Human label distribution:** 32% neg / 52% neu / 16% pos
 
-If you skip it, document the limitation explicitly in the final report.
+| Model | Corpus-weighted accuracy | Notes |
+|---|---|---|
+| XLM (`twitter-xlm-roberta-base-sentiment`) | 60.5% | Over-predicts negative (54% vs human 32%) |
+| **RoBERTa (`twitter-roberta-base-sentiment-latest`)** | **65.9%** | **Winner — neutral recall 82%** |
+| RoBERTa-Large (`j-hartmann/sentiment-roberta-large-english-3-classes`) | 65.9% | Ties RoBERTa-base exactly — no gain from larger model |
+
+**Key finding:** XLM systematically over-predicts negative — 41% of human-neutral chunks called negative vs 13% for RoBERTa. This structural flaw explains the 40.3% negative rate in the full corpus (vs ~23% from RoBERTa on this benchmark).
+
+**Pre-trained model ceiling:** ~66%. Swapping models or going larger does not help — domain mismatch (Twitter-trained models on Reddit NS discourse) is the bottleneck, not model capacity.
+
+**Fine-tuning path:** `zanelim/singbert-large-sg` (pre-trained on r/singapore + HardwareZone). Needs ~600 labeled examples. Currently have 98 reliable blind labels. Need ~500 more annotations (~5 hrs) to reach the training floor. Expected accuracy: 72–76%.
+
+**Project context:** This is enterprise-level work for department/supervisor presentation. 65.9% is borderline; fine-tuning to 72–76% is the recommended path.
+
+### Annotation bias discovery (historical context — resolved)
+The original 197-chunk annotation was not model-neutral — RoBERTa predictions shown on screen
+during labelling, strata selected on RoBERTa confidence. The fair blind h2h (above) overturned
+the earlier apparent XLM-wins conclusion. The 81.3% figure from the anchored annotation
+should not be cited as a validated XLM accuracy number — it was biased.
 
 ### Validation files
 - `data/processed/new/annotations.csv` — 197 human labels (chunk_id, human_label, stratum)
@@ -312,8 +334,11 @@ Known limitation: no XLM version for Singlish — acceptable caveat.
 - **Manual taxonomy top-down** — macro → sub → sub_sub semantically, then assign fine topics
 - **Dendrogram via scipy `link_color_func`** — only reliable way to get macro-coloured dendrograms
 - **`top_k=None` in HuggingFace pipeline** — correct replacement for deprecated `return_all_scores=True`
-- **XLM-RoBERTa as sole base model** — 81.3% corpus-weighted accuracy vs 76.7% for RoBERTa;
-  annotation sample bias (15.2x Singlish over-representation) initially masked this
+- **Blind annotation design** — hiding model scores during labelling is essential; the original
+  anchored annotation (scores shown on screen) produced a false XLM-wins result that the blind
+  h2h overturned. Always annotate blind, then compare models post-hoc.
+- **RoBERTa-base over XLM** — 65.9% vs 60.5% corpus-weighted on blind benchmark; XLM's
+  systematic negative over-prediction (54% predicted vs 32% human) makes it unsuitable
 - **VADER + custom NS lexicon** — fast interpretable signal; 60 entries covering key NS/Singlish terms
 - **Ollama `format: "json"`** — enforces valid JSON output from local LLMs reliably
 - **Resume-safe CLIs** — both `annotator.py` and `spot_checker.py` save after every keypress;
@@ -380,23 +405,51 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
 
 ---
 
-## Immediate Next Actions (in order)
+## Immediate Next Actions (two parallel tracks)
 
-1. **[Optional] Fair head-to-head annotation (XLM vs RoBERTa)**
-   The 197-chunk annotation was not model-neutral — strata selected on RoBERTa confidence,
-   scores shown on-screen while labelling. A fair h2h requires blind annotation:
-   - Modify `annotator.py` to hide all model scores (show text + subreddit + doc_type only)
-   - Stratify on text characteristics only (length, Singlish presence, subreddit)
-   - ~100 chunks, ~1.5 hrs annotation time
-   - Both XLM and RoBERTa evaluated post-hoc, not shown during annotation
-   - Skip if time-constrained; document limitation in final report instead
+### Track A — Stage 5a (sentiment model — BLOCKED on decision)
 
-2. **Build Stage 5b Kaggle notebook** — `notebooks/kaggle_commitment_v1.ipynb`
-   Model: `facebook/bart-large-mnli` (zero-shot NLI, 3 hypotheses per chunk)
-   Template: `kaggle_xlm_base_v1.ipynb`
-   BATCH_SIZE=64, checkpoint every 25k rows
-   Input: `ns-sentiment-chunks-v3` dataset (already on Kaggle — no new upload needed)
-   Output: `chunk_commitment.parquet` — chunk_id, commit_support, commit_critical, commit_positive
+**Decision required:** Fine-tune SingBERT or proceed with RoBERTa-base at 65.9%?
+
+**Option A1 — Fine-tune SingBERT (recommended for enterprise presentation)**
+   - Base: `zanelim/singbert-large-sg` (pre-trained on r/singapore + HardwareZone)
+   - Data needed: ~600 labeled examples total (have 98 reliable blind labels)
+   - User effort: ~500 more blind annotations via `python -m src.features.blind_annotator`
+   - Then: I build `notebooks/kaggle_finetune_singbert_v1.ipynb` + training pipeline
+   - Expected accuracy: 72–76% corpus-weighted
+   - Then: re-run full 737k corpus → new `chunk_sentiment.parquet`
+
+**Option A2 — Proceed with RoBERTa-base (faster, lower accuracy)**
+   - Build `notebooks/kaggle_roberta_v1.ipynb` (swap model name in xlm_base_v1, ~30 min)
+   - Run on Kaggle T4 x2 (~2 hrs)
+   - Output: new `chunk_sentiment.parquet` (RoBERTa scores, ~23% neg vs XLM's 40%)
+   - Documented accuracy: 65.9% blind corpus-weighted
+
+⚠️ Do NOT proceed to Stage 6 until `chunk_sentiment.parquet` is replaced.
+
+---
+
+### Track B — Stage 5b (commitment scoring — INDEPENDENT, ready to start)
+
+**Stage 5b does NOT depend on Stage 5a.** Can be built and run now in a separate session.
+
+   - Notebook: `notebooks/kaggle_commitment_v1.ipynb` (not yet created)
+   - Model: `facebook/bart-large-mnli` (zero-shot NLI)
+   - Input: `submissions_chunks.parquet` + `comments_chunks.parquet` (chunk text only)
+   - Hypotheses per chunk (3 NLI passes each):
+     - "The author supports National Service"
+     - "The author is critical of National Service"
+     - "The author feels positively about serving in the military"
+   - Output: `chunk_commitment.parquet` — `chunk_id`, `commit_support`, `commit_critical`, `commit_positive`
+   - BATCH_SIZE=64 (NLI is 3× heavier than classification)
+   - CHECKPOINT_N=25_000
+   - Template: `notebooks/kaggle_xlm_base_v1.ipynb`
+   - Input dataset on Kaggle: `ns-sentiment-chunks-v3` (already uploaded — no new upload needed)
+   - Expected runtime: ~4–6 hrs on T4 x2 (3 forward passes × 737k chunks)
+
+---
+
+### After both tracks complete
 
 3. **Stage 6 — Document-level aggregation**
    Join: `chunk_sentiment` + `chunk_commitment` + `chunk_topics` + chunk parquets
