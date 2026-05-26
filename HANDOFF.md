@@ -66,6 +66,7 @@ All live files are under `data/processed/new/` and `models/new/`.
 | `data/processed/new/llm_validation.csv` | 197 | Validation run results (κ=0.765) |
 | `data/processed/new/holdout_eval.csv` | 195 | Holdout eval: 81.0% acc, κ=0.653, positive F1=60.4% (post-QC) |
 | `data/processed/new/singbert_train.csv` | 8,095 | **Training set for SingBERT** (human 3× + LLM 1×, 0 holdout overlap) |
+| `notebooks/kaggle_finetune_singbert_v1.ipynb` | — | **SingBERT fine-tune notebook** — upload to Kaggle, run on T4 |
 | `data/processed/new/spot_check.csv` | 100 | Manual spot-check results (78.0% accuracy) |
 | `data/processed/new/sentiment_audit.parquet` | 500 | llama3.2:3b gold labels vs roberta (supplementary, use with caution) |
 | `data/processed/new/topic_keywords_fine.csv` | 359 topics | Post-noise-removal keywords |
@@ -518,12 +519,21 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
 - Target metric: weighted F1 on holdout_test.csv
 - Expected accuracy: 75–82% (SingBERT domain pre-training should beat gpt-4.1's 77.9%)
 
-**Kaggle notebook to build:** `notebooks/kaggle_finetune_singbert_v1.ipynb`
-- Load singbert_train.csv, holdout_test.csv
-- Fine-tune zanelim/singbert-large-sg (HuggingFace Trainer)
-- Evaluate on holdout: accuracy, F1, κ
-- Save model weights
-- Upload model to Kaggle dataset for inference job
+**Kaggle notebook:** `notebooks/kaggle_finetune_singbert_v1.ipynb` ✅ BUILT
+- Loads `singbert_train.csv` + `holdout_test.csv` from dataset `ns-sentiment-labels-v1`
+- Replicates human rows 3× (from weight column) before train/val split
+- Balanced class weights (positive ~2.7×, negative ~1.2×) via `WeightedTrainer`
+- Custom `WeightedTrainer` applies class weights in cross-entropy loss
+- 90/10 stratified train/val split; early stopping patience=2 on val κ
+- Evaluates on sealed holdout: accuracy, F1, κ, classification report
+- Saves best model + tokenizer to `/kaggle/working/singbert_ns_sentiment/best_model/`
+- Zips for Kaggle dataset upload → use in inference notebook
+
+**To run on Kaggle:**
+1. Upload `data/processed/new/singbert_train.csv` + `data/processed/new/holdout_test.csv` as Kaggle dataset `ns-sentiment-labels-v1`
+2. Import notebook, add that dataset as input
+3. Run on T4 x2 (GPU), committed mode
+4. Expected runtime: ~45–90 min (BERT-large, 5 epochs, ~8.6k train rows)
 
 **After SingBERT trains:**
 ```bash
