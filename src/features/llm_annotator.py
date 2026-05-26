@@ -49,9 +49,10 @@ import pandas as pd
 # Paths
 # ---------------------------------------------------------------------------
 DATA_DIR       = Path(__file__).parent.parent.parent / "data" / "processed" / "new"
-BLIND_ANN_PATH = DATA_DIR / "blind_annotation.csv"
-LLM_ANN_PATH   = DATA_DIR / "llm_annotation.csv"
-TRAIN_PATH     = DATA_DIR / "singbert_train.csv"
+BLIND_ANN_PATH  = DATA_DIR / "blind_annotation.csv"
+HOLDOUT_PATH    = DATA_DIR / "holdout_test.csv"
+LLM_ANN_PATH    = DATA_DIR / "llm_annotation.csv"
+TRAIN_PATH      = DATA_DIR / "singbert_train.csv"
 
 CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
@@ -107,6 +108,10 @@ FEW_SHOT_EXAMPLES = [
     # POSITIVE — personal progress and achievement
     ("I see my IPPT timings decreasing steadily. Cut 30 seconds off my 2.4km run this week, shiok.",
      "positive"),
+
+    # POSITIVE — lax/relaxed posting; mentions rules but dominant tone is happy/satisfied
+    ("It was the most chill thing, our Encik was super lax and we could take offs whenever we wanted. Not exactly allowed but yeah, good times.",
+     "positive"),
 ]
 
 # ---------------------------------------------------------------------------
@@ -116,17 +121,18 @@ SYSTEM_PROMPT = """You are a sentiment classifier for Singapore National Service
 
 Classify the AUTHOR'S emotional state — not the topic — as negative, neutral, or positive.
 
-NEGATIVE: author complains, criticises, resents, expresses frustration, bitterness, or sarcasm — even indirectly or calmly.
-NEUTRAL:  author shares facts, gives advice, or asks questions with NO personal emotional stake. Only use when there is genuinely no emotional coloring.
-POSITIVE: author feels satisfied, proud, relieved, grateful, amused, or excited — humor and lighthearted remarks count.
+NEGATIVE: author complains, criticises, resents, expresses frustration, bitterness, or sarcasm with clear personal emotional investment.
+NEUTRAL:  author shares facts, gives advice, or asks questions with no personal emotional stake. Reporting difficulty without editorialising = NEUTRAL.
+POSITIVE: author feels satisfied, proud, relieved, grateful, amused, or excited — humor, lighthearted remarks, and describing a chill/easy/relaxed experience all count.
 
 Key rules:
-1. WHEN IN DOUBT between neutral and negative → choose NEGATIVE. Neutral is for pure facts only.
-2. WHEN IN DOUBT between neutral and positive → choose POSITIVE. Jokes, laughter (LOL, lol, haha), and playfulness = positive.
-3. Indirect resentment or bitter warnings (e.g. "watch out for snitches", sarcasm) = NEGATIVE.
-4. Personal progress, achievement, or improvement = POSITIVE.
-5. A complaint phrased as a question is still NEGATIVE.
-6. Singlish slang (lah, leh, sian, tekan, shiok, ORD, encik) is normal NS vocabulary — read tone, not just words.
+1. Classify the AUTHOR'S ATTITUDE, not the topic. An author calmly reporting a rule or hardship without complaint = NEUTRAL. An author happily describing a lax or easy experience = POSITIVE.
+2. Mixed tone: weigh the DOMINANT emotion. If the overall vibe is positive/relaxed with one negative aside, choose POSITIVE.
+3. WHEN IN DOUBT between neutral and positive → choose POSITIVE. Jokes, laughter (LOL, lol, haha), Singlish positivity (shiok, lepak, chill) = positive.
+4. Indirect resentment or bitter warnings (e.g. "watch out for snitches", sarcasm) = NEGATIVE.
+5. Personal progress, achievement, or improvement = POSITIVE.
+6. A complaint phrased as a question is still NEGATIVE.
+7. Singlish slang (lah, leh, sian, tekan, shiok, ORD, encik) is normal NS vocabulary — read tone, not just words.
 
 Reply with ONLY this JSON, nothing else:
 {"label": "negative"}   or   {"label": "neutral"}   or   {"label": "positive"}"""
@@ -470,7 +476,11 @@ def run_build_dataset():
     llm = llm.rename(columns={"llm_label": "label"})
     llm["source"] = "llm"
     llm["weight"] = 1.0
-    llm = llm[~llm["chunk_id"].isin(set(human["chunk_id"]))]
+    # Exclude human-labelled chunks (already in train at 3×) and holdout chunks (eval only)
+    excluded_ids = set(human["chunk_id"])
+    if HOLDOUT_PATH.exists():
+        excluded_ids |= set(pd.read_csv(HOLDOUT_PATH)["chunk_id"])
+    llm = llm[~llm["chunk_id"].isin(excluded_ids)]
 
     cols = ["chunk_id","stratum","doc_type","subreddit","has_sg","wc","text","label","source","weight"]
     combined = pd.concat([human[cols], llm[cols]], ignore_index=True)
