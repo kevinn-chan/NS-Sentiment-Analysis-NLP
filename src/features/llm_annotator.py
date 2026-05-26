@@ -502,6 +502,84 @@ def run_build_dataset():
 
 
 # ---------------------------------------------------------------------------
+# Step 4 — Holdout evaluation (unseen test set, run once before SingBERT)
+# ---------------------------------------------------------------------------
+def run_holdout_eval():
+    """Evaluate LLM against the held-out test set — the uncontaminated accuracy number."""
+    try:
+        from sklearn.metrics import cohen_kappa_score, classification_report
+    except ImportError:
+        print("Run: pip install scikit-learn")
+        return
+
+    if not HOLDOUT_PATH.exists():
+        print(f"Missing: {HOLDOUT_PATH.name}")
+        return
+
+    client  = get_client()
+    holdout = pd.read_csv(HOLDOUT_PATH)
+    holdout = holdout[
+        holdout["human_label"].notna() & (holdout["human_label"] != "skip")
+    ].copy().reset_index(drop=True)
+
+    out = DATA_DIR / "holdout_eval.csv"
+
+    # Resume support — skip already-labelled rows
+    already_done = {}
+    if out.exists():
+        prev = pd.read_csv(out).dropna(subset=["llm_label"])
+        already_done = dict(zip(prev["chunk_id"], prev["llm_label"]))
+        if already_done:
+            print(f"Resuming — {len(already_done)} already labelled, skipping.")
+
+    remaining = holdout[~holdout["chunk_id"].isin(already_done)].copy().reset_index(drop=True)
+    print(f"Holdout eval — {len(remaining)} rows with {API_MODEL} ...")
+    print(f"Estimated time: ~{len(remaining) * RATE_LIMIT_SLEEP / 60:.0f} min\n")
+
+    new_labels = []
+    t0         = time.time()
+
+    for i, (_, row) in enumerate(remaining.iterrows()):
+        label = call_llm(str(row["text"]), client)
+        if label is None:
+            new_labels.append(None)
+        else:
+            new_labels.append(label)
+        time.sleep(RATE_LIMIT_SLEEP)
+
+        if (i + 1) % 25 == 0 or (i + 1) == len(remaining):
+            elapsed = time.time() - t0
+            rate    = (i + 1) / elapsed
+            eta     = (len(remaining) - i - 1) / rate
+            print(f"  {i+1}/{len(remaining)}  {rate*60:.1f} RPM  ETA {eta/60:.0f}min  [${_cost['total']:.3f} spent]")
+
+    remaining["llm_label"] = new_labels
+
+    # Merge with prior run
+    holdout["llm_label"] = holdout["chunk_id"].map(already_done).astype(object)
+    for _, row in remaining.iterrows():
+        holdout.loc[holdout["chunk_id"] == row["chunk_id"], "llm_label"] = row["llm_label"]
+
+    holdout.to_csv(out, index=False)
+
+    valid  = holdout.dropna(subset=["llm_label"])
+    failed = len(holdout) - len(valid)
+
+    kappa  = cohen_kappa_score(valid["human_label"], valid["llm_label"])
+    acc    = (valid["human_label"] == valid["llm_label"]).mean()
+
+    print(f"\n{'═'*58}")
+    print(f"  Holdout Evaluation — {API_MODEL}")
+    print(f"{'═'*58}")
+    print(f"  Rows evaluated   : {len(valid)}  ({failed} failed/skipped)")
+    print(f"  Accuracy         : {acc:.3f}  ({acc*100:.1f}%)")
+    print(f"  Cohen's Kappa    : {kappa:.3f}")
+    print(f"\n{classification_report(valid['human_label'], valid['llm_label'], digits=3)}")
+    print(f"  Results saved → {out}")
+    print(f"{'═'*58}\n")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -514,6 +592,8 @@ def main():
                         help="Bulk annotate N chunks (run after --validate passes)")
     parser.add_argument("--build-dataset", action="store_true",
                         help="Combine human + LLM labels into singbert_train.csv")
+    parser.add_argument("--holdout-eval",  action="store_true",
+                        help="Evaluate LLM on held-out test set (unseen, uncontaminated)")
     args = parser.parse_args()
 
     if args.validate:
@@ -522,6 +602,8 @@ def main():
         run_annotate(args.annotate)
     elif args.build_dataset:
         run_build_dataset()
+    elif args.holdout_eval:
+        run_holdout_eval()
     else:
         parser.print_help()
 

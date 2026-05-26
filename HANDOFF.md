@@ -32,8 +32,10 @@ The end product is a Streamlit dashboard with Seaborn visualisations showing:
 | 5a-xlm | XLM base vs RoBERTa corpus-weighted comparison | ✅ Done |
 | 5a-spot | Manual spot-check (100 chunks, 78.0% accuracy) | ✅ Done |
 | 5a-h2h | Fair blind head-to-head — RoBERTa wins, fine-tune decision pending | 🔄 Decision pending |
-| 5a-llm-validate | LLM kappa gate — gpt-4.1, κ=0.820 ✅ | ✅ Done |
-| **5a-llm-annotate** | **Bulk 8k LLM annotation — gpt-4.1, RUNNING** | 🔄 **In progress** |
+| 5a-llm-validate | LLM kappa gate — gpt-4.1, κ=0.765 ✅ (corrected prompt) | ✅ Done |
+| 5a-llm-annotate | Bulk annotation complete — 7,946 chunks, singbert_train.csv built | ✅ Done |
+| 5a-holdout-eval | Holdout accuracy: 77.9%, κ=0.597 (195 unseen rows) | ✅ Done |
+| **5a-singbert** | **Fine-tune zanelim/singbert-large-sg on singbert_train.csv** | ⏳ **Next** |
 | **5b** | **Commitment scoring (zero-shot NLI)** | ✅ **Done** |
 | 6 | Document-level aggregation | ⏳ Not started |
 | 7 | Divergence score (post vs comments) | ⏳ Not started |
@@ -57,6 +59,12 @@ All live files are under `data/processed/new/` and `models/new/`.
 | `data/processed/new/chunk_commitment_lexicon.parquet` | 737,274 | `chunk_id`, `lex_committed`, `lex_uncommitted`, `lex_net` — **DONE** |
 | `data/processed/new/annotation_sample.parquet` | 197 | Stratified sample for human labelling |
 | `data/processed/new/annotations.csv` | 197 | Human labels (complete — 81.3% corpus-weighted vs XLM) |
+| `data/processed/new/blind_annotation.csv` | 197 | Reviewed human labels (weight 3× in training) |
+| `data/processed/new/holdout_test.csv` | 199 | Held-out test set — NEVER use for training |
+| `data/processed/new/llm_annotation.csv` | 7,946 | gpt-4.1 bulk annotations (κ=0.765 validated prompt) |
+| `data/processed/new/llm_validation.csv` | 197 | Validation run results (κ=0.765) |
+| `data/processed/new/holdout_eval.csv` | 195 | Holdout eval: 77.9% acc, κ=0.597, positive F1=46.2% |
+| `data/processed/new/singbert_train.csv` | 8,095 | **Training set for SingBERT** (human 3× + LLM 1×, 0 holdout overlap) |
 | `data/processed/new/spot_check.csv` | 100 | Manual spot-check results (78.0% accuracy) |
 | `data/processed/new/sentiment_audit.parquet` | 500 | llama3.2:3b gold labels vs roberta (supplementary, use with caution) |
 | `data/processed/new/topic_keywords_fine.csv` | 359 topics | Post-noise-removal keywords |
@@ -469,53 +477,64 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
 
 ---
 
-## Immediate Next Actions (two parallel tracks)
+## Immediate Next Actions
 
-### Track A — Stage 5a (sentiment model — BLOCKED on decision)
+### ✅ Stage 5a LLM annotation — COMPLETE
 
-**Decision required:** Fine-tune SingBERT or proceed with RoBERTa-base at 65.9%?
+**Files produced:**
+- `singbert_train.csv` — 8,095 rows (197 human ×3 + 7,898 LLM ×1), zero holdout overlap ✅
+- `llm_annotation.csv` — 7,946 raw LLM labels
+- `llm_validation.csv` — 197-row κ=0.765 validation result
+- `holdout_eval.csv` — 195-row holdout accuracy result
 
-**Option A1 — Fine-tune SingBERT (recommended for enterprise presentation)**
-   - Base: `zanelim/singbert-large-sg` (pre-trained on r/singapore + HardwareZone)
-   - Data needed: ~600 labeled examples total (have 98 reliable blind labels)
-   - User effort: ~500 more blind annotations via `python -m src.features.blind_annotator`
-   - Then: I build `notebooks/kaggle_finetune_singbert_v1.ipynb` + training pipeline
-   - Expected accuracy: 72–76% corpus-weighted
-   - Then: re-run full 737k corpus → new `chunk_sentiment.parquet`
+**Quality summary:**
+| Metric | Score | Notes |
+|---|---|---|
+| κ (validation, 197 rows) | 0.765 | Human labels reviewed with LLM — not fully independent |
+| Accuracy (holdout, 195 rows) | **77.9%** | Clean, unseen, uncontaminated — use this number |
+| κ (holdout) | 0.597 | Honest inter-annotator agreement on unseen data |
+| Positive F1 (holdout) | 46.2% | Weakest class — use class weights in SingBERT training |
+| Negative F1 (holdout) | 78.4% | Solid |
+| Neutral F1 (holdout) | 84.7% | Strong |
 
-**Option A2 — Proceed with RoBERTa-base (faster, lower accuracy)**
-   - Build `notebooks/kaggle_roberta_v1.ipynb` (swap model name in xlm_base_v1, ~30 min)
-   - Run on Kaggle T4 x2 (~2 hrs)
-   - Output: new `chunk_sentiment.parquet` (RoBERTa scores, ~23% neg vs XLM's 40%)
-   - Documented accuracy: 65.9% blind corpus-weighted
+**Label distribution (singbert_train.csv):** neutral 60%, negative 27.5%, positive 12.4%
+**Total API cost:** ~$9 (gpt-4.1, Tier 3, across all validation + bulk runs)
 
-**LLM annotator — STATUS: BULK ANNOTATION RUNNING 🔄**
-   - Script: `src/features/llm_annotator.py`
-   - Provider: OpenAI gpt-4.1 (Tier 3 account — 10,000 RPM, no RPD cap)
-   - API key env var: `OPENAI_API_KEY` (stored in `.env`, gitignored)
-   - Kappa validation: **κ = 0.820 EXCELLENT** (gpt-4.1, 197 rows, 2026-05-26)
-   - Bulk run: `python -u -m src.features.llm_annotator --annotate 8000`
-     - Output: `data/processed/new/llm_annotation.csv`
-     - Saves incrementally every 250 chunks — safe to kill and resume
-     - ETA: ~6 hrs at 43 RPM actual throughput
-     - Cost: ~$7.39 (at $2/M input, $8/M output for gpt-4.1)
-     - Cost tracker: prints `💰 $X.XX spent` every $0.10 in the log
+---
 
-   **If bulk run was interrupted:** resume with same command — it detects existing
-   `llm_annotation.csv` and skips already-annotated chunk_ids automatically.
+### 🔜 Next: Fine-tune SingBERT (Stage 5a-singbert)
 
-   **After bulk completes:**
-   ```bash
-   python -m src.features.llm_annotator --build-dataset
-   ```
-   Produces `singbert_train.csv` — human labels (weight 3×) + LLM labels (weight 1×).
+**Base model:** `zanelim/singbert-large-sg` (BERT-large, pre-trained on r/singapore + HardwareZone)
 
-   **Provider history (for context):**
-   - Groq 8B: 6k TPM wall — hit at avg 442 tok/call
-   - Groq 70B: 1k RPD — exhausted in one session
-   - Cerebras Qwen 235B: free but server congestion; κ=0.55 (model issue, not provider)
-   - OpenAI gpt-4.1-mini Tier 0: 3 RPM, 200 RPD — too slow; κ=0.55
-   - OpenAI gpt-4.1 Tier 3: 10k RPM, no RPD cap — κ=0.820 ✅ CURRENT
+**Training data:** `singbert_train.csv` (8,095 rows, weighted: human 3×, LLM 1×)
+**Eval data:** `holdout_test.csv` (199 rows, 195 evaluable — the clean test set)
+
+**Key training decisions:**
+- Use **class weights** for positive class (weight 2–3×) to compensate for low recall (46.2% on holdout)
+- Use `human_label` weighted sampling or `weight` column for loss weighting
+- Target metric: weighted F1 on holdout_test.csv
+- Expected accuracy: 75–82% (SingBERT domain pre-training should beat gpt-4.1's 77.9%)
+
+**Kaggle notebook to build:** `notebooks/kaggle_finetune_singbert_v1.ipynb`
+- Load singbert_train.csv, holdout_test.csv
+- Fine-tune zanelim/singbert-large-sg (HuggingFace Trainer)
+- Evaluate on holdout: accuracy, F1, κ
+- Save model weights
+- Upload model to Kaggle dataset for inference job
+
+**After SingBERT trains:**
+```bash
+# Build inference notebook to score full 737k corpus
+# Output: chunk_sentiment_singbert.parquet (replaces chunk_sentiment.parquet)
+```
+Then Stage 6 (doc aggregation) is unblocked.
+
+**Provider history (LLM annotator):**
+- Groq 8B: 6k TPM wall
+- Groq 70B: 1k RPD exhausted
+- Cerebras Qwen 235B: free, slow, κ=0.55 (model issue)
+- OpenAI gpt-4.1-mini Tier 0: 200 RPD wall
+- OpenAI gpt-4.1 Tier 3: 10k RPM, κ=0.765 ✅ USED
 
    **Kappa history:**
    | Round | Model | κ | Notes |
