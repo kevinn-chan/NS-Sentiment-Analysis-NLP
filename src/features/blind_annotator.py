@@ -15,6 +15,7 @@ Usage:
     python -m src.features.blind_annotator --reset      # start fresh
     python -m src.features.blind_annotator --extend N   # add N more to training set
     python -m src.features.blind_annotator --holdout N  # annotate N chunks into HELD-OUT test set
+    python -m src.features.blind_annotator --review     # review LLM disagreements, correct labels
 
 Keys during annotation:
     P   — POSITIVE
@@ -712,6 +713,150 @@ def run_holdout(n: int):
 
 
 # ---------------------------------------------------------------------------
+# Disagreement review — show LLM vs human label side-by-side, let user decide
+# ---------------------------------------------------------------------------
+def run_review():
+    """Walk through every LLM/human disagreement and let the user set the final label.
+
+    Loads llm_validation.csv (produced by llm_annotator --validate), shows the
+    48 disputed chunks one by one with BOTH labels visible, and updates
+    blind_annotation.csv with the user's final decisions.
+
+    After finishing, re-run --validate to see the improved kappa.
+    """
+    import tty, termios
+
+    def getch() -> str:
+        fd  = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            return sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+    val_path = DATA_DIR / "llm_validation.csv"
+    if not val_path.exists():
+        print("No llm_validation.csv found.")
+        print("Run: python -m src.features.llm_annotator --validate")
+        return
+
+    val      = pd.read_csv(val_path)
+    disagree = val[val["human_label"] != val["llm_label"]].copy().reset_index(drop=True)
+
+    if len(disagree) == 0:
+        print("No disagreements — kappa must be perfect!")
+        return
+
+    results = load_results()
+
+    print(f"\n{'═'*62}")
+    print(f"  DISAGREEMENT REVIEW — {len(disagree)} disputed labels")
+    print(f"{'═'*62}")
+    print(f"  These {len(disagree)} chunks are where gpt-4.1 and your original label")
+    print(f"  disagreed. Review each one and set the correct label.")
+    print(f"  Either label could be right — trust your judgment.")
+    print(f"\n  Keys: [P]=positive  [N]=negative  [U]=neutral  [B]=back  [Q]=quit")
+    print(f"{'═'*62}\n")
+
+    # History for undo: list of (chunk_id, label_before_change)
+    undo_stack = []
+    confirmed  = 0
+    changed    = 0
+
+    rows = list(disagree.iterrows())
+    i    = 0
+
+    while i < len(rows):
+        _, row = rows[i]
+
+        human_lbl = str(row["human_label"])
+        model_lbl = str(row["llm_label"])
+        has_sg    = bool(row.get("has_sg", False))
+        sg_flag   = "🇸🇬 " if has_sg else "   "
+        text      = str(row["text"]).strip().replace("\n", " ")
+        stratum   = str(row.get("stratum",   "?"))
+        doc_type  = str(row.get("doc_type",  "?"))
+        subreddit = str(row.get("subreddit", "?"))
+        wc        = row.get("wc", "?")
+
+        print(f"  ── [{i+1}/{len(rows)}] {sg_flag} {stratum:<18} "
+              f"({doc_type}, r/{subreddit}, {wc}w) ──")
+        print(f"\n  {text[:400]}\n")
+
+        # Show both labels clearly — colour-coded by position
+        h_marker = "◀ your original" if human_lbl != model_lbl else ""
+        m_marker = "◀ model says"
+        print(f"  Your original  : [{human_lbl.upper():<8}]  {h_marker}")
+        print(f"  gpt-4.1 says   : [{model_lbl.upper():<8}]  {m_marker}")
+        print()
+        print(f"  Set final label → ", end="", flush=True)
+
+        action = final_label = None
+        while True:
+            ch = getch().lower()
+            if   ch == "p": final_label = "positive"; print("POSITIVE"); action = "label"; break
+            elif ch == "n": final_label = "negative"; print("NEGATIVE"); action = "label"; break
+            elif ch == "u": final_label = "neutral";  print("NEUTRAL");  action = "label"; break
+            elif ch == "q": print("quit");                                action = "quit";  break
+            elif ch == "b": print("↩");                                   action = "back";  break
+
+        if action == "quit":
+            break
+
+        if action == "back":
+            if i > 0 and undo_stack:
+                # Restore the previous label
+                prev_cid, prev_label = undo_stack.pop()
+                mask = results["chunk_id"] == prev_cid
+                results.loc[mask, "human_label"] = prev_label
+                save_results(results)
+                i -= 1
+                # Adjust counters (rough: decrement whichever was last incremented)
+                if prev_label == disagree.loc[i, "human_label"]:
+                    confirmed = max(0, confirmed - 1)
+                else:
+                    changed = max(0, changed - 1)
+                print(f"  ↩  Reverted to previous chunk\n")
+            else:
+                print(f"  (already at first chunk)\n")
+            continue
+
+        # --- Apply label ---
+        mask = results["chunk_id"] == row["chunk_id"]
+        if mask.any():
+            old_label = results.loc[mask, "human_label"].values[0]
+            undo_stack.append((row["chunk_id"], old_label))
+            results.loc[mask, "human_label"] = final_label
+            save_results(results)
+
+            if final_label == human_lbl:
+                confirmed += 1
+                marker = "✓ kept your label"
+            elif final_label == model_lbl:
+                changed += 1
+                marker = f"✎ accepted model  ({human_lbl} → {final_label})"
+            else:
+                changed += 1
+                marker = f"✎ third option    ({human_lbl} → {final_label})"
+            print(f"  {marker}\n")
+        else:
+            print(f"  ⚠️  chunk_id not found in blind_annotation.csv — skipping\n")
+
+        i += 1
+
+    # Summary
+    reviewed = confirmed + changed
+    print(f"\n{'═'*62}")
+    print(f"  Review done — {reviewed}/{len(rows)} reviewed")
+    print(f"  Confirmed your label : {confirmed}")
+    print(f"  Changed              : {changed}")
+    print(f"{'═'*62}")
+    print(f"\n  Re-run validation to see updated kappa:")
+    print(f"  python -m src.features.llm_annotator --validate\n")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -725,6 +870,8 @@ def main():
                         help="Annotate N more chunks beyond the original 100 (added to training set)")
     parser.add_argument("--holdout", type=int, metavar="N",
                         help="Annotate N chunks into a separate held-out test set (NEVER used for training)")
+    parser.add_argument("--review", action="store_true",
+                        help="Review LLM/human disagreements side-by-side and correct labels")
     args = parser.parse_args()
 
     if args.reset:
@@ -748,6 +895,10 @@ def main():
 
     if args.holdout:
         run_holdout(args.holdout)
+        return
+
+    if args.review:
+        run_review()
         return
 
     run()

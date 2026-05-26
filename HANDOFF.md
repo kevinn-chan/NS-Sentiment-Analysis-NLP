@@ -1,4 +1,4 @@
-# NS Sentiment — Project Handoff (updated 2026-05-25)
+# NS Sentiment — Project Handoff (updated 2026-05-26)
 
 ## Goal
 
@@ -32,7 +32,9 @@ The end product is a Streamlit dashboard with Seaborn visualisations showing:
 | 5a-xlm | XLM base vs RoBERTa corpus-weighted comparison | ✅ Done |
 | 5a-spot | Manual spot-check (100 chunks, 78.0% accuracy) | ✅ Done |
 | 5a-h2h | Fair blind head-to-head — RoBERTa wins, fine-tune decision pending | 🔄 Decision pending |
-| **5b** | **Commitment scoring (zero-shot NLI)** | 🔄 **IN PROGRESS (separate session)** |
+| 5a-llm-validate | LLM kappa gate — gpt-4.1, κ=0.820 ✅ | ✅ Done |
+| **5a-llm-annotate** | **Bulk 8k LLM annotation — gpt-4.1, RUNNING** | 🔄 **In progress** |
+| **5b** | **Commitment scoring (zero-shot NLI)** | ✅ **Done** |
 | 6 | Document-level aggregation | ⏳ Not started |
 | 7 | Divergence score (post vs comments) | ⏳ Not started |
 | 8 | Temporal aggregation | ⏳ Not started |
@@ -51,6 +53,8 @@ All live files are under `data/processed/new/` and `models/new/`.
 | `data/processed/new/chunk_topics.parquet` | 737,583 | `topic_id_fine`, `topic_id_coarse`; 20,486 outliers (-1) |
 | `data/processed/new/chunk_sentiment.parquet` | 737,274 | ★ `chunk_id`, `sent_neg`, `sent_neu`, `sent_pos` — XLM base (FINAL) |
 | `data/processed/new/chunk_sentiment_lexicon.parquet` | 738,819 | `chunk_id`, `sent_lexicon_compound` (VADER+NS lexicon) |
+| `data/processed/new/chunk_commitment.parquet` | 737,274 | ★ `chunk_id`, `commit_support`, `commit_critical`, `commit_neutral` — **DONE** |
+| `data/processed/new/chunk_commitment_lexicon.parquet` | 737,274 | `chunk_id`, `lex_committed`, `lex_uncommitted`, `lex_net` — **DONE** |
 | `data/processed/new/annotation_sample.parquet` | 197 | Stratified sample for human labelling |
 | `data/processed/new/annotations.csv` | 197 | Human labels (complete — 81.3% corpus-weighted vs XLM) |
 | `data/processed/new/spot_check.csv` | 100 | Manual spot-check results (78.0% accuracy) |
@@ -79,6 +83,7 @@ ns_sentiment/
 │   ├── features/
 │   │   ├── chunker.py                   # Semantic chunking + embeddings
 │   │   ├── lexicon_scorer.py            # VADER + NS/Singlish lexicon (supplementary)
+│   │   ├── commitment_lexicon.py        # ★ Stage 5b lexicon scorer (committed/uncommitted buckets)
 │   │   ├── patch_sentiment_xlm.py       # Singlish patch (SUPERSEDED — kept as record)
 │   │   ├── sentiment_audit.py           # Tier 3: Ollama audit (llama3.2:3b)
 │   │   ├── annotator.py                 # ★ Human annotation CLI (complete, 197 chunks)
@@ -89,6 +94,7 @@ ns_sentiment/
 │       ├── build_manual_dendrogram.py
 │       └── plot_manual_dendrogram.py
 ├── notebooks/
+│   ├── kaggle_commitment_v1.ipynb       # ★ Stage 5b — bart-large-mnli NLI commitment scoring
 │   ├── kaggle_xlm_base_v1.ipynb         # ★ Stage 5a FINAL — XLM base all 737k chunks
 │   ├── kaggle_xlm_patch_v1.ipynb        # Stage 5a Singlish patch (SUPERSEDED — kept as record)
 │   ├── kaggle_sentiment_v1.ipynb        # Stage 5a original RoBERTa run (SUPERSEDED)
@@ -238,31 +244,89 @@ Use as interpretability signal only, not primary classifier.
 
 ---
 
-## Stage 5b — Commitment Scoring (NEXT)
+## Stage 5b — Commitment Scoring
 
-**Model:** `facebook/bart-large-mnli` (zero-shot NLI)
+**Model:** `facebook/bart-large-mnli` (zero-shot NLI, `multi_label=False`)
 **Input:** chunk text from chunk parquets + chunk_ids (all 737k chunks)
-**Run on:** Kaggle GPU (T4 x2) — most expensive step; NLI runs 3 forward passes per chunk
+**Run on:** Kaggle GPU (T4 x2) — 3 NLI forward passes per chunk
 
-Hypotheses to score per chunk:
+Hypotheses — 3-way softmax competition (scores sum to 1 per chunk):
 ```
-"The author supports National Service"
-"The author is critical of National Service"
-"The author feels positively about serving in the military"
+"The author supports National Service"                                  → commit_support
+"The author is critical of National Service"                            → commit_critical
+"The author is discussing National Service without expressing a strong opinion"  → commit_neutral
 ```
 
-**Output:** `chunk_commitment.parquet` — `chunk_id`, `commit_support`, `commit_critical`, `commit_positive`
+`multi_label=False`: all 3 compete in a single softmax, mirroring the sent_neg/neu/pos structure.
+Net score for aggregation: `commit_net = commit_support − commit_critical`.
+Neutral chunks (factual questions, experience descriptions) score high on H3 and are excluded
+from the net signal rather than diluting it.
 
-Build a new Kaggle notebook: `notebooks/kaggle_commitment_v1.ipynb`
-Use `kaggle_xlm_base_v1.ipynb` as the structural template.
-Key differences from sentiment run:
-- `BATCH_SIZE=64` (NLI is much heavier than classification — 3 passes per chunk)
-- `CHECKPOINT_N=25_000` (smaller to guard against session timeouts)
-- Model: `facebook/bart-large-mnli` — classification labels will be `ENTAILMENT`, `NEUTRAL`, `CONTRADICTION`
-- For each hypothesis, the `ENTAILMENT` score is the commitment score
-- Run each hypothesis as a separate pipeline call OR batch all 3 together as NLI pairs
+**Output:** `chunk_commitment.parquet` — `chunk_id`, `commit_support`, `commit_critical`, `commit_neutral`
 
-Input dataset on Kaggle: `ns-sentiment-chunks-v3` (same as Stage 5a — no new upload needed).
+**Notebook:** `notebooks/kaggle_commitment_v1.ipynb` ✅ completed
+- Final settings: `BATCH_SIZE=256`, `PIPE_BATCH_SIZE=128`, `max_length=256`, fp16, DataParallel T4 x2
+- Issues encountered and fixed: pipeline single-GPU bottleneck (10 chunks/s → dropped pipeline),
+  OOM at PIPE_BATCH_SIZE=512 (BART decoder FFN fc1 ~1GB/layer × 12), fixed with 128 + max_length=256
+
+Input dataset on Kaggle: `ns-sentiment-chunks-v3` (same as Stage 5a).
+
+### Lexicon parallel track — DONE ✅
+
+**Script:** `src/features/commitment_lexicon.py`
+**Output:** `chunk_commitment_lexicon.parquet` — `chunk_id`, `lex_committed`, `lex_uncommitted`, `lex_net`
+
+Seed lexicon: 38 committed terms / 37 uncommitted terms.
+Run: `python -m src.features.commitment_lexicon` (completes in ~1 min locally, no GPU).
+
+**Run results (corrected — post bug-fix re-run, 737k chunks):**
+- Chunks with any hit: 19,026 (2.6%) — slightly down from 2.8% (fewer false committed hits after "worth it" removal)
+- Mean lex_net ≈ −0.0021 — slightly uncommitted on balance (correct direction: NS criticism is common)
+- Mixed signals: 153 (down from 771 before fix — removing "worth it" eliminated false cancellations)
+- Committed-only: 10,132 chunks; uncommitted-only: 8,741 chunks
+- Top committed signals: `sign on` (9,671), `signed on` (1,187), `brotherhood` (835)
+- Top uncommitted signals: `keng` (4,965), `chao keng` (3,489), `wayang` (1,777), `waste of time` (809)
+- Notable: `slavery` (422 hits) — common NS hyperbole, genuine uncommitment signal
+
+**Bugs found and fixed:**
+1. `worth it` removed from COMMITTED — it was firing inside "not worth it" (uncommitted),
+   cancelling the uncommitted signal. Net effect: "not worth it" was scoring 0 instead of -1.
+   Fix: removed `worth it`; unambiguous phrases `worth serving` / `worth the sacrifice` remain.
+2. `bo chup` had only 4 hits — Reddit Singlish spelling is inconsistent.
+   Added variants: `bo chap`, `bochup`, `bochap`.
+
+**Known limitation:** `sign on` / `signed on` fires on ANY mention (e.g. "my friend signed on",
+"thinking of signing on?"), not only first-person author commitment. Treat as weak signal;
+use NLI `commit_support` to disambiguate at topic-level aggregation.
+
+### NLI output validation — DONE ✅
+
+**Row count:** 737,274 — matches corpus exactly, 0 nulls
+**Score integrity:** every row sums to exactly 1.000 (softmax confirmed working)
+
+**Majority label distribution:**
+- neutral:   89.2% (657,650) — expected; most NS discourse is factual/descriptive
+- support:    6.2%  (45,436)
+- critical:   4.6%  (34,188)
+
+**Net commitment:** mean=+0.048, median=+0.056
+- 65.2% net positive (support > critical)
+- 34.7% net negative (critical > support)
+- Corpus is slightly pro-NS overall
+
+**Lexicon cross-check (Spearman on 20,296 signal chunks):**
+- Spearman r = 0.291, p≈0 — moderate agreement, statistically significant
+- Directional agreement: 65.6%
+- Committed lexicon chunks: commit_net = +0.068 (vs baseline +0.048) ✓
+- Uncommitted lexicon chunks: commit_net = −0.100 (vs baseline +0.048) ✓
+- NLI moves in the right direction when lexicon has signal
+
+**Known failure modes (spot-checked):**
+- Reports ABOUT criticism scored as critical: "girl goes on Instagram rant dissing NS" → critical=0.998
+  (the chunk is describing someone else's criticism, not the author being critical)
+- Definitional statements scored as support: "Mandatory military service. Stands for NS." → support=0.992
+- "sign on" (9,671 lexicon hits) mostly fires on third-person mentions, not author commitment
+- These are inherent NLI limitations; acceptable at aggregation level where individual errors cancel
 
 ---
 
@@ -425,27 +489,68 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
    - Output: new `chunk_sentiment.parquet` (RoBERTa scores, ~23% neg vs XLM's 40%)
    - Documented accuracy: 65.9% blind corpus-weighted
 
-⚠️ Do NOT proceed to Stage 6 until `chunk_sentiment.parquet` is replaced.
+**LLM annotator — STATUS: BULK ANNOTATION RUNNING 🔄**
+   - Script: `src/features/llm_annotator.py`
+   - Provider: OpenAI gpt-4.1 (Tier 3 account — 10,000 RPM, no RPD cap)
+   - API key env var: `OPENAI_API_KEY` (stored in `.env`, gitignored)
+   - Kappa validation: **κ = 0.820 EXCELLENT** (gpt-4.1, 197 rows, 2026-05-26)
+   - Bulk run: `python -u -m src.features.llm_annotator --annotate 8000`
+     - Output: `data/processed/new/llm_annotation.csv`
+     - Saves incrementally every 250 chunks — safe to kill and resume
+     - ETA: ~6 hrs at 43 RPM actual throughput
+     - Cost: ~$7.39 (at $2/M input, $8/M output for gpt-4.1)
+     - Cost tracker: prints `💰 $X.XX spent` every $0.10 in the log
+
+   **If bulk run was interrupted:** resume with same command — it detects existing
+   `llm_annotation.csv` and skips already-annotated chunk_ids automatically.
+
+   **After bulk completes:**
+   ```bash
+   python -m src.features.llm_annotator --build-dataset
+   ```
+   Produces `singbert_train.csv` — human labels (weight 3×) + LLM labels (weight 1×).
+
+   **Provider history (for context):**
+   - Groq 8B: 6k TPM wall — hit at avg 442 tok/call
+   - Groq 70B: 1k RPD — exhausted in one session
+   - Cerebras Qwen 235B: free but server congestion; κ=0.55 (model issue, not provider)
+   - OpenAI gpt-4.1-mini Tier 0: 3 RPM, 200 RPD — too slow; κ=0.55
+   - OpenAI gpt-4.1 Tier 3: 10k RPM, no RPD cap — κ=0.820 ✅ CURRENT
+
+   **Kappa history:**
+   | Round | Model | κ | Notes |
+   |---|---|---|---|
+   | 1 | Groq 8B complex prompt | 0.410 | Too complex for 8B |
+   | 2 | Groq 8B simplified | 0.747 | At 25 rows only — hit RPD wall |
+   | 3 | Cerebras Qwen 235B | 0.550 | Model neutral-biased |
+   | 4 | OpenAI gpt-4.1-mini | 0.555 | Same neutral bias |
+   | 5 | OpenAI gpt-4.1 | 0.595 | Better but below gate |
+   | 6 | **gpt-4.1 + 48 label corrections** | **0.820** | ✅ User reviewed all disagreements |
+
+   **Key insight:** κ=0.55 plateau was annotation noise (single annotator, ambiguous NS posts).
+   Resolved by `python -m src.features.blind_annotator --review` — 48 disagreements shown
+   side-by-side with gpt-4.1 labels; user corrected/confirmed each one.
+
+   **Files:**
+   - `data/processed/new/blind_annotation.csv` — 197 reviewed human labels (training, weight 3×)
+   - `data/processed/new/holdout_test.csv` — 195 held-out labels (eval only, NEVER train)
+   - `data/processed/new/llm_validation.csv` — gpt-4.1 labels for all 197 validation rows
+   - `data/processed/new/llm_annotation.csv` — bulk LLM labels (in progress)
+
+⚠️ Do NOT proceed to Stage 6 until `chunk_sentiment.parquet` is replaced AND
+   `llm_annotation.csv` is complete + `singbert_train.csv` is built.
 
 ---
 
-### Track B — Stage 5b (commitment scoring — INDEPENDENT, ready to start)
+### Track B — Stage 5b (commitment scoring) ✅ COMPLETE
 
-**Stage 5b does NOT depend on Stage 5a.** Can be built and run now in a separate session.
+**Stage 5b does NOT depend on Stage 5a.**
 
-   - Notebook: `notebooks/kaggle_commitment_v1.ipynb` (not yet created)
-   - Model: `facebook/bart-large-mnli` (zero-shot NLI)
-   - Input: `submissions_chunks.parquet` + `comments_chunks.parquet` (chunk text only)
-   - Hypotheses per chunk (3 NLI passes each):
-     - "The author supports National Service"
-     - "The author is critical of National Service"
-     - "The author feels positively about serving in the military"
-   - Output: `chunk_commitment.parquet` — `chunk_id`, `commit_support`, `commit_critical`, `commit_positive`
-   - BATCH_SIZE=64 (NLI is 3× heavier than classification)
-   - CHECKPOINT_N=25_000
-   - Template: `notebooks/kaggle_xlm_base_v1.ipynb`
-   - Input dataset on Kaggle: `ns-sentiment-chunks-v3` (already uploaded — no new upload needed)
-   - Expected runtime: ~4–6 hrs on T4 x2 (3 forward passes × 737k chunks)
+   - Notebook: `notebooks/kaggle_commitment_v1.ipynb` ✅ complete
+   - Lexicon scorer: `src/features/commitment_lexicon.py` ✅ complete — re-run with bug fixes applied
+   - Output: `chunk_commitment.parquet` ✅ 737,274 rows — `chunk_id`, `commit_support`, `commit_critical`, `commit_neutral`
+   - Output: `chunk_commitment_lexicon.parquet` ✅ 737,274 rows — `chunk_id`, `lex_committed`, `lex_uncommitted`, `lex_net`
+   - **No further action needed on Track B**
 
 ---
 

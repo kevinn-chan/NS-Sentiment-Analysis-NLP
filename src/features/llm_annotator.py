@@ -1,28 +1,27 @@
 """
 LLM-based auto-annotation pipeline for SingBERT fine-tuning golden dataset.
 
-Uses OpenAI gpt-4.1-mini to auto-annotate NS Reddit chunks.
+Uses Cerebras llama-3.3-70b to auto-annotate NS Reddit chunks.
 Human blind labels (blind_annotation.csv) serve as the golden validation set.
 
-Why OpenAI over free tiers:
-  - Groq 8B:    6k TPM  → rate limits at avg 442 tok/call
-  - Groq 70B:   1k RPD  → exhausted in one session
-  - Cerebras:   5 RPM   → 43 min validation, 28 hrs bulk (4 nights)
-  - OpenAI 4.1-mini: 500 RPM, 200k TPM, $1.52 total → 7 min + 4.4 hrs (one night)
+Provider history (why we landed on Cerebras):
+  - Groq 8B:         6k TPM hard wall → rate limits at avg 442 tok/call
+  - Groq 70B:        1k RPD → exhausted in one session
+  - OpenAI 4.1-mini: 200 RPD at Tier 0; tier upgrade requires $5 *consumed* via API
+                     (having $50 in credit balance does NOT count — must actually spend it)
+                     Full project costs $1.52, which never clears the $5 threshold.
+                     Manual tier requests blocked for new orgs. Dead end.
+  - Cerebras:        5 RPM, 30k TPM, 1M TPD, FREE <- current
+                     Validation ~40 min, bulk 8k ~27 hrs (one overnight run)
 
-Cost for entire project (measured avg 442 input + 5 output tok/call):
-  - Validation (197 calls): $0.036
-  - Bulk 8k    (8000 calls): $1.478
-  - Total: ~$1.52
+Cost: $0
 
-Model choice rationale:
-  - gpt-4o-mini  : $0.57 total — excellent value, strong quality
-  - gpt-4.1-mini : $1.52 total — newer 4.1 architecture, better instruction-following ← chosen
-  - gpt-4.1      : $7.57 total — overkill; marginal quality gain doesn't justify cost
+Model: llama-3.3-70b  (OpenAI-compatible API, strong instruction-following at 70B)
 
 Setup:
-    1. export OPENAI_API_KEY=sk_...  (use existing credits)
-    2. pip install openai  (already installed)
+    1. Get free API key at cloud.cerebras.ai
+    2. export CEREBRAS_API_KEY=...
+    3. pip install cerebras-cloud-sdk  (if not already installed)
 
 Usage:
     # Step 1 — validate LLM against human labels, compute Cohen's Kappa
@@ -56,51 +55,78 @@ TRAIN_PATH     = DATA_DIR / "singbert_train.csv"
 
 CHUNK_COLS = ["chunk_id", "doc_type", "subreddit", "text"]
 
-# OpenAI config
-API_BASE_URL     = "https://api.openai.com/v1"
-API_MODEL        = "gpt-4.1-mini"   # $0.40/M in, $1.60/M out → $1.52 total for validation+8k bulk
-RATE_LIMIT_SLEEP = 2.0              # 30 RPM — well under Tier1 500 RPM / 200k TPM limits
+# ---------------------------------------------------------------------------
+# Cost tracker — updated from real token usage on every API call
+# ---------------------------------------------------------------------------
+MODEL_PRICING = {
+    # (input $/M tokens, output $/M tokens)
+    "gpt-4.1-mini":   (0.40,   1.60),
+    "gpt-4.1":        (2.00,   8.00),
+    "gpt-4o-mini":    (0.15,   0.60),
+    "gpt-4o":         (2.50,  10.00),
+    "gpt-4.5-preview":(75.00, 150.00),
+}
+_cost = {"total": 0.0, "last_alert": 0.0}
 
-# To switch models, change API_MODEL:
-#   "gpt-4o-mini"  → $0.57 total, strong quality
-#   "gpt-4.1-mini" → $1.52 total, newest architecture  ← current
-#   "gpt-4.1"      → $7.57 total, maximum quality (overkill)
+def _track(usage):
+    """Record cost from a response usage object; print alert every $0.10."""
+    in_price, out_price = MODEL_PRICING.get(API_MODEL, (0.40, 1.60))
+    cost = (usage.prompt_tokens * in_price + usage.completion_tokens * out_price) / 1_000_000
+    _cost["total"] += cost
+    while _cost["total"] >= _cost["last_alert"] + 0.10:
+        _cost["last_alert"] += 0.10
+        print(f"  💰  ${_cost['last_alert']:.2f} spent")
+
+# OpenAI config — Tier 3 account (10,000 RPM, no RPD cap)
+API_BASE_URL     = "https://api.openai.com/v1"
+API_MODEL        = "gpt-4.1"  # $2.00/M in, $8.00/M out → $7.57 total for validation+8k bulk
+RATE_LIMIT_SLEEP = 0.5        # 120 RPM effective — trivially under 10,000 RPM Tier 3 cap
+
+# Tier 3 limits for gpt-4.1-mini:
+#   RPM: 10,000  |  TPM: 50,000,000  |  RPD: no cap
+#   At 0.5s sleep + ~2s call time ≈ ~24 RPM actual throughput
+#   Validation (197 calls): ~14 min
+#   Bulk 8k   (8000 calls): ~9.3 hrs  (can increase sleep to taste, or drop to 0.1s for ~1.5 hrs)
 
 # ---------------------------------------------------------------------------
-# Few-shot examples — 3 targeted examples (one per class)
-# Chosen to cover the hardest failure modes: question-as-complaint,
-# factual-not-emotional, mild-positive-not-neutral
+# Few-shot examples — 4 targeted examples covering the hardest failure modes
 # ---------------------------------------------------------------------------
 FEW_SHOT_EXAMPLES = [
-    # NEGATIVE — complaint phrased as a question (not neutral just because it's a question)
-    ("Are the sergeants still unreasonable, tekan them like hell for no reason? I've seen so many posts ranting about this, is it still happening?",
+    # NEGATIVE — resentful/bitter warning (indirect negativity, not an explicit rant)
+    ("Just be careful for snitches lah, some people will report you for the smallest thing. Watch your back in camp.",
      "negative"),
 
-    # NEUTRAL — describes hard NS things matter-of-factly (mentioning hardship ≠ complaining)
+    # NEUTRAL — pure factual description, no personal stake or emotion
     ("During BMT the tekan sessions were intense. We would do pushups and leopard crawls. That's just how it works in the first few weeks.",
      "neutral"),
 
-    # POSITIVE — mild satisfaction counts (not just enthusiasm)
-    ("Managed to get a desk vocation, mostly 8 to 5, can book out most nights. Not what I expected from NS but I'll take it.",
+    # POSITIVE — humor and lighthearted tone counts as positive
+    ("Our sergeant told us to do 100 pushups then forgot to count halfway through lol. Easy day for us sia.",
+     "positive"),
+
+    # POSITIVE — personal progress and achievement
+    ("I see my IPPT timings decreasing steadily. Cut 30 seconds off my 2.4km run this week, shiok.",
      "positive"),
 ]
 
 # ---------------------------------------------------------------------------
-# System prompt — concise, ~300 tokens; 70B doesn't need hand-holding
+# System prompt
 # ---------------------------------------------------------------------------
 SYSTEM_PROMPT = """You are a sentiment classifier for Singapore National Service (NS) Reddit posts.
 
 Classify the AUTHOR'S emotional state — not the topic — as negative, neutral, or positive.
 
-NEGATIVE: author is frustrated, complaining, resentful, bitter, or distressed.
-NEUTRAL:  author is informing, asking, advising, or describing without strong emotion.
-POSITIVE: author feels satisfied, relieved, proud, grateful, or happy (mild counts).
+NEGATIVE: author complains, criticises, resents, expresses frustration, bitterness, or sarcasm — even indirectly or calmly.
+NEUTRAL:  author shares facts, gives advice, or asks questions with NO personal emotional stake. Only use when there is genuinely no emotional coloring.
+POSITIVE: author feels satisfied, proud, relieved, grateful, amused, or excited — humor and lighthearted remarks count.
 
 Key rules:
-1. Describing hard/tough NS experiences without frustration = NEUTRAL (not NEGATIVE).
-2. A complaint phrased as a question is still NEGATIVE.
-3. Mild satisfaction or relief = POSITIVE (not NEUTRAL).
-4. Singlish slang (lah, leh, sian, tekan, ORD, encik) is normal NS vocabulary — read tone, not just words.
+1. WHEN IN DOUBT between neutral and negative → choose NEGATIVE. Neutral is for pure facts only.
+2. WHEN IN DOUBT between neutral and positive → choose POSITIVE. Jokes, laughter (LOL, lol, haha), and playfulness = positive.
+3. Indirect resentment or bitter warnings (e.g. "watch out for snitches", sarcasm) = NEGATIVE.
+4. Personal progress, achievement, or improvement = POSITIVE.
+5. A complaint phrased as a question is still NEGATIVE.
+6. Singlish slang (lah, leh, sian, tekan, shiok, ORD, encik) is normal NS vocabulary — read tone, not just words.
 
 Reply with ONLY this JSON, nothing else:
 {"label": "negative"}   or   {"label": "neutral"}   or   {"label": "positive"}"""
@@ -139,6 +165,8 @@ def call_llm(text: str, client, retries: int = 3) -> str | None:
                 temperature=0.0,
             )
             raw   = resp.choices[0].message.content.strip()
+            if resp.usage:
+                _track(resp.usage)
             label = json.loads(raw).get("label", "").lower()
             if label in ("negative", "neutral", "positive"):
                 rate_wait = 60   # reset backoff on success
@@ -153,10 +181,24 @@ def call_llm(text: str, client, retries: int = 3) -> str | None:
         except Exception as e:
             err = str(e)
             if "rate_limit" in err.lower() or "429" in err:
-                # Rate limit — back off but don't burn retry budget
-                print(f"  Rate limit hit — waiting {rate_wait}s ...")
-                time.sleep(rate_wait)
-                rate_wait = min(rate_wait * 2, 300)  # 60 → 120 → 240 → 300 cap
+                # Distinguish RPD (daily) from RPM (per-minute) — different recovery strategy
+                if "per day" in err.lower() or "rpd" in err.lower():
+                    import datetime
+                    now_utc  = datetime.datetime.utcnow()
+                    reset_utc = now_utc.replace(hour=0, minute=0, second=0, microsecond=0) \
+                                + datetime.timedelta(days=1)
+                    wait_hrs = (reset_utc - now_utc).seconds / 3600
+                    print(f"\n  ❌  DAILY LIMIT (RPD) EXHAUSTED — cannot recover by sleeping.")
+                    print(f"  └─ {err[:220]}")
+                    print(f"\n  Quota resets at midnight UTC  ({wait_hrs:.1f} hrs from now).")
+                    print(f"  Progress saved — re-run --validate after reset to resume.\n")
+                    return None   # exit call_llm; outer loop will see None and stop
+                else:
+                    # RPM hit — back off and retry
+                    print(f"  Rate limit hit — waiting {rate_wait}s ...")
+                    print(f"  └─ {err[:200]}")
+                    time.sleep(rate_wait)
+                    rate_wait = min(rate_wait * 2, 300)  # 60 → 120 → 240 → 300 cap
             else:
                 parse_attempts += 1
                 print(f"  ⚠️  API error (attempt {parse_attempts}): {e}")
@@ -178,7 +220,7 @@ def get_client():
         print("  export OPENAI_API_KEY=sk_...")
         sys.exit(1)
 
-    return OpenAI(api_key=api_key)  # uses default api.openai.com/v1
+    return OpenAI(api_key=api_key)
 
 
 # ---------------------------------------------------------------------------
@@ -221,30 +263,58 @@ def run_validate():
         golden["human_label"].notna() & (golden["human_label"] != "skip")
     ].copy().reset_index(drop=True)
 
-    print(f"Validating {len(golden)} golden labels with {API_MODEL} ...")
-    print(f"Estimated time: ~{len(golden) * RATE_LIMIT_SLEEP / 60:.0f} min\n")
+    out = DATA_DIR / "llm_validation.csv"
 
-    llm_labels = []
+    # Resume from prior partial run — skip already-labelled chunk_ids
+    already_done = {}
+    if out.exists():
+        prev = pd.read_csv(out).dropna(subset=["llm_label"])
+        already_done = dict(zip(prev["chunk_id"], prev["llm_label"]))
+        if already_done:
+            print(f"Resuming — {len(already_done)} already labelled, skipping.")
+
+    remaining = golden[~golden["chunk_id"].isin(already_done)].copy().reset_index(drop=True)
+    print(f"Validating {len(remaining)} golden labels with {API_MODEL} ...")
+    print(f"Estimated time: ~{len(remaining) * RATE_LIMIT_SLEEP / 60:.0f} min\n")
+
+    new_labels = []
     t0         = time.time()
-    out        = DATA_DIR / "llm_validation.csv"   # save incrementally
 
-    for i, (_, row) in enumerate(golden.iterrows()):
+    for i, (_, row) in enumerate(remaining.iterrows()):
         label = call_llm(str(row["text"]), client)
-        llm_labels.append(label)
+        if label is None and i == 0:
+            # First call failed — likely RPD exhaustion; message already printed
+            return None
+        new_labels.append(label)
         time.sleep(RATE_LIMIT_SLEEP)
 
-        if (i + 1) % 25 == 0 or (i + 1) == len(golden):
-            done    = [l for l in llm_labels if l]
+        if (i + 1) % 25 == 0 or (i + 1) == len(remaining):
             elapsed = time.time() - t0
-            rate    = (i + 1) / elapsed
-            eta     = (len(golden) - i - 1) / rate
-            print(f"  {i+1}/{len(golden)}  {rate:.1f}/s  ETA {eta/60:.0f}min")
+            rate    = (i + 1) / elapsed          # req/s
+            eta     = (len(remaining) - i - 1) / rate
+            rpm     = rate * 60
+            print(f"  {i+1}/{len(remaining)}  {rpm:.1f} RPM  ETA {eta/60:.0f}min  [${_cost['total']:.3f} spent]")
             # Incremental save — safe to kill at any 25-chunk boundary
-            partial = golden.iloc[: i + 1].copy()
-            partial["llm_label"] = llm_labels
-            partial.dropna(subset=["llm_label"]).to_csv(out, index=False)
+            partial = remaining.iloc[: i + 1].copy()
+            partial["llm_label"] = new_labels
+            # Merge with prior run and save
+            combined = pd.concat(
+                [pd.DataFrame([{"chunk_id": cid, "llm_label": lbl} for cid, lbl in already_done.items()]),
+                 partial[["chunk_id", "llm_label"]].dropna(subset=["llm_label"])],
+                ignore_index=True,
+            )
+            golden.merge(combined, on="chunk_id", how="left").dropna(
+                subset=["llm_label"]
+            ).to_csv(out, index=False)
 
-    golden["llm_label"] = llm_labels
+    remaining["llm_label"] = new_labels
+
+    # Rebuild full golden with all labels (prior + new)
+    # Use object dtype explicitly to avoid pandas float64→string coercion error
+    golden["llm_label"] = golden["chunk_id"].map(already_done).astype(object)
+    for _, row in remaining.iterrows():
+        golden.loc[golden["chunk_id"] == row["chunk_id"], "llm_label"] = row["llm_label"]
+
     valid = golden.dropna(subset=["llm_label"])
     failed = len(golden) - len(valid)
 
@@ -365,7 +435,7 @@ def run_annotate(n: int):
             eta     = (len(sample) - i - 1) / rate
             pct     = (i + 1) / len(sample) * 100
             print(f"  [{pct:>5.1f}%] {i+1:>6,}/{len(sample):,}  "
-                  f"{rate:.1f}/s  ETA {eta/3600:.1f}h  — saved")
+                  f"{rate:.1f}/s  ETA {eta/3600:.1f}h  ${_cost['total']:.2f} spent  — saved")
 
     _save_llm(records)
     failed = sum(1 for r in records if r["llm_label"] is None)

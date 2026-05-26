@@ -1,0 +1,538 @@
+chunk_id,stratum,doc_type,subreddit,has_sg,wc,text,human_label,pred_XLM,correct_XLM,pred_RoBERTa,correct_RoBERTa,pred_RoBERTa-L,correct_RoBERTa-L,corpus_weight
+y9b8pa_0,submissions,submission,NationalServiceSG,False,133,"Is it possible to make complaints against SAF MOs?. I got injured during training, so I went to a private specialist to get it checked out and got a memo recommending long-term excuses and a temporary down-PES, plus all the relevant test results to prove that I have a genuine medical condition that is causing me a lot of pain and making it difficult to carry out normal activities in a combat unit. When I brought all these documents to the camp MO, he referred me to MMI, but the doctor there doesn't believe that my condition warrants a down-PES because there is no ""objective evidence"" to support the diagnosis, despite the test results showing otherwise and specialist memos advocating for a temporary down-PES to allow for recovery.",negative,negative,True,negative,True,negative,True,0.23825
+ilzijd6_2,medium_comment,comment,NationalServiceSG,False,101,"If u not trying to be regular chances are ur enciks wont see a point in putting themselves through all the paper work and u through all the work to have u graduate, go to a unit, then only have maybe less than a year left of service left in ur new unit. Can is can la, if i were ur encik tho, i'd be pissed off about having to do ur paper work for u just because u wanted to up pes from the status u got from the issues u yourself claimed u have during medical check up.",negative,negative,True,negative,True,negative,True,0.23825
+kpafrp1_0,long_comment,comment,NationalServiceSG,False,256,"1) there’s a light infantry phase in year 1, then transition to mot in year 2, most companies in the battalion will be mot trained, but different companies will have different roles, my batch Alpha was coastal, Bravo was main attack force and Charlie was reserve (i think), only Alpha was light, the rest incl support were mot
+2) honestly during Rots its quite busy, training, route march, combat circuit, CQB, testing of TES set
+3) my longest route march was in year 1, FBO with stores and section store, it was 12km
+4) im a man so idk
+5) there was a point in time when it was like 10 outfields in a ROW, so after that u pretty much lose count, but i think total over two year probably 25ish? quite relaxed towards the end, because everybody is tired and wants to finish and go home
+6) my sect comms role is honestly coordination, if you’re 2nd year, the ICs know how to run the section, trust them to run and you deal with coordination with higher ups, it can feel quite pressurising to be stuck between men and higher ups, so as long as you speak up for your men and you don’t treat them like shit, everybody gets along
+7) higher than bmt for sure, but from what i heard from my commanders, less stressful, more chill
+standards are there to enforce, but everybody closes their eyes once in a while
+8) idk on that haha
+
+second to none",neutral,negative,False,neutral,True,neutral,True,0.23825
+mpgf7te_0,singlish,comment,NationalServiceSG,True,28,"NSmen in the campus will be ready to take pic and report u for malingering around on campus, go in vest slack so cant see ur name instead",negative,negative,True,neutral,False,neutral,False,0.047
+i5pagec_0,short_comment,comment,NationalServiceSG,False,19,Actually nsfs can become sniper as well. Need to be selected for scs tho. Around one intake a year,neutral,neutral,True,neutral,True,neutral,True,0.23825
+i0936bo_4,singlish,comment,askSingapore,True,25,"Another 2 hours gone by, at this point bodoh mentally breakdown liao. He getting interogated by the sergeants, the PS, other platoon PS and SM.",negative,negative,True,negative,True,negative,True,0.047
+mh09fm4_0,short_comment,comment,NationalServiceSG,False,1,anecdotal?,neutral,neutral,True,neutral,True,neutral,True,0.23825
+1hidy9k_0,submissions,submission,NationalServiceSG,False,15,what do you want for Christmas menu?. Your wishlist will be forwarded to cookhouse auntie,positive,neutral,False,neutral,False,neutral,False,0.23825
+h1cp335_0,medium_comment,comment,NationalServiceSG,False,103,"If you are having any doubts, best not to do it. The military life is not something that is for everyone, and signing on just because you love to do a certain part of your job (e.g. flying a plane) doesn't just magically remove all the other parts of the job (e.g. regimentation, proper bearings, parades). Being a pilot is for sure one of the most interesting vocations to sign-on for and no doubt it would be a fantastic experience for you to fly, but it's not the only part of your job, just take that into account.",neutral,positive,False,neutral,True,neutral,True,0.23825
+lp875e8_0,short_comment,comment,NationalServiceSG,False,1,No,neutral,neutral,True,neutral,True,negative,False,0.23825
+139g164_1,submissions,submission,NationalServiceSG,False,47,Was granted PES E due to some health issues but I do want to keep options open for a future career in army. Was told however that PES E very hard to get career and have to up pes which I don't actually mind. Any tips?,neutral,negative,False,neutral,True,neutral,True,0.23825
+dbauz4z_4,long_comment,comment,singapore,False,257,"there isn't much any other could do, the better question would be, how should the army be handling known psychiatric cases? Firstly, if you ever been through Tekong, you should know that for people who are already out of training, they still have to be there with their platoon and company until they get posted out, for obese batch, that means 5 freaking months and for the pes A and B batch, that means 2 months, let's say if you're P-tagged halfway through BMT, even if you're out of training, you still have to suffer the wrath of your superiors and environment for another x weeks or months until you're posted out to your unit, this shouldn't be happening since if you can't take it there, you should already be out instead of limboing there until you get posted out, it adds a lot of unnecessary stress and may aggravate psychiatric issues on the victim. Second, the time for psychiatric appointment is too long, for example, from the day I was tagged in IMH till the day I actually saw the military psychiatrist in MMI or another follow-up appointment in IMH was almost an entire month between the two days, in my case, it was serious but wasn't serious enough that I was one foot on the rooftop already, but for cases that are extreme where all it takes is a single push to tilt the person to jump, it makes a very big difference to them.",negative,negative,True,negative,True,negative,True,0.23825
+jm5f6ka_0,singlish,comment,NationalServiceSG,True,63,those with difficult and shag vocations will envy those who can slack and those who didn't have to do anyt much would envy those who seemed to have more fun and experiences...no end to it. there's rlly no point dwelling in the past everyone's 2 years is different. just appreciate what u had and the ppl around u ig,positive,negative,False,neutral,False,neutral,False,0.047
+meaa3yg_0,long_comment,comment,askSingapore,False,311,"weather is hot and humid 
+ns perm injuries, delay studies, toll on family who rely on monetary support 
+emphasis on education and job leads to little in way of creativity and sports, parents not allowing their kids to explore other avenues
+govt catering to the rich (greenery and cooling plants in landed neighbourhoods while hdb heat sink concrete jungle)
+emphasis on bringing in foreign talent/companies/miney and hiring foreigners as sg are deemed not good enough to manage or run companies
+-
+can’t compare abt walking arnd safely at night cos jap, kor, aus, china all also can
+what’s the diff btwn illegal immigrants and cheap labour, we also import a lot of migrant worker to do grunt work
+cost wise depend on job and relative income, not everyone is able to find, not everyone job pay matches inflation, if everyone can afford to eat y we giving out so much money as subsidies and “assist with cost of living” packages
+if gays don’t bother u when they’re around, what’s diff does it make
+if we’re so diverse y no lgbt
+govt mostly went against what lky og idea was for this country 
+-
+feel like there’s no worse place to be born, atleast in corrupt countries money moves things and living a peaceful simple life with scenery and space and time and options to do other things is far better, building wealth overseas makes families feel a sense of security and is actually doable, being majority race plays a massive part in ur life experience as well, the saying goes if ur born poor it’s not ur fault, but if u die poor it is, in sg how many people or how often u see people build generational wealth or what not, the culture here is so rat race and risk adverse too",negative,negative,True,negative,True,negative,True,0.23825
+e5z8t7w_0,medium_comment,comment,singapore,False,118,"Just want to mention that there is the medic vocation within the commando unit. If you do well during Commando BMT (but not well enough to be chosen for Leaders course) you can indicate to your sergeants that you are interested in that vocation (though eventually everybody will be more-or-less cross-trained for all the vocations during the company training phase...)
+
+Of course, if you meant becoming a service medic instead of combat medic, you should definitely sound out to the interviewer during the vocational assessment that you're not interested in training to become cdo. I think a few others already offered help if you have other questions, but feel free to ask me too.",positive,negative,False,neutral,False,neutral,False,0.23825
+juda2m_0,submissions,submission,NationalServiceSG,False,37,"NEED some advice regarding Generalised Anxiety Disorder (GAD) (Serious answers only please). So it has been a few months into my service...
+
+A little background: I have always been the person that is easily alarmed and panic.",neutral,negative,False,negative,False,neutral,True,0.23825
+i07pz09_0,short_comment,comment,NationalServiceSG,False,9,Damn it almost sounded like a medical appointment! LOL,positive,positive,True,negative,False,positive,True,0.23825
+m6qfgba_0,medium_comment,comment,singapore,False,84,"bro I have know of people from a neighbouring country who got their PR dam easily 
+
+while we serve NS, they took our jobs not only in blue collar sector
+
+the thing is they no serve ns and they got both rank and money ahead of us and I am not referring to those who studied here since pri school
+
+u are right it's a bit unfair for us that serve. now with foreigner bosses, foreigner landlords, foreigner HR, we are fucked man.",negative,negative,True,negative,True,negative,True,0.23825
+gimhtzs_9,singlish,comment,NationalServiceSG,True,73,"I avoided the vege to not shit in the jungle HAHAH
+
+FIELD PACK SIDE POCKETS. Those 4 pockets on the side of your field packs are the easiest to access, so put the important stuff like toiletries food underwear there
+
+GORTEX. Some people use it as pillow, most use it as a jacket coz it gets hella cold at night
+
+Just personal expeirence la hor HAHAH cant think of anything else so ye",neutral,negative,False,neutral,True,neutral,True,0.047
+k6nrt2s_1,singlish,comment,NationalServiceSG,True,61,"just be careful for snitches, got one time some fucker caught us rinsing off in the shower together after we done our deed then he go tell the PS. luckily we planted our used contraceptives under his pillow so him and his other wayang bitch buddy got fucked instead, figuratively and possibly literally. just remember the army says DONT GET CAUGHT.",negative,negative,True,negative,True,negative,True,0.047
+nqbaai8_0,long_comment,comment,askSingapore,False,412,"New kids in the block is quick to make friends..  They just walk in, and this is how our friends ""clique"" grow..
+
+There were no internet, mobile phone etc, but as teenager when we organize a week-end BBQ outing at ECP, and we have friends living in different estate will gather at precisely at the stated timing, and we only need to delegate and without any reminder, everything will be in place..  No more, no less..
+
+We have a lot more fun in the older days, like going to private estate look for rambutan trees to ""raid"" and the fun is not actually getting the rambutan, but the excitement of being caught and running away from the home owner and dogs, and we sometime circle back to try and repeat our mischievous action and we realize some owner are actually nice and they didn't chase us to chase us away or scold, but wanted to tell us how we should harvest the rambutan to not actually risk killing it..  and once we're told about this..  We never go back to that house and tree, because there's no fun in it..  LOL!!!.. I believe many people may get riled up by this comment, but we really have a lot of fun serving NS, and a lot of us being old uncles now are till in contact..  Things we do, again, stealing rambutan, but as solder's, we raid farms along places like Mandai, and the farmers are not friendly at all, and in one incident, he release his dog, and he run our with a parang..  and when one of our encik found out he ask and told us..  Don't go to that part..  they guy will release dogs and chase you with parang..  and we all had a good laugh when we told them we learn it the hard way..  tldr, NS those days are a lot less regimental, and when we're at the field, everyone, sometime including CO will join in the fun, but not that he will go plug fruits or steal chicken, but he accept laughing out loud when we offer to share..  
+
+IMO..  Modern folks are seriously petty..  When there's new kids in the block and wanting to join in the fun, they may be seen as weird.. Like..  eh..  who's that weird kid always looking at us..  sad kid no parent to love..  etc..  old day not like this..",positive,negative,False,neutral,False,negative,False,0.23825
+n9mjnvv_0,medium_comment,comment,NationalServiceSG,False,94,to be honest it will be a hard time for both of u but focus on urself first because can ns super drained physically and mentally but if u rly want to do smth like not being forgetful pin the messages she send to u and reply her when ure free but overall if udw to forget anything pin the messages or write it down in ur notes or smth somewhr u can see it immediately if yall are using telegram u can try sending her automated messages at certain timing of the day,negative,negative,True,neutral,False,neutral,False,0.23825
+sisq8e_1,submissions,submission,NationalServiceSG,False,17,the spray kind? Can recc some brands that are good? when do I usually use it uh?,neutral,neutral,True,neutral,True,neutral,True,0.23825
+fsyzfoi_0,short_comment,comment,singapore,False,8,watching ah boys to men. majour bmt nostalgia,positive,positive,True,neutral,False,neutral,False,0.23825
+ndl84th_0,long_comment,comment,singapore,False,261,"But there's also another reality out there for some women. I asked a chatbot for a summary:
+
+\> If by “head start” you mean women can enter the workforce \~2 years earlier because men do National Service, that’s a **timing** fact ([CMPB: 2 years full-time NS](https://www.cmpb.gov.sg/about-us/discover-ns/))—but it doesn’t translate into an early-career **advantage**: even after adjusting for age, education, occupation and hours, women still earned **6.0% less than men in 2023** (unadjusted **14.3%**) per the Ministry of Manpower’s study of full-time residents aged 25–54 ([MOM infographic](https://stats.mom.gov.sg/Pages/Update-on-Singapores-Adjusted-Gender-Pay-Gap.aspx)). \> Women are also under-represented where promotions and pay accelerate—just **25.1%** of directors on the Top-100 SGX boards in 2024 ([Council for Board Diversity](https://www.councilforboarddiversity.sg/resources/latest-statistics/))—and retire with **smaller CPF balances** (e.g., women’s average ≈**90.7%** of men’s in 2019; analysis from CPF annual reports, [Milliman](https://mbwl-int.com/wp-content/uploads/2021/06/6-21-21-Milliman-Pulse-Singapore-Retirement-Gender.pdf)). \> Meanwhile, policy is expanding **paternity** leave to **4 weeks from 1 Apr 2025** to **rebalance caregiving** ([MSF press release](https://www.msf.gov.sg/media-room/article/amendments-to-child-development-co-savings-act-enhanced-paternity-leave-and-new-shared-parental-leave-scheme-from-1-april-2025-to-strengthen-support-for-working-parents)), which acknowledges drag on women’s careers rather than any female “head start.”",neutral,negative,False,neutral,True,neutral,True,0.23825
+e26776y_1,long_comment,comment,singapore,False,420,"Rank Score
+Overall 2 65.08
+
+* Knowledge workers 4 73.41
+* Employment in knowledge-intensive services  2 95.16
+* Firms offering formal training  n/a n/a
+* GERD performed by business enterprise  15 36.71
+* GERD financed by business enterprise  16 69.25
+* Females employed with advanced degrees  15 70.73
+* Innovation linkages 15 49.41
+* University/industry research collaboration  8 71.34
+* State of cluster development  9 69.64
+* GERD financed by abroad  53 13.06
+* Joint venture/strategic alliance deals  3 74.79
+* Patent families filed in at least two offices  18 34.32
+* Knowledge absorption 2 72.43
+* Intellectual property payments  1 100.00
+* High-tech imports  5 82.30
+* ICT services imports  31 33.31
+* Foreign direct investment, net inflows  1 100.00
+* Research talent in business enterprise  22 60.32
+
+KNOWLEDGE AND TECHNOLOGY OUTPUTS
+
+This pillar covers all those variables that are traditionally thought to be the fruits of inventions and or innovations. Rank Score
+Overall 11 51.27
+
+* Knowledge creation 30 31.92
+* Patent applications by origin  32 17.63
+* PCT international applications by origin  20 25.62
+* Utility model applications by origin  n/a n/a
+* Scientific and technical publications  27 48.82
+* Citable documents H index  24 35.62
+* Knowledge impact 13 52.63
+* Growth rate of GDP per person engaged  58 66.80
+* New business density  16 31.53
+* Total computer software spending  35 27.54
+* ISO 9001 quality certificates  31 23.09
+* High-tech and medium high-tech output  1 100.00
+* Knowledge diffusion 4 69.25
+* Intellectual property receipts  17 35.29
+* High-tech exports  1 100.00
+* ICT services exports  69 10.96
+* Foreign direct investment, net outflows  1 100.00
+
+CREATIVE OUTPUTS
+
+The last pillar on creative outputs measures the role of creativity for innovation. Rank Score
+Overall 35 39.60
+
+* Intangible assets 44 48.06
+* Trademark application class count by origin  88 8.44
+* Industrial designs by origin  62 6.40
+* ICTs and business model creation  8 80.70
+* ICTs and organizational model creation  11 75.85
+* Creative goods and services 19 39.35
+* Cultural and creative services exports  n/a n/a
+* National feature films produced  38 17.83
+* Entertainment and media market  20 44.70
+* Printing, publications &amp; other media output  70 18.83
+* Creative goods exports  10 67.97
+* Online creativity 32 22.92
+* Generic top-level domains (gTLDs)  23 25.30
+* Country-code top-level domains (ccTLDs)  37 11.40
+* Wikipedia yearly edits  45 16.03
+* Mobile app creation  17 38.96",neutral,neutral,True,neutral,True,neutral,True,0.23825
+irpymlv_0,long_comment,comment,askSingapore,False,324,"From an economic point of view, it’s definitely costly for us but it’s really more than just black and white, the sovereignty and confidence of our nation is another key factor in attracting FDIs to boost our economy and let us in on their know-hows
+Further comparison and research/findings could be made into Israel where they too adopt the conscript army system, and draw similarities/difference and probably learn from them as much as we have already done so 
+
+the accomplishments of our upcoming leaders were the talk of the town, and one comment really did stand out to me, that “ many saw great progress made by our late LKY in bringing up SG from the bottom (eg 50% to 90% is a 40% increase) but our current leaders would suffer from diminishing returns(pardon me if i use the wrong term), squeezing progress from that last 10% would indefinitely be harder
+
+Yes i do wholly agree that’s is a struggle to survive in this current climate -am saying this as one of the grunts earning a mediocre salary (less than 4k for context), but i am thankful that our tax situation ain’t blasphemous as USA’s or UK’s, i am thankful that i can sleep soundly at night without someone whipping their gun out nonchantly just because they can, i am thankful that i do have a house to live in, amongst the many other things i would be thankful for. ( less the weather, bless us all) 
+
+if we do keep comparing, it’ll be a never ending cycle
+(another cliche) instead of why should we stay, we could go with how can we make it better(so that we can stay) and lobby for improvements. Besides the governments effort in trying to retain our identity and serving the nation, what can we citizens do to make this island our home (cringey but does make sense)",positive,negative,False,neutral,False,neutral,False,0.23825
+ndsqsow_4,short_comment,comment,NationalServiceSG,False,62,"e.g. 7.30pm prowl kc3, then 11.30pm be sentry, then 5.30am do vac. \- although the BTT course is stay-in, the last 2 or so weeks of the course will be stay-out. during this stay-out phase, there won't be pt or sba/sbb. \- youre not in bmt anymore so it's pretty much sba all around.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+1hdy4b2_2,submissions,submission,NationalServiceSG,False,12,2. If I have free time can i study or do smth?,neutral,neutral,True,neutral,True,neutral,True,0.23825
+9k5ntu_0,submissions,submission,singapore,False,22,"Singaporean, 21, going to ORD in ~4 months. I studied primary in Malaysia (UPSR) and did secondary in SG till Sec 3.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+kfov0kn_0,short_comment,comment,NationalServiceSG,False,6,Also the NSmen on duty. Hormat,neutral,negative,False,negative,False,neutral,True,0.23825
+lf1t2h8_0,singlish,comment,askSingapore,True,19,Don't worry bro more to come during reservist. Mob manning spanning over Christmas and new year song bo,negative,positive,False,neutral,False,neutral,False,0.047
+mrkrpcr_0,singlish,comment,NationalServiceSG,True,9,Wah shag lah.... My ict low key. Thanks anyways!,negative,positive,False,positive,False,positive,False,0.047
+cdwo2ug_0,long_comment,comment,singapore,False,360,"The driver is identified as a Singaporean (http://sg.news.yahoo.com/fire--rioting-taking-place-in-little-india--reports-152651999.html)
+
+A large group of foreign workers start to gather around the bus (https://www.youtube.com/watch?v=yUrqYFjP7IY)
+
+The rioters started smashing the windscreen and windows of the bus (https://www.facebook.com/photo.php?v=10152136497421383)
+
+SCDF personnel who arrive to extricate the body were hit by projectiles thrown by the rioters (https://twitter.com/ChannelNews.../status/409739564224221184)
+
+Police cars, ambulance and fire engine arrive. One of the first police cars which arrive has a smashed rear windscreen (https://twitter.com/TOD.../status/409706005631483904/photo/1)
+
+People start throwing stuff at emergency vehicles. They flip over 3-4 police cars (https://www.youtube.com/watch?v=OdSzjj39Et0)
+
+After which, they set fire to 3 police cars and an ambulance (https://www.youtube.com/watch?v=8wjbnROY1jE)
+
+3 bus loads of riot police arrive and take control of the scene. 300 police officers involved, but no shots were fired from any weapon, lethal or non-lethal (https://www.youtube.com/watch?v=BLAFJ0qvRSg)
+
+Police in control of scene, arrests are being made (https://twitter.com/ChannelNews.../status/409724947943018496) (https://twitter.com/jeraldjustin/status/409722481671274496/photo/1)
+
+400 were involved, 9 emergency vehicles, and several private vehicles were damaged. 16 people were injured, which include 4 SCDF personnel, 10 police officers, the bus driver and his conductor. They were sent to Tan Tock Seng Hospital for treatment (https://twitter.com/STcom/status/409728879331246080)
+
+Singapore Police Force press conference at 0130
+
+Damaged vehicles are being towed away (https://twitter.com/ChannelNewsAsia/status/409858523690848256/photo/1)
+
+Hampshire Road and Race Course Road now open (https://twitter.com/ChannelNewsAsia/status/409856211748536320)
+
+Condition of 10 police officers and SCDF officers are stable (https://twitter.com/ChannelNewsAsia/status/409764583104991232)
+
+27 have been arrested, with more to be expected in the following days (http://www.straitstimes.com/breaking-news/singapore/story/little-india-riot-27-nabbed-more-expected-be-arrested-hours-and-days-f)
+
+More sources: https://www.youtube.com/user/chewkkf?feature=watch
+
+http://sg.news.yahoo.com/fire--rioting-taking-place-in...",negative,neutral,False,neutral,False,neutral,False,0.23825
+h8s17m_0,singlish,submission,NationalServiceSG,True,93,"(To 2019 - 2029 enlistees) Are the sergeants still unreasonable, better than in the past?. I’ve seen a lot of posts ranting about their sergeants, tekan them like hell, unreasonable punishments, made to do things people don’t want to... but these posts were long ago and were mainly like 2010 to 2014 if I’m right enlistees. Just curious if the sergeants are better now, (just a quick one) what are some of the things that were removed? I know changing parade was removed, but is there anything that has been removed?",negative,negative,True,negative,True,negative,True,0.047
+iz8mht0_0,long_comment,comment,singapore,False,260,"Use insect repellents that have DEET (N.N-Diethyl-meta-toluamide), don't bother with those natural ones that use citronella or lemon oils research have shown that they are only effective for 15 to 30 mins, personal anecdotal experience with them outfield even if you spray a bunch of the natural stuff or use a whole box of those stick on patches, they're useless. Only the repellent with DEET works, you don't need the super high strength 75% stuff that the SAF uses, just even the 5% - 15% stuff like OFF that you can get from guardian or watsons works well enough. If you don't want to apply repellent, you can try using a vaporiser like [this one](https://www.watsons.com.sg/nomat-sq-cordless-refill-720-hours-long-protection-for-mosquitoes-1-set/p/BP_93598), there are various brands that sell it baygon, ARS etc, you should be able to get it from the supermarkets or pharmacies. If possible try not to use mosquito coils, just burning 1 coil produces the same amount of smoke as a 100 cigarettes, not something you want if you're in an enclosed room or even in the same open air area if you're going to be there for a long time. Dump the mosquito lamps as well as they use UV light and mosquitoes aren't actually attracted by UV lights, it's the flying ants that are attracted by UV lights. You're just wasting electricity powering those if you're trying to kill mosquitoes.",neutral,negative,False,neutral,True,negative,False,0.23825
+r4u7nr_2,submissions,submission,NationalServiceSG,False,37,"Is it ok?Would like to know your experience. Many people have shared negative remarks on medical treatment at KTPH, but have not heard regarding the dental side of stuff, so would like to find out more.",neutral,neutral,True,negative,False,neutral,True,0.23825
+kxiu47b_0,long_comment,comment,singapore,False,255,"Some reasons off the top of my head:
+
+* tangible results are generally expected within 5 years, discouraging ""moonshots"" and other forms of risk-taking
+* research contracts are only 3-5 years, further incentivizing researchers to go with a line of research that would produce something before contract renewal
+* large changes in research directions every 5 years or so with new [RIEs (and funding changes)](https://www.nrf.gov.sg/rie-ecosystem/ecosystem/) and new appointment holders seeking to make their mark makes it hard to focus on research that might take a while to get results
+* while there is the NSF, Singapore's largest research organization is administered under the [Ministry of Trade and Industry](https://www.mti.gov.sg/About-Us/MTI-Family). Hence research outcomes are justified in terms of contributions to Singapore's economy. Contrast this with the [US](https://en.wikipedia.org/wiki/National_Science_Foundation), [UK](https://en.wikipedia.org/wiki/Department_for_Science,_Innovation_and_Technology), [Germany](https://www.bundesregierung.de/breg-en/federal-government/ministries/federal-ministry-of-education), [France](https://www.era-learn.eu/network-information/organisations/ministry-of-research), [Switzerland](https://www.admin.ch/gov/en/start/departments/department-of-economic-affairs-education-research-eaer.html), [Japan](https://www.mext.go.jp/en/), and even [South Korea](https://www.msit.go.kr/eng/), [Taiwan](https://en.wikipedia.org/wiki/National_Science_and_Technology_Council_(Taiwan)), and [China](https://en.most.gov.cn/), all have have their own versions of a ""Ministry of Research"" which I imagine would focus on very different KPIs than Singapore's MTI.",neutral,negative,False,neutral,True,neutral,True,0.23825
+dxqpcgt_0,long_comment,comment,singapore,False,385,"Some of the other Life Sciences staff at NUS do not head their own labs, but also supervise undergraduate projects:
+
+[N. Sivasothi aka Otterman](https://otterman.wordpress.com/otterman-holt/)
+
+[Zeehan Jaafar](http://www.dbs.nus.edu.sg/staff/zeehan.html)
+
+[Ng Ngan Kee](http://www.dbs.nus.edu.sg/staff/ngngankee.htm)
+
+If you're inclinced towards plants and don't mind getting muddy in the mangroves (which are counted as a marine habitat), there's also the [Applied Plant Ecology Lab](https://www.appliedplantecology.org/), headed by Associate Professor [Edward Webb](http://www.dbs.nus.edu.sg/staff/webb.html), and the [Mangrove Lab](http://www.themangrovelab.com/) from the Department of Geography, headed by Associate Professor [Dan Friess](http://profile.nus.edu.sg/fass/geofd/)
+
+There are a few other programmes elsewhere - Yale-NUS offers a [Major in Environmental Studies](https://envs.yale-nus.edu.sg/), as well as a [Concurrent Degree Programme with Yale School of Forestry and Environmental Studies](https://www.yale-nus.edu.sg/curriculum/concurrent-degree-with-yfes/). NTU has an [Asian School of the Environment](http://www.ase.ntu.edu.sg/), while NIE has a [Natural Sciences and Science Education Academic Group](https://www.nie.edu.sg/our-people/academic-groups/natural-sciences-and-science-education). James Cook University in Singapore has a [Bachelor of Business &amp; Environmental Science](https://www.jcu.edu.sg/courses-and-study/courses/course/bachelor-of-business-And-environmental-science) undergraduate programme, with the option to [major in aquaculture](https://www.jcu.edu.sg/courses-and-study/courses/course/bachelor-of-business-And-environmental-science-aquaculture). **Polytechnic programmes**
+
+As for the polytechnics, Republic Polytechnic has a [Diploma in Environmental Science](https://www.rp.edu.sg/SAS/full-time-diplomas/Details/r29) with an elective in Marine Ecology and Conservation, but the [Diploma in Marine Science and Aquaculture](https://www.rp.edu.sg/SAS/full-time-diplomas/Details/r53) has a much larger emphasis on marine biology. Ngee Ann Polytechnic has a [Diploma in Molecular Biotechnology](https://www.np.edu.sg/lsct/Pages/mbio.aspx) programme with an elective in Aquaculture &amp; Marine Biology. Temasek Polytechnic offers a [Diploma in Applied Science (Aquaculture)](http://www.tp.edu.sg/courses/part-time-courses/diploma-by-schools/school-of-applied-science/diploma-in-applied-science).",neutral,neutral,True,neutral,True,neutral,True,0.23825
+e5bhsz6_0,singlish,comment,singapore,True,34,If you die die wanna go local uni. Study A lvls during NS and take the exams after you ord. It is very tough but I've seen peers who have made it before.,neutral,negative,False,neutral,True,neutral,True,0.047
+imnsdsa_0,medium_comment,comment,singapore,False,115,"""Rigorous evaluation"" in the SAF context may be closer to ""rigorous monitoring"" of these fighters as they are used by the US and first recipient countries. For a small nation like us who can't afford specialist test equipment, test engineers, test pilots and test facilities, we have to depend on others to work out the kinks in the first few batches as these fighters are operationalised. Cost wise it makes sense  
+
+It is no surprise that since the F16s and followed by F15s, the F35s will also be delivered to US bases where they are operated by SAF pilots and SAF ground staff. They can also use the equipment available at these US bases.",negative,negative,True,neutral,False,neutral,False,0.23825
+ghi26bv_1,short_comment,comment,singapore,False,54,"Let them know your concerns and how it affected you a lot. At least you give them a heads up if anything happens to you in the foreseeable future like a random panic attack or something while you are in BMT, they can take appropriate actions. Btw, are you going to SAF/SPF/SCDF?",neutral,neutral,True,neutral,True,neutral,True,0.23825
+c19n1k_0,submissions,submission,NationalServiceSG,False,2,Bisexual qns,neutral,neutral,True,neutral,True,neutral,True,0.23825
+yu60cx_0,submissions,submission,NationalServiceSG,False,31,"Dental FFI ORD attire questions. For the dental FFI ORD at Kranji Camp 2, may I know what attire did those who just cleared it/ORD’ed recently wore for it?",neutral,neutral,True,neutral,True,neutral,True,0.23825
+k3aylfl_3,medium_comment,comment,NationalServiceSG,False,130,"And the evening and the morning were the second day. 9 And God said, Let the waters under the heaven be gathered together unto one place, and let the dry land appear: and it was so. 10 And God called the dry land Earth; and the gathering together of the waters called he Seas: and God saw that it was good. 11 And God said, Let the earth bring forth grass, the herb yielding seed, and the fruit tree yielding fruit after his kind, whose seed is in itself, upon the earth: and it was so. 12 And the earth brought forth grass, and herb yielding seed after his kind, and the tree yielding fruit, whose seed was in itself, after his kind: and God saw that it was good.",neutral,neutral,True,positive,False,neutral,True,0.23825
+kwwaatf_0,medium_comment,comment,NationalServiceSG,False,81,"Well as an observer, I think both sides probably tell an incomplete story...
+
+Especially cos it's online here and people hiding behind screens, there isn't much things that can be done too and people would just spout whatever they wanna say about others. There simply isnt an avenue where we could testify whatever was said about 5SIR be it from a NSF/Management POV unless we know someone from the unit now and even then there can be biases.",neutral,negative,False,negative,False,negative,False,0.23825
+g58n4ta_1,medium_comment,comment,singapore,False,102,"In Singapore, National Service is a public good that fits all 3, because not only are we lacking conscripts due to low birth rates, it is also severely taxing on guys and their careers and plus there is not as much respect given to our soldiers among the general population as compared to other armies around the world. This is not about which gender earns more as a result of NS liability, but about which gender pays more to consume such public good. Males certainly pay more than female to enjoy national security, by virtue of time spent or opportunity cost lost.",negative,negative,True,negative,True,negative,True,0.23825
+jg6irvp_0,singlish,comment,NationalServiceSG,True,62,For me i ooced and my current vocation very lepak one… 8-5 mostly end early one… sometimes the days are like sleeping in aircon room from morning till afternoon eat lunch go back sleep again till around 2-3pm go home… asked about it before but the chances of me rebmting is quite low arh unless i request for it arh,positive,negative,False,neutral,False,neutral,False,0.047
+fmavuwv_0,long_comment,comment,singapore,False,380,"This may help...
+
+**Covid-19 Update Summary**
+
+
+
+_General_
+
+●All non-essential services closed for 1 month from Apr 7
+
+●Essential Services
+
+• All healthcare and social services
+
+• Food and related services
+
+• Energy
+
+• Water and waste management and environment
+
+• Transportation and logistics
+
+• Information and communications
+    
+
+• Security operations
+    
+
+• Facilities management and critical public infrastructure
+    
+
+• Manufacturing activities key to sustenance and security
+    
+
+• Banking and finance
+
+●Restrictions on Movements
+    
+
+•Stay at home as much as possible
+    
+
+•Avoid visiting others, even extended family, especially the elderly and vulnerable
+    
+
+•Strongly advised to go out only for essentials, for example, to buy groceries
+
+•Enforcement measure will be taken if Singaporeans loiter or gather with others outside of their family
+
+•Singaporeans should wear the reusable masks provided by the government when heading out
+
+● No more dining in
+
+•Recommended to bring their own packaging
+
+
+
+_Schools_
+
+●Home-based learning from Apr 8 to May 4
+
+●Mid-year exams cancelled but national exams are essential and will continue (includes mother tongue exams in June)
+
+●Poly and ITEs: Essential for new students to go to campus to register and log on to online learning materials (in small groups)
+
+● Graduation ceremony not essential, will not be held
+
+
+
+_Support_
+
+●No longer discourage people from wearing masks
+
+● Reusable mask distribution
+
+• From Apr 5, Sun 10am to Apr 12
+  
+
+• Weekdays: 3pm to 9pm daily
+    
+
+• Weekends/PH: 10am to 9pm
+    
+
+• Information on where to collect: www.maskgowhere.sg / community centre notice boards
+
+● Enhanced jobs support scheme
+
+•Firms to receive wage subsidies of between 25 to 75%
+
+•3 Month extension for paying levy for foreign workers for SMEs
+
+•Commercial property that qualified for Budget 2020's rebate to now pay zero property tax for this year
+
+● Temporary Relief Fund (till Apr 30)
+    
+
+•Online application will be launched next week, there is no need to rush
+
+
+
+_National Service_
+
+●Activities involving NSmen (in-camp training and IPPT) deferred till May 4
+
+●Servicemen performing critical functions required to stay in their camps and bases before and during operational duty
+
+●SAF units and training schools to continue operating with enhanced measures
+
+●Full article: https://www.straitstimes.com/singapore/coronavirus-in-camp-training-and-ippt-for-nsmen-deferred-until-may-4?utm_source=STSmartphone&amp;utm_medium=share&amp;utm_term=2020-04-03+18%3A37%3A40
+
+*may not include all info*
+
+Edit: updated job support scheme",neutral,neutral,True,neutral,True,neutral,True,0.23825
+fs2r112_0,long_comment,comment,singapore,False,290,"Yes it is, even crossdressing is. Here's a link: 
+
+https://en.m.wikipedia.org/wiki/LGBT_rights_in_Malaysia
+
+
+Human Rights Watch reports that state-level Sharia (Islamic) laws prohibit cross-dressing, and transgender people ""face arbitrary arrest, physical and sexual assault, imprisonment, discriminatory denial of health care and employment, and other abuses. ""[4]
+
+Transgender individuals have often been arrested by police officers under the civil laws governing ""public indecency"", and if they are Muslim, can be further charged by religious officers under Sharia Laws for ""impersonating"" women. A 2014 Human Rights Watch report alleged that transgender people are subjected to ""assault, extortion, and violations of their privacy rights"" by police, and humiliation, physical and sexual assault by Religious Department officials.[23]
+
+In 1998, 45 Muslim transvestites were charged and convicted in court for dressing as women, and twenty-three more transgender persons faced similar fines and imprisonment in 1999.[8]
+
+It has been estimated that a large number of transgender persons are forced to work on the streets as commercial sex workers to earn a living. In November 2014, three transgender women from the state of Negeri Sembilan arrested for cross-dressing via Sharia law successfully appealed for review of the judicial law at the Court of Appeal for appropriate clothing of people with gender dysphoria. Due to the lack of a mention of gender dysphoria and the lack of medical evidence for a state legal adviser's claim that transgender people were insane, the court unanimously declared the anti-cross-dressing Sharia law as void and violating the constitutional right of ""freedom of expression, movement and the right to live in dignity and equality"".[24] On 8 October 2015, the Federal Court of Malaysia overturned the ruling on procedural grounds.",negative,negative,True,neutral,False,negative,True,0.23825
+1nfqlt7_0,submissions,submission,NationalServiceSG,False,3,[ Removed by moderator ],neutral,neutral,True,neutral,True,negative,False,0.23825
+co0642g_1,medium_comment,comment,singapore,False,92,"all in all it's a fair route if you are willing to slog it out and not make any big mistakes. [as to which branch, i'd just like to point out that in police they're not as strict as to the conversion from junior officer [sorta like spec path in army speak] to senior officer [officer in army speak] and don't necessarily need a degree for this kind of conversion. many people - usually diploma level at least - get to become senior officers if they prove to be capable.]",neutral,negative,False,neutral,True,neutral,True,0.23825
+lszvulg_0,singlish,comment,NationalServiceSG,True,75,"Beats me. I guess there is a difference between load inspector from guards (aka load inspector trained personnel who have a totally seperate day job) vs load inspector from the airforce sqn that does it whose full time duty it is? I think there's a difference based on the job title, forget alr
+
+Regardless they turn up to inspect our loads anyway, we got a few random ones from cdo/gds who come lah.",neutral,negative,False,neutral,True,neutral,True,0.047
+j2zhive_1,short_comment,comment,NationalServiceSG,False,20,Cos i havent done so. My PS only told him to pass him the physical copy of the police report.,neutral,neutral,True,neutral,True,neutral,True,0.23825
+j9nzatb_0,long_comment,comment,singapore,False,503,"###Here are formal, doctor-measured statistics of penis lengths. Some are stretched lengths and some are erect lengths, both which have been found to be more or less equivalent to each other for most men.### **Caucasian penile length measurements from institutional research:**
+
+**3.7 inches;** University of Alberta, Canada; University of Toronto, Canada: http://www.scribd.com/doc/29971609/The-Relationships-Among-Height-Penile-Length-and-Foot-Size
+
+**5.1 inches;** Department of Urology, St. Mary's Hospital, UK: http://onlinelibrary.wiley.com/doi/10.1046/j.1464-410X.2002.02974.x/full
+
+**5.6 inches;** Western General Hospital, UK; Edinburgh and St John's Hospital, UK: http://www.ncbi.nlm.nih.gov/pubmed/21711435
+
+**5.2 inches;** The Harriet Lane Handbook, John Hopkins University, USA: http://www.jpedhc.org/article/S0891-5245(09)00140-0/fulltext#tbl1 http://www.copeson.org.mx/medicos/Harriet_Lane.pdf
+
+**4.9 inches;** University of California School of Medicine, San Francisco, USA: http://www.ncbi.nlm.nih.gov/pubmed/8683783
+
+**5.4 inches;** Tel Aviv-Sourasky Medical Center, Israel: http://www.nature.com/ijir/journal/v12/n6/abs/3900627a.html
+
+**5.6-5.7 inches;** Department of Urology, University of Essen, Germany: http://www.ncbi.nlm.nih.gov/pubmed/11182344
+
+**4.9 inches;** University of Florence, Italy: http://www.ncbi.nlm.nih.gov/pubmed/11223678?dopt=Abstract
+
+**5.3 inches;** Italian Society of Andrology, Italy: http://www.falloplastica.net/fp/content/dimensioni-pene.asp?layout=1
+
+**5.3 inches;** Spanish Society of Andrology, Spain: http://www.pulevasalud.com/ps/subcategoria.jsp?ID_CATEGORIA=102161, http://www.lavozdegalicia.es/hemeroteca/2001/02/05/410226.shtml
+
+**5.3 inches;** Department of Urology, Jordan University Hospital, Jordan: http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?itool=abstractplus&amp;db=pubmed&amp;cmd=Retrieve&amp;dopt=abstractplus&amp;list_uids=15510185
+
+**Asian penile length measurements from institutional research:**
+
+**3.8 inches;** Department of Urology, Seoul Municipal Boramae Hospital, South Korea: http://www.asiaandro.com/archive/1008-682X/5/185.htm
+
+**5.3 inches;** Department of Urology, Chosun University, South Korea: http://www.koreamed.org/SearchBasic.php?RID=1020KJU/1998.39.11.1061&amp;DT=1
+
+**5.5 inches;** Department of Urology, Beijing Medical University, China: http://www.scribd.com/doc/103023459/Chinese-Study-1990
+
+**5.3-5.4 inches;** Department of Urology, Beijing Medical University, China: http://www.scribd.com/doc/103024071/Chinese-Study-1993
+
+**5.3 inches;** Department of Urology, Beijing Medical University, China: http://www.scribd.com/doc/104414559/Chinese-Study-1994-3
+
+**Black penile length measurements from institutional research:**
+
+**5.3 inches;** Department of Surgery, Nnamdi Azikiwe University, Nigeria: http://www.ncbi.nlm.nih.gov/pubmed/17191423?dopt=AbstractPlus
+
+(Yes, there has only ever been one formal, doctor-measured study on erect/stretched penis lengths for Black men.) I included the highly deviant sub-4 inch measurements only to demonstrate how ridiculously erroneous the world penis size map is. The map maker took the 3.8-inch measurement from that one study and applied it to all of Asia.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+jie02uh_7,singlish,comment,NationalServiceSG,True,25,"Lim peh anytime can show up at anywhere, my pattern more than badminton can kill you with many style. That one no weapon counted hor.",negative,negative,True,negative,True,neutral,False,0.047
+i6vhej5_0,short_comment,comment,NationalServiceSG,False,28,I am an Indian PR but i lived my entire life+education in SG haha. Ayy but grats on signal must've been a relief on posting day,positive,positive,True,positive,True,neutral,False,0.23825
+jo0kojk_0,medium_comment,comment,NationalServiceSG,False,85,"Alot different stories about gryphon, most common one was that a recruit commited suicide there long time ago at lvl 4 and alot of paranormal activities were encountered ever since (etc chairs and tables moving and dropping down from lvl 4 at night) Dark figures in corridors. Then the encik built an altar in the COS office ever since and gryphone has been shut down. But idk if true or nah, cuz its mostly reserved for specs that comes to tekong for exercises to sleep",negative,negative,True,negative,True,neutral,False,0.23825
+mmcr0tf_0,singlish,comment,NationalServiceSG,True,13,1 Star head of BMTC just pulled up to tekong for engagement GG,negative,neutral,False,neutral,False,neutral,False,0.047
+fzdu9gu_0,short_comment,comment,NationalServiceSG,False,10,cant wait for a survey about satisfaction of ns pay.,negative,positive,False,positive,False,neutral,False,0.23825
+hxf807i_4,medium_comment,comment,NationalServiceSG,False,80,"If you don’t remember your date of issue, you can check it on your digital pink IC on Singpass App. If you happen to be out for *whatever* reasons and you came in close contact with a COVID-19 positive patient for more than 15 minutes, you will be sent a Health Risk Notice (HRN). In the past, it is used to be called Health Risk Warning (HRW), but it has been changed to HRN a few days back.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+jyztsl6_0,medium_comment,comment,NationalServiceSG,False,87,"itll be alright,   
+factors include the timeline schedule of BMTC,   
+\- Ask your sgts for days without highkeys (for your ma if you can reschedule)  
+\- Plan for 8am or 8+ appointments or evening appointments   
+\-> reason being ferries are available from 6.30am so if they kpkb and dont want to let you leave the night before theyll make you book out in the morning. ( but you will have to book in, in that case dont tell them what time you end, but tell them youll keep them updated.",negative,neutral,False,neutral,False,neutral,False,0.23825
+mb0jj8x_0,medium_comment,comment,askSingapore,False,113,"BMT/Army was actually a ‘fun’ time.. There was a field camp once, on don’t know which hill in Tekong.. started to rain middle of the 2nd night,  so we were told to abandon camp, leave our tents and bag up there and run down, with SBO and weapon, the hill to seek shelter at the old medical centre (not sure old camp 1 or 3). So we all got into the medical centre which was without power, laid down to sleep wet and tired..maybe around 2-3 hours later, we were all woken up and told to hustle out to the verandahs while a headcount was taken as we exited.",negative,negative,True,neutral,False,neutral,False,0.23825
+h57okdu_0,short_comment,comment,NationalServiceSG,False,4,Sure thing!! Thank u:),positive,positive,True,positive,True,positive,True,0.23825
+j37f4t2_0,short_comment,comment,NationalServiceSG,False,3,left palms down 😩😩,neutral,negative,False,neutral,True,negative,False,0.23825
+nsvulxd_1,singlish,comment,NationalServiceSG,True,211,"IMO, the more enthusiastic service men takes safety a lot more seriously then those who don't, because they follow protocol and don't cause bottle neck which in turn can risk causing safety breaches. ie, like in one of my in camp training life firing, a section tasked to mount target decided to skip instruction to speed up their work by moving into the life firing field when the first shot is fired, and although they're not even close, they're there in clear sight of the commander below the life firing area, and our CO need to call for cease fire, and just because of that incident, a platoon have already charged up the hill to take position need to run back down and this delayed our RTU by hours..
+
+Also, those so call siao on solders? They really don't want to be wasting their time rotting rushing to wait and waiting to rush, so, when there are task to be completed, they do it quickly, finish it in good time so that that training can commence on time and they can RTU on time, and it's really those..  ""Don't be siao on"" ones that can cause safety breaches and delay and waste everyone time..",positive,negative,False,neutral,False,negative,False,0.047
+ck8o8nl_0,long_comment,comment,singapore,False,317,"I *am* Muslim, though of a different bent than the State-sanctioned variant here (I'm Hanafi Sunni rather than Shafie Sunni as here), and I've also spent several years studying Singapore politics and history, and the conclusion I've come to is this:
+
+By the 1960s, LKY had decided that he didn't like Malays or Muslims, in no small part because they drew community strength from each other independent of anything or anyone he could buy, threaten, co-opt or otherwise fold into his paternalistic, don't-you-*dare*-call-it-Mao-like national indoctrination programme. Hence, the current (and *highly* deliberately anti-Islamic) status of MUIS, which had heretofore been the Singapore variant of Malaysia's JAKIM, both holdovers from the British system. No other religious group has this in Singapore because every other major religious group contains a large proportion of either the ethnic majority, who enjoy *de facto* special status in Singapore, or by the relatively tiny Indian minority who have been either integrated into LKY's PAP or marginalised even further than the Malays have been. The result is almost a mirror image of the State of Israel: on paper, a democratic, pluralistic state where any citizen has the rights of freedom of religion, of assembly, of free association; in practice, a theocracy (in the case of Israel, where Orthodox Jews have absolute primacy, enjoying rights and immunity from obligations unavailable to non-Orthodox Jews) or, in the case of Singapore, either an anti-theocracy (specifically targeting Muslims, who conveniently are largely but not exclusively of an already-marginalised minority) or a ""secular theocracy"", if you will, where the forces of State media, the Ministry of Indoctrination and Regurgitation (mislabelled ""Education""), the National Service system, and various other organs of State power combine to ensure and celebrate the absolute rule of The Hereditary Autarch Lee Kuan Yew and His Cronies.",neutral,negative,False,neutral,True,negative,False,0.23825
+1ews54j_0,submissions,submission,NationalServiceSG,False,4,Questions about signing-on!,neutral,neutral,True,neutral,True,neutral,True,0.23825
+d5hkc7_0,submissions,submission,singapore,False,5,NS enlistment on November 2019,neutral,neutral,True,neutral,True,neutral,True,0.23825
+h47wi5v_0,long_comment,comment,singapore,False,267,"Was in a company run by entitled rich kids who only managed to start up a company because they had funding from their parents/
+
+\- Bosses regularly took leave every other week, but would get mad at employees for wanting to take their off-in-lieus they earned from working weekends. \- Bosses scold and humiliate employees in person/on group chat in front of everyone for not cleaning the dishes, when same bosses never do their duties. ( And then occasionally scold us for not doing THEIR duty for them)
+
+\- They get angry at people for coming in late, but would come into the office at 12PM+
+
+\- Fired an employee because she had severe depression, caused another to attempt suicide, and proceeded to mock both of them for their mental health issues
+
+\- One of the bosses tried faking depression to get out of reservist
+
+\- Illegally did not deposit one of the employee's CPFs on time, and failed to pay employee full salary
+
+\- Casually was asking for documents/receipts to add into their accounting numbers for tax fraud. \- Fired another employee for not responding to a non-work related text on a weekend
+
+\- Scolded an employee for needing to take emergency leave of their parent that had just suffered from a severe medical emergency. Told the same employee ""he needs to warn them ahead of when his father will get sick""
+
+\- Made intern work until 3AM
+
+\- Bosses petty dramas/fights will be pretty public and just ruined the overall mood in the office. \- One of the bosses had severe anger management issues on top of having zero common sense.",negative,negative,True,negative,True,negative,True,0.23825
+gxpo70m_0,short_comment,comment,singapore,False,19,&gt; Actually you’re missing the point why quotas are important. would you support quotas in every industry then?,negative,negative,True,negative,True,negative,True,0.23825
+kbdoosa_0,medium_comment,comment,NationalServiceSG,False,84,"You may consider to read the following 
+
+https://www.reddit.com/r/NationalServiceSG/comments/14sylxh/tips_for_nsf_and_nsf_gf_who_in_a_relationship/?utm_source=share&utm_medium=android_app&utm_name=androidcss&utm_term=1&utm_content=2
+
+https://www.reddit.com/r/NationalServiceSG/comments/tpdmuo/spf_enlistment_guide_2022/?utm_source=share&utm_medium=android_app&utm_name=androidcss&utm_term=1&utm_content=share_button
+
+https://www.reddit.com/r/NationalServiceSG/comments/l7eyyc/saf_bmt_faqs_part_1_part_2_part_3/?utm_medium=android_app&utm_source=share
+
+https://www.reddit.com/r/NationalServiceSG/comments/km5970/my_own_experience_in_ns/?utm_medium=android_app&utm_source=share
+
+https://www.reddit.com/r/NationalServiceSG/comments/l52v5w/ptp_experience/?utm_medium=android_app&utm_source=share",neutral,neutral,True,neutral,True,neutral,True,0.23825
+1ofmace_1,submissions,submission,NationalServiceSG,False,31,"since i study overseas, i would like to book tickets back to sg for his milestone parade. he’s not sure when the date will be yet since its too early.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+1fuckav_0,submissions,submission,NationalServiceSG,False,27,"SAFRA MEMBERSHIP DOESNT COME WITH GYM. BRO WHAT DA FACK, I went Safra todsy they say membership it only comes with fucking swimming pool????? Man oh man",negative,negative,True,negative,True,negative,True,0.23825
+hipicfy_1,singlish,comment,NationalServiceSG,True,78,"But I strongly suggest u don’t MC at all cuz after you stick the first initial shitty feeling of being in army out and make friends, your time will be so fun fucking around with sergeants and being around each other. It really is super slack and they’re only a little more strict in the first week because they want you to get used to the lifestyle. After that, it felt like a secondary school camp",positive,negative,False,positive,True,positive,True,0.047
+jsu0rm5_0,singlish,comment,askSingapore,True,25,"In my time hor, 2.5 years hor, and when go Tekong we literally swim there without boat. For lunch we eat the tree bark.",neutral,neutral,True,neutral,True,neutral,True,0.047
+gjcruhv_0,long_comment,comment,singapore,False,342,"just playing devils advocate here..
+
+when i game i want to game, and most people get pretty competitive too.. mixing alcohol and tilted players is just a disaster waiting to happen
+
+when i drink i want to heckle and sing.. sports is the best outlet for this, followed by ktv.. gaming wouldnt let me be as social as id like to be
+
+rarely do these two scenarios mix, and even if they do, i wouldnt want to spend $100-200 recreating an experience i can get at home.. i dont think a gaming pub would be able to give an experience i would gladly pay for week in week out.. 
+
+case in point.. if i wanna watch twitch, ill be in my underwear at home.. if i wanna socialise while watching twitch, theres discord and twitchchat, and maybe ill put on a shirt.. why would i gather a group of friends to go to a bar, pay premium for drinks and barfood, and watch twitch.. and if we wanna game, then it costs extra too for the same game i would have at home.. i also wouldnt want to lug my gear on a night out
+
+target market of the 20s would be: in/just finish ns, in uni, just started work.. disposable income isnt very high in these groups.. and as you move to the late 20s, you would either be clearing off your student loan, or getting into a housing or car loan as well.. so your ideal patron would be high income, single, gamer, with similar friends.. not alot of people fit this description
+
+also, in my 20s we would pregame with $20 dfs absolut or $5 kopitiam/7-11 beer before going to zouk or a sports bar to catch a late game, and then we would nurse 2-3 beers for the whole night.. thats the only way we could afford going out every week
+
+tl;dr good luck with the business plan, i really mean it.. but imo, i dont think theres a gap to fill",neutral,negative,False,negative,False,negative,False,0.23825
+n0jbnet_1,singlish,comment,NationalServiceSG,True,16,I see my timings decreasing at a steady rate. Feom cutting 30secs to a whole min.,positive,neutral,False,negative,False,neutral,False,0.047
+n7342kj_0,long_comment,comment,NationalServiceSG,False,341,"Posting this assuming you're suffering from Adjustment Disorder
+
+There is no pcc memo, if you're looking to downpes via mental health, you can:
+
+1) Visit IMH and talk to a psychiatrist, tell them about your conditions etc, will take months for an appointment unless you A&E
+
+2) Visit a private psychiatrist to write whatever memo you want, expensive but fast
+
+3) Report sick in camp stating you're mentally unwell (might have to go through OO first) and whatever thoughts you have, you might get referred to IMH A&E dept IF you're suicidal, or SCC/Carehub/Dpph for counselling and PCC for a SAF psychiatrist appointment (take weeks depending on case severity, might reject you)
+
+You might receive a short MC and a memo with your diagnosis and the psychiatrist's advice on excuses, request for a medical review in camp and hand the memo to the MO, from there he can:
+
+1) Refer you to PCC, can take weeks to months for an appointment, it's same as reporting sick but more indepth talk to learn about you, after that you'll get your MC/excuses instantly and be boarded for a downpes / discharge
+
+2) Board you straightaway for a downpes / discharge and permenant excuses, while waiting for the medical board MO can cover you with temporary excuses
+
+For your pes to change / permenant excuse it requires the medical board to convene and accept your case, the medical board meets on the last week of every month to review all cases, after that you'll still have to wait a few weeks minimum to get posted out of Guards, if you don't pass BMT you'll have to rebmt at kranji in the future (assume downpes)
+
+Worst case scenario is you're denied the downpes and might have to do a board in presence / PCC again if things don't line up, please don't lie about illnesses and symptoms just to get out of Guards, it won't help anyone. All the best",neutral,negative,False,neutral,True,neutral,True,0.23825
+1jcosgr_12,submissions,submission,NationalServiceSG,False,41,"However, as much as I want to suck it up and take it head on. My mental health caved in and there are days where I get little to no sleep, even on weekends just with the dread of going back.",negative,negative,True,negative,True,negative,True,0.23825
+fgfbl64_0,singlish,comment,singapore,True,19,There's alot of people who Chao Keng with migraines so it's slightly understandable but not right still,negative,negative,True,neutral,False,negative,True,0.047
+1fb9hq0_0,submissions,submission,NationalServiceSG,False,30,Diet Capsule - SG It is a very good health product that will make you gain weight in a short period of time. Click the link below to buy the product,neutral,positive,False,positive,False,neutral,True,0.23825
+lb4cf2s_0,singlish,comment,NationalServiceSG,True,20,"oh sike, yeah regardless it's still OSA iirc for the intakes, we find out together when it happens lor",neutral,neutral,True,neutral,True,neutral,True,0.047
+h8vgp81_0,short_comment,comment,NationalServiceSG,False,5,Just do your best ba :),positive,positive,True,positive,True,positive,True,0.23825
+j0z3s6s_0,medium_comment,comment,NationalServiceSG,False,112,"Throwaway account; am a trooper in 9sir, ST service, part of the batch Ording next Feb. Personally, I feel alot of the experiences you experience depends on the individual PC; for example in my sector if you take MC the PC doesn't usually make u pay back unless you are a known CKW. As for 3-1-2, I haven't really experienced any cohesions on weekends, with the exception of family day which afaik is once a year. I believe 3-1-2 is only supposed to occur on off days that are on weekdays to begin with, and personally with the exception of family day this has been followed.",neutral,negative,False,neutral,True,neutral,True,0.23825
+iwfn0b6_0,medium_comment,comment,askSingapore,False,82,"If he AWOL, obviously his parents will be the first few to be questioned on his whereabouts - apart from his immediate superior in his unit. Different case if guy default due to home circumstances - but that one is another matter all together. Never heard of 1 month BMT but it should something along the time of passing BMT with the minimum requirement of attendance + high key done (meaning the guy max out taking mc but still hit the requirement to pass out)",neutral,negative,False,neutral,True,neutral,True,0.23825
+ewuo1fm_0,long_comment,comment,singapore,False,273,"if you are pes fit, 90% chance you will go into firefighter and getfked for 3-6 months depending on what you want to go
+
+the rest of the recruits go into medic side ( dont think this id easy, training is way easier than firefighter but once you go station you see real shit, where as firefighter is getting fked on a daily basis for minimum 3 months if you wanna go station and 6 months if you are good enough to be a sgt, who may or may not be posted to station)
+ and other vocations such as storeman, driver, and admin support
+
+if you are not pes fit, congrats you have dibs on support vocations, and will get to enjoy stay out/no strenous training) 
+
+there are quite a few posts on ffc/scc on this sub just search them, it was helpful for me
+
+-currently into 2nd week of firefighting training after ooc-ing the first time( that's another story, pm me if you wanna know), and its getting hard to be really honest, just want to clear this trainee period and hopefully get station. all the best, recruit time got pointless punishements but 1 day in cda is 10 days of punishment in nsti, go in and clear smal milestones by milestones, dont think about ord so fast and countdown, you will feeel shit especially as people close to you ord/reservist, so take things slow, follow instructions and all the best:) if you need any help just pm me, will only maybe reply during weekends, as admin time in firefighter course is kinda little compared to nsti",negative,negative,True,neutral,False,negative,True,0.23825
+cyj5bia_3,medium_comment,comment,singapore,False,121,"So the question of an army being necessary at all is quite obviously Yes. Now to bring it to NS men, unless the government can make being a public servant in the SAF, SPF, SCDF more attractive, (They've already got very good pay and job stability but most people don't want a regimental job and bureaucratic management system), enough to supplement the manpower needed, we will always need NS men to bolster the numbers. The months of training which are a minimum of 3 for Basic, another 2 for the Less-fit intake and an additional 1-9 months of vocational training means that the time in which NS men are effectively working is already less than 2 years.",negative,negative,True,neutral,False,neutral,False,0.23825
+m71xhce_0,short_comment,comment,NationalServiceSG,False,4,Show pic of dxo 😂,neutral,neutral,True,neutral,True,positive,False,0.23825
+gb3mtjg_0,short_comment,comment,NationalServiceSG,False,12,"As what the others said, call cmpb again. Keep on pestering them.",neutral,negative,False,negative,False,negative,False,0.23825
+jv9y6da_0,medium_comment,comment,NationalServiceSG,False,186,"Enlisted in 2021 but according to the letter 
+[Items enlistees will need to bring]
+1.IC
+2.Education Cert of highest qualification(for enlistees studying abroad)
+3.Photocopy of bank account or statement(open bank acc if not done so)
+4.Health booklet(incl immunisation records)
+5.Personal toiletries
+6.Undergarments
+7.Washing powder/detergent
+[Optional Items]
+1.Clothes hangar
+2.civilian shirt/tshirt & trousers(1 set)
+3.inexpensive watch
+4.nail clipper
+5.Swimming goggles
+6.powerbank for mobile phone
+7.charger for mobile phone
+
+My BRT was in April 2021 so thinks may have changed but some tips:
+1.Charger can bring but no charging during training hours(I.e when u not in bunk. My bunk mate was caught charging when my Sgt checked and we got scolded)
+2.Watches rlly if u wanna check the time for the day to end or go cookhouse to eat(if not I suggest u just talk w ur platoon mates cause u still got 22months ahead)
+3.You will receive quite abit of items, but the main ones are your rescue helmet, boots and uniform.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+u7zqxy_15,submissions,submission,NationalServiceSG,False,44,"6. after briefing you about the surgery, the surgeon will then schedule a surgery date. prior to the surgery, there should be a pre-op consultation with a nurse. basically, the nurse will ask you a couple of questions pertaining to the surgery (eg.",neutral,neutral,True,neutral,True,neutral,True,0.23825
+mxicbts_0,short_comment,comment,NationalServiceSG,False,27,"its okay, it will all be over soon, we all know you mentally going insane, its okay man, it’s good to be vocal about your thoughts 💀",negative,positive,False,positive,False,positive,False,0.23825
+1m85epp_1,submissions,submission,NationalServiceSG,False,24,"I did my re-search via Google but not getting quite a lot of information's. So, I would like to know more here.",negative,neutral,False,neutral,False,neutral,False,0.23825
+j4zf6vt_0,singlish,comment,NationalServiceSG,True,43,"You could try using phone and take a standardized photo with white background after that crop it accordingly, just ensure it's smaller than your passport sized photos? Anyways, ATB. ( even more shiok if you're going as support staff and not cadet)",positive,neutral,False,neutral,False,neutral,False,0.047
+ge57vay_0,medium_comment,comment,NationalServiceSG,False,91,"First of all, the lower tempo of trainings also known as safety time-out happened for a month or two, and has since then trainings been resumed with more safety measures put in place. I believe I read the news recently about 50% increase in more soldiers voicing out safety hazards / lapses, without fear of punishments or repercussion for doing so. But with that being said Safety is an individual responsibility and your commanders and peers can only look after you that much, you have to take care of yourself nonetheless.",positive,negative,False,neutral,False,neutral,False,0.23825
+j9a5wd2_0,short_comment,comment,NationalServiceSG,False,55,"Yes you'll be allowed to book out for the entire PES BP except for the confinement period and the field camp period as it'll likely overlap with your weekend if you include the SIT Test. Also goes without saying, any guard duty or further confinement received as punishment will affect your bookout ability.",neutral,negative,False,neutral,True,neutral,True,0.23825
+erwsr4l_3,long_comment,comment,singapore,False,319,"The Malay Civet was [said to be common in the Mandai area](https://www.nss.org.sg/report/e12c44d6-bThe%20Pangolin%201988%201%281%29.PDF) before 1969, there was a report of a sighting [in the Upper Seletar area in the early 1990s](https://www.nparks.gov.sg/sbg/research/publications/gardens-bulletin-singapore/-/media/sbg/gardens-bulletin/4-4-49-2-11-y1997-v49p2-gbs-pg-353.pdf), and in 1991, a Malay Civet was said to be [regularly seen foraging near one of the military camps on Pulau Tekong](https://www.nss.org.sg/report/4004fa20-2The%20Pangolin%201991%204%281%29.PDF). Unfortunately, all of these sightings were not accompanied by photographs, nor was there sufficient evidence presented to differentiate these sightings from the Large Indian Civet, a similar-looking species said to be present in Singapore as well. The only definite recent record of Malay Civet here comes from a camera trap placed in the forest in the MacRitchie area, which took [several photographs of what is believed to be a single Malay Civet](https://lkcnhm.nus.edu.sg/app/uploads/2017/06/2012nis079-081-4.pdf) over several nights in January 2012. So based on what we know, we cannot confirm that the Malay Civet was historically present in Singapore, but we have evidence of at least one apparently wild individual in the Central Catchment Nature Reserve. Besides Singapore, the Malay Civet occurs in [Peninsular Malaysia](https://www.ecologyasia.com/pdf/2016/seavr2016-019%28p036%29.pdf), Sumatra, and [Borneo](https://flic.kr/p/2bLQcPT), with populations in the Philippines, Sulawesi, and the Maluku Islands resulting from human introductions. **Large Indian Civet** (*musang jebat*)
+
+The [Large Indian Civet](https://www.ecologyasia.com/verts/mammals/large-indian-civet.htm)  is similar to the Malay Civet, and can only be reliably differentiated by its larger size and by having fewer, broader rings on the tail.",neutral,negative,False,neutral,True,neutral,True,0.23825
