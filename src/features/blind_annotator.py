@@ -857,6 +857,150 @@ def run_review():
 
 
 # ---------------------------------------------------------------------------
+# Holdout quality-control review — blind relabelling of positive disagreements
+# ---------------------------------------------------------------------------
+def run_review_holdout():
+    """Blind QC pass on holdout_test.csv positive-class disagreements.
+
+    Shows text + your original label.  The LLM label is hidden until AFTER
+    you confirm/change — so your decision stays independent of the model.
+
+    Covers all chunks where human=positive OR llm=positive but labels differ.
+    Saves corrections back to holdout_test.csv, then re-scores accuracy.
+    """
+    import tty, termios
+
+    def getch() -> str:
+        fd  = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            return sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
+    eval_path = DATA_DIR / "holdout_eval.csv"
+    if not eval_path.exists():
+        print("No holdout_eval.csv found.")
+        print("Run: python -m src.features.llm_annotator --holdout-eval")
+        return
+
+    eval_df = pd.read_csv(eval_path).dropna(subset=["llm_label", "human_label"])
+    holdout = load_holdout()
+
+    # All disagreements involving the positive class
+    pos_disagree = eval_df[
+        (eval_df["human_label"] != eval_df["llm_label"]) &
+        ((eval_df["human_label"] == "positive") | (eval_df["llm_label"] == "positive"))
+    ].copy().reset_index(drop=True)
+
+    print(f"\n{'═'*62}")
+    print(f"  HOLDOUT QC REVIEW — {len(pos_disagree)} positive-class disagreements")
+    print(f"{'═'*62}")
+    print(f"  You'll see the text + your ORIGINAL label.")
+    print(f"  The LLM label is revealed AFTER you decide — stays blind.")
+    print(f"\n  Keys: [P]=positive  [N]=negative  [U]=neutral  [B]=back  [Q]=quit")
+    print(f"  (press same key as original label to confirm unchanged)")
+    print(f"{'═'*62}\n")
+
+    undo_stack = []   # (chunk_id, old_label)
+    confirmed  = 0
+    changed    = 0
+
+    rows = list(pos_disagree.iterrows())
+    i    = 0
+
+    while i < len(rows):
+        _, row      = rows[i]
+        human_lbl   = str(row["human_label"])
+        llm_lbl     = str(row["llm_label"])
+        sg_flag     = "🇸🇬 " if row.get("has_sg", False) else "   "
+        text        = str(row["text"]).strip().replace("\n", " ")
+        stratum     = str(row.get("stratum",   "?"))
+        doc_type    = str(row.get("doc_type",  "?"))
+        subreddit   = str(row.get("subreddit", "?"))
+        wc          = row.get("wc", "?")
+
+        print(f"  ── [{i+1}/{len(rows)}] {sg_flag} {stratum:<18} "
+              f"({doc_type}, r/{subreddit}, {wc}w) ──")
+        print(f"\n  {text[:400]}\n")
+        print(f"  Your original label : [{human_lbl.upper():<8}]")
+        print(f"  Confirm or change → ", end="", flush=True)
+
+        action = final_label = None
+        while True:
+            ch = getch().lower()
+            if   ch == "p": final_label = "positive"; print("POSITIVE"); action = "label"; break
+            elif ch == "n": final_label = "negative"; print("NEGATIVE"); action = "label"; break
+            elif ch == "u": final_label = "neutral";  print("NEUTRAL");  action = "label"; break
+            elif ch == "q": print("quit");                                action = "quit";  break
+            elif ch == "b": print("↩");                                   action = "back";  break
+
+        if action == "quit":
+            break
+
+        if action == "back":
+            if i > 0 and undo_stack:
+                prev_cid, prev_label = undo_stack.pop()
+                mask = holdout["chunk_id"] == prev_cid
+                holdout.loc[mask, "human_label"] = prev_label
+                save_holdout(holdout)
+                i -= 1
+                print(f"  ↩  Reverted chunk {prev_cid[:12]}…\n")
+            else:
+                print(f"  (already at first chunk)\n")
+            continue
+
+        # Reveal LLM label after decision
+        if final_label == human_lbl:
+            confirmed += 1
+            marker = f"✓ confirmed  |  LLM had said: {llm_lbl.upper()}"
+        else:
+            changed += 1
+            marker = f"✎ changed {human_lbl} → {final_label}  |  LLM had said: {llm_lbl.upper()}"
+
+        print(f"  {marker}\n")
+
+        # Save to holdout_test.csv
+        mask = holdout["chunk_id"] == row["chunk_id"]
+        if mask.any():
+            old_label = holdout.loc[mask, "human_label"].values[0]
+            undo_stack.append((row["chunk_id"], old_label))
+            holdout.loc[mask, "human_label"] = final_label
+            save_holdout(holdout)
+
+        i += 1
+
+    # Re-score
+    reviewed = confirmed + changed
+    print(f"\n{'═'*62}")
+    print(f"  QC done — {reviewed}/{len(rows)} reviewed")
+    print(f"  Confirmed : {confirmed}   Changed : {changed}")
+    print(f"{'═'*62}")
+
+    # Quick accuracy recompute against holdout_eval llm labels
+    eval_df2 = eval_df.copy()
+    id_to_new = dict(zip(holdout["chunk_id"], holdout["human_label"]))
+    eval_df2["human_label"] = eval_df2["chunk_id"].map(id_to_new).fillna(eval_df2["human_label"])
+
+    valid = eval_df2.dropna(subset=["human_label", "llm_label"])
+    valid = valid[valid["human_label"] != "skip"]
+    acc   = (valid["human_label"] == valid["llm_label"]).mean()
+
+    try:
+        from sklearn.metrics import cohen_kappa_score, classification_report
+        kappa = cohen_kappa_score(valid["human_label"], valid["llm_label"])
+        print(f"\n  Updated holdout accuracy : {acc:.3f}  ({acc*100:.1f}%)")
+        print(f"  Updated Cohen's κ        : {kappa:.3f}")
+        print(f"\n{classification_report(valid['human_label'], valid['llm_label'], digits=3)}")
+    except Exception:
+        print(f"\n  Updated holdout accuracy : {acc:.3f}  ({acc*100:.1f}%)")
+
+    print(f"  Saved → {HOLDOUT_PATH}")
+    print(f"  Run --holdout-eval to get a full refreshed report.\n")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -872,6 +1016,8 @@ def main():
                         help="Annotate N chunks into a separate held-out test set (NEVER used for training)")
     parser.add_argument("--review", action="store_true",
                         help="Review LLM/human disagreements side-by-side and correct labels")
+    parser.add_argument("--review-holdout", action="store_true",
+                        help="Blind QC pass on holdout positive-class disagreements (LLM label hidden until after decision)")
     args = parser.parse_args()
 
     if args.reset:
@@ -899,6 +1045,10 @@ def main():
 
     if args.review:
         run_review()
+        return
+
+    if args.review_holdout:
+        run_review_holdout()
         return
 
     run()
