@@ -34,7 +34,8 @@ The end product is a Streamlit dashboard with Seaborn visualisations showing:
 | 5a-h2h | Fair blind head-to-head — RoBERTa wins, fine-tune decision pending | 🔄 Decision pending |
 | 5a-llm-validate | LLM kappa gate — gpt-4.1, κ=0.765 ✅ (corrected prompt) | ✅ Done |
 | 5a-llm-annotate | Bulk annotation complete — 7,946 chunks, singbert_train.csv built | ✅ Done |
-| 5a-holdout-eval | Holdout accuracy: 77.9%, κ=0.597 (195 unseen rows) | ✅ Done |
+| 5a-holdout-eval | Holdout accuracy: 77.9%, κ=0.597 (195 unseen rows, pre-QC) | ✅ Done |
+| 5a-holdout-qc | Blind QC review: 28 positive-class disagreements → 9 corrected | ✅ Done |
 | **5a-singbert** | **Fine-tune zanelim/singbert-large-sg on singbert_train.csv** | ⏳ **Next** |
 | **5b** | **Commitment scoring (zero-shot NLI)** | ✅ **Done** |
 | 6 | Document-level aggregation | ⏳ Not started |
@@ -63,7 +64,7 @@ All live files are under `data/processed/new/` and `models/new/`.
 | `data/processed/new/holdout_test.csv` | 199 | Held-out test set — NEVER use for training |
 | `data/processed/new/llm_annotation.csv` | 7,946 | gpt-4.1 bulk annotations (κ=0.765 validated prompt) |
 | `data/processed/new/llm_validation.csv` | 197 | Validation run results (κ=0.765) |
-| `data/processed/new/holdout_eval.csv` | 195 | Holdout eval: 77.9% acc, κ=0.597, positive F1=46.2% |
+| `data/processed/new/holdout_eval.csv` | 195 | Holdout eval: 81.0% acc, κ=0.653, positive F1=60.4% (post-QC) |
 | `data/processed/new/singbert_train.csv` | 8,095 | **Training set for SingBERT** (human 3× + LLM 1×, 0 holdout overlap) |
 | `data/processed/new/spot_check.csv` | 100 | Manual spot-check results (78.0% accuracy) |
 | `data/processed/new/sentiment_audit.parquet` | 500 | llama3.2:3b gold labels vs roberta (supplementary, use with caution) |
@@ -491,11 +492,13 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
 | Metric | Score | Notes |
 |---|---|---|
 | κ (validation, 197 rows) | 0.765 | Human labels reviewed with LLM — not fully independent |
-| Accuracy (holdout, 195 rows) | **77.9%** | Clean, unseen, uncontaminated — use this number |
-| κ (holdout) | 0.597 | Honest inter-annotator agreement on unseen data |
-| Positive F1 (holdout) | 46.2% | Weakest class — use class weights in SingBERT training |
-| Negative F1 (holdout) | 78.4% | Solid |
-| Neutral F1 (holdout) | 84.7% | Strong |
+| Accuracy (holdout, 195 rows) | **81.0%** | Clean, post-QC corrected labels — use this number |
+| κ (holdout, post-QC) | 0.653 | Honest inter-annotator agreement on cleaned labels |
+| Positive F1 (holdout, post-QC) | 60.4% | Improved from 46.2% after fixing 9 annotation errors |
+| Negative F1 (holdout, post-QC) | 82.0% | Solid |
+| Neutral F1 (holdout, post-QC) | 85.2% | Strong |
+| _Pre-QC accuracy_ | _77.9%_ | _Before blind QC review — kept for reference_ |
+| _Pre-QC positive F1_ | _46.2%_ | _Human annotation noise confirmed and resolved_ |
 
 **Label distribution (singbert_train.csv):** neutral 60%, negative 27.5%, positive 12.4%
 **Total API cost:** ~$9 (gpt-4.1, Tier 3, across all validation + bulk runs)
@@ -510,7 +513,7 @@ EMBEDDING_MODEL       = "sentence-transformers/all-mpnet-base-v2"
 **Eval data:** `holdout_test.csv` (199 rows, 195 evaluable — the clean test set)
 
 **Key training decisions:**
-- Use **class weights** for positive class (weight 2–3×) to compensate for low recall (46.2% on holdout)
+- Use **class weights** for positive class (weight ~1.5–2×) — positive F1 is now 60.4% post-QC (was 46.2%), reduced need vs original estimate
 - Use `human_label` weighted sampling or `weight` column for loss weighting
 - Target metric: weighted F1 on holdout_test.csv
 - Expected accuracy: 75–82% (SingBERT domain pre-training should beat gpt-4.1's 77.9%)
