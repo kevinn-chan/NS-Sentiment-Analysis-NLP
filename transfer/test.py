@@ -16,7 +16,7 @@ resp = client.chat.completions.create(
     max_tokens=60,
     messages=[
         {'role': 'system', 'content': '/no_think\n\n' + SYSTEM_PROMPT},
-        {'role': 'user', 'content': f'Classify this text:\n\n{row[\"text\"]}'},
+        {'role': 'user', 'content': f'Classify this text:\n\n{row["text"]}'},
     ],
 )
 
