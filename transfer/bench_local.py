@@ -1,0 +1,144 @@
+"""
+Benchmark local Ollama model against gold testset.
+Runs commitment_v2_prompt against commitment_testset.parquet
+and prints classification report.
+
+Usage:
+    python bench_local.py
+    python bench_local.py --model qwen3:14b
+    python bench_local.py --model qwen3:32b --limit 100
+
+Requires:
+    pip install openai pandas pyarrow scikit-learn
+    ollama serve  (running in background)
+"""
+import argparse, json, time, os
+import pandas as pd
+from openai import OpenAI
+from sklearn.metrics import classification_report
+
+# ── Config ────────────────────────────────────────────────────────────────────
+DEFAULT_MODEL = "qwen3:32b"
+OLLAMA_URL    = "http://localhost:11434/v1"
+
+# ── Load prompt ───────────────────────────────────────────────────────────────
+try:
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from commitment_v2_prompt import SYSTEM_PROMPT
+except ImportError:
+    # Fallback: look for prompt file in same directory
+    prompt_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "commitment_v2_prompt.py")
+    if os.path.exists(prompt_file):
+        ns = {}
+        exec(open(prompt_file).read(), ns)
+        SYSTEM_PROMPT = ns["SYSTEM_PROMPT"]
+    else:
+        raise FileNotFoundError("commitment_v2_prompt.py not found. Place it in the same folder as this script.")
+
+client = OpenAI(api_key="ollama", base_url=OLLAMA_URL)
+
+
+def label_one(text: str, model: str) -> dict:
+    resp = client.chat.completions.create(
+        model=model,
+        temperature=0,
+        max_tokens=60,
+        messages=[
+            {"role": "system", "content": "/no_think\n\n" + SYSTEM_PROMPT},
+            {"role": "user",   "content": f"Classify this text:\n\n{text}"},
+        ],
+    )
+    raw = resp.choices[0].message.content or "{}"
+    # Strip any <think>...</think> blocks Qwen3 might still emit
+    import re
+    raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
+    # Extract first JSON object
+    match = re.search(r"\{[^}]+\}", raw)
+    if match:
+        try:
+            return json.loads(match.group())
+        except json.JSONDecodeError:
+            pass
+    return {}
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model",  default=DEFAULT_MODEL)
+    parser.add_argument("--limit",  type=int, default=None, help="Only run N rows (for quick test)")
+    parser.add_argument("--output", default="bench_results.csv")
+    args = parser.parse_args()
+
+    # Load gold testset
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    parquet_candidates = [
+        os.path.join(script_dir, "commitment_testset.parquet"),
+        os.path.join(script_dir, "..", "data", "processed", "new", "commitment_testset.parquet"),
+    ]
+    gold = None
+    for p in parquet_candidates:
+        if os.path.exists(p):
+            gold = pd.read_parquet(p)
+            print(f"Loaded gold testset: {p}")
+            break
+    if gold is None:
+        raise FileNotFoundError("commitment_testset.parquet not found.")
+
+    if args.limit:
+        gold = gold.head(args.limit)
+
+    total = len(gold)
+    print(f"Model: {args.model} | Rows: {total}")
+    print("Starting — this may take a few minutes...\n")
+
+    rows = []
+    t0 = time.time()
+    for i, (_, row) in enumerate(gold.iterrows()):
+        result = label_one(row["text"], args.model)
+        rows.append({
+            "chunk_id":     row["chunk_id"],
+            "human_label":  row.get("human_label", ""),
+            "human_stance": row.get("human_stance", ""),
+            "pred_buyin":   result.get("buyin",  "neutral"),
+            "pred_stance":  result.get("stance", "neutral"),
+            "pred_c2d":     result.get("c2d_strength", ""),
+        })
+
+        if (i + 1) % 50 == 0:
+            elapsed = time.time() - t0
+            rate = elapsed / (i + 1)
+            remaining = rate * (total - i - 1)
+            print(f"  {i+1}/{total} | {rate:.1f}s/row | ETA {remaining/60:.0f} min")
+
+    out = pd.DataFrame(rows)
+    out.to_csv(args.output, index=False)
+
+    elapsed = time.time() - t0
+    print(f"\nDone in {elapsed/60:.1f} min ({elapsed/total:.1f}s/row)")
+    print(f"Saved → {args.output}\n")
+
+    # ── Classification report ─────────────────────────────────────────────────
+    valid = out.dropna(subset=["human_label", "pred_buyin"])
+    valid = valid[valid["human_label"] != ""]
+
+    print("══ BUYIN ══")
+    print(classification_report(
+        valid["human_label"], valid["pred_buyin"],
+        labels=["committed", "uncommitted", "neutral"], zero_division=0
+    ))
+
+    stance = out.dropna(subset=["human_stance", "pred_stance"])
+    stance = stance[stance["human_stance"] != ""]
+    if len(stance):
+        print("══ STANCE ══")
+        print(classification_report(
+            stance["human_stance"], stance["pred_stance"],
+            labels=["supportive", "critical", "neutral"], zero_division=0
+        ))
+
+    print(f"\nFor 700k rows at {elapsed/total:.1f}s/row → ~{700000*(elapsed/total)/3600/24:.1f} days")
+
+
+if __name__ == "__main__":
+    main()
