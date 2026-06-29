@@ -1,14 +1,3 @@
-git clone https://github.com/kevinn-chan/NLP_Reddit_Sentiment_Analysis.git
-cd NLP_Reddit_Sentiment_Analysis/transfer
-
-pip install openai pandas pyarrow scikit-learn
-
-# Quick smoke test first (10 rows)
-python bench_local.py --model qwen3:32b --limit 10
-
-
-Done in 4.2 min (25.0s/row)
-Saved → bench_results.csv
 
 # Run just 1 row with debug output
 python -c "
