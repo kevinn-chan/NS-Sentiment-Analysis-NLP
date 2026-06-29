@@ -1,25 +1,34 @@
 """
 Benchmark local Ollama model against gold testset.
-Runs commitment_v2_prompt against commitment_testset.parquet
-and prints classification report.
+Uses Ollama's native API with structured output (format parameter)
+for reliable JSON responses.
 
 Usage:
     python bench_local.py
     python bench_local.py --model qwen3:14b
-    python bench_local.py --model qwen3:32b --limit 100
+    python bench_local.py --model qwen3.6:latest --limit 100
 
 Requires:
-    pip install openai pandas pyarrow scikit-learn
+    pip install requests pandas pyarrow scikit-learn
     ollama serve  (running in background)
 """
-import argparse, json, time, os
+import argparse, json, time, os, requests
 import pandas as pd
-from openai import OpenAI
 from sklearn.metrics import classification_report
 
 # ── Config ────────────────────────────────────────────────────────────────────
-DEFAULT_MODEL = "qwen3:32b"
-OLLAMA_URL    = "http://localhost:11434/v1"
+DEFAULT_MODEL = "qwen3.6:latest"
+OLLAMA_URL    = "http://localhost:11434/api/chat"
+
+JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "buyin":        {"type": "string", "enum": ["committed", "uncommitted", "neutral"]},
+        "c2d_strength": {"type": "string", "enum": ["explicit", "demonstrated", ""]},
+        "stance":       {"type": "string", "enum": ["supportive", "critical", "neutral"]},
+    },
+    "required": ["buyin", "stance"],
+}
 
 # ── Load prompt ───────────────────────────────────────────────────────────────
 try:
@@ -27,7 +36,6 @@ try:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from commitment_v2_prompt import SYSTEM_PROMPT
 except ImportError:
-    # Fallback: look for prompt file in same directory
     prompt_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "commitment_v2_prompt.py")
     if os.path.exists(prompt_file):
         ns = {}
@@ -36,31 +44,24 @@ except ImportError:
     else:
         raise FileNotFoundError("commitment_v2_prompt.py not found. Place it in the same folder as this script.")
 
-client = OpenAI(api_key="ollama", base_url=OLLAMA_URL)
-
 
 def label_one(text: str, model: str) -> dict:
-    resp = client.chat.completions.create(
-        model=model,
-        temperature=0,
-        max_tokens=60,
-        messages=[
+    resp = requests.post(OLLAMA_URL, json={
+        "model":  model,
+        "stream": False,
+        "format": JSON_SCHEMA,
+        "options": {"temperature": 0, "num_predict": 60},
+        "messages": [
             {"role": "system", "content": "/no_think\n\n" + SYSTEM_PROMPT},
             {"role": "user",   "content": f"Classify this text:\n\n{text}"},
         ],
-    )
-    raw = resp.choices[0].message.content or "{}"
-    # Strip any <think>...</think> blocks Qwen3 might still emit
-    import re
-    raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
-    # Extract first JSON object
-    match = re.search(r"\{[^}]+\}", raw)
-    if match:
-        try:
-            return json.loads(match.group())
-        except json.JSONDecodeError:
-            pass
-    return {}
+    })
+    resp.raise_for_status()
+    raw = resp.json().get("message", {}).get("content", "{}")
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        return {}
 
 
 def main():
@@ -90,7 +91,7 @@ def main():
 
     total = len(gold)
     print(f"Model: {args.model} | Rows: {total}")
-    print("Starting — this may take a few minutes...\n")
+    print("Starting...\n")
 
     rows = []
     t0 = time.time()
@@ -105,7 +106,7 @@ def main():
             "pred_c2d":     result.get("c2d_strength", ""),
         })
 
-        if (i + 1) % 50 == 0:
+        if (i + 1) % 10 == 0:
             elapsed = time.time() - t0
             rate = elapsed / (i + 1)
             remaining = rate * (total - i - 1)
