@@ -31,18 +31,28 @@ JSON_SCHEMA = {
 }
 
 # ── Load prompt ───────────────────────────────────────────────────────────────
-try:
-    import sys
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from commitment_v2_prompt import SYSTEM_PROMPT
-except ImportError:
-    prompt_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "commitment_v2_prompt.py")
-    if os.path.exists(prompt_file):
-        ns = {}
-        exec(open(prompt_file).read(), ns)
-        SYSTEM_PROMPT = ns["SYSTEM_PROMPT"]
-    else:
-        raise FileNotFoundError("commitment_v2_prompt.py not found. Place it in the same folder as this script.")
+# Try simplified local prompt first, fall back to full v2 prompt
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+SYSTEM_PROMPT = None
+for mod in ["commitment_local_prompt", "commitment_v2_prompt"]:
+    try:
+        SYSTEM_PROMPT = __import__(mod).SYSTEM_PROMPT
+        print(f"Loaded prompt from {mod}")
+        break
+    except ImportError:
+        pass
+if SYSTEM_PROMPT is None:
+    for name in ["commitment_local_prompt.py", "commitment_v2_prompt.py"]:
+        prompt_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
+        if os.path.exists(prompt_file):
+            ns = {}
+            exec(open(prompt_file).read(), ns)
+            SYSTEM_PROMPT = ns["SYSTEM_PROMPT"]
+            print(f"Loaded prompt from {name}")
+            break
+if SYSTEM_PROMPT is None:
+    raise FileNotFoundError("No prompt file found. Place commitment_local_prompt.py or commitment_v2_prompt.py in the same folder.")
 
 
 def label_one(text: str, model: str) -> dict:
