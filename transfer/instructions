@@ -5,3 +5,32 @@ pip install openai pandas pyarrow scikit-learn
 
 # Quick smoke test first (10 rows)
 python bench_local.py --model qwen3:32b --limit 10
+
+
+Done in 4.2 min (25.0s/row)
+Saved → bench_results.csv
+
+══ BUYIN ══
+              precision    recall  f1-score   support
+
+   committed       0.00      0.00      0.00         0
+ uncommitted       0.00      0.00      0.00         2
+     neutral       0.80      1.00      0.89         8
+
+    accuracy                           0.80        10
+   macro avg       0.27      0.33      0.30        10
+weighted avg       0.64      0.80      0.71        10
+
+══ STANCE ══
+              precision    recall  f1-score   support
+
+  supportive       0.00      0.00      0.00         0
+    critical       0.00      0.00      0.00         4
+     neutral       0.60      1.00      0.75         6
+
+    accuracy                           0.60        10
+   macro avg       0.20      0.33      0.25        10
+weighted avg       0.36      0.60      0.45        10
+
+
+For 700k rows at 25.0s/row → ~202.5 days
