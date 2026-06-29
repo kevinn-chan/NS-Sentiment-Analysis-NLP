@@ -8,7 +8,7 @@ gold = pd.read_parquet('commitment_testset.parquet')
 row = gold.iloc[0]
 
 # Load prompt
-exec(open('commitment_v2_prompt.py').read())
+exec(open('commitment_v2_prompt.py', encoding='utf-8').read())
 
 resp = client.chat.completions.create(
     model='qwen3:32b',
