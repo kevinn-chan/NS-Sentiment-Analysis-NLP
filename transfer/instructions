@@ -10,27 +10,37 @@ python bench_local.py --model qwen3:32b --limit 10
 Done in 4.2 min (25.0s/row)
 Saved → bench_results.csv
 
-══ BUYIN ══
-              precision    recall  f1-score   support
+# Run just 1 row with debug output
+python -c "
+import pandas as pd
+from openai import OpenAI
+import re, json
 
-   committed       0.00      0.00      0.00         0
- uncommitted       0.00      0.00      0.00         2
-     neutral       0.80      1.00      0.89         8
+client = OpenAI(api_key='ollama', base_url='http://localhost:11434/v1')
+gold = pd.read_parquet('commitment_testset.parquet')
+row = gold.iloc[0]
 
-    accuracy                           0.80        10
-   macro avg       0.27      0.33      0.30        10
-weighted avg       0.64      0.80      0.71        10
+# Load prompt
+exec(open('commitment_v2_prompt.py').read())
 
-══ STANCE ══
-              precision    recall  f1-score   support
+resp = client.chat.completions.create(
+    model='qwen3:32b',
+    temperature=0,
+    max_tokens=60,
+    messages=[
+        {'role': 'system', 'content': '/no_think\n\n' + SYSTEM_PROMPT},
+        {'role': 'user', 'content': f'Classify this text:\n\n{row[\"text\"]}'},
+    ],
+)
 
-  supportive       0.00      0.00      0.00         0
-    critical       0.00      0.00      0.00         4
-     neutral       0.60      1.00      0.75         6
-
-    accuracy                           0.60        10
-   macro avg       0.20      0.33      0.25        10
-weighted avg       0.36      0.60      0.45        10
-
-
-For 700k rows at 25.0s/row → ~202.5 days
+raw = resp.choices[0].message.content
+print('RAW OUTPUT:')
+print(repr(raw))
+print()
+print('Trying to parse JSON:')
+match = re.search(r'\{[^}]+\}', raw)
+if match:
+    print(json.loads(match.group()))
+else:
+    print('No JSON found!')
+"
