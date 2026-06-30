@@ -56,23 +56,33 @@ if SYSTEM_PROMPT is None:
 
 
 def label_one(text: str, model: str) -> dict:
-    resp = requests.post(OLLAMA_URL, json={
-        "model":  model,
-        "stream": False,
-        "think":  False,
-        "format": JSON_SCHEMA,
-        "options": {"temperature": 0, "num_predict": 200, "num_ctx": 10240},
-        "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": f"Classify this text:\n\n{text}"},
-        ],
-    }, timeout=120)
-    resp.raise_for_status()
-    raw = resp.json().get("message", {}).get("content", "{}")
-    try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        return {}
+    for attempt in range(5):
+        try:
+            resp = requests.post(OLLAMA_URL, json={
+                "model":  model,
+                "stream": False,
+                "think":  False,
+                "format": JSON_SCHEMA,
+                "options": {"temperature": 0, "num_predict": 200, "num_ctx": 10240},
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user",   "content": f"Classify this text:\n\n{text}"},
+                ],
+            }, timeout=300)
+            resp.raise_for_status()
+            raw = resp.json().get("message", {}).get("content", "{}")
+            parsed = json.loads(raw) if raw else {}
+            if parsed.get("buyin") or parsed.get("stance"):
+                return parsed
+            # Empty response — model may have crashed, wait and retry
+            print(f"  Empty response, retry {attempt+1}/5...")
+            time.sleep(10)
+        except (requests.exceptions.RequestException, json.JSONDecodeError) as e:
+            wait = min(30 * (attempt + 1), 120)
+            print(f"  Error: {e.__class__.__name__}, retry {attempt+1}/5 in {wait}s...")
+            time.sleep(wait)
+    print("  All retries failed, defaulting to neutral")
+    return {}
 
 
 def main():
@@ -125,13 +135,7 @@ def main():
     rows = []
     t0 = time.time()
     for i, (_, row) in enumerate(gold.iterrows()):
-        for attempt in range(3):
-            try:
-                result = label_one(row["text"], args.model)
-                break
-            except requests.exceptions.RequestException as e:
-                print(f"  retry {attempt+1}/3 on row {i} ({e.__class__.__name__})")
-                result = {}
+        result = label_one(row["text"], args.model)
         rows.append({
             "chunk_id":     row["chunk_id"],
             "human_label":  row.get("human_label", ""),
