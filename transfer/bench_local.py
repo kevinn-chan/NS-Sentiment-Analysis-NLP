@@ -78,6 +78,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model",  default=DEFAULT_MODEL)
     parser.add_argument("--limit",  type=int, default=None, help="Only run N rows (for quick test)")
+    parser.add_argument("--balanced", action="store_true",
+                         help="Sample equal counts per human_label class instead of taking rows in order")
     parser.add_argument("--output", default="bench_results.csv")
     args = parser.parse_args()
 
@@ -96,7 +98,12 @@ def main():
     if gold is None:
         raise FileNotFoundError("commitment_testset.parquet not found.")
 
-    if args.limit:
+    if args.balanced:
+        per_class = (args.limit or 90) // gold["human_label"].nunique()
+        gold = (gold.groupby("human_label", group_keys=False)
+                    .apply(lambda g: g.sample(min(len(g), per_class), random_state=0)))
+        print(f"Balanced sample: {gold['human_label'].value_counts().to_dict()}")
+    elif args.limit:
         gold = gold.head(args.limit)
 
     total = len(gold)
