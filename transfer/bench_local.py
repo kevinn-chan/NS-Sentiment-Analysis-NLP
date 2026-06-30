@@ -59,10 +59,11 @@ def label_one(text: str, model: str) -> dict:
     resp = requests.post(OLLAMA_URL, json={
         "model":  model,
         "stream": False,
+        "think":  False,
         "format": JSON_SCHEMA,
         "options": {"temperature": 0, "num_predict": 200, "num_ctx": 10240},
         "messages": [
-            {"role": "system", "content": "/nothink\n\n" + SYSTEM_PROMPT},
+            {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user",   "content": f"Classify this text:\n\n{text}"},
         ],
     }, timeout=120)
