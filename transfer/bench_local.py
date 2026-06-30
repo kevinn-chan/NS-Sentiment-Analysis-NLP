@@ -60,7 +60,7 @@ def label_one(text: str, model: str) -> dict:
         "model":  model,
         "stream": False,
         "format": JSON_SCHEMA,
-        "options": {"temperature": 0, "num_predict": 60},
+        "options": {"temperature": 0, "num_predict": 60, "num_ctx": 12288},
         "messages": [
             {"role": "system", "content": "/no_think\n\n" + SYSTEM_PROMPT},
             {"role": "user",   "content": f"Classify this text:\n\n{text}"},
