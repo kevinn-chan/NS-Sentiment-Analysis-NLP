@@ -100,8 +100,10 @@ def main():
 
     if args.balanced:
         per_class = (args.limit or 90) // gold["human_label"].nunique()
-        gold = (gold.groupby("human_label", group_keys=False)
-                    .apply(lambda g: g.sample(min(len(g), per_class), random_state=0)))
+        gold = pd.concat([
+            g.sample(min(len(g), per_class), random_state=0)
+            for _, g in gold.groupby("human_label")
+        ])
         print(f"Balanced sample: {gold['human_label'].value_counts().to_dict()}")
     elif args.limit:
         gold = gold.head(args.limit)
