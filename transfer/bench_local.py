@@ -31,11 +31,11 @@ JSON_SCHEMA = {
 }
 
 # ── Load prompt ───────────────────────────────────────────────────────────────
-# Try simplified local prompt first, fall back to full v2 prompt
+# Always use the full v2 prompt (condensed version proved too lossy)
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 SYSTEM_PROMPT = None
-for mod in ["commitment_local_prompt", "commitment_v2_prompt"]:
+for mod in ["commitment_v2_prompt"]:
     try:
         SYSTEM_PROMPT = __import__(mod).SYSTEM_PROMPT
         print(f"Loaded prompt from {mod}")
@@ -43,7 +43,7 @@ for mod in ["commitment_local_prompt", "commitment_v2_prompt"]:
     except ImportError:
         pass
 if SYSTEM_PROMPT is None:
-    for name in ["commitment_local_prompt.py", "commitment_v2_prompt.py"]:
+    for name in ["commitment_v2_prompt.py"]:
         prompt_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
         if os.path.exists(prompt_file):
             ns = {}
