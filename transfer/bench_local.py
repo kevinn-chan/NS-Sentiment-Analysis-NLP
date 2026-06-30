@@ -108,14 +108,29 @@ def main():
     elif args.limit:
         gold = gold.head(args.limit)
 
+    # Resume from existing output
+    done = pd.DataFrame()
+    done_ids = set()
+    if os.path.exists(args.output):
+        done = pd.read_csv(args.output)
+        done_ids = set(done["chunk_id"].tolist())
+        print(f"Resuming — {len(done_ids)} already done")
+    gold = gold[~gold["chunk_id"].isin(done_ids)]
+
     total = len(gold)
-    print(f"Model: {args.model} | Rows: {total}")
+    print(f"Model: {args.model} | Rows remaining: {total}")
     print("Starting...\n")
 
     rows = []
     t0 = time.time()
     for i, (_, row) in enumerate(gold.iterrows()):
-        result = label_one(row["text"], args.model)
+        for attempt in range(3):
+            try:
+                result = label_one(row["text"], args.model)
+                break
+            except requests.exceptions.RequestException as e:
+                print(f"  retry {attempt+1}/3 on row {i} ({e.__class__.__name__})")
+                result = {}
         rows.append({
             "chunk_id":     row["chunk_id"],
             "human_label":  row.get("human_label", ""),
@@ -125,17 +140,19 @@ def main():
             "pred_c2d":     result.get("c2d_strength", ""),
         })
 
+        # Save after every row so a stall doesn't lose progress
+        out = pd.concat([done, pd.DataFrame(rows)], ignore_index=True)
+        out.to_csv(args.output, index=False)
+
         if (i + 1) % 10 == 0:
             elapsed = time.time() - t0
             rate = elapsed / (i + 1)
             remaining = rate * (total - i - 1)
             print(f"  {i+1}/{total} | {rate:.1f}s/row | ETA {remaining/60:.0f} min")
 
-    out = pd.DataFrame(rows)
-    out.to_csv(args.output, index=False)
-
+    out = pd.read_csv(args.output)
     elapsed = time.time() - t0
-    print(f"\nDone in {elapsed/60:.1f} min ({elapsed/total:.1f}s/row)")
+    print(f"\nDone in {elapsed/60:.1f} min")
     print(f"Saved → {args.output}\n")
 
     # ── Classification report ─────────────────────────────────────────────────
