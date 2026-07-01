@@ -443,16 +443,17 @@ The author views NS positively as a policy, institution, or national experience.
   My duty is to lead, to excel, and to overcome." → SUPPORTIVE
   (endorsing NS values and institutional identity = supportive stance)
 
-• Signing on / choosing a military career = SUPPORTIVE
-  Voluntarily making NS your career is an implicit endorsement of the institution.
+• Signing on motivated by enjoyment, belief, or vocation interest = SUPPORTIVE
+  When someone signs on because they enjoyed NS, believe in the mission, or
+  found their vocation — that signals a positive institutional stance.
   "I signed on because I enjoyed my NS experience"
-  "I plan to sign on to RSAF" / "I signed on after my uni degree"
+  "I plan to sign on to RSAF" (with career/vocation interest, not just money)
   "Enlisted NS and had a hard thought... signed on thereafter"
-  Even asking practical sign-on questions (pay, process, eligibility) signals
-  a positive stance toward NS as an institution → SUPPORTIVE
-  NOTE: Do NOT classify as neutral just because the tone is matter-of-fact
-  or the post is asking logistical questions — the act of choosing to serve
-  beyond conscription IS the supportive signal
+  "I enjoyed military life so I signed on"
+  CONTRAST: purely transactional sign-on advice stays NEUTRAL per existing rules
+  "Signing on gives a lucrative career — go for it" → NEUTRAL (no institutional endorsement)
+  The test: does the sign-on signal genuine interest in or enjoyment of NS,
+  or is it purely about money/perks? Interest/enjoyment → SUPPORTIVE
 
 • Qualified or backhanded support = SUPPORTIVE
   Posts that acknowledge NS positively but include caveats, complaints, or
