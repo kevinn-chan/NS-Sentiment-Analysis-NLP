@@ -62,6 +62,7 @@ def label_one(text: str, model: str) -> dict:
                 "model":  model,
                 "stream": False,
                 "think":  False,
+                "keep_alive": -1,
                 "format": JSON_SCHEMA,
                 "options": {"temperature": 0, "num_predict": 200, "num_ctx": 10240},
                 "messages": [
