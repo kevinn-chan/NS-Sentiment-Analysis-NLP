@@ -146,9 +146,14 @@ def main():
             "pred_c2d":     result.get("c2d_strength", ""),
         })
 
-        # Save after every row so a stall doesn't lose progress
+        # Save after every row — atomic write to avoid Windows file locks
         out = pd.concat([done, pd.DataFrame(rows)], ignore_index=True)
-        out.to_csv(args.output, index=False)
+        tmp = args.output + ".tmp"
+        out.to_csv(tmp, index=False)
+        try:
+            os.replace(tmp, args.output)
+        except PermissionError:
+            pass  # file locked, skip this save — next row will retry
 
         if (i + 1) % 10 == 0:
             elapsed = time.time() - t0
