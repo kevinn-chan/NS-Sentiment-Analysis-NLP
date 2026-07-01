@@ -478,6 +478,31 @@ The author views NS positively as a policy, institution, or national experience.
   stance — do NOT default to neutral just because the author talks about
   personal experience rather than policy
 
+• Encouraging others to serve, accept, or embrace NS = SUPPORTIVE
+  When someone urges others to do their part, reassures them about NS,
+  or frames serving as the right thing to do — that's an institutional endorsement.
+  "Just do your part and serve the nation. Guys before you did it, so can you"
+  "It gets better" (reassuring someone struggling with NS) → SUPPORTIVE
+  "We all work together to protect Singapore in the end" → SUPPORTIVE
+  The author doesn't need to say "I support NS" — encouraging others to
+  serve IS the supportive signal
+
+• Accepting NS as a necessary tradeoff for Singapore = SUPPORTIVE
+  Posts that frame NS as a price worth paying, even reluctantly, are supportive
+  of the institution — they accept its legitimacy and necessity.
+  "No one wants to give up 2 years, but it's a choice we made so we can
+  have other things" → SUPPORTIVE
+  "Conscription is no choice due to being a small country" → SUPPORTIVE
+  "I wish to defend Singapore and contribute back despite my setbacks" → SUPPORTIVE
+  NOTE: Reluctant acceptance is NOT neutral. Neutral means no stance expressed.
+  If the author explicitly accepts NS as necessary or legitimate → SUPPORTIVE
+
+• Expressing desire or willingness to defend Singapore = SUPPORTIVE
+  "I wish to defend Singapore to the best of my abilities" → SUPPORTIVE
+  "In wartime, we should defend our country" → SUPPORTIVE
+  "I'd rather rush to the front line to defend Singapore" → SUPPORTIVE
+  Direct willingness to defend = endorsement of NS's purpose → SUPPORTIVE
+
 ─────────────────────────────────────────────
 CRITICAL
 ─────────────────────────────────────────────
