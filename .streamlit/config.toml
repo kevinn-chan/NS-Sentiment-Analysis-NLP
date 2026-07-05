@@ -1,0 +1,9 @@
+[theme]
+backgroundColor = "#070B0F"
+secondaryBackgroundColor = "#0C1420"
+textColor = "#C8D8E8"
+primaryColor = "#FF3820"
+
+[server]
+headless = true
+folderWatchBlacklist = ["data"]
