@@ -40,7 +40,13 @@ def main():
         p = os.path.join(ROOT, "transfer", f)
         if os.path.exists(p):
             used_ids |= set(pd.read_csv(p, usecols=["chunk_id"])["chunk_id"])
-    print(f"Excluding {len(used_ids)} already-used/already-labelled chunk_ids")
+
+    # Never sample rows held out for gold evaluation
+    gold_path = os.path.join(ROOT, "data", "processed", "new", "commitment_testset.parquet")
+    if os.path.exists(gold_path):
+        used_ids |= set(pd.read_parquet(gold_path, columns=["chunk_id"])["chunk_id"])
+
+    print(f"Excluding {len(used_ids)} already-used/already-labelled/gold chunk_ids")
 
     frames = []
     for f in ["submissions_chunks.parquet", "comments_chunks.parquet"]:
