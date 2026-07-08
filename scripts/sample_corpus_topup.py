@@ -32,11 +32,15 @@ def main():
     args = ap.parse_args()
 
     used_ids = set()
-    for f in ["stage2a_silver_v2.csv", "stage2b_silver_v2.csv"]:
+    for f in [
+        "stage2a_silver_v2.csv", "stage2b_silver_v2.csv",
+        "corpus_topup.csv", "corpus_topup2.csv", "corpus_topup3.csv",
+        "corpus_topup_all_labelled.csv",
+    ]:
         p = os.path.join(ROOT, "transfer", f)
         if os.path.exists(p):
             used_ids |= set(pd.read_csv(p, usecols=["chunk_id"])["chunk_id"])
-    print(f"Excluding {len(used_ids)} already-used chunk_ids")
+    print(f"Excluding {len(used_ids)} already-used/already-labelled chunk_ids")
 
     frames = []
     for f in ["submissions_chunks.parquet", "comments_chunks.parquet"]:
