@@ -1,0 +1,2815 @@
+[
+  {
+    "month": "2019-01",
+    "doc_count": 2378,
+    "mean_neg_sent": 0.397,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 20.91,
+        "docs": 638,
+        "share_pct": 26.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.75,
+        "docs": 229,
+        "share_pct": 9.6
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.17,
+        "docs": 64,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.15,
+        "docs": 85,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 1.94,
+        "docs": 117,
+        "share_pct": 4.9
+      }
+    ],
+    "event_ids": [
+      "aloysius_pang_death_2019"
+    ],
+    "summary": "Aloysius Pang training death dominates \u2014 Safety & Incidents at 26.8% of all posts (20.9x baseline). Highest negative sentiment month in the dataset.",
+    "sentiment_direction": "very_negative"
+  },
+  {
+    "month": "2019-02",
+    "doc_count": 1414,
+    "mean_neg_sent": 0.324,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 7.72,
+        "docs": 140,
+        "share_pct": 9.9
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 3.55,
+        "docs": 71,
+        "share_pct": 5.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 3.39,
+        "docs": 168,
+        "share_pct": 11.9
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.86,
+        "docs": 67,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.56,
+        "docs": 45,
+        "share_pct": 3.2
+      }
+    ],
+    "event_ids": [
+      "aloysius_pang_death_2019",
+      "coi_aloysius_findings_2019"
+    ],
+    "summary": "Continued Aloysius Pang aftermath. Safety still 7.7x baseline, Conscription & National Duty surges as public questions NS system.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2019-03",
+    "doc_count": 1756,
+    "mean_neg_sent": 0.303,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 3.15,
+        "docs": 71,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.71,
+        "docs": 79,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 2.03,
+        "docs": 82,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.5,
+        "docs": 107,
+        "share_pct": 6.1
+      }
+    ],
+    "event_ids": [
+      "coi_aloysius_findings_2019"
+    ],
+    "summary": "COI findings on Aloysius Pang sustain safety discourse. Budget/pay discussions also present (49 mentions).",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2019-04",
+    "doc_count": 1178,
+    "mean_neg_sent": 0.302,
+    "top_drivers": [
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 6.51,
+        "docs": 51,
+        "share_pct": 4.3
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.47,
+        "docs": 32,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.19,
+        "docs": 19,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 2.12,
+        "docs": 50,
+        "share_pct": 4.2
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.11,
+        "docs": 87,
+        "share_pct": 7.4
+      }
+    ],
+    "event_ids": [],
+    "summary": "Discourse normalising post-Aloysius. Routine enlistment and vocation questions dominate as new BMT batches begin.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2019-05",
+    "doc_count": 1217,
+    "mean_neg_sent": 0.333,
+    "top_drivers": [
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 2.59,
+        "docs": 21,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.5,
+        "docs": 39,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.39,
+        "docs": 29,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.01,
+        "docs": 22,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Post-ORD Life",
+        "lift": 1.88,
+        "docs": 31,
+        "share_pct": 2.5
+      }
+    ],
+    "event_ids": [],
+    "summary": "Misconduct & Harassment (2.6x) and Gender & Sexuality (2.0x) surge. Multiple threads about NS bullying and gender fairness debates.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2019-06",
+    "doc_count": 1295,
+    "mean_neg_sent": 0.27,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 3.07,
+        "docs": 51,
+        "share_pct": 3.9
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 2.01,
+        "docs": 106,
+        "share_pct": 8.2
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.93,
+        "docs": 31,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.76,
+        "docs": 25,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "BMT Enlistment & Life",
+        "lift": 1.74,
+        "docs": 154,
+        "share_pct": 11.9
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate active (119 mentions). Routine mid-year enlistment and vocation posting discussions.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2019-07",
+    "doc_count": 1896,
+    "mean_neg_sent": 0.322,
+    "top_drivers": [
+      {
+        "topic": "ICT Admin",
+        "lift": 6.03,
+        "docs": 45,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.96,
+        "docs": 72,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.33,
+        "docs": 155,
+        "share_pct": 8.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.11,
+        "docs": 44,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.95,
+        "docs": 45,
+        "share_pct": 2.4
+      }
+    ],
+    "event_ids": [],
+    "summary": "ICT Admin spikes to 6.0x baseline \u2014 peak reservist callback season. Safety concerns still elevated (2.96x) in Aloysius aftermath.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2019-08",
+    "doc_count": 1310,
+    "mean_neg_sent": 0.342,
+    "top_drivers": [
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 4.45,
+        "docs": 204,
+        "share_pct": 15.6
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 3.22,
+        "docs": 23,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.8,
+        "docs": 47,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.72,
+        "docs": 59,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 2.2,
+        "docs": 40,
+        "share_pct": 3.1
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect"
+    ],
+    "summary": "Conscription & National Duty at 4.5x \u2014 strongest conscription discourse month of 2019. PR/foreigner equity debate (118 mentions) drives frustration alongside National Day reflections.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2019-09",
+    "doc_count": 1373,
+    "mean_neg_sent": 0.278,
+    "top_drivers": [
+      {
+        "topic": "BMT Enlistment & Life",
+        "lift": 1.92,
+        "docs": 181,
+        "share_pct": 13.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.86,
+        "docs": 28,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.8,
+        "docs": 41,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.71,
+        "docs": 47,
+        "share_pct": 3.4
+      }
+    ],
+    "event_ids": [],
+    "summary": "Reservist/ICT discussions active (106 mentions) as ICT season continues. General discourse without dominant event.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2019-10",
+    "doc_count": 1556,
+    "mean_neg_sent": 0.311,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.97,
+        "docs": 34,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.52,
+        "docs": 43,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.35,
+        "docs": 47,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.91,
+        "docs": 104,
+        "share_pct": 6.7
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.86,
+        "docs": 36,
+        "share_pct": 2.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner discourse elevated (381 mentions). Year-end enlistment batch discussions picking up.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2019-11",
+    "doc_count": 1756,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "ORD Admin",
+        "lift": 3.31,
+        "docs": 30,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 2.44,
+        "docs": 99,
+        "share_pct": 5.6
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 2.29,
+        "docs": 49,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 2.09,
+        "docs": 51,
+        "share_pct": 2.9
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner mentions remain high (492). Pre-enlistment questions surge as December BMT batch approaches.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2019-12",
+    "doc_count": 2274,
+    "mean_neg_sent": 0.241,
+    "top_drivers": [
+      {
+        "topic": "Enlistment Process",
+        "lift": 2.16,
+        "docs": 200,
+        "share_pct": 8.8
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.86,
+        "docs": 187,
+        "share_pct": 8.2
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.85,
+        "docs": 116,
+        "share_pct": 5.1
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.84,
+        "docs": 100,
+        "share_pct": 4.4
+      }
+    ],
+    "event_ids": [
+      "ns_dec_2019_yearend_dip"
+    ],
+    "summary": "Year-end ORD/POP season. Passing Out Parade celebrations and ORD countdown posts create positive sentiment. Below-average negativity.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2020-01",
+    "doc_count": 2395,
+    "mean_neg_sent": 0.273,
+    "top_drivers": [
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.99,
+        "docs": 58,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.97,
+        "docs": 64,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.94,
+        "docs": 189,
+        "share_pct": 7.9
+      }
+    ],
+    "event_ids": [],
+    "summary": "Early COVID-19 awareness (20 mentions of \"covid/corona/wuhan\"). Large enlistment batch (546 enlistment mentions). Uncertainty about whether NS will be disrupted.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-02",
+    "doc_count": 2392,
+    "mean_neg_sent": 0.247,
+    "top_drivers": [
+      {
+        "topic": "IPPT",
+        "lift": 2.87,
+        "docs": 114,
+        "share_pct": 4.8
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.67,
+        "docs": 47,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.8,
+        "docs": 119,
+        "share_pct": 5.0
+      }
+    ],
+    "event_ids": [],
+    "summary": "COVID concerns growing (33 mentions). Budget 2020 period but minimal budget-specific NS discussion in corpus.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-03",
+    "doc_count": 4160,
+    "mean_neg_sent": 0.234,
+    "top_drivers": [
+      {
+        "topic": "NSF Pay",
+        "lift": 1.71,
+        "docs": 133,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "BMT Enlistment & Life",
+        "lift": 1.69,
+        "docs": 481,
+        "share_pct": 11.6
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.67,
+        "docs": 307,
+        "share_pct": 7.4
+      }
+    ],
+    "event_ids": [
+      "covid_circuit_breaker_2020",
+      "ns_allowance_increase_mar2020"
+    ],
+    "summary": "COVID disruption begins \u2014 volume surges to 4,160 docs. NSF allowance increase takes effect (March 1, $70-120 more). BMT enlistment and Navy topics spike as operations scramble to adapt.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2020-04",
+    "doc_count": 2889,
+    "mean_neg_sent": 0.296,
+    "top_drivers": [
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 3.42,
+        "docs": 273,
+        "share_pct": 9.4
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.26,
+        "docs": 65,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.01,
+        "docs": 72,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.78,
+        "docs": 123,
+        "share_pct": 4.3
+      }
+    ],
+    "event_ids": [
+      "covid_circuit_breaker_2020"
+    ],
+    "summary": "Circuit Breaker lockdown (April 7). COVID dominates (171 mentions). Training suspended, enlistments delayed. Worst negative sentiment month of 2020.",
+    "sentiment_direction": "very_negative"
+  },
+  {
+    "month": "2020-05",
+    "doc_count": 3453,
+    "mean_neg_sent": 0.253,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.32,
+        "docs": 88,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 2.07,
+        "docs": 172,
+        "share_pct": 5.0
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.93,
+        "docs": 60,
+        "share_pct": 1.7
+      }
+    ],
+    "event_ids": [
+      "covid_circuit_breaker_2020"
+    ],
+    "summary": "Circuit Breaker continues. PR/foreigner debate surges (910 mentions) as pandemic amplifies fairness concerns. Volume remains elevated.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2020-06",
+    "doc_count": 3818,
+    "mean_neg_sent": 0.298,
+    "top_drivers": [
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.62,
+        "docs": 124,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.29,
+        "docs": 87,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.18,
+        "docs": 291,
+        "share_pct": 7.6
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.99,
+        "docs": 183,
+        "share_pct": 4.8
+      }
+    ],
+    "event_ids": [
+      "ge2020_singapore",
+      "ivan_lim_controversy_2020"
+    ],
+    "summary": "GE2020 campaign begins. Ivan Lim NS bullying allegations go viral on Reddit. Conscription & National Duty spikes to 7.6% as NS becomes election issue.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2020-07",
+    "doc_count": 4791,
+    "mean_neg_sent": 0.235,
+    "top_drivers": [
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.47,
+        "docs": 147,
+        "share_pct": 3.1
+      },
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.36,
+        "docs": 193,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.53,
+        "docs": 162,
+        "share_pct": 3.4
+      }
+    ],
+    "event_ids": [
+      "ge2020_singapore"
+    ],
+    "summary": "GE2020 Polling Day (July 10). Geopolitics & Defence 2.5x as election discussion references NS purpose. Documentation surge as delayed processes resume.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-08",
+    "doc_count": 4582,
+    "mean_neg_sent": 0.267,
+    "top_drivers": [
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.74,
+        "docs": 99,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.67,
+        "docs": 106,
+        "share_pct": 2.3
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect"
+    ],
+    "summary": "National Day reflections. COVID still present (67 mentions). Volume continues growing from COVID-era Reddit adoption.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-09",
+    "doc_count": 5261,
+    "mean_neg_sent": 0.238,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.53,
+        "docs": 317,
+        "share_pct": 6.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.2,
+        "docs": 405,
+        "share_pct": 7.7
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.59,
+        "docs": 339,
+        "share_pct": 6.4
+      }
+    ],
+    "event_ids": [],
+    "summary": "Post-CB normalisation. Large enlistment cohort (423 mentions) as delayed batches finally enter BMT. COVID anxiety subsiding.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-10",
+    "doc_count": 4846,
+    "mean_neg_sent": 0.268,
+    "top_drivers": [
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.08,
+        "docs": 353,
+        "share_pct": 7.3
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.65,
+        "docs": 193,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 1.58,
+        "docs": 176,
+        "share_pct": 3.6
+      }
+    ],
+    "event_ids": [],
+    "summary": "Routine month. Pay discussions present (40 mentions) as NSFs note the March 2020 allowance increase settling in.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-11",
+    "doc_count": 3938,
+    "mean_neg_sent": 0.25,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 2.83,
+        "docs": 67,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 1.88,
+        "docs": 105,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.67,
+        "docs": 108,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.56,
+        "docs": 148,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "SCDF & SPF",
+        "lift": 1.56,
+        "docs": 171,
+        "share_pct": 4.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "Pre-enlistment surge (273 mentions). COVID vaccine news emerging (45 mentions). Year-end batch preparations.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2020-12",
+    "doc_count": 5361,
+    "mean_neg_sent": 0.197,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.08,
+        "docs": 282,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 2.23,
+        "docs": 197,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 2.21,
+        "docs": 117,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.62,
+        "docs": 352,
+        "share_pct": 6.6
+      }
+    ],
+    "event_ids": [
+      "covid_enlistment_surge_dec2020"
+    ],
+    "summary": "Documentation & Clearance at 3.1x baseline \u2014 massive backlog of delayed COVID-era enlistees processing PES, postings, and paperwork. Lowest negative sentiment in the entire dataset (0.197) as practical \"how do I\" questions drown out grievance posts.",
+    "sentiment_direction": "very_positive"
+  },
+  {
+    "month": "2021-01",
+    "doc_count": 4757,
+    "mean_neg_sent": 0.233,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.8,
+        "docs": 77,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 1.79,
+        "docs": 114,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 1.77,
+        "docs": 108,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 1.68,
+        "docs": 184,
+        "share_pct": 3.9
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.59,
+        "docs": 92,
+        "share_pct": 1.9
+      }
+    ],
+    "event_ids": [
+      "covid_vaccination_ns_2021"
+    ],
+    "summary": "COVID vaccination begins for NSFs. Sentiment remains positive (0.233) as training normalises post-CB. Gender & Sexuality and Safety discussions present but not dominant.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2021-02",
+    "doc_count": 4472,
+    "mean_neg_sent": 0.256,
+    "top_drivers": [
+      {
+        "topic": "Vocation Guidance",
+        "lift": 5.06,
+        "docs": 372,
+        "share_pct": 8.3
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.41,
+        "docs": 97,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 2.39,
+        "docs": 71,
+        "share_pct": 1.6
+      }
+    ],
+    "event_ids": [],
+    "summary": "Budget 2021 period (23 mentions). COVID vaccination continues (74 mentions). Routine enlistment and vocation discussions.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-03",
+    "doc_count": 5096,
+    "mean_neg_sent": 0.233,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.99,
+        "docs": 260,
+        "share_pct": 5.1
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.85,
+        "docs": 85,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.8,
+        "docs": 103,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.75,
+        "docs": 121,
+        "share_pct": 2.4
+      }
+    ],
+    "event_ids": [],
+    "summary": "Documentation 3.0x \u2014 continued administrative catch-up from COVID delays. Gender discussion (1.9x) and injury topics elevated.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2021-04",
+    "doc_count": 5619,
+    "mean_neg_sent": 0.247,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 3.67,
+        "docs": 124,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 3.21,
+        "docs": 203,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "SCDF & SPF",
+        "lift": 2.27,
+        "docs": 355,
+        "share_pct": 6.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "Routine month. COVID gradually fading as concern (56 mentions). Volume growing steadily with Reddit platform expansion.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-05",
+    "doc_count": 5305,
+    "mean_neg_sent": 0.27,
+    "top_drivers": [
+      {
+        "topic": "IPPT",
+        "lift": 2.15,
+        "docs": 189,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 1.96,
+        "docs": 103,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.91,
+        "docs": 280,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.55,
+        "docs": 114,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.54,
+        "docs": 92,
+        "share_pct": 1.7
+      }
+    ],
+    "event_ids": [
+      "delta_wave_camp_concerns_2021"
+    ],
+    "summary": "Tan Tock Seng Hospital COVID cluster sparks camp infection fears (138 COVID cluster mentions). Vaccination and swab test discussions surge. IPPTs being cancelled.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-06",
+    "doc_count": 6941,
+    "mean_neg_sent": 0.233,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.1,
+        "docs": 249,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.95,
+        "docs": 122,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.92,
+        "docs": 368,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.9,
+        "docs": 582,
+        "share_pct": 8.4
+      }
+    ],
+    "event_ids": [
+      "delta_wave_camp_concerns_2021"
+    ],
+    "summary": "Delta wave concerns peak. Conditions & Specialist Care 1.9x as NSFs worry about medical access during outbreaks. Documentation still elevated from backlogs. Volume spike to 6,941 docs.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-07",
+    "doc_count": 6287,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "IPPT",
+        "lift": 1.84,
+        "docs": 192,
+        "share_pct": 3.1
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.74,
+        "docs": 302,
+        "share_pct": 4.8
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 1.72,
+        "docs": 139,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.36,
+        "docs": 183,
+        "share_pct": 2.9
+      }
+    ],
+    "event_ids": [],
+    "summary": "COVID still present (129 mentions). National Day preparations. Volume continues growing toward the 2021-2022 structural peak.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-08",
+    "doc_count": 6396,
+    "mean_neg_sent": 0.249,
+    "top_drivers": [
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.62,
+        "docs": 230,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.61,
+        "docs": 116,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.48,
+        "docs": 262,
+        "share_pct": 4.1
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect"
+    ],
+    "summary": "National Day period. COVID present (92 mentions) but not dominant. Routine mid-year vocation and posting discussions.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-09",
+    "doc_count": 7787,
+    "mean_neg_sent": 0.23,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.19,
+        "docs": 291,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.85,
+        "docs": 289,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.5,
+        "docs": 322,
+        "share_pct": 4.1
+      }
+    ],
+    "event_ids": [],
+    "summary": "Documentation & Clearance remains elevated (2.2x). Camp admin discussions active. Volume approaching 8,000 docs \u2014 Reddit growth continuing.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-10",
+    "doc_count": 7358,
+    "mean_neg_sent": 0.273,
+    "top_drivers": [
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 1.87,
+        "docs": 136,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.69,
+        "docs": 344,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Social & Interpersonal",
+        "lift": 1.58,
+        "docs": 536,
+        "share_pct": 7.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "COVID booster discussions emerge (141 mentions). Large enlistment batch (991 mentions). Platform volume exceeding 10,000 chunks.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-11",
+    "doc_count": 7642,
+    "mean_neg_sent": 0.259,
+    "top_drivers": [
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 2.69,
+        "docs": 115,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.71,
+        "docs": 361,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.64,
+        "docs": 277,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Social & Interpersonal",
+        "lift": 1.44,
+        "docs": 507,
+        "share_pct": 6.6
+      }
+    ],
+    "event_ids": [],
+    "summary": "COVID boosters continuing (137 mentions). High volume month. Pre-December enlistment preparations.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2021-12",
+    "doc_count": 8233,
+    "mean_neg_sent": 0.237,
+    "top_drivers": [
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.72,
+        "docs": 624,
+        "share_pct": 7.6
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.71,
+        "docs": 301,
+        "share_pct": 3.7
+      }
+    ],
+    "event_ids": [
+      "ns_dec_2019_yearend_dip"
+    ],
+    "summary": "Year-end ORD season (804 ORD/POP mentions). COVID present but declining as concern. Positive sentiment from completion celebrations.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2022-01",
+    "doc_count": 9189,
+    "mean_neg_sent": 0.275,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.89,
+        "docs": 191,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.86,
+        "docs": 281,
+        "share_pct": 3.1
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.74,
+        "docs": 320,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.64,
+        "docs": 417,
+        "share_pct": 4.5
+      }
+    ],
+    "event_ids": [
+      "ns_disruption_scheme_2022"
+    ],
+    "summary": "Volume spike to 9,189 docs. Disruption scheme and deferment discussions. ORD Countdown and Vocation Guidance elevated \u2014 large batch of post-COVID NSFs reaching milestones.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-02",
+    "doc_count": 8038,
+    "mean_neg_sent": 0.325,
+    "top_drivers": [
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.9,
+        "docs": 289,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.14,
+        "docs": 258,
+        "share_pct": 3.2
+      }
+    ],
+    "event_ids": [
+      "ukraine_russia_war_conscription_2022"
+    ],
+    "summary": "Russia invades Ukraine (Feb 24). Geopolitics & Defence surges to 2.9x. \"Would you fight for Singapore?\" debates dominate. Highest negative sentiment z-score of the 2022 period.",
+    "sentiment_direction": "very_negative"
+  },
+  {
+    "month": "2022-03",
+    "doc_count": 9364,
+    "mean_neg_sent": 0.294,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.08,
+        "docs": 492,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "Social & Interpersonal",
+        "lift": 1.54,
+        "docs": 663,
+        "share_pct": 7.1
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.49,
+        "docs": 490,
+        "share_pct": 5.2
+      }
+    ],
+    "event_ids": [
+      "ukraine_russia_war_conscription_2022"
+    ],
+    "summary": "Ukraine war discourse continues. Documentation 3.1x as March enlistment batch processes. Conscription debate (1.5x) as war makes NS purpose tangible.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2022-04",
+    "doc_count": 7566,
+    "mean_neg_sent": 0.296,
+    "top_drivers": [
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.54,
+        "docs": 208,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 2.41,
+        "docs": 192,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.9,
+        "docs": 307,
+        "share_pct": 4.1
+      }
+    ],
+    "event_ids": [],
+    "summary": "Pay discussions (358 mentions) and Ukraine war (324 mentions) both present. NSFs frustrated by low pay amid inflation and geopolitical anxiety.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-05",
+    "doc_count": 10153,
+    "mean_neg_sent": 0.316,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.1,
+        "docs": 192,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 1.78,
+        "docs": 271,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.78,
+        "docs": 633,
+        "share_pct": 6.2
+      }
+    ],
+    "event_ids": [
+      "pr_foreigner_ns_equity_debate_2022_2024"
+    ],
+    "summary": "Highest volume month in dataset (10,153 docs). Wellbeing & Anxiety at 2.7x \u2014 mental health discourse peaking. Conscription & National Duty 1.8x as PR/foreigner equity debate intensifies. Gender discourse also elevated (2.1x).",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2022-06",
+    "doc_count": 10024,
+    "mean_neg_sent": 0.282,
+    "top_drivers": [
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 3.02,
+        "docs": 319,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.87,
+        "docs": 490,
+        "share_pct": 4.9
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.77,
+        "docs": 356,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.77,
+        "docs": 212,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.64,
+        "docs": 441,
+        "share_pct": 4.4
+      }
+    ],
+    "event_ids": [
+      "ns_lifesg_ord_credits_2022"
+    ],
+    "summary": "NS LifeSG $1,000 ORD credits rolled out \u2014 NS Credits & Benefits surges to 3.0x baseline (151 specific mentions). PR debate continues (2,247 mentions). Camp admin and rules discussions elevated.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-07",
+    "doc_count": 8864,
+    "mean_neg_sent": 0.297,
+    "top_drivers": [
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 3.64,
+        "docs": 340,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.93,
+        "docs": 320,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.68,
+        "docs": 178,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.67,
+        "docs": 316,
+        "share_pct": 3.6
+      }
+    ],
+    "event_ids": [
+      "ns_lifesg_ord_credits_2022"
+    ],
+    "summary": "LifeSG credits discussion continues (NS Credits 3.6x). NSF Pay elevated (1.9x) as pay adequacy debated alongside the credits rollout.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-08",
+    "doc_count": 9566,
+    "mean_neg_sent": 0.309,
+    "top_drivers": [
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.67,
+        "docs": 429,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.51,
+        "docs": 309,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "NS Culture & Humour",
+        "lift": 1.46,
+        "docs": 644,
+        "share_pct": 6.7
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.31,
+        "docs": 206,
+        "share_pct": 2.2
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect",
+      "pr_foreigner_ns_equity_debate_2022_2024"
+    ],
+    "summary": "National Day period but PR/foreigner debate dominates (2,247 mentions). Rules & Violations elevated (1.7x). NS Culture & Humour at 1.5x \u2014 meme/complaint posts prevalent.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2022-09",
+    "doc_count": 8625,
+    "mean_neg_sent": 0.29,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.14,
+        "docs": 314,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Medical Admin",
+        "lift": 1.67,
+        "docs": 395,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.61,
+        "docs": 188,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.54,
+        "docs": 293,
+        "share_pct": 3.4
+      }
+    ],
+    "event_ids": [],
+    "summary": "Documentation 2.1x \u2014 September enlistment batch admin. Medical Admin elevated (1.7x). PR debate sustained (1,577 mentions).",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-10",
+    "doc_count": 6765,
+    "mean_neg_sent": 0.293,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 2.87,
+        "docs": 117,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.93,
+        "docs": 177,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.92,
+        "docs": 243,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 1.8,
+        "docs": 132,
+        "share_pct": 2.0
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate sustained (1,577 mentions). Pay discussions present (275 mentions). No dominant event.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-11",
+    "doc_count": 7087,
+    "mean_neg_sent": 0.277,
+    "top_drivers": [
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.63,
+        "docs": 247,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Medical Admin",
+        "lift": 1.56,
+        "docs": 303,
+        "share_pct": 4.3
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.5,
+        "docs": 112,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.49,
+        "docs": 143,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 1.47,
+        "docs": 264,
+        "share_pct": 3.7
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR debate continues (1,596 mentions). Enlistment preparations for Dec batch (422 mentions).",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2022-12",
+    "doc_count": 7238,
+    "mean_neg_sent": 0.29,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.31,
+        "docs": 408,
+        "share_pct": 5.6
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.88,
+        "docs": 254,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.76,
+        "docs": 134,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 1.76,
+        "docs": 163,
+        "share_pct": 2.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "Year-end ORD season (748 mentions). PR/foreigner debate remains elevated (1,753 mentions). Sentiment slightly negative despite ORD positivity.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-01",
+    "doc_count": 7083,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "NSF Pay",
+        "lift": 2.42,
+        "docs": 320,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.79,
+        "docs": 139,
+        "share_pct": 2.0
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate sustained (1,587 mentions). Large January enlistment batch (856 mentions). Equity grievance now structural, not event-driven.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-02",
+    "doc_count": 6922,
+    "mean_neg_sent": 0.343,
+    "top_drivers": [
+      {
+        "topic": "NSF Pay",
+        "lift": 4.61,
+        "docs": 597,
+        "share_pct": 8.6
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.0,
+        "docs": 150,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.95,
+        "docs": 362,
+        "share_pct": 5.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 1.78,
+        "docs": 123,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.64,
+        "docs": 141,
+        "share_pct": 2.0
+      }
+    ],
+    "event_ids": [
+      "budget_2023_ns_response"
+    ],
+    "summary": "Budget 2023 triggers NSF Pay surge to 4.6x baseline (597 docs, 8.6% share). Charges & Punishment also elevated (2.0x). PR debate continues (1,498 mentions). Second-highest negative sentiment in dataset.",
+    "sentiment_direction": "very_negative"
+  },
+  {
+    "month": "2023-03",
+    "doc_count": 8069,
+    "mean_neg_sent": 0.259,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 1.99,
+        "docs": 274,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.97,
+        "docs": 190,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.63,
+        "docs": 148,
+        "share_pct": 1.8
+      }
+    ],
+    "event_ids": [
+      "budget_2023_ns_response"
+    ],
+    "summary": "Budget aftermath continues. Highest volume month of 2023. PR debate dominant (2,022 mentions). Pay adequacy discussions sustained.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2023-04",
+    "doc_count": 6887,
+    "mean_neg_sent": 0.281,
+    "top_drivers": [
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.27,
+        "docs": 187,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.13,
+        "docs": 161,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.72,
+        "docs": 161,
+        "share_pct": 2.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate (1,614 mentions). Post-budget discourse settling. Commitment net peaks \u2014 some NSFs respond positively to budget recognition.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-05",
+    "doc_count": 7872,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 3.25,
+        "docs": 281,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.24,
+        "docs": 130,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.97,
+        "docs": 290,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.61,
+        "docs": 142,
+        "share_pct": 1.8
+      }
+    ],
+    "event_ids": [
+      "ns_equity_2023_peak"
+    ],
+    "summary": "PR debate intensifying toward mid-year peak (1,860 mentions). Equity grievance becoming self-sustaining viral discourse.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2023-06",
+    "doc_count": 9793,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.17,
+        "docs": 230,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.94,
+        "docs": 171,
+        "share_pct": 1.7
+      }
+    ],
+    "event_ids": [
+      "ns_equity_2023_peak"
+    ],
+    "summary": "Highest sustained volume period. Charges & Punishment spikes (2.2x) alongside Gender (1.9x) and Race (1.8x) discussions. Multiple concurrent fairness debates.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-07",
+    "doc_count": 9385,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "Vocation Guidance",
+        "lift": 2.27,
+        "docs": 350,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.53,
+        "docs": 175,
+        "share_pct": 1.9
+      }
+    ],
+    "event_ids": [],
+    "summary": "Vocation Guidance 2.3x \u2014 mid-year posting season. Personal Finance elevated (2.3x) as NSFs discuss opportunity cost. Sentiment moderating slightly.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-08",
+    "doc_count": 8138,
+    "mean_neg_sent": 0.295,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 2.45,
+        "docs": 120,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.79,
+        "docs": 153,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.7,
+        "docs": 372,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.65,
+        "docs": 147,
+        "share_pct": 1.8
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect",
+      "reservist_ict_burden_2023_2025"
+    ],
+    "summary": "NDP period overlaps with ICT season (404 reservist mentions). Worst commitment net of 2023 \u2014 ICT complaints outweigh National Day positivity.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2023-09",
+    "doc_count": 8180,
+    "mean_neg_sent": 0.259,
+    "top_drivers": [
+      {
+        "topic": "RSAF",
+        "lift": 2.79,
+        "docs": 246,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.63,
+        "docs": 295,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.44,
+        "docs": 282,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.39,
+        "docs": 136,
+        "share_pct": 1.7
+      }
+    ],
+    "event_ids": [
+      "reservist_ict_burden_2023_2025"
+    ],
+    "summary": "Reservist/ICT season continues (338 mentions). IPPT and fitness obligation complaints. General fatigue with NS obligation discourse.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-10",
+    "doc_count": 7749,
+    "mean_neg_sent": 0.288,
+    "top_drivers": [
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.71,
+        "docs": 319,
+        "share_pct": 4.1
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.68,
+        "docs": 117,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.6,
+        "docs": 136,
+        "share_pct": 1.8
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate sustained at high level (1,826 mentions). Enlistment preparations for year-end batch.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-11",
+    "doc_count": 6265,
+    "mean_neg_sent": 0.276,
+    "top_drivers": [
+      {
+        "topic": "Daily Camp Life",
+        "lift": 2.02,
+        "docs": 471,
+        "share_pct": 7.5
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.92,
+        "docs": 132,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.8,
+        "docs": 127,
+        "share_pct": 2.0
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR debate (1,457 mentions). Pre-enlistment questions (401 mentions). Volume slightly declining from mid-year peak.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2023-12",
+    "doc_count": 5893,
+    "mean_neg_sent": 0.285,
+    "top_drivers": [
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 2.02,
+        "docs": 525,
+        "share_pct": 8.9
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.65,
+        "docs": 107,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.58,
+        "docs": 224,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.42,
+        "docs": 294,
+        "share_pct": 5.0
+      },
+      {
+        "topic": "RSAF",
+        "lift": 1.42,
+        "docs": 90,
+        "share_pct": 1.5
+      }
+    ],
+    "event_ids": [],
+    "summary": "Year-end ORD celebrations (595 mentions). PR debate still present (1,418 mentions). Typical year-end sentiment improvement.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2024-01",
+    "doc_count": 6918,
+    "mean_neg_sent": 0.289,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 4.91,
+        "docs": 373,
+        "share_pct": 5.4
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.92,
+        "docs": 303,
+        "share_pct": 4.4
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.58,
+        "docs": 262,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.53,
+        "docs": 212,
+        "share_pct": 3.1
+      }
+    ],
+    "event_ids": [
+      "women_ns_conscription_debate_2024"
+    ],
+    "summary": "PR/foreigner debate continues (1,552 mentions). Female conscription discussion emerging (52 mentions). New year enlistment batch.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-02",
+    "doc_count": 6269,
+    "mean_neg_sent": 0.301,
+    "top_drivers": [
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.67,
+        "docs": 224,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.79,
+        "docs": 101,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.55,
+        "docs": 161,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.54,
+        "docs": 232,
+        "share_pct": 3.7
+      }
+    ],
+    "event_ids": [
+      "budget_2024_ns_announcements"
+    ],
+    "summary": "Budget 2024 announces NS allowance increases and $200 LifeSG credits for NSmen. Paradoxically, highest negative sentiment month of 2024 \u2014 budget discourse draws equity critics.",
+    "sentiment_direction": "very_negative"
+  },
+  {
+    "month": "2024-03",
+    "doc_count": 8418,
+    "mean_neg_sent": 0.32,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.7,
+        "docs": 205,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 2.48,
+        "docs": 502,
+        "share_pct": 6.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.99,
+        "docs": 587,
+        "share_pct": 7.0
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.74,
+        "docs": 182,
+        "share_pct": 2.2
+      }
+    ],
+    "event_ids": [
+      "budget_2024_ns_announcements",
+      "women_ns_conscription_debate_2024"
+    ],
+    "summary": "Budget aftermath. Gender & Sexuality at 2.7x, Conscription 2.0x \u2014 female conscription and equity debates amplified by budget response. Combat Arms elevated (2.5x).",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2024-04",
+    "doc_count": 7425,
+    "mean_neg_sent": 0.306,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.2,
+        "docs": 120,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 2.19,
+        "docs": 183,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.85,
+        "docs": 330,
+        "share_pct": 4.4
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.71,
+        "docs": 155,
+        "share_pct": 2.1
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR debate (1,771 mentions). Post-budget discourse normalising. Routine vocation and posting discussions.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-05",
+    "doc_count": 6862,
+    "mean_neg_sent": 0.273,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 3.59,
+        "docs": 181,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 2.69,
+        "docs": 111,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 2.4,
+        "docs": 233,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.12,
+        "docs": 174,
+        "share_pct": 2.5
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate (1,634 mentions). Enlistment discussions (341 mentions). No dominant event.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-06",
+    "doc_count": 6921,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "RSAF",
+        "lift": 3.46,
+        "docs": 258,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.1,
+        "docs": 107,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 1.81,
+        "docs": 125,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.7,
+        "docs": 193,
+        "share_pct": 2.8
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR debate sustained (1,663 mentions). Routine mid-year discussions. Volume stable around 9,000 docs.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-07",
+    "doc_count": 7052,
+    "mean_neg_sent": 0.285,
+    "top_drivers": [
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.41,
+        "docs": 203,
+        "share_pct": 2.9
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.2,
+        "docs": 140,
+        "share_pct": 2.0
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate (1,747 mentions). Pre-NDP period. NDP preparations beginning.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-08",
+    "doc_count": 7760,
+    "mean_neg_sent": 0.305,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 3.58,
+        "docs": 250,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.6,
+        "docs": 172,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.48,
+        "docs": 156,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "SCDF & SPF",
+        "lift": 1.44,
+        "docs": 310,
+        "share_pct": 4.0
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect"
+    ],
+    "summary": "National Day period (51 NDP mentions). PR debate still dominant (1,854 mentions). Sentiment improving from cyclical NDP effect.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2024-09",
+    "doc_count": 7945,
+    "mean_neg_sent": 0.279,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.02,
+        "docs": 409,
+        "share_pct": 5.1
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 2.09,
+        "docs": 367,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.84,
+        "docs": 645,
+        "share_pct": 8.1
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 1.77,
+        "docs": 199,
+        "share_pct": 2.5
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect"
+    ],
+    "summary": "Post-NDP positive momentum continues. Sharpest negative sentiment dip of the high-volume period. Reservist/ICT season (322 mentions).",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2024-10",
+    "doc_count": 7240,
+    "mean_neg_sent": 0.298,
+    "top_drivers": [
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 3.0,
+        "docs": 291,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.73,
+        "docs": 296,
+        "share_pct": 4.1
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate (1,874 mentions). Enlistment preparations (351 mentions). Volume stable.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-11",
+    "doc_count": 7096,
+    "mean_neg_sent": 0.296,
+    "top_drivers": [
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 3.28,
+        "docs": 245,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.26,
+        "docs": 192,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 1.88,
+        "docs": 337,
+        "share_pct": 4.7
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate (1,731 mentions). Pre-enlistment discussions (385 mentions). Year-end approaching.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2024-12",
+    "doc_count": 7000,
+    "mean_neg_sent": 0.28,
+    "top_drivers": [
+      {
+        "topic": "ORD Admin",
+        "lift": 3.52,
+        "docs": 127,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 3.36,
+        "docs": 128,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.6,
+        "docs": 139,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.52,
+        "docs": 254,
+        "share_pct": 3.6
+      }
+    ],
+    "event_ids": [],
+    "summary": "Year-end ORD season (704 mentions). PR debate still present (1,671 mentions). Typical year-end sentiment recovery.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2025-01",
+    "doc_count": 7252,
+    "mean_neg_sent": 0.293,
+    "top_drivers": [
+      {
+        "topic": "Race & Religion",
+        "lift": 4.53,
+        "docs": 179,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 3.03,
+        "docs": 219,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 2.44,
+        "docs": 448,
+        "share_pct": 6.2
+      }
+    ],
+    "event_ids": [
+      "ge2025_ns_campaign_issue"
+    ],
+    "summary": "GE2025 campaign ramps up \u2014 election mentions surge (2,374). NS equity becomes prominent campaign issue. PR debate (1,727 mentions).",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-02",
+    "doc_count": 5721,
+    "mean_neg_sent": 0.286,
+    "top_drivers": [
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 1.98,
+        "docs": 112,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 1.86,
+        "docs": 159,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.73,
+        "docs": 212,
+        "share_pct": 3.7
+      }
+    ],
+    "event_ids": [],
+    "summary": "Pre-election period. Budget 2025 (16 mentions). Election discourse lower than January as campaign pauses.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-03",
+    "doc_count": 8121,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "RSN (Navy)",
+        "lift": 5.2,
+        "docs": 130,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 2.48,
+        "docs": 279,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.87,
+        "docs": 185,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.63,
+        "docs": 180,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.36,
+        "docs": 221,
+        "share_pct": 2.7
+      }
+    ],
+    "event_ids": [
+      "ge2025_ns_campaign_issue"
+    ],
+    "summary": "GE2025 intensifies (50 direct GE2025 mentions). SPF NSmen deployed for election security. Volume spikes to 10,858 chunks. NS policy debated across party manifestos.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2025-04",
+    "doc_count": 7050,
+    "mean_neg_sent": 0.295,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.56,
+        "docs": 133,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.4,
+        "docs": 210,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.96,
+        "docs": 187,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.67,
+        "docs": 479,
+        "share_pct": 6.8
+      }
+    ],
+    "event_ids": [
+      "ge2025_ns_campaign_issue"
+    ],
+    "summary": "Election period continues (52 GE2025 mentions). PR debate sustained (1,669 mentions). Post-election discourse beginning.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-05",
+    "doc_count": 7948,
+    "mean_neg_sent": 0.291,
+    "top_drivers": [
+      {
+        "topic": "Charges & Punishment",
+        "lift": 3.22,
+        "docs": 277,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.95,
+        "docs": 210,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 1.92,
+        "docs": 229,
+        "share_pct": 2.9
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.82,
+        "docs": 180,
+        "share_pct": 2.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "Post-GE2025 period. PR debate (1,774 mentions). Sentiment beginning to moderate as election resolution reduces political anxiety.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-06",
+    "doc_count": 7838,
+    "mean_neg_sent": 0.281,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.17,
+        "docs": 187,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.16,
+        "docs": 227,
+        "share_pct": 2.9
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 2.1,
+        "docs": 725,
+        "share_pct": 9.2
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.9,
+        "docs": 330,
+        "share_pct": 4.2
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR/foreigner debate (1,807 mentions). Enlistment discussions (281 mentions). Post-election normalisation continuing.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-07",
+    "doc_count": 8135,
+    "mean_neg_sent": 0.317,
+    "top_drivers": [
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 3.11,
+        "docs": 168,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 2.89,
+        "docs": 128,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.62,
+        "docs": 286,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.57,
+        "docs": 313,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.99,
+        "docs": 268,
+        "share_pct": 3.3
+      }
+    ],
+    "event_ids": [
+      "toxic_command_culture_2025"
+    ],
+    "summary": "Misconduct & Harassment surges to 3.1x, Race & Religion to 2.9x. Multiple Reddit posts about racist remarks, toxic sergeants, and bullying. Not one incident \u2014 concurrent complaints about command culture.",
+    "sentiment_direction": "negative"
+  },
+  {
+    "month": "2025-08",
+    "doc_count": 6878,
+    "mean_neg_sent": 0.237,
+    "top_drivers": [
+      {
+        "topic": "PES & Downgrade",
+        "lift": 1.72,
+        "docs": 451,
+        "share_pct": 6.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 1.71,
+        "docs": 158,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.59,
+        "docs": 180,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.48,
+        "docs": 141,
+        "share_pct": 2.1
+      }
+    ],
+    "event_ids": [
+      "national_day_cyclical_effect",
+      "ns_2025_sentiment_reversal"
+    ],
+    "summary": "National Day positive effect. Neg sentiment drops to 0.237 (z=-1.3). PES & Downgrade elevated (1.7x). 2025 sentiment reversal most visible here.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2025-09",
+    "doc_count": 6704,
+    "mean_neg_sent": 0.221,
+    "top_drivers": [
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.93,
+        "docs": 311,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.58,
+        "docs": 176,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 1.51,
+        "docs": 136,
+        "share_pct": 2.0
+      }
+    ],
+    "event_ids": [
+      "ns_2025_sentiment_reversal"
+    ],
+    "summary": "Lowest negative sentiment of late 2025 (0.221). ICT Admin and Combat Arms elevated. Reservist season (453 mentions). Sentiment reversal continuing.",
+    "sentiment_direction": "positive"
+  },
+  {
+    "month": "2025-10",
+    "doc_count": 4685,
+    "mean_neg_sent": 0.234,
+    "top_drivers": [
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.14,
+        "docs": 100,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 1.68,
+        "docs": 85,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.62,
+        "docs": 126,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "RSAF",
+        "lift": 1.41,
+        "docs": 71,
+        "share_pct": 1.5
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR debate (1,170 mentions). Charges & Punishment slightly elevated (1.7x). Volume declining toward year-end.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-11",
+    "doc_count": 5693,
+    "mean_neg_sent": 0.253,
+    "top_drivers": [
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.36,
+        "docs": 201,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.35,
+        "docs": 145,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.1,
+        "docs": 160,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.79,
+        "docs": 246,
+        "share_pct": 4.3
+      }
+    ],
+    "event_ids": [],
+    "summary": "PR debate (1,315 mentions). Enlistment preparations (226 mentions). Routine pre-year-end discourse.",
+    "sentiment_direction": "neutral"
+  },
+  {
+    "month": "2025-12",
+    "doc_count": 6346,
+    "mean_neg_sent": 0.257,
+    "top_drivers": [
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.41,
+        "docs": 205,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.53,
+        "docs": 429,
+        "share_pct": 6.8
+      },
+      {
+        "topic": "RSAF",
+        "lift": 1.43,
+        "docs": 98,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.34,
+        "docs": 102,
+        "share_pct": 1.6
+      }
+    ],
+    "event_ids": [],
+    "summary": "Year-end. Regular & Contract Service elevated (2.4x) \u2014 sign-on discussions. ORD celebrations (552 mentions). Lowest neg sentiment months of 2025 sustained.",
+    "sentiment_direction": "positive"
+  }
+]

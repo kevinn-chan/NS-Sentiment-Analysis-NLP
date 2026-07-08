@@ -6,10 +6,10 @@ Structure:
   MACRO_CATEGORIES: list[str]   — ordered macro category names
 
 Taxonomy layers:
-  Layer 4 (macro)   — 17 categories
-  Layer 3 (sub)     — ~25–30 sub-categories per macro
-  Layer 2 (sub_sub) — ~60 fine-grained groups within each sub
-  Layer 1           — 359 fine topics (keys of TOPIC_LABELS)
+  Layer 1 (macro)   — 17 categories
+  Layer 2 (sub)     — 52 sub-categories
+  Layer 3 (sub_sub) — 112 clusters
+  Layer 4 (leaf)    — 359 fine topics (keys of TOPIC_LABELS)
 
 Macro categories:
   1.  Vocations & Units
@@ -226,7 +226,7 @@ TOPIC_LABELS = {
     135: {"name": "Giving Up Seats in Uniform",             "macro": "NS Life & Culture",        "sub": "Duties & Responsibilities",      "sub_sub": "NS Public Life"},
     141: {"name": "Friendships Made in NS",                 "macro": "NS Life & Culture",        "sub": "Social & Interpersonal",         "sub_sub": "Friendships & Bonds"},
     143: {"name": "Studying During NS",                     "macro": "NS Life & Culture",        "sub": "Time Off & Personal Life",       "sub_sub": "Bookout & Leave"},
-    146: {"name": "Generic Advice & Support Posts",         "macro": "NS Life & Culture",        "sub": "Social & Interpersonal",         "sub_sub": "Generic Advice & Support"},
+    146: {"name": "Thanks & Gratitude Replies",             "macro": "NS Life & Culture",        "sub": "Social & Interpersonal",         "sub_sub": "Generic Advice & Support"},
     151: {"name": "NDP Contingent",                         "macro": "NS Life & Culture",        "sub": "Duties & Responsibilities",      "sub_sub": "NS Public Life"},
     162: {"name": "NS Songs & Marching Songs",              "macro": "NS Life & Culture",        "sub": "NS Culture & Humour",            "sub_sub": "NS Identity & Reflections"},
     169: {"name": "Generic NS Advice",                      "macro": "NS Life & Culture",        "sub": "Social & Interpersonal",         "sub_sub": "Generic Advice & Support"},

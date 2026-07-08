@@ -1,0 +1,1708 @@
+{
+  "2018-01": {
+    "period": "2018-01",
+    "volume": 1556,
+    "volume_pct_vs_baseline": -79.7,
+    "sentiment": {
+      "neg": 0.221,
+      "neu": 0.634,
+      "pos": 0.146
+    },
+    "dominant_topics": "NS Life & Culture (298), BMT & Training (220), NS Policy & Society (144)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2018 was an unremarkable month in NS discourse on Reddit, with a significantly reduced volume of 1,556 chunks, marking an 80% drop from the baseline. The conversation remained largely neutral (63%) with a modest negative sentiment (22%) and limited positivity (15%). Discussions were dominated by everyday NS experiences, particularly around NS Life & Culture (298 chunks), BMT & Training (220), and NS Policy & Society (144). The subreddit r/singapore accounted for nearly all activity, indicating that NS topics were embedded within broader Singapore-related discussions rather than specialized NS forums. No specific event appears to have driven discourse this month, though ongoing background debates about the realism of NS portrayals persisted. The top posts reflect typical soldiering experiences, training hardships, and some humor, suggesting a pragmatic and somewhat resigned public mood toward NS rather than heightened controversy or enthusiasm.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-02": {
+    "period": "2018-02",
+    "volume": 1203,
+    "volume_pct_vs_baseline": -84.3,
+    "sentiment": {
+      "neg": 0.265,
+      "neu": 0.571,
+      "pos": 0.165
+    },
+    "dominant_topics": "NS Life & Culture (237), NS Policy & Society (182), BMT & Training (164)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2018 was an unremarkable month in NS Reddit discourse, with a significantly reduced volume of discussion (1,203 chunks, an 84% drop from baseline). The conversation remained focused on core NS themes, particularly NS Life & Culture, NS Policy & Society, and BMT & Training. No specific event appears to have driven discourse this month, as ongoing background discussions about the realism of NS and the gap between official narratives and lived experiences continued without notable spikes. Sentiment was predominantly neutral (57%), with a moderate level of negativity (26%) and limited positivity (16%). The top posts reflected everyday NS experiences and humor related to training and service life, indicating a generally matter-of-fact and resigned public mood toward NS during this period. Overall, February 2018 did not see significant shifts or controversies in NS-related Reddit conversations.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-03": {
+    "period": "2018-03",
+    "volume": 1741,
+    "volume_pct_vs_baseline": -77.3,
+    "sentiment": {
+      "neg": 0.299,
+      "neu": 0.545,
+      "pos": 0.155
+    },
+    "dominant_topics": "NS Life & Culture (383), BMT & Training (288), NS Policy & Society (174)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2018 was a relatively quiet month for NS discourse on Reddit, with a 77% drop in chunk volume compared to the baseline, indicating reduced overall activity. The conversation was dominated by topics related to NS Life & Culture and BMT & Training, reflecting ongoing discussions about daily experiences and challenges during service. Sentiment was predominantly neutral (55%), with a notable portion of negative sentiment (30%) and limited positive sentiment (16%), suggesting a generally critical but balanced tone. There was no specific event driving discourse this month, though the persistent background theme of skepticism toward official NS narratives—such as the gap between idealized portrayals and lived realities—continued to influence discussions. Top posts included personal anecdotes, questions about respect for NSFs/NSmen, and critical reflections on the usefulness of NS experiences. Overall, public mood in March 2018 was cautiously critical but largely focused on sharing personal stories rather than reacting to major controversies.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-04": {
+    "period": "2018-04",
+    "volume": 1830,
+    "volume_pct_vs_baseline": -76.2,
+    "sentiment": {
+      "neg": 0.38,
+      "neu": 0.494,
+      "pos": 0.125
+    },
+    "dominant_topics": "NS Policy & Society (400), NS Life & Culture (320), BMT & Training (252)",
+    "events": [
+      "benjamin_lee_2018",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2018 was a notable month in NS discourse on Reddit, marked by a significant drop in volume (-76% vs baseline) but a heightened focus on serious topics. The death of recruit Benjamin Lee from heat injury on April 20 was the key event driving conversation, reigniting concerns about training safety and commanders’ ability to recognize heat exhaustion. Discussions centered heavily on NS Policy & Society, NS Life & Culture, and BMT & Training, reflecting both the tragedy and broader reflections on conscription realities. Sentiment was predominantly neutral (49%) with a substantial portion of negative sentiment (38%), indicating a somber and critical public mood. Positive sentiment remained low at 13%, suggesting limited expressions of support or optimism. Overall, the discourse was dominated by grief, calls for improved safety measures, and debates about respect and treatment of conscripts, highlighting ongoing tensions between official NS narratives and lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-05": {
+    "period": "2018-05",
+    "volume": 2383,
+    "volume_pct_vs_baseline": -69.0,
+    "sentiment": {
+      "neg": 0.31,
+      "neu": 0.575,
+      "pos": 0.115
+    },
+    "dominant_topics": "NS Policy & Society (743), NS Life & Culture (358), BMT & Training (257)",
+    "events": [
+      "benjamin_lee_2018",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2018 was a notably quieter month for NS discourse on Reddit, with chunk volume down 69% from baseline. Despite lower activity, discussions remained focused on NS Policy & Society, NS Life & Culture, and BMT & Training. The lingering impact of Recruit Benjamin Lee’s fatal heat injury in April continued to influence conversations, particularly around training conditions and treatment of servicemen. Top posts reveal frustration with perceived mismanagement, harsh treatment by superiors, and the stigma faced by injured soldiers labeled as \"chao keng\" (shirking duties). This points to ongoing concerns about the gap between official NS narratives and lived experiences. Sentiment was predominantly neutral (58%) but with a significant 31% negative tone, reflecting dissatisfaction and criticism within the community. Overall, public mood in May 2018 was one of subdued but critical reflection on NS culture and policies, shaped by recent tragic events and persistent issues around respect and welfare in service.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-06": {
+    "period": "2018-06",
+    "volume": 1887,
+    "volume_pct_vs_baseline": -75.4,
+    "sentiment": {
+      "neg": 0.279,
+      "neu": 0.6,
+      "pos": 0.121
+    },
+    "dominant_topics": "BMT & Training (323), NS Life & Culture (291), NS Policy & Society (239)",
+    "events": [
+      "benjamin_lee_2018",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2018 was a relatively quiet month for NS discourse on Reddit, with a 75% drop in chunk volume compared to baseline, indicating reduced overall discussion. Sentiment was predominantly neutral (60%), with a moderate level of negativity (28%) and limited positivity (12%). The conversation was primarily centered on Basic Military Training (BMT) and training experiences, NS life and culture, and policy and societal issues related to National Service. No specific new events in June appear to have significantly driven discourse; rather, ongoing concerns such as the aftermath of Recruit Benjamin Lee’s heat injury death in April 2018 and the persistent debate over the realism of NS portrayals continued to influence discussions. Top posts reflected a mix of personal anecdotes, humor, and reflections on training hardships. Overall, public mood remained cautiously neutral with some critical undertones, reflecting a community engaged but not highly reactive during this period.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-07": {
+    "period": "2018-07",
+    "volume": 2281,
+    "volume_pct_vs_baseline": -70.3,
+    "sentiment": {
+      "neg": 0.306,
+      "neu": 0.58,
+      "pos": 0.114
+    },
+    "dominant_topics": "NS Policy & Society (859), NS Life & Culture (309), BMT & Training (227)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2018 was a relatively quiet month for NS discourse on Reddit, with a 70% drop in chunk volume compared to the baseline, indicating lower overall engagement. The conversation was dominated by topics related to NS Policy & Society, NS Life & Culture, and BMT & Training, reflecting ongoing discussions about the realities and challenges of National Service. Sentiment remained largely neutral (58%), with a moderate level of negativity (31%) and limited positivity (11%). There was no single event that markedly drove discourse, though the rejection of Ben Davis’ deferment application by MINDEF was noted and discussed, highlighting tensions around deferment policies and fairness. The top posts reveal frustration with systemic issues such as perceived inequality and restrictions during NS, alongside reflections on the broader life lessons from service. Overall, public mood was mixed but leaned toward critical engagement rather than outright negativity or enthusiasm.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-08": {
+    "period": "2018-08",
+    "volume": 2260,
+    "volume_pct_vs_baseline": -70.6,
+    "sentiment": {
+      "neg": 0.251,
+      "neu": 0.649,
+      "pos": 0.1
+    },
+    "dominant_topics": "NS Policy & Society (708), NS Life & Culture (477), BMT & Training (200)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2018 was a relatively quiet month for NS discourse on Reddit, with a significant 71% drop in chunk volume compared to the baseline, indicating reduced overall discussion. Sentiment remained largely neutral (65%), with a modest 25% negative and 10% positive tone, suggesting no major shifts in public mood. The conversation was dominated by topics related to NS Policy & Society, NS Life & Culture, and BMT & Training, reflecting ongoing engagement with the lived experiences and structural aspects of National Service. There was no specific event in August that noticeably drove discourse, though the persistent background theme of skepticism toward official NS narratives about nation-building and sacrifice continued to influence discussions. Top posts included personal anecdotes and critiques of NS administration, including allegations of preferential treatment, but these did not translate into a broader controversy. Overall, public sentiment was mixed but stable, with no significant spikes in negativity or positivity during this period.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-09": {
+    "period": "2018-09",
+    "volume": 1623,
+    "volume_pct_vs_baseline": -78.9,
+    "sentiment": {
+      "neg": 0.303,
+      "neu": 0.583,
+      "pos": 0.114
+    },
+    "dominant_topics": "NS Policy & Society (351), BMT & Training (277), NS Life & Culture (256)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2018 was a relatively quiet month for National Service discourse on Reddit, with a 79% drop in chunk volume compared to the baseline, indicating lower overall engagement. The conversation was dominated by topics related to NS Policy & Society, Basic Military Training (BMT) & Training, and NS Life & Culture, reflecting ongoing discussions about the realities and challenges of NS. No specific major event appears to have driven discourse, although there was attention to issues such as compensation for income loss during service and frustrations with military authority figures, as seen in highly upvoted posts expressing dissatisfaction with SAF treatment and pay. Sentiment was predominantly neutral (58%), with a notable 30% negative tone, suggesting persistent grievances among servicemen, while positive sentiment remained low at 11%. Overall, the public mood toward NS in September 2018 was mixed but leaned toward critical, reflecting ongoing tensions between official narratives and servicemen’s lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-10": {
+    "period": "2018-10",
+    "volume": 1798,
+    "volume_pct_vs_baseline": -76.6,
+    "sentiment": {
+      "neg": 0.305,
+      "neu": 0.548,
+      "pos": 0.147
+    },
+    "dominant_topics": "NS Life & Culture (312), BMT & Training (261), NS Policy & Society (248)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2018 was a notably low-volume month for NS discourse on Reddit, with chunk volume down 77% from baseline. Despite the reduced activity, the conversation remained focused on core themes of NS Life & Culture, BMT & Training, and NS Policy & Society. A significant driver of discussion was the death of a Singapore Armed Forces Regular Serviceman, which elicited strong emotional responses, including criticism of MINDEF’s handling of servicemen’s welfare and recovery. This event heightened negative sentiment, reflected in the 31% negative tone, as users expressed frustration and concern over the treatment of injured NSFs. Personal stories from Basic Military Training (BMT) also featured prominently, indicating ongoing reflection on the challenges of training. Overall, the public mood was mixed but leaned toward critical and concerned, with a persistent undercurrent of dissatisfaction regarding NS realities versus official narratives.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-11": {
+    "period": "2018-11",
+    "volume": 1809,
+    "volume_pct_vs_baseline": -76.4,
+    "sentiment": {
+      "neg": 0.277,
+      "neu": 0.625,
+      "pos": 0.097
+    },
+    "dominant_topics": "NS Policy & Society (387), NS Life & Culture (295), BMT & Training (177)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2018 was a relatively low-volume month for NS discourse on Reddit, with chunk volume down 76% from baseline. The conversation was dominated by topics related to NS Policy & Society, NS Life & Culture, and BMT & Training, primarily within the r/singapore subreddit. A significant event influencing discourse was the death of a full-time SAF national serviceman during training with a Bionix vehicle, which sparked discussions on the risks and safety concerns in National Service. This incident prompted critical responses about MINDEF’s handling of such accidents and calls for systemic change to prevent future fatalities. Sentiment was predominantly neutral (63%), with a notable 28% negative sentiment reflecting public unease and frustration over safety issues. Positive sentiment remained low at 10%, indicating limited expressions of optimism or praise. Overall, the public mood was cautious and concerned, focusing on the dangers faced by servicemen and the need for improved safety measures.",
+    "last_updated": "2026-06-08"
+  },
+  "2018-12": {
+    "period": "2018-12",
+    "volume": 1653,
+    "volume_pct_vs_baseline": -78.5,
+    "sentiment": {
+      "neg": 0.22,
+      "neu": 0.614,
+      "pos": 0.165
+    },
+    "dominant_topics": "NS Life & Culture (248), BMT & Training (247), NS Policy & Society (198)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2018 was a relatively quiet month for NS discourse on Reddit, with a significantly reduced volume of 1,653 chunks, representing a 78% drop from the baseline. Sentiment remained largely neutral at 61%, with negative comments at 22% and positive at 17%, indicating no major shifts in public mood. Discussions were dominated by topics related to NS Life & Culture, Basic Military Training (BMT) & Training, and NS Policy & Society, reflecting ongoing everyday concerns and reflections on service. The top posts largely originated from the r/singapore subreddit, focusing on routine experiences such as SAF exercises and reservist anecdotes, rather than any major controversies or policy debates. There was no specific event in December that significantly altered the discourse, and the overall public mood toward NS remained steady, characterized by a mix of neutral and moderately critical perspectives consistent with the ongoing background discourse on the realism of NS experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-01": {
+    "period": "2019-01",
+    "volume": 3193,
+    "volume_pct_vs_baseline": -58.4,
+    "sentiment": {
+      "neg": 0.266,
+      "neu": 0.641,
+      "pos": 0.093
+    },
+    "dominant_topics": "NS Policy & Society (1327), NS Life & Culture (395), BMT & Training (327)",
+    "events": [
+      "aloysius_pang_2019",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2019 was a notable month in NS Reddit discourse primarily due to the tragic death of Corporal First Class Aloysius Pang during a military exercise in New Zealand on January 23. This event likely contributed to the relatively high volume of discussion (3,193 chunks, though 58% below baseline) and a sentiment distribution with a significant 27% negative share, reflecting public concern and grief. The discourse was dominated by topics related to NS Policy & Society, NS Life & Culture, and BMT & Training, indicating a focus on both systemic issues and personal experiences within NS. The majority of conversations took place in the general Singapore subreddit, suggesting broad public engagement beyond NS-specific forums. Overall, the public mood was largely neutral to negative, with limited positive sentiment, likely influenced by the somber event and ongoing debates about the realities of NS life versus official narratives. This month underscored the tension between official NS portrayals and the lived experiences of servicemen.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-02": {
+    "period": "2019-02",
+    "volume": 1821,
+    "volume_pct_vs_baseline": -76.3,
+    "sentiment": {
+      "neg": 0.2,
+      "neu": 0.661,
+      "pos": 0.139
+    },
+    "dominant_topics": "NS Policy & Society (538), NS Life & Culture (249), BMT & Training (193)",
+    "events": [
+      "aloysius_pang_2019",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2019 was a relatively low-volume month for NS discourse on Reddit, with 1,821 chunks—a 76% drop from baseline—indicating reduced overall engagement. Sentiment remained largely neutral (66%), with a modest 20% negative and 14% positive tone. The discourse was dominated by discussions on NS Policy & Society, followed by NS Life & Culture and BMT & Training, reflecting ongoing interest in structural and experiential aspects of National Service. The conversation was primarily hosted on r/singapore, with smaller contributions from NationalServiceSG and askSingapore.\n\nWhile no new major NS events occurred in February, the lingering impact of Corporal First Class Aloysius Pang’s death in late January continued to influence public discourse, particularly around safety and accountability in training. This is reflected in top posts addressing policy critiques and calls for greater transparency. Overall, the public mood was cautious and reflective, with a focus on policy scrutiny rather than emotional or celebratory engagement.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-03": {
+    "period": "2019-03",
+    "volume": 2264,
+    "volume_pct_vs_baseline": -70.5,
+    "sentiment": {
+      "neg": 0.26,
+      "neu": 0.62,
+      "pos": 0.12
+    },
+    "dominant_topics": "NS Life & Culture (393), BMT & Training (387), NS Policy & Society (266)",
+    "events": [
+      "aloysius_pang_2019",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2019 was a relatively quiet month for National Service discourse on Reddit, with a significant 71% drop in chunk volume compared to the baseline. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and NS Policy & Society, reflecting ongoing discussions about the daily realities and structural aspects of NS. No specific event in March notably drove discourse, though the lingering impact of Corporal Aloysius Pang’s death earlier in January and the broader background debate on the gap between official NS narratives and lived experiences continued to influence sentiment. The overall mood was predominantly neutral (62%), with a moderate level of negativity (26%) and limited positivity (12%), indicating a cautious and somewhat critical public attitude toward NS. Top posts reflected frustrations about respect for NSmen and challenges faced during service, alongside lighter cultural commentary, suggesting a mix of pragmatic acceptance and underlying discontent.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-04": {
+    "period": "2019-04",
+    "volume": 1677,
+    "volume_pct_vs_baseline": -78.2,
+    "sentiment": {
+      "neg": 0.267,
+      "neu": 0.593,
+      "pos": 0.14
+    },
+    "dominant_topics": "NS Life & Culture (272), NS Policy & Society (183), BMT & Training (177)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2019 was an unremarkable month for NS discourse on Reddit, with a significantly reduced volume of 1,677 chunks, representing a 78% drop compared to baseline levels. Sentiment remained largely neutral at 59%, with a moderate proportion of negative sentiment at 27% and positive sentiment at 14%. Discussions were primarily focused on everyday aspects of NS life and culture (272 chunks), NS policy and societal issues (183 chunks), and basic military training (177 chunks). No specific event or controversy notably influenced the discourse during this period. The top upvoted posts centered on practical topics such as injury compensation processes rather than broader policy debates or media portrayals. Overall, public mood toward NS in April 2019 was stable and pragmatic, reflecting routine engagement rather than heightened emotions or controversy.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-05": {
+    "period": "2019-05",
+    "volume": 1483,
+    "volume_pct_vs_baseline": -80.7,
+    "sentiment": {
+      "neg": 0.313,
+      "neu": 0.582,
+      "pos": 0.105
+    },
+    "dominant_topics": "NS Life & Culture (216), NS Policy & Society (195), BMT & Training (168)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2019 was a relatively quiet month for NS discourse on Reddit, with a significantly lower volume of posts (1,483 chunks, an 81% decrease from baseline). The conversation remained focused on core themes such as NS Life & Culture, NS Policy & Society, and BMT & Training, reflecting ongoing discussions about the everyday realities and challenges of National Service. There was no notable spike in sentiment or major controversy during this period. The top posts, mostly from the r/singapore subreddit, featured a mix of humor, personal experiences, and reflections on NS obligations like IPPT and PES status. The overall public mood was predominantly neutral (58%), with a moderate level of negativity (31%) and limited positive sentiment (11%), indicating a steady but somewhat critical engagement with NS topics. No specific event appeared to drive discourse this month, and the ongoing background discussion about the gap between official NS narratives and lived experiences continued without significant new developments.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-06": {
+    "period": "2019-06",
+    "volume": 1656,
+    "volume_pct_vs_baseline": -78.4,
+    "sentiment": {
+      "neg": 0.263,
+      "neu": 0.597,
+      "pos": 0.14
+    },
+    "dominant_topics": "BMT & Training (300), NS Life & Culture (278), NS Policy & Society (177)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2019 was an unremarkable month for NS discourse on Reddit, with a significantly lower volume of discussion (1,656 chunks, a 78% drop from baseline). The conversation remained focused on routine topics such as BMT & Training, NS Life & Culture, and NS Policy & Society, with no notable spikes or controversies. Sentiment was predominantly neutral (60%), with a moderate level of negativity (26%) and limited positivity (14%), indicating a generally steady but somewhat critical public mood toward NS. There were no specific events during this period that noticeably influenced the discourse, and the ongoing background discussion about the gap between official NS narratives and lived experiences continued without major developments. Overall, public engagement and sentiment toward NS in June 2019 were stable and uneventful.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-07": {
+    "period": "2019-07",
+    "volume": 2548,
+    "volume_pct_vs_baseline": -66.8,
+    "sentiment": {
+      "neg": 0.274,
+      "neu": 0.592,
+      "pos": 0.135
+    },
+    "dominant_topics": "NS Life & Culture (487), NS Policy & Society (371), BMT & Training (260)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2019 was a relatively quiet month for NS discourse on Reddit, with a 67% decrease in chunk volume compared to the baseline, indicating lower overall activity. The conversation remained focused on core themes such as NS Life & Culture, NS Policy & Society, and BMT & Training, reflecting ongoing engagement with everyday experiences and systemic issues within National Service. The sentiment was predominantly neutral (59%), with a notable portion of negative sentiment (27%) and a smaller share of positive views (13%), suggesting a cautious or critical public mood rather than outright support or opposition. No specific event appears to have significantly driven discourse during this period, though persistent background discussions about the gap between official NS narratives and lived realities continued, especially on r/NationalServiceSG. Top posts highlighted personal grievances related to medical processes, officer conduct, and welfare, underscoring ongoing concerns about treatment and fairness in NS. Overall, the public mood was mixed but leaned toward critical reflection rather than enthusiasm.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-08": {
+    "period": "2019-08",
+    "volume": 1654,
+    "volume_pct_vs_baseline": -78.5,
+    "sentiment": {
+      "neg": 0.239,
+      "neu": 0.602,
+      "pos": 0.159
+    },
+    "dominant_topics": "NS Policy & Society (376), NS Life & Culture (204), BMT & Training (193)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2019 was a relatively low-volume month for NS discourse on Reddit, with 1,654 chunks representing a 78% decrease from the baseline. The conversation remained focused on core NS themes, particularly NS Policy & Society, NS Life & Culture, and BMT & Training. The top posts indicate ongoing engagement with issues such as military justice, racial dynamics within NS, and personal reflections on the value and impact of service. No singular event notably shifted the discourse, though discussions around fairness, employment implications of NS, and perceptions of patriotism persisted. Sentiment was predominantly neutral (60%), with a modest proportion of negative (24%) and positive (16%) comments, suggesting a generally ambivalent or critical public mood toward NS during this period. Overall, August 2019 did not see major controversies or sentiment shifts but continued the steady background discourse on the lived realities versus official narratives of National Service.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-09": {
+    "period": "2019-09",
+    "volume": 1716,
+    "volume_pct_vs_baseline": -77.7,
+    "sentiment": {
+      "neg": 0.265,
+      "neu": 0.624,
+      "pos": 0.111
+    },
+    "dominant_topics": "NS Life & Culture (314), BMT & Training (281), Vocations & Units (236)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2019 was a notably low-volume month for NS discourse on Reddit, with chunk volume down 78% compared to baseline. The conversation was largely neutral in tone, with 62% neutral sentiment and a minority of negative (26%) and positive (11%) posts. Discussion centered predominantly on everyday aspects of NS life, including Basic Military Training (BMT) and training routines, as well as vocations and unit experiences. Top posts reflected personal anecdotes about training conditions, such as rest schedules and living arrangements on Pulau Tekong, and concerns about ORD (Operationally Ready Date) delays linked to understudy performance and encik (officer) authority. No specific event appeared to drive discourse this month, though ongoing background discussions about the realism of NS portrayals persisted quietly. Overall, the public mood was measured and pragmatic, focusing on practical challenges and procedural issues rather than broader controversies or sentiment shifts.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-10": {
+    "period": "2019-10",
+    "volume": 1934,
+    "volume_pct_vs_baseline": -74.8,
+    "sentiment": {
+      "neg": 0.27,
+      "neu": 0.611,
+      "pos": 0.119
+    },
+    "dominant_topics": "NS Life & Culture (387), BMT & Training (264), NS Policy & Society (236)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2019 was a relatively quiet month for NS discourse on Reddit, with a 75% drop in chunk volume compared to the baseline, indicating lower overall engagement. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and NS Policy & Society, reflecting ongoing interest in the everyday experiences and structural aspects of National Service. No specific event appears to have significantly driven discourse during this period, and the persistent background theme of realism in NS narratives continued without notable escalation. Sentiment was predominantly neutral (61%), with a moderate level of negativity (27%) and limited positivity (12%), suggesting a generally balanced but somewhat critical public mood. The largest share of discussion took place in the general singapore subreddit, followed by NationalServiceSG, indicating that NS topics remained relevant both within dedicated communities and the broader Singaporean Reddit audience. Overall, October 2019 was unremarkable in terms of spikes or controversies in NS discourse.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-11": {
+    "period": "2019-11",
+    "volume": 2357,
+    "volume_pct_vs_baseline": -69.3,
+    "sentiment": {
+      "neg": 0.233,
+      "neu": 0.62,
+      "pos": 0.147
+    },
+    "dominant_topics": "BMT & Training (478), NS Life & Culture (355), Physical Fitness & IPPT (200)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2019 was a relatively quiet month for NS discourse on Reddit, with a 69% drop in chunk volume compared to baseline, indicating lower overall engagement. Sentiment remained largely neutral (62%), with a modest proportion of negative (23%) and positive (15%) posts. Discussions were dominated by topics related to BMT & Training, NS Life & Culture, and Physical Fitness & IPPT, reflecting ongoing everyday experiences of servicemen rather than major controversies. \n\nA notable event influencing discourse was the reported discoloration of tap water on Pulau Tekong, which sparked concern and prompted official investigations by MINDEF. This issue resonated with longstanding complaints about living conditions at Tekong, as reflected in highly upvoted posts about water quality and training hardships. Overall, the public mood was mixed but largely neutral, with some frustration over practical issues balanced by camaraderie and shared experiences typical of NS life.",
+    "last_updated": "2026-06-08"
+  },
+  "2019-12": {
+    "period": "2019-12",
+    "volume": 3018,
+    "volume_pct_vs_baseline": -60.7,
+    "sentiment": {
+      "neg": 0.247,
+      "neu": 0.596,
+      "pos": 0.157
+    },
+    "dominant_topics": "Vocations & Units (455), BMT & Training (448), NS Life & Culture (438)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2019 was a relatively quiet month for NS discourse on Reddit, with a 61% drop in chunk volume compared to baseline, indicating reduced overall discussion. Sentiment remained largely neutral at 60%, with negative sentiment at 25% and positive at 16%, showing no significant shifts in public mood. The conversation was dominated by practical topics such as Vocations & Units, BMT & Training, and NS Life & Culture, reflecting ongoing interest in everyday NS experiences rather than any major controversies or events. Notably, a reported injury during parachute training in Taiwan was mentioned among top posts but did not appear to significantly drive discourse or sentiment. The persistent background discourse on the gap between official NS narratives and lived realities continued without notable escalation. Overall, public sentiment toward NS in December 2019 was stable and neutral, with discussions focusing on routine aspects of service rather than heightened debate or controversy.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-01": {
+    "period": "2020-01",
+    "volume": 3166,
+    "volume_pct_vs_baseline": -58.8,
+    "sentiment": {
+      "neg": 0.285,
+      "neu": 0.556,
+      "pos": 0.159
+    },
+    "dominant_topics": "NS Life & Culture (608), BMT & Training (480), Medical & Health (299)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2020 was a relatively quiet month for NS discourse on Reddit, with a 59% drop in chunk volume compared to baseline, indicating lower overall engagement. The conversation was dominated by topics related to NS life and culture, Basic Military Training (BMT) and training, and medical and health issues, reflecting ongoing interest in the day-to-day realities of conscription. No specific event appears to have sharply influenced the discourse, although background discussions about the realism of NS experiences versus official narratives continued. Sentiment was predominantly neutral (56%), with a significant portion of negative sentiment (28%) and a smaller share of positive views (16%). The top upvoted comments suggest a mix of frustration and cynicism, particularly around the hardships and perceived inequities of NS, such as low allowances and the mental toll on servicemen. Overall, public mood toward NS in January 2020 was cautious and somewhat critical, without major controversy or spikes in engagement.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-02": {
+    "period": "2020-02",
+    "volume": 2928,
+    "volume_pct_vs_baseline": -61.9,
+    "sentiment": {
+      "neg": 0.232,
+      "neu": 0.631,
+      "pos": 0.137
+    },
+    "dominant_topics": "BMT & Training (420), Medical & Health (414), NS Life & Culture (367)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2020 was a relatively quiet month for NS discourse on Reddit, with a 62% drop in chunk volume compared to baseline, indicating reduced overall activity. Sentiment remained largely neutral (63%), with a modest proportion of negative (23%) and positive (14%) posts, suggesting no major controversies or sentiment shifts. Discussions were dominated by topics related to BMT & Training, Medical & Health, and NS Life & Culture, reflecting ongoing everyday experiences of servicemen rather than specific events. The subreddit NationalServiceSG accounted for the majority of posts, followed by singapore and askSingapore. No particular event appears to have driven discourse this month, and the persistent background theme of realism versus official NS narratives continued without notable escalation. Public mood toward NS remained generally balanced, with personal stories ranging from positive reflections on completing service to frustrations about training and health, but no significant spikes in negativity or enthusiasm.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-03": {
+    "period": "2020-03",
+    "volume": 5271,
+    "volume_pct_vs_baseline": -31.4,
+    "sentiment": {
+      "neg": 0.274,
+      "neu": 0.613,
+      "pos": 0.113
+    },
+    "dominant_topics": "BMT & Training (891), Vocations & Units (817), NS Life & Culture (783)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2020 was a notable month in NS Reddit discourse due to the significant impact of the COVID-19 pandemic on National Service operations. The volume of discussion decreased by 31% compared to the baseline, likely reflecting disruptions and uncertainty. Conversations were dominated by topics related to BMT & Training, Vocations & Units, and NS Life & Culture, with many posts addressing delayed enlistments and modified training protocols as announced by MINDEF. The pandemic led to curtailed field exercises and changes in camp arrangements, which shaped much of the discourse. Sentiment was predominantly neutral (61%), with a substantial portion of negative sentiment (27%), indicating some frustration or concern among Redditors about the disruptions. Positive sentiment remained low at 11%, suggesting cautious or critical attitudes rather than enthusiasm. Overall, the public mood toward NS in March 2020 was marked by adjustment to unprecedented changes, with discussions reflecting both practical challenges and ongoing skepticism about NS realities.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-04": {
+    "period": "2020-04",
+    "volume": 3828,
+    "volume_pct_vs_baseline": -50.2,
+    "sentiment": {
+      "neg": 0.341,
+      "neu": 0.524,
+      "pos": 0.135
+    },
+    "dominant_topics": "NS Life & Culture (751), BMT & Training (555), Medical & Health (520)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2020 saw a significant reduction in NS-related Reddit discourse, with chunk volume halving compared to baseline levels. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Medical & Health, reflecting ongoing concerns about the impact of COVID-19 on National Service. The pandemic’s disruptions, including delayed enlistments and modified training protocols announced in March, clearly shaped discussions, as servicemen and observers grappled with changes to the NS experience. Sentiment was predominantly neutral (52%), with a notable portion of negative sentiment (34%), likely reflecting frustrations and uncertainties caused by the pandemic’s effects on training and enlistment schedules. Positive sentiment remained low at 13%, indicating limited optimism. Overall, the public mood toward NS in April 2020 was cautious and subdued, shaped largely by the unprecedented operational challenges posed by COVID-19 rather than any specific controversy or spike in engagement.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-05": {
+    "period": "2020-05",
+    "volume": 4625,
+    "volume_pct_vs_baseline": -39.8,
+    "sentiment": {
+      "neg": 0.285,
+      "neu": 0.592,
+      "pos": 0.123
+    },
+    "dominant_topics": "NS Life & Culture (804), BMT & Training (743), Vocations & Units (540)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2020 was a relatively quiet month for NS discourse on Reddit, with a 40% decrease in chunk volume compared to baseline, indicating reduced overall activity. The conversation was dominated by practical aspects of NS life, including Basic Military Training (BMT) and training routines, as well as discussions about vocations and units. This focus reflects ongoing adjustments due to COVID-19 disruptions, such as delayed enlistments and modified training protocols, which continued to shape servicemen’s experiences. Sentiment remained largely neutral (59%), with a moderate level of negativity (29%) and limited positivity (12%), suggesting a cautious or resigned public mood rather than strong enthusiasm or controversy. Top posts included creative and nostalgic content, such as online BMT simulations and historical reflections, indicating a community engaging with NS culture in varied ways despite pandemic constraints. Overall, May 2020 did not see any major controversies or sentiment shifts but reflected steady engagement with NS life under pandemic conditions.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-06": {
+    "period": "2020-06",
+    "volume": 5388,
+    "volume_pct_vs_baseline": -29.8,
+    "sentiment": {
+      "neg": 0.296,
+      "neu": 0.556,
+      "pos": 0.148
+    },
+    "dominant_topics": "NS Life & Culture (955), NS Policy & Society (782), BMT & Training (752)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ivan_lim_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2020 was a notable month in NS Reddit discourse, marked by a 30% decrease in chunk volume compared to baseline but a significant focus on controversy. The dominant topics were NS Life & Culture, NS Policy & Society, and BMT & Training, reflecting ongoing discussions about daily NS experiences and broader institutional issues. The discourse was heavily influenced by the Ivan Lim controversy, where allegations of bullying and poor conduct during his NS tenure surfaced ahead of the Singapore General Election. This event generated considerable attention and polarized sentiment, contributing to the 30% negative sentiment observed. Despite this, the majority of posts remained neutral (56%), indicating a balanced mix of personal stories and policy discussions. Overall, public mood toward NS in June 2020 was cautious and critical, shaped by both the ongoing COVID-19 disruptions to training and the heightened scrutiny of leadership and conduct within NS ranks.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-07": {
+    "period": "2020-07",
+    "volume": 6711,
+    "volume_pct_vs_baseline": -12.6,
+    "sentiment": {
+      "neg": 0.288,
+      "neu": 0.572,
+      "pos": 0.14
+    },
+    "dominant_topics": "NS Life & Culture (1017), BMT & Training (970), Vocations & Units (880)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ivan_lim_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2020 was a moderately active month for NS discourse on Reddit, with 6,711 chunks of discussion, representing a 13% decrease from the baseline volume. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Vocations & Units, reflecting ongoing interest in the daily experiences and operational aspects of National Service. Sentiment remained largely neutral (57%), with a notable 29% negative sentiment, likely influenced by the continued disruptions to NS training and enlistment caused by the COVID-19 pandemic. Although the Ivan Lim controversy from June 2020 had recently unfolded, there is no clear evidence that it significantly shaped July’s discourse. Overall, public mood toward NS remained mixed but stable, with discussions focusing on adapting to modified training conditions amid the pandemic rather than new controversies or sentiment shifts.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-08": {
+    "period": "2020-08",
+    "volume": 6448,
+    "volume_pct_vs_baseline": -16.0,
+    "sentiment": {
+      "neg": 0.303,
+      "neu": 0.564,
+      "pos": 0.132
+    },
+    "dominant_topics": "NS Life & Culture (1163), BMT & Training (1155), Vocations & Units (701)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2020 was a moderately active month for NS discourse on Reddit, with a 16% decrease in chunk volume compared to baseline, indicating slightly reduced overall discussion. Sentiment remained largely neutral (56%), with a notable 30% negative sentiment and only 13% positive, reflecting ongoing frustrations within the community. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Vocations & Units, consistent with typical NS concerns. There was no single specific event driving discourse this month, but the continued impact of COVID-19 disruptions to enlistment and training likely influenced discussions, especially around modified training and delays. The top posts, largely from the broader Singapore subreddit, suggest some spillover into general societal frustrations, though not directly NS-related. Overall, public mood toward NS in August 2020 was mixed but leaned toward neutral to negative, reflecting ongoing challenges and dissatisfaction amid pandemic-related adjustments.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-09": {
+    "period": "2020-09",
+    "volume": 7278,
+    "volume_pct_vs_baseline": -5.2,
+    "sentiment": {
+      "neg": 0.289,
+      "neu": 0.581,
+      "pos": 0.13
+    },
+    "dominant_topics": "BMT & Training (1020), NS Life & Culture (986), Vocations & Units (903)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2020 was a relatively stable month for NS discourse on Reddit, with a slight decrease in chunk volume (-5%) compared to the baseline. The conversation was dominated by topics related to BMT & Training, NS Life & Culture, and Vocations & Units, reflecting ongoing interest in the day-to-day realities of National Service. The sentiment distribution showed a majority neutral tone (58%), with a significant portion of negative sentiment (29%) and a smaller share of positive sentiment (13%). There was no indication of a specific new event driving the discourse; rather, discussions continued to be shaped by the ongoing impact of COVID-19 disruptions to NS training and enlistment schedules, as well as persistent debates about gender roles and fairness in NS and broader societal contexts. The top upvoted comments focused heavily on perceived gender disparities in legal and social treatment, suggesting that concerns about systemic disadvantages for men were prominent. Overall, the public mood was cautiously critical but largely neutral, reflecting a community engaged with both practical NS issues and broader societal debates.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-10": {
+    "period": "2020-10",
+    "volume": 6480,
+    "volume_pct_vs_baseline": -15.6,
+    "sentiment": {
+      "neg": 0.287,
+      "neu": 0.592,
+      "pos": 0.121
+    },
+    "dominant_topics": "BMT & Training (1112), Vocations & Units (898), NS Life & Culture (764)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2020 was a moderately active month for NS discourse on Reddit, with a chunk volume 16% below baseline, indicating slightly reduced overall discussion. Sentiment was predominantly neutral (59%), with a notable 29% negative sentiment and only 12% positive, reflecting a somewhat cautious or critical public mood toward NS. The discourse was dominated by topics related to BMT & Training, Vocations & Units, and NS Life & Culture, suggesting continued focus on the practical and experiential aspects of service. No specific new event appears to have driven discourse this month; rather, ongoing COVID-19 disruptions and delayed enlistments likely continued to influence conversations, alongside persistent reflections on the realities of NS versus official narratives. The top upvoted posts, many personal stories including one about a cancer diagnosis during NS, highlight the emotional and physical challenges faced by servicemen. Overall, public sentiment in October 2020 was mixed but leaned toward neutral to negative, with personal hardships and training experiences shaping the conversation.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-11": {
+    "period": "2020-11",
+    "volume": 5688,
+    "volume_pct_vs_baseline": -25.9,
+    "sentiment": {
+      "neg": 0.283,
+      "neu": 0.6,
+      "pos": 0.117
+    },
+    "dominant_topics": "Vocations & Units (994), NS Life & Culture (860), BMT & Training (839)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2020 was a moderately active month for NS discourse on Reddit, with 5,688 chunks posted, representing a 26% decrease from the baseline volume. Sentiment remained largely neutral (60%), though a notable 28% of posts expressed negative views, reflecting ongoing frustrations within the community. Discussions were dominated by topics related to Vocations & Units, NS Life & Culture, and BMT & Training, indicating a focus on everyday experiences and challenges faced during service. The discourse continued to be shaped by the broader context of COVID-19 disruptions, including delayed enlistments and modified training regimes, which likely contributed to dissatisfaction and safety concerns highlighted in top posts. Several highly upvoted comments detailed negative personal experiences, safety lapses, and cynicism toward the military system, underscoring a critical public mood. Overall, the sentiment suggests a community grappling with the realities of NS under pandemic constraints, with a prevailing tone of disillusionment and concern over safety and treatment.",
+    "last_updated": "2026-06-08"
+  },
+  "2020-12": {
+    "period": "2020-12",
+    "volume": 7423,
+    "volume_pct_vs_baseline": -3.3,
+    "sentiment": {
+      "neg": 0.294,
+      "neu": 0.546,
+      "pos": 0.159
+    },
+    "dominant_topics": "NS Life & Culture (1196), Vocations & Units (1105), BMT & Training (949)",
+    "events": [
+      "covid_ns_disruptions_2020",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2020 was a relatively typical month for NS discourse on Reddit, with a near-baseline chunk volume of 7,423 and sentiment largely neutral (55%), alongside a moderate negative sentiment (29%) and limited positive sentiment (16%). The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the everyday experiences and challenges of servicemen. There was no indication of a specific event driving discourse this month, though the continued backdrop of COVID-19 disruptions to enlistment and training likely influenced discussions. Notably, several highly upvoted posts centered on personal accounts of bullying and mental health struggles within NS, highlighting persistent concerns about the social environment in training units. Overall, public mood toward NS remained mixed, with a significant portion expressing frustration or negativity, but the discourse did not show any extraordinary shifts or controversies in December 2020.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-01": {
+    "period": "2021-01",
+    "volume": 7292,
+    "volume_pct_vs_baseline": -5.1,
+    "sentiment": {
+      "neg": 0.249,
+      "neu": 0.584,
+      "pos": 0.167
+    },
+    "dominant_topics": "NS Life & Culture (1374), BMT & Training (1191), Vocations & Units (772)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2021 was a relatively typical month in NS discourse on Reddit, with a slight dip in chunk volume (-5% vs baseline) and a sentiment distribution leaning mostly neutral (58%), alongside 25% negative and 17% positive sentiment. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Vocations & Units, reflecting ongoing engagement with everyday NS experiences. No specific event appears to have sharply influenced the discourse, though the persistent background theme of questioning the realism of official NS narratives continued to underpin discussions. Highly upvoted posts ranged from humorous reflections on NS life to candid accounts of training hardships and social dynamics within units. Overall, the public mood toward NS in January 2021 was mixed but largely neutral, with some expressions of frustration and camaraderie, indicating a balanced but critical engagement with the realities of National Service.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-02": {
+    "period": "2021-02",
+    "volume": 6130,
+    "volume_pct_vs_baseline": -20.2,
+    "sentiment": {
+      "neg": 0.322,
+      "neu": 0.526,
+      "pos": 0.152
+    },
+    "dominant_topics": "NS Life & Culture (1057), Vocations & Units (1024), Medical & Health (701)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2021 was a moderately active month for NS discourse on Reddit, with 6,130 chunks posted—a 20% decrease from the baseline. Sentiment remained largely neutral (53%), though a notable 32% of posts expressed negative views, reflecting ongoing critical discussions. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, indicating a focus on everyday experiences, unit roles, and health-related challenges within NS. The discourse continued to reflect the persistent background tension between official NS narratives and the lived realities of servicemen, particularly around issues such as toxic masculinity, mental health stigma, and the difficulties in reporting injuries or medical conditions. Highly upvoted posts highlighted frustrations with medical reporting processes and toxic cultural aspects, suggesting a critical public mood. Overall, the discourse in February 2021 was characterized by candid reflections on NS challenges, with a generally critical but nuanced public attitude.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-03": {
+    "period": "2021-03",
+    "volume": 7117,
+    "volume_pct_vs_baseline": -7.3,
+    "sentiment": {
+      "neg": 0.316,
+      "neu": 0.538,
+      "pos": 0.145
+    },
+    "dominant_topics": "Medical & Health (1030), NS Life & Culture (1025), Vocations & Units (1003)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2021 was a relatively typical month for NS discourse on Reddit, with a slight decrease in chunk volume (-7%) compared to baseline and a sentiment distribution skewed toward neutral (54%) and negative (32%), with only 15% positive. Discussions were dominated by topics related to Medical & Health, NS Life & Culture, and Vocations & Units, reflecting ongoing interest in the lived experiences and practical aspects of National Service. The subreddit NationalServiceSG accounted for the majority of activity, indicating focused community engagement.\n\nNo specific event appears to have sharply driven discourse this month, though the persistent background theme of skepticism toward official NS narratives continued. The top upvoted posts reveal a mix of critical views on related industries and candid expressions of NS hardships, suggesting a public mood that remains critical and somewhat disillusioned but engaged. Overall, March 2021 did not mark a significant shift but maintained the ongoing nuanced and sometimes contentious conversation around NS realities.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-04": {
+    "period": "2021-04",
+    "volume": 7899,
+    "volume_pct_vs_baseline": 2.9,
+    "sentiment": {
+      "neg": 0.282,
+      "neu": 0.585,
+      "pos": 0.133
+    },
+    "dominant_topics": "NS Life & Culture (1151), Vocations & Units (1068), Medical & Health (977)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2021 was an unremarkable month for NS discourse on Reddit, with chunk volume near baseline and sentiment largely neutral (59%), alongside a moderate level of negativity (28%) and limited positivity (13%). The discussion was dominated by practical aspects of National Service, focusing on NS life and culture, vocations and units, and medical and health topics. The top upvoted content centered on clarifying NS obligations beyond the initial two years, including details on Operationally Ready National Service (ORNS), Individual Physical Proficiency Test (IPPT) requirements, and recall procedures. There was no indication of a specific event driving discourse or causing notable controversy during this period. Overall, the public mood appeared informational and procedural, reflecting a steady engagement with understanding NS responsibilities rather than emotional or contentious debate.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-05": {
+    "period": "2021-05",
+    "volume": 7146,
+    "volume_pct_vs_baseline": -7.0,
+    "sentiment": {
+      "neg": 0.309,
+      "neu": 0.539,
+      "pos": 0.152
+    },
+    "dominant_topics": "NS Life & Culture (1218), BMT & Training (961), Medical & Health (894)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2021 was a relatively typical month for NS discourse on Reddit, with a slight decrease in chunk volume (-7% vs baseline) and a sentiment distribution of 31% negative, 54% neutral, and 15% positive. Discussions were dominated by topics related to NS Life & Culture, BMT & Training, and Medical & Health, reflecting ongoing conversations about the everyday realities of National Service. There was no specific event during this period that significantly shifted the discourse; rather, the persistent background theme of the gap between official NS narratives and lived experiences continued to influence discussions. Notably, some of the top upvoted comments reflected broader societal issues such as racial tensions and social dynamics, which intersect with NS experiences but were not tied to a singular NS-specific controversy. Overall, the public mood toward NS remained mixed, with a majority of neutral sentiment and a substantial portion expressing negative views, indicating ongoing critical engagement with NS realities.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-06": {
+    "period": "2021-06",
+    "volume": 9636,
+    "volume_pct_vs_baseline": 25.5,
+    "sentiment": {
+      "neg": 0.284,
+      "neu": 0.545,
+      "pos": 0.171
+    },
+    "dominant_topics": "Vocations & Units (1783), NS Life & Culture (1471), BMT & Training (1409)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2021 saw a 25% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to the baseline. The conversation was dominated by discussions on vocations and units, NS life and culture, and BMT and training, reflecting ongoing interest in the day-to-day realities of National Service. Sentiment remained largely neutral (55%), with a notable 28% negative tone, suggesting persistent frustrations alongside routine commentary. No singular event appears to have driven discourse this month; however, the top upvoted posts reveal underlying dissatisfaction with aspects of NS, such as perceived lack of care for soldiers’ well-being and leadership attitudes during training. Additionally, a high-profile unrelated controversy involving a Singaporean streamer scamming NSMen’s savings briefly surfaced but did not dominate NS discourse itself. Overall, the public mood toward NS in June 2021 was mixed, with a significant portion expressing critical views amid ongoing reflections on the gap between official NS narratives and lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-07": {
+    "period": "2021-07",
+    "volume": 8447,
+    "volume_pct_vs_baseline": 10.0,
+    "sentiment": {
+      "neg": 0.328,
+      "neu": 0.534,
+      "pos": 0.138
+    },
+    "dominant_topics": "NS Life & Culture (1748), Medical & Health (997), BMT & Training (972)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2021 saw a moderate increase in NS-related Reddit discourse, with an 10% rise in chunk volume compared to baseline. The conversation was dominated by topics related to NS Life & Culture, Medical & Health, and BMT & Training, reflecting ongoing interest in the day-to-day realities and challenges of National Service. The top upvoted posts included humorous and relatable content about Tekong and NS slang, as well as discussions around the postponement of the National Day Parade to August 21, which likely contributed to engagement. There was no indication of a major controversy or sentiment spike; sentiment remained largely neutral (53%) with a significant portion of negative sentiment (33%) and a smaller share of positive sentiment (14%). Overall, public mood toward NS in July 2021 was balanced, reflecting a mix of lighthearted banter, practical concerns, and routine discourse rather than heightened tension or enthusiasm.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-08": {
+    "period": "2021-08",
+    "volume": 9241,
+    "volume_pct_vs_baseline": 20.3,
+    "sentiment": {
+      "neg": 0.318,
+      "neu": 0.552,
+      "pos": 0.13
+    },
+    "dominant_topics": "NS Life & Culture (1703), BMT & Training (1126), Medical & Health (1041)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2021 saw a moderately elevated volume of NS-related Reddit discourse, with a 20% increase in chunks compared to baseline. Sentiment remained largely neutral (55%), though a significant portion (32%) was negative, indicating ongoing critical engagement. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Medical & Health, reflecting a broad focus on the lived experience and well-being of servicemen. While no single NS event clearly dominated the discourse, the top upvoted posts suggest heightened attention to issues of fairness and accountability, including discussions around false accusations and their consequences, as well as a tragic incident involving the death of a full-time police national serviceman. These themes may have contributed to the relatively high negative sentiment. Overall, the public mood toward NS in August 2021 was cautious and critical, with users engaging deeply on challenges within the service but without a major controversy driving the conversation.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-09": {
+    "period": "2021-09",
+    "volume": 10390,
+    "volume_pct_vs_baseline": 35.3,
+    "sentiment": {
+      "neg": 0.327,
+      "neu": 0.504,
+      "pos": 0.17
+    },
+    "dominant_topics": "NS Life & Culture (1724), Vocations & Units (1503), BMT & Training (1128)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2021 saw a notable 35% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline months. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the everyday experiences and challenges of servicemen. The top posts suggest a mix of personal anecdotes, training experiences, and operational updates, such as the scrambling of F-16s after a Malaysian police helicopter flew over Pulau Tekong, which likely contributed to public attention. Sentiment remained largely neutral (50%), with a significant portion of negative sentiment (33%) and a smaller share of positive (17%), indicating a cautious or critical public mood rather than outright support or opposition. No singular controversy or event sharply shifted discourse, but the continued background discussion on the realism of NS narratives persisted. Overall, the public mood was mixed, with practical concerns and skepticism coexisting with respect for NS personnel.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-10": {
+    "period": "2021-10",
+    "volume": 10171,
+    "volume_pct_vs_baseline": 32.4,
+    "sentiment": {
+      "neg": 0.33,
+      "neu": 0.522,
+      "pos": 0.148
+    },
+    "dominant_topics": "NS Life & Culture (2016), Medical & Health (1164), BMT & Training (1079)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2021 saw a notable 32% increase in NS-related Reddit discourse volume, with over 10,000 content chunks primarily concentrated in r/NationalServiceSG. The dominant topics were NS Life & Culture, Medical & Health, and BMT & Training, reflecting ongoing conversations about the lived realities of National Service. Sentiment skewed mostly neutral (52%), with a significant portion of negative sentiment (33%) and a smaller share of positive views (15%). The discourse continued to reflect the persistent background theme of a gap between official NS narratives and actual experiences, though no specific new event emerged as a clear driver this month. Highly upvoted posts highlighted frustrations over the demands of NS and reservist duties, as well as critiques of related social issues, indicating a generally critical and weary public mood. Overall, October’s discourse was marked by sustained scrutiny and ambivalence toward NS, without a singular controversy dominating the conversation.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-11": {
+    "period": "2021-11",
+    "volume": 10932,
+    "volume_pct_vs_baseline": 42.3,
+    "sentiment": {
+      "neg": 0.328,
+      "neu": 0.508,
+      "pos": 0.164
+    },
+    "dominant_topics": "NS Life & Culture (1945), BMT & Training (1455), Vocations & Units (1327)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2021 was a notably active month for NS discourse on Reddit, with a 42% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Vocations & Units, reflecting ongoing interest in the day-to-day realities of national service. A key driver of discussion was the announcement of the NS allowance increase on November 1, 2021, which addressed longstanding concerns about pay not keeping pace with living costs. This event likely contributed to the volume spike and shaped conversations around fairness and support for servicemen. Sentiment was predominantly neutral (51%), with a significant portion of negative sentiment (33%)—suggesting mixed feelings, possibly due to persistent frustrations about NS conditions despite the pay raise. Positive sentiment remained relatively low at 16%, indicating cautious optimism but ongoing critique within the community. Overall, the public mood was engaged but ambivalent, balancing recognition of improvements with continued scrutiny of NS realities.",
+    "last_updated": "2026-06-08"
+  },
+  "2021-12": {
+    "period": "2021-12",
+    "volume": 11426,
+    "volume_pct_vs_baseline": 48.8,
+    "sentiment": {
+      "neg": 0.328,
+      "neu": 0.51,
+      "pos": 0.162
+    },
+    "dominant_topics": "NS Life & Culture (2200), Vocations & Units (1667), BMT & Training (1361)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2021 was a notably active month for NS discourse on Reddit, with a 49% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was largely centered on NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the everyday experiences and challenges of national servicemen. The discourse was primarily hosted on r/NationalServiceSG, which accounted for the vast majority of posts. Sentiment was mixed but leaned toward neutral (51%), with a significant portion of negative sentiment (33%) and a smaller share of positive (16%). This period followed the announcement of increased NS allowances in November 2021, which likely influenced discussions around pay and conditions, contributing to the volume and nuanced sentiment. Popular posts ranged from lighthearted jokes to personal anecdotes and reflections on camp life, suggesting a community engaged in both critical and relatable dialogue. Overall, public mood was cautiously reflective, balancing frustrations with camaraderie and shared experience.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-01": {
+    "period": "2022-01",
+    "volume": 12806,
+    "volume_pct_vs_baseline": 66.7,
+    "sentiment": {
+      "neg": 0.322,
+      "neu": 0.511,
+      "pos": 0.167
+    },
+    "dominant_topics": "NS Life & Culture (2119), Medical & Health (1505), BMT & Training (1316)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_disruption_scheme_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2022 was a notable month for NS discourse on Reddit, with a 67% increase in chunk volume compared to baseline, indicating heightened engagement. Discussions were dominated by topics related to NS Life & Culture, Medical & Health, and BMT & Training, reflecting broad interest in the lived experiences and physical demands of conscripts. A key driver of conversation was the ongoing debate around NS Disruption Scheme changes, particularly concerning university and professional deferments, which raised questions about fairness and equity. This controversy likely contributed to the relatively high proportion of negative sentiment (32%) alongside a majority neutral tone (51%). The top upvoted posts focused on comparisons of Singapore’s conscription duration and military context with other countries, suggesting public reflection on the rationale behind Singapore’s lengthy NS obligations. Overall, the mood was mixed but leaned toward critical engagement, with calls for better recognition of conscripts’ contributions, especially regarding pay and disruption policies.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-02": {
+    "period": "2022-02",
+    "volume": 11204,
+    "volume_pct_vs_baseline": 45.9,
+    "sentiment": {
+      "neg": 0.364,
+      "neu": 0.501,
+      "pos": 0.134
+    },
+    "dominant_topics": "NS Life & Culture (2061), Medical & Health (1330), NS Policy & Society (1255)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_disruption_scheme_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2022 saw a notable 46% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics on NS Life & Culture, Medical & Health, and NS Policy & Society, reflecting a broad interest in both everyday NS experiences and structural issues. Ongoing debates around NS disruption schemes, particularly concerning university and professional deferments, likely contributed to this increased activity, as questions about fairness and eligibility persisted from the start of 2022. Sentiment was mixed but skewed toward neutrality (50%), with a significant portion of negative sentiment (36%) and limited positivity (13%), suggesting cautious or critical public attitudes. The top subreddit, NationalServiceSG, accounted for the majority of discussions. Overall, the public mood in February 2022 appeared engaged yet somewhat critical, focusing on practical challenges and policy debates rather than celebratory or purely supportive narratives.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-03": {
+    "period": "2022-03",
+    "volume": 12971,
+    "volume_pct_vs_baseline": 68.9,
+    "sentiment": {
+      "neg": 0.384,
+      "neu": 0.465,
+      "pos": 0.151
+    },
+    "dominant_topics": "NS Life & Culture (2844), BMT & Training (1563), Vocations & Units (1471)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_disruption_scheme_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2022 saw a notable 69% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics on NS Life & Culture, BMT & Training, and Vocations & Units, reflecting a focus on everyday experiences and training aspects of national service. While no singular event from the period appears to have sharply driven the discourse, ongoing debates around NS policies such as the disruption scheme and allowance adjustments likely contributed to sustained interest. The top posts reveal a mix of personal concerns about unit assignments, humorous and frustrating anecdotes from training, and serious incidents like the death of a 25-year-old NSman during fitness training, which may have influenced the 38% negative sentiment observed. Overall, public mood was predominantly neutral to negative, with only 15% positive sentiment, suggesting a cautious or critical stance toward NS issues during this period.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-04": {
+    "period": "2022-04",
+    "volume": 10664,
+    "volume_pct_vs_baseline": 38.9,
+    "sentiment": {
+      "neg": 0.35,
+      "neu": 0.512,
+      "pos": 0.138
+    },
+    "dominant_topics": "NS Life & Culture (2298), Medical & Health (1304), BMT & Training (1011)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_disruption_scheme_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2022 saw a notable 39% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline. The conversation was dominated by topics around NS Life & Culture, Medical & Health, and BMT & Training, reflecting ongoing interest in the day-to-day experiences and physical demands of National Service. The majority of posts appeared in r/NationalServiceSG, with smaller contributions from broader Singapore-focused subreddits. While no specific new event emerged in April itself, the discourse remained influenced by prior developments such as the NS allowance increase and ongoing debates about NS disruption schemes. Sentiment was predominantly neutral (51%), with a significant portion of negative sentiment (35%) and a smaller share of positive views (14%), suggesting a generally mixed but somewhat critical public mood. Overall, April’s discussions reflected continued scrutiny of NS realities and challenges, with practical advice and personal experiences shaping the conversation rather than any major controversy or sentiment shift.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-05": {
+    "period": "2022-05",
+    "volume": 14224,
+    "volume_pct_vs_baseline": 85.2,
+    "sentiment": {
+      "neg": 0.341,
+      "neu": 0.504,
+      "pos": 0.154
+    },
+    "dominant_topics": "NS Life & Culture (2507), Medical & Health (1821), Vocations & Units (1664)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_disruption_scheme_2022",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2022 was a notably active month for NS discourse on Reddit, with a substantial 85% increase in chunk volume compared to baseline. Discussions were primarily concentrated on NS Life & Culture, Medical & Health, and Vocations & Units, reflecting ongoing concerns about the lived experiences and welfare of servicemen. The dominant subreddit was NationalServiceSG, accounting for the majority of posts. A significant portion of the conversation revolved around remuneration and injury-related issues, as evidenced by highly upvoted posts discussing NS allowances and physical injuries sustained during service. While no new policy announcements occurred in May itself, the discourse was influenced by lingering debates over NS allowances and the equity of service conditions, themes that had been developing since late 2021 and early 2022. Sentiment was mixed but skewed toward neutral and negative, with 34% negative sentiment reflecting frustrations over pay and service hardships. Overall, public mood was one of critical engagement, with users expressing dissatisfaction about compensation and the physical toll of NS.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-06": {
+    "period": "2022-06",
+    "volume": 13651,
+    "volume_pct_vs_baseline": 77.7,
+    "sentiment": {
+      "neg": 0.351,
+      "neu": 0.503,
+      "pos": 0.146
+    },
+    "dominant_topics": "NS Life & Culture (2330), Vocations & Units (1731), Medical & Health (1354)",
+    "events": [
+      "ns_allowance_increase_2021_2022",
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2022 was a notable month for NS discourse on Reddit, with a 78% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, reflecting broad interest in daily NS experiences and unit dynamics. A significant driver of discourse was the emergence of sustained debates on NS equity, particularly concerning Permanent Residents, foreign talent, and PR exemptions, which began in June 2022. This controversy fueled critical discussions about fairness in NS obligations and benefits, contributing to a relatively high negative sentiment of 35%. Despite this, half of the discourse remained neutral, with 15% positive sentiment, suggesting a mixed but predominantly critical public mood. The top upvoted posts reveal tensions around unit interactions and rank dynamics, underscoring ongoing frustrations within NS culture. Overall, June 2022 reflected a period of intensified scrutiny and debate over equity and lived NS realities.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-07": {
+    "period": "2022-07",
+    "volume": 11861,
+    "volume_pct_vs_baseline": 54.4,
+    "sentiment": {
+      "neg": 0.355,
+      "neu": 0.501,
+      "pos": 0.144
+    },
+    "dominant_topics": "NS Life & Culture (2208), BMT & Training (1524), Medical & Health (1299)",
+    "events": [
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2022 was a notably active month for NS discourse on Reddit, with a 54% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Medical & Health, reflecting a broad focus on everyday NS experiences and challenges. Discussions largely took place in the NationalServiceSG subreddit, which accounted for the majority of posts. The discourse was marked by a mixed but somewhat critical tone, with 36% negative sentiment and only 14% positive, suggesting ongoing frustrations. Key themes included equity debates around NS deferments and exemptions, as well as issues of harassment and underpayment highlighted in highly upvoted posts. Although no single event uniquely defined the month, the sustained debates on NS equity and the lived realities of service members continued to shape public sentiment. Overall, the mood was one of critical reflection, with users expressing dissatisfaction with systemic issues while sharing personal NS experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-08": {
+    "period": "2022-08",
+    "volume": 12593,
+    "volume_pct_vs_baseline": 64.0,
+    "sentiment": {
+      "neg": 0.365,
+      "neu": 0.495,
+      "pos": 0.14
+    },
+    "dominant_topics": "NS Life & Culture (2620), Medical & Health (1417), BMT & Training (1324)",
+    "events": [
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2022 was a notably active month for NS discourse on Reddit, with a 64% increase in chunk volume compared to baseline, indicating heightened engagement. Discussions were dominated by topics related to NS Life & Culture, Medical & Health, and BMT & Training, reflecting ongoing interest in everyday NS experiences and health concerns. The discourse was primarily hosted on r/NationalServiceSG, which accounted for the majority of posts. While no single event uniquely defined the month, the sustained debates on NS equity—particularly around deferment schemes and the fairness of exemptions for Permanent Residents and foreign talent—continued to influence conversations. Sentiment was mixed, with a plurality of neutral posts (49%), but a significant portion of negative sentiment (37%) suggests ongoing frustrations or criticisms within the community. Positive sentiment remained relatively low at 14%, indicating a cautious or critical public mood toward NS during this period. Overall, the discourse reflected a community engaged in nuanced discussions about the realities and challenges of National Service.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-09": {
+    "period": "2022-09",
+    "volume": 11145,
+    "volume_pct_vs_baseline": 45.1,
+    "sentiment": {
+      "neg": 0.342,
+      "neu": 0.522,
+      "pos": 0.136
+    },
+    "dominant_topics": "NS Life & Culture (2050), Medical & Health (1547), BMT & Training (1425)",
+    "events": [
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2022 saw a notable 45% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics around NS Life & Culture, Medical & Health, and BMT & Training, reflecting everyday experiences and challenges faced by servicemen. While no single event uniquely drove discourse this month, ongoing debates about NS equity and the NS Disruption Scheme changes continued to influence discussions, contributing to questions about fairness and access to deferments. Sentiment was predominantly neutral (52%), with a significant portion of negative sentiment (34%) and a smaller share of positive sentiment (14%), suggesting a generally mixed but somewhat critical public mood. Popular posts emphasized camaraderie and shared frustrations with training and camp life, highlighting both the bonds formed and the difficulties endured. Overall, the discourse reflected a realistic and occasionally critical view of NS, consistent with the sustained background discourse on the gap between official narratives and lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-10": {
+    "period": "2022-10",
+    "volume": 9034,
+    "volume_pct_vs_baseline": 17.6,
+    "sentiment": {
+      "neg": 0.333,
+      "neu": 0.523,
+      "pos": 0.144
+    },
+    "dominant_topics": "NS Life & Culture (1684), Medical & Health (1061), BMT & Training (953)",
+    "events": [
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2022 saw a notable 18% increase in NS-related Reddit discourse volume, with over 9,000 chunks posted, primarily on r/NationalServiceSG. The conversation was dominated by topics around NS Life & Culture, Medical & Health, and BMT & Training, reflecting ongoing interest in the day-to-day realities and challenges of conscript life. Sentiment remained largely neutral (52%), though a significant portion (33%) expressed negative views, likely tied to persistent debates on NS equity and deferment policies that continued throughout 2022. While no single event uniquely defined the month, the sustained discourse on NS disruption schemes and fairness in deferment and exemptions contributed to critical discussions. The top posts suggest a mix of practical concerns, personal anecdotes, and skepticism toward official narratives. Overall, public mood in October 2022 was cautiously critical but balanced, with many users sharing lived experiences that highlight both frustrations and the cultural aspects of NS service.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-11": {
+    "period": "2022-11",
+    "volume": 9291,
+    "volume_pct_vs_baseline": 21.0,
+    "sentiment": {
+      "neg": 0.342,
+      "neu": 0.526,
+      "pos": 0.132
+    },
+    "dominant_topics": "NS Life & Culture (1622), Vocations & Units (1286), Medical & Health (1054)",
+    "events": [
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2022 saw a 21% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the everyday experiences and challenges of servicemen. The bulk of activity occurred in r/NationalServiceSG, with smaller contributions from r/singapore and r/askSingapore. Sentiment remained largely neutral (53%), though a notable 34% of posts expressed negative views, consistent with sustained debates on NS equity and disruption schemes that continued throughout 2022. While no singular event uniquely defined the month, ongoing discussions about fairness in NS deferments and the lived realities of service contributed to critical discourse. The overall public mood was mixed but leaned toward neutral to slightly negative, reflecting both routine sharing of NS life and persistent frustrations around systemic issues.",
+    "last_updated": "2026-06-08"
+  },
+  "2022-12": {
+    "period": "2022-12",
+    "volume": 9572,
+    "volume_pct_vs_baseline": 24.6,
+    "sentiment": {
+      "neg": 0.362,
+      "neu": 0.524,
+      "pos": 0.114
+    },
+    "dominant_topics": "NS Life & Culture (1498), Vocations & Units (1404), Medical & Health (864)",
+    "events": [
+      "ns_disruption_scheme_2022",
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2022 saw a 25% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics on NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in daily NS experiences and unit-specific issues. The bulk of discussions occurred in r/NationalServiceSG, with smaller contributions from r/singapore and r/askSingapore. While no singular event uniquely defined the month, the sustained debates on NS equity, particularly regarding deferment schemes and exemptions for Permanent Residents and foreign talent, continued to influence discourse. Sentiment remained predominantly neutral (52%), with a notable 36% negative tone, suggesting persistent frustrations or criticisms within the community. Positive sentiment was limited to 11%, indicating that while some appreciation exists, overall public mood toward NS in December 2022 was cautious and critical, reflecting ongoing concerns about fairness and recognition in national service.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-01": {
+    "period": "2023-01",
+    "volume": 9286,
+    "volume_pct_vs_baseline": 20.9,
+    "sentiment": {
+      "neg": 0.348,
+      "neu": 0.527,
+      "pos": 0.124
+    },
+    "dominant_topics": "NS Life & Culture (1759), Medical & Health (1144), Vocations & Units (1054)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2023 saw a notable 21% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline. The conversation was dominated by topics around NS Life & Culture, Medical & Health, and Vocations & Units, reflecting ongoing interest in the everyday realities and challenges of service. Sentiment remained largely neutral (53%), with a significant portion of negative sentiment (35%) and a smaller positive share (12%), suggesting critical but balanced discussions. The discourse included vivid personal accounts and reflections on the physical risks and strict regulations within NS, as seen in the top upvoted posts. While no single event uniquely drove the discourse this month, the sustained debates on NS equity and the realism of NS experiences continued to influence conversations, maintaining a critical undercurrent. Overall, public mood was mixed but leaned toward critical realism, with users expressing frustrations about NS hardships alongside a sense of duty and camaraderie.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-02": {
+    "period": "2023-02",
+    "volume": 9311,
+    "volume_pct_vs_baseline": 21.2,
+    "sentiment": {
+      "neg": 0.373,
+      "neu": 0.503,
+      "pos": 0.124
+    },
+    "dominant_topics": "NS Life & Culture (1468), Medical & Health (1028), NS Policy & Society (1003)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2023 saw a 21% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline. The conversation was dominated by topics around NS Life & Culture, Medical & Health, and NS Policy & Society, reflecting a broad focus on both everyday experiences and systemic issues. The sustained debates on NS equity, particularly concerning Permanent Residents and foreign talent exemptions, continued to influence discussions, as evidenced by posts addressing fairness in conscription and allowances amid rising living costs. Top posts reveal tensions around recognition of NS contributions, financial support for servicemen, and the perceived fairness of conscription policies. Sentiment was predominantly neutral (50%) but with a significant portion of negative sentiment (37%), suggesting ongoing dissatisfaction or critique within the community. Overall, the public mood in February 2023 was mixed but leaned toward critical engagement, with concerns over policy fairness and the lived realities of NS service shaping the discourse.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-03": {
+    "period": "2023-03",
+    "volume": 10642,
+    "volume_pct_vs_baseline": 38.6,
+    "sentiment": {
+      "neg": 0.354,
+      "neu": 0.515,
+      "pos": 0.131
+    },
+    "dominant_topics": "NS Life & Culture (1547), Vocations & Units (1324), Medical & Health (1251)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2023 was a notably active month for NS discourse on Reddit, with a 39% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing concerns about daily NS experiences, unit assignments, and health-related issues. The largest share of posts appeared on r/NationalServiceSG, with additional contributions from r/askSingapore and r/singapore.\n\nWhile no singular event is explicitly identified as driving discourse this month, the sustained debates on NS equity—particularly regarding Permanent Residents and foreign talent exemptions—continued to influence discussions, contributing to a significant portion of the 35% negative sentiment. This negativity likely stems from frustrations over perceived inequities and challenges within NS. Overall, the public mood in March 2023 was predominantly neutral to negative, with critical reflections on NS realities and systemic issues outweighing positive narratives.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-04": {
+    "period": "2023-04",
+    "volume": 8972,
+    "volume_pct_vs_baseline": 16.8,
+    "sentiment": {
+      "neg": 0.359,
+      "neu": 0.507,
+      "pos": 0.134
+    },
+    "dominant_topics": "NS Life & Culture (1516), Vocations & Units (1164), Medical & Health (840)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2023 saw a notable 17% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the lived experiences and practical aspects of National Service. A significant portion of the discourse centered on issues of equity and fairness, particularly debates about exemptions for Permanent Residents and foreign talent—an ongoing controversy since 2022. This is evidenced by highly upvoted posts critiquing perceived disparities in how different groups are treated regarding NS obligations and punishments. Sentiment was predominantly neutral (51%), but with a substantial 36% negative tone, suggesting considerable frustration or criticism within the community. Overall, public mood in April 2023 was mixed but leaned toward critical reflection on systemic fairness in NS, with active discussions highlighting socio-economic inequalities and calls for policy scrutiny.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-05": {
+    "period": "2023-05",
+    "volume": 10237,
+    "volume_pct_vs_baseline": 33.3,
+    "sentiment": {
+      "neg": 0.359,
+      "neu": 0.501,
+      "pos": 0.14
+    },
+    "dominant_topics": "NS Life & Culture (1594), Medical & Health (1281), BMT & Training (1062)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2023 saw a notable 33% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline months. The conversation was dominated by topics around NS Life & Culture, Medical & Health, and BMT & Training, reflecting ongoing interest in the lived experiences and physical demands of National Service. The majority of discussions took place in r/NationalServiceSG, with smaller contributions from broader Singapore-focused subreddits. Sentiment remained predominantly neutral (50%), but a significant portion (36%) was negative, suggesting persistent critical views, particularly around issues such as NS equity and allowances, as reflected in top posts discussing the adequacy of NS pay and medical checks. No single event distinctly drove discourse this month, but the sustained debates on NS equity and realism likely continued to influence public sentiment. Overall, the mood toward NS in May 2023 was mixed, with a cautious or critical undertone amid ongoing reflections on NS conditions and fairness.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-06": {
+    "period": "2023-06",
+    "volume": 12575,
+    "volume_pct_vs_baseline": 63.7,
+    "sentiment": {
+      "neg": 0.369,
+      "neu": 0.495,
+      "pos": 0.137
+    },
+    "dominant_topics": "NS Life & Culture (2436), Vocations & Units (1887), BMT & Training (1267)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2023 saw a significant increase in NS-related Reddit discourse, with chunk volume rising 64% above baseline. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing engagement with everyday experiences and challenges within NS. While no single event distinctly drove the discourse, the sustained debates on NS equity and PR exemptions continued to influence the background narrative. The top posts reveal a mix of humor, frustration, and camaraderie, highlighting both the mundane and stressful aspects of NS life. Sentiment analysis shows a predominantly neutral tone (49%), with a notable 37% negative sentiment and only 14% positive, indicating a generally critical or weary public mood toward NS during this period. Overall, June 2023 was marked by active, nuanced discussions reflecting both the hardships and cultural elements of National Service in Singapore.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-07": {
+    "period": "2023-07",
+    "volume": 11896,
+    "volume_pct_vs_baseline": 54.9,
+    "sentiment": {
+      "neg": 0.354,
+      "neu": 0.501,
+      "pos": 0.144
+    },
+    "dominant_topics": "NS Life & Culture (1987), Vocations & Units (1490), Medical & Health (1284)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2023 was a notably active month for National Service discourse on Reddit, with a 55% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, reflecting a focus on everyday experiences and challenges within NS. The sustained debates on NS equity, particularly concerning Permanent Residents and foreign talent exemptions, continued to influence discussions, contributing to a significant portion of the negative sentiment (35%). Despite this, half of the discourse remained neutral, suggesting many conversations were informational or anecdotal rather than emotionally charged. Top posts combined humor and candid accounts of NS life, illustrating a community engaged in both critique and camaraderie. Overall, public mood appeared mixed but leaned toward critical reflection, with ongoing concerns about fairness and realism in NS experiences balanced by a generally supportive base.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-08": {
+    "period": "2023-08",
+    "volume": 10674,
+    "volume_pct_vs_baseline": 39.0,
+    "sentiment": {
+      "neg": 0.364,
+      "neu": 0.513,
+      "pos": 0.123
+    },
+    "dominant_topics": "NS Life & Culture (2058), BMT & Training (1315), Vocations & Units (1272)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2023 saw a notable 39% increase in National Service-related Reddit discourse, with over 10,600 content chunks, indicating heightened engagement. The conversation was dominated by topics around NS Life & Culture, Basic Military Training (BMT) & Training, and Vocations & Units, reflecting a focus on everyday experiences and challenges within NS. Sentiment leaned predominantly neutral (51%), but a significant portion (36%) was negative, suggesting ongoing frustrations or criticisms. The discourse included critical reflections on leadership and regimental behavior, as seen in popular posts expressing dissatisfaction with certain officers and comparisons between NS and civilian work environments. While no single event uniquely defined the month, the sustained debates on NS equity, particularly concerning deferments, citizenship renunciation, and exemptions for Permanent Residents and foreign talent, continued to influence discussions. Overall, public mood was mixed but tilted toward critical engagement, with many users sharing candid, sometimes negative, personal experiences alongside neutral observations.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-09": {
+    "period": "2023-09",
+    "volume": 10512,
+    "volume_pct_vs_baseline": 36.9,
+    "sentiment": {
+      "neg": 0.351,
+      "neu": 0.542,
+      "pos": 0.106
+    },
+    "dominant_topics": "NS Life & Culture (1913), Vocations & Units (1713), BMT & Training (1488)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2023 saw a notable 37% increase in National Service (NS) Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was predominantly centered around NS life and culture, vocations and units, and basic military training (BMT), reflecting ongoing interest in the lived experiences of servicemen. The discourse remained largely neutral (54%), though a significant portion (35%) expressed negative sentiment, often linked to issues of discipline, fairness, and personal grievances, as evidenced by popular posts discussing misconduct and authority dynamics within units. No singular event dominated the month, but the sustained debates on NS equity—particularly concerning Permanent Residents and foreign talent exemptions—continued to underpin critical discussions. The top upvoted posts reveal a mix of candid storytelling, questions about NS roles, and concerns over treatment by superiors, highlighting a complex public mood that balances respect for service with frustration over systemic challenges. Overall, the sentiment suggests cautious engagement with ongoing scrutiny of NS realities.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-10": {
+    "period": "2023-10",
+    "volume": 10121,
+    "volume_pct_vs_baseline": 31.8,
+    "sentiment": {
+      "neg": 0.348,
+      "neu": 0.521,
+      "pos": 0.131
+    },
+    "dominant_topics": "NS Life & Culture (1922), Vocations & Units (1422), Medical & Health (1319)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2023 was a notably active month for NS discourse on Reddit, with a 32% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the day-to-day realities and practical concerns of servicemen. The majority of posts appeared on r/NationalServiceSG, underscoring its role as the primary forum for NS-related discussion.\n\nNo single event distinctly drove discourse this month, but the sustained debates on NS equity—particularly regarding Permanent Residents and foreign talent exemptions—likely continued to influence the tone and content of conversations. The top upvoted posts suggest a mix of practical questions about enlistment and service, alongside reflections on the value and challenges of NS.\n\nOverall, the public mood was predominantly neutral (52%) with a significant portion expressing negative sentiment (35%), indicating ongoing frustrations or criticisms amid a smaller share of positive views (13%).",
+    "last_updated": "2026-06-08"
+  },
+  "2023-11": {
+    "period": "2023-11",
+    "volume": 8217,
+    "volume_pct_vs_baseline": 7.0,
+    "sentiment": {
+      "neg": 0.37,
+      "neu": 0.494,
+      "pos": 0.136
+    },
+    "dominant_topics": "NS Life & Culture (1480), Vocations & Units (1264), Medical & Health (838)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2023 saw a moderate increase in NS-related Reddit discourse, with an 7% rise in chunk volume compared to the baseline. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the everyday realities and challenges of national service. While there was no single event that sharply defined the month, the sustained debates on NS equity—particularly regarding Permanent Residents and foreign talent exemptions—continued to influence the tone and content of discussions. The top upvoted posts reveal a mix of personal experiences, frustrations with workplace dynamics post-NS, and practical advice for servicemen, underscoring a nuanced engagement with NS issues. Sentiment remained largely neutral (49%), though a significant portion of discourse was negative (37%), indicating persistent dissatisfaction or critical reflection among participants. Overall, public mood toward NS in November 2023 was cautiously critical but grounded in everyday realities rather than any acute controversy.",
+    "last_updated": "2026-06-08"
+  },
+  "2023-12": {
+    "period": "2023-12",
+    "volume": 7778,
+    "volume_pct_vs_baseline": 1.3,
+    "sentiment": {
+      "neg": 0.347,
+      "neu": 0.53,
+      "pos": 0.123
+    },
+    "dominant_topics": "Vocations & Units (1413), NS Life & Culture (1179), BMT & Training (830)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2023 was a relatively typical month for NS discourse on Reddit, with a near-baseline volume of 7,778 chunks and sentiment largely neutral (53%), alongside a moderate negative share (35%) and a smaller positive portion (12%). Discussions were dominated by topics related to Vocations & Units, NS Life & Culture, and BMT & Training, reflecting ongoing interest in the everyday realities and structures of National Service. The subreddit NationalServiceSG accounted for the vast majority of posts, indicating focused community engagement.\n\nNo specific event in December notably shifted discourse or sentiment. However, the sustained debates around NS equity, particularly concerning PR exemptions and foreign talent, continued as an underlying theme, consistent with the multi-year trend. The overall public mood appeared balanced but somewhat critical, with appreciation for servicemen evident in some highly upvoted posts, especially around New Year’s Eve, alongside ongoing reflections on NS challenges and cultural dynamics.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-01": {
+    "period": "2024-01",
+    "volume": 9006,
+    "volume_pct_vs_baseline": 17.3,
+    "sentiment": {
+      "neg": 0.343,
+      "neu": 0.512,
+      "pos": 0.145
+    },
+    "dominant_topics": "NS Life & Culture (1815), Medical & Health (1105), Vocations & Units (889)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2024 saw a notable 17% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline months. The conversation was dominated by topics related to NS Life & Culture, Medical & Health, and Vocations & Units, reflecting ongoing interest in daily NS experiences, health concerns, and career pathways within the service. Sentiment remained largely neutral (51%), with a significant portion of negative sentiment (34%), suggesting persistent critical views alongside general informational exchanges. The sustained debates on NS equity, particularly around PR exemptions and foreign talent, continued to influence discourse, although no singular event sharply shifted the conversation this month. Top posts included practical advice and candid reflections on NS life, revealing a community focused on sharing lived experiences and frustrations. Overall, the public mood was mixed but leaned toward critical realism, consistent with the ongoing discourse gap between official NS narratives and personal experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-02": {
+    "period": "2024-02",
+    "volume": 8107,
+    "volume_pct_vs_baseline": 5.6,
+    "sentiment": {
+      "neg": 0.38,
+      "neu": 0.483,
+      "pos": 0.137
+    },
+    "dominant_topics": "NS Life & Culture (1298), BMT & Training (1040), Vocations & Units (907)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2024 saw a moderate increase in NS-related Reddit discourse, with an 6% rise in chunk volume compared to the baseline. The conversation was dominated by discussions on NS Life & Culture, BMT & Training, and Vocations & Units, reflecting ongoing interest in the everyday experiences and challenges faced by servicemen. A significant portion of the discourse centered around equity issues, including calls for greater recognition and benefits for NSmen, such as proposals for subsidized tertiary education and free transport during service. This aligns with the sustained debates from 2022 to 2024 on NS equity, particularly concerning Permanent Residents and foreign talent exemptions. The overall sentiment was mixed but leaned toward neutral to negative, with 38% negative and only 14% positive, indicating persistent frustrations about the sacrifices and perceived lack of societal appreciation for NS commitments. The top posts reflect a blend of practical suggestions, personal grievances, and humor, underscoring a complex but engaged public mood toward NS in this period.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-03": {
+    "period": "2024-03",
+    "volume": 11043,
+    "volume_pct_vs_baseline": 43.8,
+    "sentiment": {
+      "neg": 0.375,
+      "neu": 0.506,
+      "pos": 0.119
+    },
+    "dominant_topics": "NS Life & Culture (2097), Vocations & Units (1638), NS Policy & Society (1277)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2024 was a notably active month for NS discourse on Reddit, with a 44% increase in chunk volume compared to the baseline. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and NS Policy & Society, reflecting ongoing engagement with both personal experiences and broader structural issues. A significant portion of the discourse centered on debates around NS equity, particularly concerning Permanent Residents and foreign talent exemptions, which have been a sustained point of contention since 2022. This continued controversy fueled critical discussions about fairness and the socio-economic implications of NS obligations, as reflected in highly upvoted posts addressing housing challenges, career impacts, and perceived inequities. Sentiment remained largely neutral (51%) but with a substantial 38% negative tone, indicating persistent dissatisfaction and critique within the community. Overall, public mood toward NS in March 2024 was mixed but skewed toward critical reflection, highlighting ongoing tensions around equity and the lived realities of servicemen.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-04": {
+    "period": "2024-04",
+    "volume": 9742,
+    "volume_pct_vs_baseline": 26.8,
+    "sentiment": {
+      "neg": 0.353,
+      "neu": 0.528,
+      "pos": 0.119
+    },
+    "dominant_topics": "NS Life & Culture (1887), Medical & Health (1332), Vocations & Units (1275)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2024 saw a notable 27% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to the baseline. The conversation was dominated by topics related to NS Life & Culture, Medical & Health, and Vocations & Units, reflecting a focus on everyday NS experiences and the physical and organizational aspects of service. Sentiment was predominantly neutral (53%), with a significant portion of negative sentiment (35%) and a smaller share of positive sentiment (12%), suggesting a mixed but somewhat critical public mood. Key discussions included challenges around medical leave before ORD and the impact of NS on athletes, highlighting ongoing frustrations with service demands and perceived inequities. The sustained debates on NS equity, particularly regarding PR exemptions and foreign talent, continued to underpin the discourse but did not appear to spike sharply this month. Overall, the public mood reflects a realistic and occasionally critical view of NS, balancing personal anecdotes of hardship with moments of appreciation for supportive figures within the service.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-05": {
+    "period": "2024-05",
+    "volume": 8917,
+    "volume_pct_vs_baseline": 16.1,
+    "sentiment": {
+      "neg": 0.364,
+      "neu": 0.518,
+      "pos": 0.118
+    },
+    "dominant_topics": "NS Life & Culture (1482), Vocations & Units (1197), BMT & Training (861)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2024 saw a notable 16% increase in NS-related Reddit discourse volume, with 8,917 chunks posted, indicating heightened engagement compared to baseline. The conversation was dominated by discussions on NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in everyday NS experiences and training challenges. Sentiment remained largely neutral (52%), though a significant portion (36%) expressed negative views, often centered on issues such as harsh training conditions, equity concerns, and the impact of conscription on personal and career lives. The sustained debates around NS equity, particularly regarding Permanent Residents and foreign talent exemptions, continued to influence discourse, fueling critical reflections on fairness and policy. Top posts highlighted intense training experiences and frustrations with rigid military hierarchy. Overall, public mood was mixed but leaned toward critical engagement, with many users voicing dissatisfaction while still sharing camaraderie and relatable NS anecdotes.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-06": {
+    "period": "2024-06",
+    "volume": 9042,
+    "volume_pct_vs_baseline": 17.7,
+    "sentiment": {
+      "neg": 0.348,
+      "neu": 0.515,
+      "pos": 0.137
+    },
+    "dominant_topics": "Vocations & Units (1866), NS Life & Culture (1595), BMT & Training (865)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2024 saw an 18% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics on Vocations & Units, NS Life & Culture, and BMT & Training, reflecting ongoing interest in the day-to-day realities and challenges of National Service. The majority of posts appeared on r/NationalServiceSG, with smaller contributions from askSingapore and singapore subreddits. Sentiment remained largely neutral (51%), with a significant portion of negative sentiment (35%) and a smaller share of positive (14%), suggesting a cautious or critical public mood. No singular event uniquely defined the month, but the sustained debates on NS equity—particularly regarding PR exemptions and foreign talent—continued to underpin critical discussions. Popular posts ranged from candid accounts of NS leave activities to frustrations over training and punishment systems, highlighting a mix of camaraderie, dissatisfaction, and realism. Overall, the discourse reflected a nuanced and somewhat critical public attitude toward NS in June 2024.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-07": {
+    "period": "2024-07",
+    "volume": 9585,
+    "volume_pct_vs_baseline": 24.8,
+    "sentiment": {
+      "neg": 0.38,
+      "neu": 0.492,
+      "pos": 0.128
+    },
+    "dominant_topics": "NS Life & Culture (1586), Vocations & Units (1020), Medical & Health (1002)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2024 saw a 25% increase in National Service (NS) Reddit discourse volume compared to baseline, indicating heightened engagement. Sentiment remained largely neutral (49%) with a significant portion of negative sentiment (38%), while positive sentiment was relatively low (13%). The discourse was dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the lived experiences and challenges of servicemen. The top posts, primarily from r/NationalServiceSG, featured candid, often emotionally charged personal reflections, some with a notably intense and intimate tone toward NS superiors, highlighting complex interpersonal dynamics within NS culture. There was no indication of a specific new event driving discourse this month; rather, discussions appear to continue the sustained debates on NS equity and realism that have persisted since 2022. Overall, the public mood toward NS in July 2024 was mixed but skewed toward frustration and emotional vulnerability, underscored by ongoing critical engagement with NS life.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-08": {
+    "period": "2024-08",
+    "volume": 10036,
+    "volume_pct_vs_baseline": 30.7,
+    "sentiment": {
+      "neg": 0.371,
+      "neu": 0.509,
+      "pos": 0.12
+    },
+    "dominant_topics": "NS Life & Culture (1717), Vocations & Units (1487), BMT & Training (1285)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2024 was a notably active month for NS discourse on Reddit, with a 31% increase in chunk volume compared to the baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the daily realities and structure of National Service. The majority of discussions took place in r/NationalServiceSG, followed by askSingapore and singapore subreddits. Sentiment was predominantly neutral (51%), but there was a significant portion of negative sentiment (37%), suggesting persistent critical views alongside more balanced or informational exchanges. No single specific event from the provided data clearly drove the discourse, but the sustained debates on NS equity, particularly concerning PR exemptions and foreign talent, likely continued to influence the tone and volume. Overall, public mood toward NS this month was mixed, with a cautious or critical stance prevailing amid ongoing scrutiny of NS policies and culture.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-09": {
+    "period": "2024-09",
+    "volume": 10319,
+    "volume_pct_vs_baseline": 34.4,
+    "sentiment": {
+      "neg": 0.319,
+      "neu": 0.545,
+      "pos": 0.136
+    },
+    "dominant_topics": "NS Life & Culture (1843), Vocations & Units (1673), BMT & Training (1343)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2024 saw a notable 34% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline months. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and BMT & Training, reflecting a broad interest in everyday NS experiences and training realities. While no singular event clearly drove the discourse, ongoing debates about NS equity—particularly concerning Permanent Residents and foreign talent exemptions—continued to underpin discussions, contributing to a persistent critical tone. The top upvoted posts suggest a mix of personal stories, procedural advice related to incidents during NS, and reflections on unit interactions, highlighting both community support and concerns about fairness and safety. Sentiment was predominantly neutral (55%), with a significant portion of negative sentiment (32%), indicating that while many discussions were informational or anecdotal, critical views and frustrations remained prominent. Overall, public mood toward NS in September 2024 was cautiously engaged, balancing everyday NS realities with ongoing equity debates.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-10": {
+    "period": "2024-10",
+    "volume": 9732,
+    "volume_pct_vs_baseline": 26.7,
+    "sentiment": {
+      "neg": 0.374,
+      "neu": 0.5,
+      "pos": 0.126
+    },
+    "dominant_topics": "NS Life & Culture (1696), Vocations & Units (1169), BMT & Training (1074)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2024 was a notably active month for NS discourse on Reddit, with a 27% increase in chunk volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the everyday realities and challenges of National Service. The top posts reveal a mix of frustration and camaraderie, with users sharing personal experiences ranging from the monotony of weekend duties to reflections on public perceptions of NSFs. The sustained debates on NS equity, particularly concerning Permanent Residents and foreign talent exemptions, continued to influence discourse, contributing to the 37% negative sentiment observed. Despite this, there were moments of warmth and pride, as seen in posts highlighting small interactions that softened the burden of service. Overall, public mood toward NS in October 2024 was predominantly neutral to negative, with critical reflections on fairness and conditions balanced by a resilient sense of duty among servicemen.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-11": {
+    "period": "2024-11",
+    "volume": 9245,
+    "volume_pct_vs_baseline": 20.4,
+    "sentiment": {
+      "neg": 0.377,
+      "neu": 0.505,
+      "pos": 0.117
+    },
+    "dominant_topics": "NS Life & Culture (1699), Vocations & Units (1091), BMT & Training (992)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2024 saw a notable 20% increase in NS-related Reddit discourse volume, with 9,245 chunks posted, indicating heightened engagement compared to the baseline. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the everyday experiences and challenges of servicemen. The majority of posts appeared on r/NationalServiceSG, followed by askSingapore and singapore subreddits. Sentiment was predominantly neutral (51%), but a significant 38% of posts carried negative tones, suggesting persistent frustrations within the community. Key discussions included public treatment of NSmen, as highlighted by highly upvoted posts on perceived disrespect from civilians, especially older generations, and debates over service equity issues tied to PR exemptions and foreign talent—an ongoing controversy since 2022. Overall, the public mood remained mixed, with respect for NS service tempered by critical views on societal attitudes and systemic inequities.",
+    "last_updated": "2026-06-08"
+  },
+  "2024-12": {
+    "period": "2024-12",
+    "volume": 8931,
+    "volume_pct_vs_baseline": 16.3,
+    "sentiment": {
+      "neg": 0.353,
+      "neu": 0.495,
+      "pos": 0.153
+    },
+    "dominant_topics": "NS Life & Culture (1762), Vocations & Units (1108), BMT & Training (882)",
+    "events": [
+      "priya_tan_controversy_2023",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2024 saw a notable 16% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened engagement. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and BMT & Training, reflecting a focus on everyday experiences and training aspects of National Service. While there was no single event explicitly driving discourse, ongoing debates about NS equity—particularly concerning Permanent Residents and foreign talent exemptions—continued to influence discussions, maintaining a critical undertone. Sentiment analysis shows a predominantly neutral mood (49%), but with a significant portion of negative sentiment (35%), suggesting persistent dissatisfaction or frustration among some contributors. Positive sentiment remained relatively low at 15%, indicating limited expressions of enthusiasm or approval. Overall, public mood in December 2024 was mixed but leaned toward critical reflection on NS policies and lived realities rather than celebratory or wholly negative extremes.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-01": {
+    "period": "2025-01",
+    "volume": 9642,
+    "volume_pct_vs_baseline": 25.5,
+    "sentiment": {
+      "neg": 0.324,
+      "neu": 0.539,
+      "pos": 0.137
+    },
+    "dominant_topics": "NS Life & Culture (1718), Vocations & Units (874), Medical & Health (822)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "January 2025 saw a notable 26% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline periods. Discussions were dominated by topics around NS Life & Culture, Vocations & Units, and Medical & Health, reflecting a broad interest in everyday NS experiences and practical concerns. The bulk of activity occurred on r/NationalServiceSG, with significant contributions from askSingapore and singapore subreddits. While there was no single event explicitly driving the discourse, ongoing background conversations about the realism of NS narratives persisted, as evidenced by highly upvoted posts addressing issues like demographic assignments in units, screening policies, and personal challenges faced by NSmen post-ORD. Sentiment remained largely neutral (54%), with a substantial portion of negative sentiment (32%) highlighting frustrations or critiques, and a smaller share of positive sentiment (14%). Overall, public mood toward NS in January 2025 was cautiously critical but engaged, reflecting nuanced views shaped by lived experiences and systemic observations.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-02": {
+    "period": "2025-02",
+    "volume": 7663,
+    "volume_pct_vs_baseline": -0.2,
+    "sentiment": {
+      "neg": 0.342,
+      "neu": 0.54,
+      "pos": 0.118
+    },
+    "dominant_topics": "NS Life & Culture (1262), Vocations & Units (929), Medical & Health (910)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "February 2025 was a relatively typical month for NS discourse on Reddit, with chunk volume near baseline and sentiment remaining predominantly neutral (54%) and negative (34%), while positive sentiment stayed low at 12%. The conversation was largely dominated by topics related to NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the everyday realities and challenges of National Service. No specific event or controversy notably shifted the discourse, although discussions about unit cohesion and discipline surfaced, exemplified by a popular thread debating appropriate punishment for a trooper who wore offensive clothing to a Chinese New Year cohesion event. The overall public mood toward NS remained mixed but stable, with persistent undercurrents of dissatisfaction and critique alongside neutral or factual exchanges. This aligns with the ongoing background discourse about the gap between official NS narratives and servicemen’s lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-03": {
+    "period": "2025-03",
+    "volume": 10858,
+    "volume_pct_vs_baseline": 41.4,
+    "sentiment": {
+      "neg": 0.375,
+      "neu": 0.482,
+      "pos": 0.143
+    },
+    "dominant_topics": "Vocations & Units (1718), NS Life & Culture (1525), Medical & Health (1326)",
+    "events": [
+      "ge2025",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "March 2025 saw a significant increase in National Service (NS) Reddit discourse, with chunk volume rising 41% above baseline. The conversation was dominated by topics related to Vocations & Units, NS Life & Culture, and Medical & Health, reflecting a broad engagement with both the practical and personal aspects of NS. The Singapore General Election campaign, which began this month, influenced discussions, particularly around NS policy and national defence spending, contributing to heightened attention on NS issues. Sentiment remained mixed but leaned toward neutral and negative, with 38% negative and only 14% positive, indicating ongoing frustrations or concerns among users. Popular posts ranged from personal struggles with health and financial burdens during NS to cultural anecdotes and misunderstandings about NS life, highlighting a complex and sometimes critical public mood. Overall, March 2025 was a notable month marked by increased discourse and a cautious, somewhat critical public attitude toward NS.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-04": {
+    "period": "2025-04",
+    "volume": 8988,
+    "volume_pct_vs_baseline": 17.0,
+    "sentiment": {
+      "neg": 0.357,
+      "neu": 0.517,
+      "pos": 0.126
+    },
+    "dominant_topics": "NS Life & Culture (1529), Vocations & Units (1100), Medical & Health (1019)",
+    "events": [
+      "ge2025",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "April 2025 saw a 17% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline months. The conversation was dominated by topics around NS Life & Culture, Vocations & Units, and Medical & Health, reflecting ongoing interest in the day-to-day realities and challenges of National Service. The majority of posts were neutral (52%), with a significant portion expressing negative sentiment (36%), suggesting persistent concerns or frustrations within the community. This month’s discourse was influenced by the lead-up to the Singapore General Election 2025, where parliamentary debates on NS policies and national defense spending likely fueled discussions, especially on r/NationalServiceSG. Despite the political context, the overall public mood remained mixed, balancing critical views with neutral observations, and a smaller share of positive sentiment (13%). No specific controversy emerged, but the election season continued to shape NS discourse, reinforcing ongoing debates about the gap between official NS narratives and servicemen’s lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-05": {
+    "period": "2025-05",
+    "volume": 10256,
+    "volume_pct_vs_baseline": 33.5,
+    "sentiment": {
+      "neg": 0.337,
+      "neu": 0.549,
+      "pos": 0.114
+    },
+    "dominant_topics": "NS Life & Culture (1650), BMT & Training (1264), Vocations & Units (1201)",
+    "events": [
+      "ge2025",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "May 2025 saw a significant increase in National Service (NS) discourse on Reddit, with chunk volume rising 34% above baseline. The conversation was dominated by topics related to NS Life & Culture, BMT & Training, and Vocations & Units, reflecting ongoing interest in the everyday realities of NS. The discourse was primarily hosted on r/NationalServiceSG, with smaller contributions from askSingapore and singapore subreddits. Sentiment remained largely neutral (55%), though a notable 34% of posts expressed negative views, indicating persistent critical engagement with NS issues. The heightened activity coincided with the Singapore General Election 2025, where parliamentary debates on NS policy and defence spending likely stimulated discussion. This political context, combined with enduring public scrutiny of the gap between official NS narratives and lived experiences, shaped the discourse. Overall, the public mood was mixed but leaned toward critical reflection rather than outright positivity or support.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-06": {
+    "period": "2025-06",
+    "volume": 10328,
+    "volume_pct_vs_baseline": 34.5,
+    "sentiment": {
+      "neg": 0.346,
+      "neu": 0.515,
+      "pos": 0.139
+    },
+    "dominant_topics": "NS Life & Culture (1760), Vocations & Units (1599), BMT & Training (1196)",
+    "events": [
+      "ge2025",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "June 2025 saw a notable 34% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened public engagement. The conversation was dominated by topics related to NS Life & Culture, Vocations & Units, and BMT & Training, reflecting ongoing interest in the everyday experiences and challenges of National Service. The majority of posts appeared on r/NationalServiceSG, with smaller contributions from askSingapore and singapore subreddits. While no singular event from June itself stood out, the discourse was likely influenced by the recent Singapore General Election in May 2025, which featured parliamentary debates on NS policy and defence spending, sustaining public attention on NS issues. Sentiment was predominantly neutral (51%) with a significant portion of negative sentiment (35%), suggesting a critical but balanced public mood. Overall, the discourse reflects continued scrutiny of NS realities alongside routine discussions of service life, without major controversy or sentiment shifts this month.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-07": {
+    "period": "2025-07",
+    "volume": 11359,
+    "volume_pct_vs_baseline": 47.9,
+    "sentiment": {
+      "neg": 0.366,
+      "neu": 0.516,
+      "pos": 0.118
+    },
+    "dominant_topics": "NS Life & Culture (2366), BMT & Training (1242), Vocations & Units (1070)",
+    "events": [
+      "ge2025",
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "July 2025 saw a notable 48% increase in NS-related Reddit discourse volume compared to baseline, indicating heightened public engagement. The conversation was dominated by practical aspects of NS life, including NS Life & Culture, BMT & Training, and Vocations & Units, reflecting ongoing interest in the day-to-day realities of national service. There was no singular event driving discourse this month, but discussions around operational incidents, such as the Leopard 2SG tank technical fault, and manpower challenges in certain vocations contributed to the conversation. Sentiment remained largely neutral (52%), with a significant portion of negative sentiment (37%) likely tied to frustrations over training demands and service conditions, while positive sentiment was limited (12%). Overall, the public mood toward NS in July 2025 was mixed but pragmatic, focusing on lived experiences and operational issues rather than political or policy debates.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-08": {
+    "period": "2025-08",
+    "volume": 10043,
+    "volume_pct_vs_baseline": 30.8,
+    "sentiment": {
+      "neg": 0.309,
+      "neu": 0.57,
+      "pos": 0.121
+    },
+    "dominant_topics": "Unknown (1911), NS Life & Culture (1441), Medical & Health (1286)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "August 2025 saw a notable 31% increase in National Service (NS) Reddit discourse volume, with over 10,000 chunks posted, predominantly on r/NationalServiceSG. The sentiment was largely neutral (57%), with a significant portion of negative sentiment (31%) and a smaller share of positive (12%). Discussions centered mainly on NS life and culture, medical and health issues, and a large number of unknown-topic posts. The top posts reflect everyday NS experiences, such as physical training challenges and camaraderie during exercises, highlighting the lived realities of servicemen. There was no indication of a specific event driving discourse this month; rather, ongoing themes like the gap between official NS narratives and actual experiences continued in the background. Overall, the public mood appears to be a mix of resilience and frustration, with neutral to negative tones reflecting the demanding nature of NS life alongside moments of bonding and support among servicemen.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-09": {
+    "period": "2025-09",
+    "volume": 9894,
+    "volume_pct_vs_baseline": 28.8,
+    "sentiment": {
+      "neg": 0.356,
+      "neu": 0.522,
+      "pos": 0.122
+    },
+    "dominant_topics": "Unknown (2355), Vocations & Units (1425), NS Life & Culture (1222)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "September 2025 saw a 29% increase in National Service-related Reddit discourse, with nearly 9,900 chunks posted, indicating heightened engagement compared to baseline. The conversation was dominated by general NS topics, particularly vocations and units, as well as NS life and culture, though a large portion of content remained uncategorized. The top posts largely originated from r/NationalServiceSG, with significant contributions from r/singapore and r/askSingapore. A notable theme involved concerns about inappropriate behavior by NS superiors, specifically unsolicited religious proselytizing during ICT, which sparked detailed discussions on reporting and personal experiences. Additionally, incidents involving impersonation of SAF personnel and related arrests appeared in high-upvote posts, reflecting public sensitivity to misuse of military identity. Sentiment remained predominantly neutral (52%) with a substantial negative share (36%), suggesting ongoing critical scrutiny rather than outright negativity or positivity. Overall, the public mood toward NS this month was cautiously critical, focusing on lived experiences and challenges within the service.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-10": {
+    "period": "2025-10",
+    "volume": 6932,
+    "volume_pct_vs_baseline": -9.7,
+    "sentiment": {
+      "neg": 0.36,
+      "neu": 0.519,
+      "pos": 0.122
+    },
+    "dominant_topics": "Unknown (1689), NS Life & Culture (974), Vocations & Units (759)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "October 2025 was a relatively typical month in NS discourse on Reddit, with a modest 10% decrease in chunk volume compared to baseline. The conversation was dominated by general themes around NS life and culture, as well as vocations and units, with a significant portion of posts categorized as \"Unknown,\" indicating diverse or uncategorized discussions. The bulk of activity took place in r/NationalServiceSG, reflecting ongoing engagement within the core NS community. Sentiment remained largely neutral (52%), with a notable minority of negative sentiment (36%) and limited positive sentiment (12%), suggesting a cautious or critical public mood rather than outright support or enthusiasm. No specific event appears to have driven discourse this month, though background discussions about NS realism and the gap between official narratives and lived experiences persist as an undercurrent. Overall, public sentiment toward NS in October 2025 was measured, with ongoing reflections on challenges within NS life but no major controversies or sentiment shifts.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-11": {
+    "period": "2025-11",
+    "volume": 8400,
+    "volume_pct_vs_baseline": 9.4,
+    "sentiment": {
+      "neg": 0.365,
+      "neu": 0.512,
+      "pos": 0.123
+    },
+    "dominant_topics": "Unknown (1751), NS Life & Culture (1243), Vocations & Units (1203)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "November 2025 saw a slight increase in National Service (NS) Reddit discourse volume (+9% vs baseline), with a predominantly neutral tone (51%) and a significant portion of negative sentiment (36%). The conversation was dominated by topics related to NS Life & Culture and Vocations & Units, alongside a large number of posts categorized as Unknown. The vast majority of activity occurred on r/NationalServiceSG, with smaller contributions from r/askSingapore and r/singapore.\n\nA key driver of discussion was a legal case involving an individual named Yee, who faced charges under the Enlistment Act for failing to report for pre-enlistment, as reported by the Ministry of Defence. This event sparked debate about enlistment obligations and the consequences of non-compliance. Other popular posts addressed everyday NS experiences, such as phone checks, recruit welfare, and clarifications about personal time during service.\n\nOverall, the public mood reflected a mix of concern and empathy toward NS realities, with ongoing scrutiny of service conditions and enforcement measures continuing the long-standing discourse on the gap between official narratives and lived experiences.",
+    "last_updated": "2026-06-08"
+  },
+  "2025-12": {
+    "period": "2025-12",
+    "volume": 9177,
+    "volume_pct_vs_baseline": 19.5,
+    "sentiment": {
+      "neg": 0.333,
+      "neu": 0.534,
+      "pos": 0.133
+    },
+    "dominant_topics": "Unknown (1602), NS Life & Culture (1414), Vocations & Units (1223)",
+    "events": [
+      "ns_life_portrayal_ongoing"
+    ],
+    "notable": true,
+    "narrative": "December 2025 saw a 19% increase in NS-related Reddit discourse volume, indicating heightened engagement compared to baseline months. The conversation was dominated by discussions on NS life and culture, vocations and units, and a significant portion of unknown-topic posts. A notable event driving discourse was the widely shared story of an 18-year-old Singaporean ballet prodigy who received his NS enlistment notice on the same day he secured a prestigious ballet contract. This narrative sparked debate about the rigidity of enlistment policies and the perceived tension between national obligations and individual aspirations. Many users expressed sympathy and frustration over the sacrifices demanded by NS, with calls to reconsider enlistment exceptions for exceptional talents. Sentiment remained largely neutral (53%) but with a substantial negative component (33%), reflecting ongoing critical views of NS realities. Overall, public mood this month was mixed, with empathy for individual cases tempered by dissatisfaction with systemic constraints.",
+    "last_updated": "2026-06-08"
+  }
+}

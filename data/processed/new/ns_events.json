@@ -1,0 +1,906 @@
+[
+  {
+    "id": "benjamin_lee_2018",
+    "title": "Recruit Benjamin Lee heat injury death",
+    "date_start": "2018-04-17",
+    "date_end": "2018-05-31",
+    "category": "safety_incident",
+    "severity": "high",
+    "metric_impact": {
+      "sent_neg": "+high",
+      "commit_net": "-moderate",
+      "doc_count": "+moderate"
+    },
+    "description": "Recruit Benjamin Lee Rui Long, 19, died on April 20 2018 after collapsing during a 24km fast march at Pasir Laba Camp due to heatstroke. His death triggered intense public debate about training safety standards, supervision adequacy, and whether NS pushes recruits too hard physically. MINDEF launched an investigation. April 2018 recorded the highest negative sentiment of any month in 2018 (mean_sent_neg=0.383). Discourse centred on heat injury protocols, BMT culture, and instructor accountability.",
+    "topics_affected": [
+      "BMT & Training",
+      "Medical & Health",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "benjamin lee",
+      "heat injury",
+      "heat stroke",
+      "bmt death",
+      "pasir laba",
+      "training death",
+      "heat casualty",
+      "fast march"
+    ]
+  },
+  {
+    "id": "ns50_anniversary_2017_2018",
+    "title": "NS50 — 50th Anniversary of National Service celebrations",
+    "date_start": "2017-07-01",
+    "date_end": "2018-09-30",
+    "category": "policy_milestone",
+    "severity": "moderate",
+    "metric_impact": {
+      "commit_net": "+moderate",
+      "sent_pos": "+moderate"
+    },
+    "description": "The 50th anniversary of NS in Singapore (2017–2018) prompted a sustained wave of government-led celebration: NS50 events, documentaries, retrospectives, and public campaigns reaffirming NS as nation-building. July 2018 recorded an above-average commitment net score (0.106, z=1.55) — the highest of 2018. This represents the clearest institutional-narrative-driven commitment surge in the dataset. The anniversary temporarily elevated supportive framing across r/singapore and r/NationalServiceSG.",
+    "topics_affected": [
+      "NS Life & Culture",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "ns50",
+      "50th anniversary",
+      "national service anniversary",
+      "ns celebration",
+      "ns milestone"
+    ]
+  },
+  {
+    "id": "aloysius_pang_death_2019",
+    "title": "CFC Aloysius Pang training death — largest single-event discourse surge",
+    "date_start": "2019-01-23",
+    "date_end": "2019-04-30",
+    "category": "safety_incident",
+    "severity": "critical",
+    "metric_impact": {
+      "doc_count": "+very_high",
+      "sent_neg": "+high",
+      "commit_net": "-high"
+    },
+    "description": "Corporal First Class Aloysius Pang Zhi Xiang, 28, a Mediacorp actor serving reservist duty in New Zealand, was fatally injured on January 19 2019 when a gun barrel was lowered onto him inside a self-propelled howitzer during maintenance. He died January 23. This triggered the single largest discourse volume surge in the dataset: 2,366 chunks in January 2019 versus a ~1,200 monthly baseline — nearly double. Top threads reached 800+ upvotes with direct name mentions. National debate centred on: training safety, overseas exercise supervision, SAF accountability, parliamentary response, and MINDEF inquiry. The Committee of Inquiry (COI) reported in March 2019, sustaining elevated discourse through Q1. This event is the most cited single cause of sentiment disruption in the corpus.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "BMT & Training",
+      "Medical & Health",
+      "NS Life & Culture"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "aloysius",
+      "pang",
+      "new zealand",
+      "howitzer",
+      "training death",
+      "cfc",
+      "inquiry",
+      "coi",
+      "overseas exercise",
+      "safety",
+      "mediacorp",
+      "actor ns"
+    ]
+  },
+  {
+    "id": "coi_aloysius_findings_2019",
+    "title": "COI findings on Aloysius Pang — institutional accountability debate",
+    "date_start": "2019-03-01",
+    "date_end": "2019-04-30",
+    "category": "policy_response",
+    "severity": "high",
+    "metric_impact": {
+      "sent_neg": "+moderate",
+      "doc_count": "+moderate"
+    },
+    "description": "The COI into Aloysius Pang's death released findings in early 2019, confirming systemic failures in safety culture. MINDEF accepted all recommendations. However, public Reddit discourse remained sceptical — dominant sentiment was that institutional reform would be 'wayang' (performative). This scepticism drove a secondary negative sentiment wave in March-April 2019. The COI response exemplifies the pattern of policy action producing continued negative discourse rather than reassurance.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Discipline & Misconduct"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "coi",
+      "committee of inquiry",
+      "aloysius findings",
+      "mindef report",
+      "accountability",
+      "wayang",
+      "reform"
+    ]
+  },
+  {
+    "id": "ns_dec_2019_yearend_dip",
+    "title": "Year-end discourse shift — December 2019 sentiment recovery",
+    "date_start": "2019-12-01",
+    "date_end": "2019-12-31",
+    "category": "seasonal_pattern",
+    "severity": "low",
+    "metric_impact": {
+      "doc_count": "+moderate",
+      "sent_neg": "-moderate"
+    },
+    "description": "December 2019 recorded a volume spike (2,261 chunks, z=1.60) with below-average negative sentiment (0.248). This year-end pattern — higher volume but more positive tone — recurs across multiple years and reflects ORD/POP (Passing Out Parade) season content, end-of-year NS retrospectives, and Christmas leave-period posts. NSmen sharing completion milestones and positive memories elevate sentiment while activity is high. This seasonal effect is most visible in 2019 because overall volume was lower, making the relative shift more pronounced.",
+    "topics_affected": [
+      "ORD & Post-NS",
+      "NS Life & Culture"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG",
+      "singapore"
+    ],
+    "search_keywords": [
+      "ord",
+      "pop",
+      "passing out parade",
+      "christmas leave",
+      "year end",
+      "completion",
+      "finished ns"
+    ]
+  },
+  {
+    "id": "covid_circuit_breaker_2020",
+    "title": "COVID-19 Circuit Breaker — NS training suspended, enlistments delayed",
+    "date_start": "2020-03-01",
+    "date_end": "2020-06-30",
+    "category": "external_crisis",
+    "severity": "critical",
+    "metric_impact": {
+      "doc_count": "+very_high",
+      "sent_neg": "+high",
+      "commit_net": "-high"
+    },
+    "description": "Singapore entered its 'Circuit Breaker' lockdown on April 7 2020 as COVID-19 spread. NS training was severely disrupted: enlistments delayed, BMT modified, reservist ICT cycles cancelled, NSFs confined to camps. March 2020 saw a volume surge (4,102 chunks, z=1.88) — largest of any pre-2021 month. April 2020 was the worst negative sentiment month of 2020 (mean_sent_neg=0.344, z=1.73) and the worst commitment net month of 2020 (z=-1.63). NSmen faced career uncertainty, COVID risk in camps, and inadequate communication from command. The pandemic effect is visible as a step-change in discourse volume: post-March 2020 baseline (~3,000-5,000/month) is permanently higher than pre-COVID (~1,200-2,400/month) due to Reddit growth driven by home confinement.",
+    "topics_affected": [
+      "NS Life & Culture",
+      "Enlistment & Pre-NS",
+      "BMT & Training",
+      "NS Policy & Society",
+      "Medical & Health"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "covid",
+      "circuit breaker",
+      "lockdown",
+      "delay",
+      "enlistment postponed",
+      "bmt closure",
+      "ict cancelled",
+      "mcb",
+      "phase",
+      "camp infection",
+      "disruption"
+    ]
+  },
+  {
+    "id": "ge2020_singapore",
+    "title": "Singapore General Election 2020 — NS equity enters campaign discourse",
+    "date_start": "2020-06-23",
+    "date_end": "2020-07-15",
+    "category": "political_event",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+moderate",
+      "sent_neg": "+low"
+    },
+    "description": "Singapore's GE2020 (July 10 2020) brought NS policy into election discourse. Opposition parties questioned NS equity for Permanent Residents and foreign talent. The PAP retained power with 61.2%. Post-election discourse on NS fairness intensified, planting seeds for the sustained 2022-2024 equity debate. June-July 2020 elevated discourse volume coincides with GE season. This election cycle is the earliest point where the PR-exemption framing became mainstream in Reddit discussion.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Gender & Diversity",
+      "Career & Sign-on"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "ge2020",
+      "general election",
+      "vote",
+      "opposition",
+      "pap",
+      "wp",
+      "pr ns",
+      "foreigner exempt",
+      "policy"
+    ]
+  },
+  {
+    "id": "ivan_lim_controversy_2020",
+    "title": "Ivan Lim PAP candidate controversy — NS conduct allegations go viral",
+    "date_start": "2020-06-24",
+    "date_end": "2020-07-05",
+    "category": "political_controversy",
+    "severity": "moderate",
+    "metric_impact": {
+      "sent_neg": "+moderate",
+      "doc_count": "+moderate"
+    },
+    "description": "PAP GE2020 candidate Ivan Lim faced viral Reddit accusations from NSmen alleging bullying, rank-throwing, and abusive conduct during his NS service. Dozens of accounts emerged within 48 hours. Lim withdrew on June 28. The episode demonstrated Reddit's power as an NS accountability forum and generated intense Discipline & Misconduct discourse. Key themes: officer power abuse, the gap between NS brotherhood rhetoric and hierarchical reality, and whether NS conduct should have lifelong reputational consequences.",
+    "topics_affected": [
+      "Discipline & Misconduct",
+      "NS Life & Culture",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "ivan lim",
+      "bully",
+      "misconduct",
+      "officer",
+      "power trip",
+      "rank",
+      "wayang",
+      "toxic",
+      "mistreatment",
+      "candidate"
+    ]
+  },
+  {
+    "id": "ns_allowance_increase_mar2020",
+    "title": "Budget 2020 NS allowance increase — $70-120 more per month from March 1",
+    "date_start": "2020-03-01",
+    "date_end": "2020-06-30",
+    "category": "policy_positive",
+    "severity": "moderate",
+    "metric_impact": {
+      "sent_neg": "-moderate",
+      "commit_net": "+low"
+    },
+    "description": "Budget 2020 announced NSF allowance increases of $70-120/month effective March 1 2020, including a new $50 mandatory vocational allowance. Reddit posts confirm: 'from March 1 onwards all NSF allowance shd increase by $70-120'. However, the positive impact was largely overshadowed by the COVID Circuit Breaker beginning in the same month. The March 2020 sentiment data (neg=0.234) is lower than expected because COVID disruption discussions dominated, muting the pay-increase positivity. The allowance effect may have contributed to the sustained low-negativity window through late 2020 (Dec 2020 recorded 0.197, the dataset's lowest).",
+    "topics_affected": [
+      "Pay & Benefits",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "allowance increase",
+      "pay raise",
+      "vocational allowance",
+      "$70",
+      "increment",
+      "allowance",
+      "budget 2020"
+    ]
+  },
+  {
+    "id": "covid_enlistment_surge_dec2020",
+    "title": "COVID-delayed enlistment processing surge — most positive month in dataset",
+    "date_start": "2020-12-01",
+    "date_end": "2021-03-31",
+    "category": "operational_pattern",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+high",
+      "sent_neg": "-very_high"
+    },
+    "description": "December 2020 recorded the lowest negative sentiment in the entire 2018-2025 dataset (mean_sent_neg=0.197, z=-2.5). Documentation & Clearance surged to 3.1x baseline as COVID-delayed enlistees processed PES classifications, posting orders, and CMPB paperwork en masse. Enlistment topics dominated (851 hits for enlist/cmpb/pes/posting). The practical 'how do I' nature of these posts — asking about PES grading, enlistment dates, what to bring — produced overwhelmingly neutral-to-positive sentiment that drowned out grievance discourse. This demonstrates that high-volume practical discussion periods systematically lower measured negative sentiment.",
+    "topics_affected": [
+      "Enlistment & Pre-NS",
+      "NS Life & Culture"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG",
+      "singapore"
+    ],
+    "search_keywords": [
+      "enlistment",
+      "cmpb",
+      "pes",
+      "posting order",
+      "enlist",
+      "medical checkup",
+      "report"
+    ]
+  },
+  {
+    "id": "covid_vaccination_ns_2021",
+    "title": "COVID vaccination rollout — NS operations resume",
+    "date_start": "2021-01-01",
+    "date_end": "2021-06-30",
+    "category": "policy_positive",
+    "severity": "low",
+    "metric_impact": {
+      "sent_neg": "-low",
+      "doc_count": "+low"
+    },
+    "description": "Singapore began COVID vaccination in January 2021, with NSFs among early priority groups. Gradual training resumption in Q1-Q2 2021 generated cautiously optimistic discourse. The January 2021 positive sentiment window (neg=0.233, below the 0.278 average) was likely driven by vaccination rollout and post-Circuit Breaker normalisation. NSmen discussed vaccination requirements and training restart, generally with moderate-to-neutral tone. 172 corpus hits for vaccination/vaccine keywords in this window.",
+    "topics_affected": [
+      "Medical & Health",
+      "NS Life & Culture",
+      "BMT & Training"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG",
+      "singapore"
+    ],
+    "search_keywords": [
+      "vaccination",
+      "vaccine",
+      "covid jab",
+      "training resume",
+      "bmt resume",
+      "safe management measures",
+      "smm"
+    ]
+  },
+  {
+    "id": "reddit_platform_growth_2021",
+    "title": "Reddit Singapore platform growth — structural discourse volume expansion",
+    "date_start": "2021-01-01",
+    "date_end": "2022-06-30",
+    "category": "platform_effect",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+very_high_sustained"
+    },
+    "description": "The Reddit Singapore ecosystem grew dramatically through 2021-2022 driven by COVID home confinement and global Reddit growth (GameStop/WSB viral moment Jan 2021). r/singapore grew from ~350k to 700k+ subscribers. This explains why NS discourse volume roughly tripled: from ~1,500/month in 2018 to ~6,000-8,000/month by late 2021 — without requiring a specific NS event. The June 2021 volume spike (6,910 chunks, z=1.81) is partly a platform-growth effect. Any longitudinal analysis must account for this structural baseline shift when comparing pre-2021 and post-2021 sentiment metrics.",
+    "topics_affected": [
+      "NS Life & Culture"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": []
+  },
+  {
+    "id": "delta_wave_camp_concerns_2021",
+    "title": "Delta wave COVID cluster — camp infection fears and vaccination push",
+    "date_start": "2021-05-01",
+    "date_end": "2021-07-31",
+    "category": "external_crisis",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+moderate",
+      "sent_neg": "+low"
+    },
+    "description": "The Delta variant wave hit Singapore in May-June 2021, triggered by the Tan Tock Seng Hospital cluster. NSFs expressed concern about camp infections, swab testing protocols, and whether training would be disrupted again. 599 corpus hits for covid/delta/cluster/swab/vaccination in this window. Conditions & Specialist Care surged to 1.9x baseline in June as NSFs worried about medical access during outbreaks. IPPTs were cancelled in some units. The vaccination push intensified — posts discussed mandatory vaccination for NSFs and booster requirements. Unlike the Circuit Breaker period, sentiment impact was moderate as NSFs were now accustomed to COVID disruption.",
+    "topics_affected": [
+      "Medical & Health",
+      "NS Life & Culture",
+      "BMT & Training"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG",
+      "singapore"
+    ],
+    "search_keywords": [
+      "delta",
+      "cluster",
+      "swab",
+      "antigen",
+      "vaccination",
+      "vaccine",
+      "covid",
+      "ttsh",
+      "tan tock seng",
+      "camp infection"
+    ]
+  },
+  {
+    "id": "ns_disruption_scheme_2022",
+    "title": "NS Disruption Scheme debate — deferment equity questioned",
+    "date_start": "2022-01-01",
+    "date_end": "2022-06-30",
+    "category": "policy_debate",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+high",
+      "sent_neg": "+moderate",
+      "commit_net": "+low"
+    },
+    "description": "January 2022 recorded a significant volume spike (8,684 chunks, z=1.55) alongside an above-average commitment net score — suggesting the disruption scheme debate had mixed valence: some supportive of clearer rules, others critical of inequity. Changes to the NS Disruption Scheme (deferment for academic/professional reasons) were announced and debated, particularly regarding whether disruptions disproportionately benefit higher-income students. This feeds into broader NS equity concerns that dominate 2022-2024.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Enlistment & Pre-NS",
+      "Career & Sign-on"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "disruption scheme",
+      "deferment",
+      "defer ns",
+      "university",
+      "disruption equity",
+      "defer"
+    ]
+  },
+  {
+    "id": "ukraine_russia_war_conscription_2022",
+    "title": "Russia-Ukraine War — global conscription debate triggers NS comparison",
+    "date_start": "2022-02-24",
+    "date_end": "2022-06-30",
+    "category": "geopolitical_event",
+    "severity": "high",
+    "metric_impact": {
+      "sent_neg": "+very_high",
+      "doc_count": "+high"
+    },
+    "description": "Russia's full-scale invasion of Ukraine began February 24 2022. Globally viral images of conscription and mobilisation triggered intense r/singapore discussions about NS's real-world purpose and readiness. February 2022 recorded the highest negative sentiment z-score in the 2022 period (mean_sent_neg=0.364, z=2.01 — the highest z-score of any month in the dataset). March 2022 was the second-highest negative month overall (0.386, z=1.66). Posts debated whether NSmen were adequately prepared, whether NS was 'just wayang', and whether Singapore would actually deploy NSmen in conflict. The geopolitical trigger fused with pre-existing equity grievances to produce the sharpest sustained negative period in the corpus. This event marks the beginning of the 2022-2024 elevated-negativity structural regime.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "BMT & Training",
+      "NS Life & Culture",
+      "Vocations & Units"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "ukraine",
+      "russia",
+      "war",
+      "conscription",
+      "mobilisation",
+      "real war",
+      "ns purpose",
+      "wayang",
+      "combat ready",
+      "invasion"
+    ]
+  },
+  {
+    "id": "pr_foreigner_ns_equity_debate_2022_2024",
+    "title": "PR/foreigner NS exemption debate — dominant 2022-2024 negativity driver",
+    "date_start": "2022-06-01",
+    "date_end": "2024-12-31",
+    "category": "ongoing_debate",
+    "severity": "critical",
+    "metric_impact": {
+      "sent_neg": "+high_sustained",
+      "doc_count": "+high_sustained",
+      "commit_net": "-moderate_sustained"
+    },
+    "description": "The single most sustained negativity driver across 2022-2024. Core grievances: (1) PRs who naturalise later or emigrate avoided NS; (2) foreign talent on Employment Passes contribute economically without NS obligation; (3) NS opportunity cost relative to non-serving peers is uncompensated. May 2022 had the second-highest volume in the entire dataset (10,107 chunks). This debate explains why the 2022-2024 period maintained persistently elevated negative sentiment (0.35-0.39 range) even without specific trigger events — the equity grievance became a self-sustaining structural feature of NS discourse. The critical sub-faction of uncommitted discourse roughly doubled across this period (critical % 3.1% → 6.2%). June 2023 recorded the dataset's highest sustained volume period (9,554 chunks, z=1.81) driven by this debate peaking.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Gender & Diversity",
+      "Pay & Benefits",
+      "Career & Sign-on"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "pr",
+      "permanent resident",
+      "foreign talent",
+      "foreigner",
+      "exemption",
+      "fair",
+      "equity",
+      "unfair",
+      "social compact",
+      "burden",
+      "women ns",
+      "abolish ns"
+    ]
+  },
+  {
+    "id": "mental_health_ns_discourse_rise",
+    "title": "NS mental health discourse — growing institutional trust deficit 2022-2024",
+    "date_start": "2022-01-01",
+    "date_end": "2024-12-31",
+    "category": "social_trend",
+    "severity": "moderate",
+    "metric_impact": {
+      "sent_neg": "+moderate",
+      "commit_net": "-moderate"
+    },
+    "description": "From 2022 onwards, NS mental health discourse expanded significantly alongside broader Singaporean normalisation of mental health discussion. NSmen increasingly posted about: medical officer (MO) stigma, malingering accusations, command pressure to push through illness, inadequacy of NS counselling resources, and fear of adverse career consequences from seeking help. The Mental Health topic shows consistently high negative sentiment (0.35+) throughout 2022-2024. This feeds the 'uncommitted-critical' faction growth as NSmen express institutional distrust of the medical and welfare systems rather than pure apathy.",
+    "topics_affected": [
+      "Mental Health",
+      "Medical & Health",
+      "Discipline & Misconduct"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "mental health",
+      "mo",
+      "medical officer",
+      "malingering",
+      "stress",
+      "depression",
+      "anxiety",
+      "counselling",
+      "help ns",
+      "breakdown"
+    ]
+  },
+  {
+    "id": "ns_lifesg_ord_credits_2022",
+    "title": "NS LifeSG $1,000 ORD credits rollout — benefits discourse surge",
+    "date_start": "2022-06-01",
+    "date_end": "2022-07-31",
+    "category": "policy_positive",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+moderate",
+      "sent_neg": "-low"
+    },
+    "description": "The NS LifeSG $1,000 ORD credits were rolled out in mid-2022, triggering a surge in NS Credits & Benefits topic to 3.0-3.6x baseline across June-July. 151 specific corpus hits for 'lifesg/$1000/credits'. Reddit discussions focused on: eligibility (citizens only, not PRs — 'Apparently the $1000 LifeSG credits is only for Singapore Citizens?'), how to convert credits to cash ('NS ORD $1000 credits to cash'), and which services accepted LifeSG. NSF Pay also elevated (1.9x in July) as the credits rollout prompted broader compensation discussions. The PR-exclusion angle fuelled existing equity debates.",
+    "topics_affected": [
+      "Pay & Benefits",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG",
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "lifesg",
+      "$1000",
+      "ord credit",
+      "ns credit",
+      "1k credit",
+      "home credit",
+      "lifesg credits"
+    ]
+  },
+  {
+    "id": "budget_2023_ns_response",
+    "title": "Budget 2023 — NS recognition announcements drive mixed response",
+    "date_start": "2023-02-14",
+    "date_end": "2023-04-30",
+    "category": "policy_event",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+high",
+      "commit_net": "+moderate",
+      "sent_neg": "+low"
+    },
+    "description": "Singapore Budget 2023 (February 14 2023) included NS-related announcements. March 2023 recorded the highest volume spike of 2023 (7,940 chunks, z=1.93). April 2023 had the highest commitment net score of 2023 (0.051, z=1.83), suggesting budget-period discourse temporarily activated supportive framing. However, negative sentiment remained elevated (0.355-0.360) as equity debates continued unabated. The pattern of budget periods producing commitment surges but not reducing negative sentiment reflects the dual-track nature of NS discourse: institutional outputs (announcements, increases) improve commitment metrics while structural grievances independently sustain negativity.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Pay & Benefits",
+      "ORD & Post-NS"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "budget 2023",
+      "ns budget",
+      "mindef announcement",
+      "recognition",
+      "post-ns benefit"
+    ]
+  },
+  {
+    "id": "ns_equity_2023_peak",
+    "title": "NS equity and PR discourse — June 2023 peak, largest volume surge of 2023",
+    "date_start": "2023-05-01",
+    "date_end": "2023-09-30",
+    "category": "ongoing_debate",
+    "severity": "high",
+    "metric_impact": {
+      "doc_count": "+very_high",
+      "sent_neg": "+high",
+      "commit_net": "-moderate"
+    },
+    "description": "June 2023 recorded 9,554 chunks — the highest monthly volume of the entire 2022-2025 sustained period (z=1.81). Multiple high-upvote threads on r/singapore went viral comparing citizen vs PR obligations. May-August 2023 sustained the highest average negative sentiment of any consecutive four-month stretch in the dataset (0.360-0.370). August 2023 had the worst commitment net of 2023 (z=-1.58). This peak reflects the PR-exemption debate reaching maximum intensity before beginning a gradual moderation. The discourse was not triggered by a specific event but by cumulative resentment reaching critical mass in online forums.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Gender & Diversity",
+      "Career & Sign-on"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "pr ns",
+      "foreigner exemption",
+      "fair",
+      "women ns",
+      "equity",
+      "social contract",
+      "obligation"
+    ]
+  },
+  {
+    "id": "national_day_cyclical_effect",
+    "title": "National Day cyclical sentiment recovery — annual August-September pattern",
+    "date_start": "2018-08-09",
+    "date_end": "2025-09-30",
+    "category": "recurring_event",
+    "severity": "moderate",
+    "metric_impact": {
+      "commit_net": "+moderate",
+      "sent_neg": "-moderate"
+    },
+    "description": "Singapore's National Day (August 9) produces a statistically significant annual cyclical effect: reduced negative sentiment and elevated commitment net in August-September. The three clearest instances: (1) September 2024: sharpest negative dip of the high-volume period (mean_sent_neg=0.317, z=-1.74), highest commitment of 2024 (z=1.58); (2) August 2025: third-sharpest dip (0.309, z=-1.63), above-average commitment (z=1.52); (3) December 2018: sentiment dip (0.221, z=-1.56) also reflects year-end positive framing. The NDP and National Day framing generates nostalgic NS content, national pride posts, and reduced grievance threads. The 2024 and 2025 effects are notably strong — the National Day signal overcame the structural negativity that dominated 2022-2024, suggesting the underlying positive sentiment toward NS identity (distinct from grievances about NS conditions) remained intact.",
+    "topics_affected": [
+      "NS Life & Culture",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "national day",
+      "ndp",
+      "national day parade",
+      "sg",
+      "singapore birthday",
+      "pride",
+      "ns pride",
+      "serve nation"
+    ]
+  },
+  {
+    "id": "budget_2024_ns_announcements",
+    "title": "Budget 2024 — NS pay further increased, negative surge paradox",
+    "date_start": "2024-02-16",
+    "date_end": "2024-04-30",
+    "category": "policy_event",
+    "severity": "moderate",
+    "metric_impact": {
+      "doc_count": "+moderate",
+      "sent_neg": "+moderate"
+    },
+    "description": "Budget 2024 (February 16 2024) included further NS allowance increases and post-NS benefits enhancements. Counterintuitively, February 2024 was the highest negative sentiment month of 2024 (mean_sent_neg=0.382, z=1.56) and March 2024 also spiked (8,265 chunks, z=1.51, neg=0.373). This 'announcement paradox' pattern — negative sentiment spiking around positive policy announcements — reflects that Budget discussion draws NS-critical discourse (equity complaints, adequacy challenges) alongside supportive threads, with critical threads earning more upvotes and engagement. The pattern contrasts sharply with the January 2021 allowance increase effect, confirming that by 2024, the equity grievance narrative had become dominant enough to override pay announcement positivity.",
+    "topics_affected": [
+      "Pay & Benefits",
+      "NS Policy & Society",
+      "ORD & Post-NS"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "budget 2024",
+      "ns allowance",
+      "pay increase 2024",
+      "mindef 2024",
+      "post-ns"
+    ]
+  },
+  {
+    "id": "women_ns_conscription_debate_2024",
+    "title": "Women in NS / female conscription debate — intensifies 2024",
+    "date_start": "2024-01-01",
+    "date_end": "2024-12-31",
+    "category": "policy_debate",
+    "severity": "moderate",
+    "metric_impact": {
+      "sent_neg": "+moderate",
+      "doc_count": "+moderate"
+    },
+    "description": "Debate about female conscription intensified through 2024 driven by: (1) Ukraine war normalising female military service globally; (2) Singapore feminist discourse on equal obligations; (3) male NSmen resentment of economic advantages enjoyed by non-serving peers. The Gender & Diversity topic recorded above-average negative sentiment throughout 2024. The debate has two opposed negative sentiment sources: men arguing the burden is unfair (negative toward NS equity), and some women arguing they are excluded from a civic institution (negative toward NS gatekeeping). Both directions produced negative sentiment in the classification model.",
+    "topics_affected": [
+      "Gender & Diversity",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "women ns",
+      "female conscription",
+      "gender ns",
+      "girl ns",
+      "equal obligation",
+      "ns gender",
+      "female serve"
+    ]
+  },
+  {
+    "id": "reservist_ict_burden_2023_2025",
+    "title": "Reservist / ICT burden discourse — growing post-ORD resentment",
+    "date_start": "2023-01-01",
+    "date_end": "2025-12-31",
+    "category": "ongoing_debate",
+    "severity": "moderate",
+    "metric_impact": {
+      "sent_neg": "+moderate",
+      "commit_net": "-moderate"
+    },
+    "description": "Reservist In-Camp Training (ICT) complaints grew from 2023 as high-discourse volume amplified the post-ORD obligation resentment. Key grievances: income loss during ICT with inadequate compensation, career disadvantage vs non-NS peers, physical fitness (IPPT) demands persisting into 40s, and time away from family. The Reservist & ICT topic maintained consistently negative sentiment (0.34-0.36) across 2023-2025. August 2023 recorded the worst commitment net of 2023 (z=-1.58), partly attributed to ICT-season complaints (typically July-September ICT window).",
+    "topics_affected": [
+      "Reservist & ICT",
+      "Physical Fitness & IPPT",
+      "Career & Sign-on"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore",
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "reservist",
+      "ict",
+      "in camp training",
+      "ippt",
+      "reservist pay",
+      "call up",
+      "ma",
+      "makeup",
+      "rt",
+      "remedial",
+      "old reservist"
+    ]
+  },
+  {
+    "id": "ge2025_ns_campaign_issue",
+    "title": "GE2025 — NS equity becomes major campaign issue, post-election moderation",
+    "date_start": "2025-03-01",
+    "date_end": "2025-07-31",
+    "category": "political_event",
+    "severity": "high",
+    "metric_impact": {
+      "doc_count": "+high",
+      "sent_neg": "+moderate",
+      "commit_net": "+low"
+    },
+    "description": "Singapore's 2025 General Election raised NS equity, PR exemption reform, and NS pay adequacy as prominent campaign issues across multiple opposition parties. March 2025 saw a volume spike (8,049 chunks) and elevated negative sentiment. However, post-election the data shows a notable sentiment moderation: May-June 2025 negative sentiment dropped to 0.337-0.347 from 2024 peaks of 0.37-0.38 — a meaningful recovery. The GE2025 effect may partly explain the 2025 sentiment reversal documented in the dataset, through either policy responses announced during the campaign, election-resolution reducing political anxiety, or voters interpreting the PAP's continued mandate as legitimising NS equity concerns. r/NationalServiceSG sentiment was unaffected, confirming the moderation is a political rather than practical NS-experience effect.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "Gender & Diversity",
+      "Career & Sign-on"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "ge2025",
+      "general election 2025",
+      "vote",
+      "opposition",
+      "manifesto",
+      "ns policy election",
+      "parliament ns",
+      "campaign ns"
+    ]
+  },
+  {
+    "id": "zao_liao_structural_apathy",
+    "title": "Zao Liao culture — endemic apathy as persistent structural signal",
+    "date_start": "2018-01-01",
+    "date_end": "2025-12-31",
+    "category": "structural_social",
+    "severity": "low",
+    "metric_impact": {
+      "commit_net": "-low_sustained"
+    },
+    "description": "'Zao liao' (Hokkien/Singlish: 'finished already') describes the prevalent NSF mindset of treating NS as a mandatory obligation to endure rather than a meaningful service. It is the primary 'uncommitted-apathetic' faction signal. Manifestations: ORD countdown posts, unit comparison threads about 'chao keng' (slack) vocations, tips to 'siam' (avoid) duties, complaints about 'sai kang' (menial work). This culture maintains a consistent structural negative on commitment net scores independent of specific events. It should be distinguished from 'uncommitted-critical' (institutional opposition) — zao liao is acceptance-through-apathy, not active grievance. The zao liao signal is strongest in r/NationalServiceSG (active servicemen) and weakest in r/singapore (general public).",
+    "topics_affected": [
+      "NS Life & Culture",
+      "ORD & Post-NS",
+      "NS Policy & Society"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG",
+      "singapore"
+    ],
+    "search_keywords": [
+      "zao liao",
+      "ord",
+      "book in",
+      "book out",
+      "guard duty",
+      "sai kang",
+      "wayang",
+      "encik",
+      "keng",
+      "chao keng",
+      "sianz",
+      "sian",
+      "clearing time",
+      "monkey see",
+      "kena"
+    ]
+  },
+  {
+    "id": "ns_2025_sentiment_reversal",
+    "title": "2025 sentiment reversal — structural moderation after 2022-2024 peak",
+    "date_start": "2025-01-01",
+    "date_end": "2025-12-31",
+    "category": "trend_shift",
+    "severity": "high",
+    "metric_impact": {
+      "sent_neg": "-moderate",
+      "commit_net": "+moderate"
+    },
+    "description": "The 2025 data shows a meaningful reversal from the 2022-2024 negativity peak. Negative sentiment moderated to 0.32-0.37 range (vs 0.35-0.39 in 2022-2024). Commitment net improved. Possible causes: (1) GE2025 political resolution effect — opposition pressure on NS equity acknowledged, reducing Reddit-based grievance intensity; (2) Regression to mean after sustained 2022-2024 peak; (3) NS allowance increases progressively reducing pay grievances; (4) National Day 2025 (August) producing a strong cyclical recovery (z=-1.63 dip). Notably, r/NationalServiceSG shows the least reversal — suggesting the recovery is primarily in general public subreddits (r/singapore, r/askSingapore) rather than among actively-serving NSmen. This subreddit divergence is analytically important: the 2025 reversal may reflect shifting general public attitudes toward NS rather than improved NSF experience.",
+    "topics_affected": [
+      "NS Policy & Society",
+      "NS Life & Culture"
+    ],
+    "subreddits_affected": [
+      "singapore",
+      "askSingapore"
+    ],
+    "search_keywords": [
+      "ns reform",
+      "ns improve",
+      "ns better",
+      "ns recognition",
+      "positive ns",
+      "ns worth it"
+    ]
+  },
+  {
+    "id": "toxic_command_culture_2025",
+    "title": "Toxic command culture and racism complaints — July 2025 surge",
+    "date_start": "2025-07-01",
+    "date_end": "2025-07-31",
+    "category": "social_trend",
+    "severity": "moderate",
+    "metric_impact": {
+      "sent_neg": "+moderate",
+      "doc_count": "+low"
+    },
+    "description": "July 2025 saw Misconduct & Harassment surge to 3.1x and Race & Religion to 2.9x baseline — both the highest lifts of 2025. Not a single viral incident but multiple concurrent Reddit complaints about toxic command culture: racist remarks by section mates ('screaming the n word'), bullying sergeants ('calls me n my section mates dogs'), openly racist behaviour toward darker-skinned NSFs, and toxic Air Force work culture. 74 corpus hits for racist/bully/harass/toxic/misconduct. Posts describe NSFs filing open reports for racist remarks and struggling with abusive superiors. The clustering suggests either a genuine uptick in misconduct discourse or a viral thread encouraging others to share similar experiences.",
+    "topics_affected": [
+      "Discipline & Misconduct",
+      "NS Life & Culture"
+    ],
+    "subreddits_affected": [
+      "NationalServiceSG"
+    ],
+    "search_keywords": [
+      "racist",
+      "racism",
+      "racial",
+      "bully",
+      "toxic",
+      "harassment",
+      "misconduct",
+      "abuse",
+      "discriminat"
+    ]
+  }
+]

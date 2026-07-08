@@ -63,3 +63,9 @@ data/processed/new/*.parquet
 !data/processed/new/hierarchical_topics_manual.parquet
 !data/processed/new/annotation_sample.parquet
 !data/processed/new/sentiment_audit.parquet
+
+# Large local artifacts — regenerate or pull from Kaggle instead
+data/processed/new/chunk_faiss.index
+models/new/singbert_v7/
+archive/
+.claude/

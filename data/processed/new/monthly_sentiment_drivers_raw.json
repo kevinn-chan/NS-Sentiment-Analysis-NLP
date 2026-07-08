@@ -1,0 +1,3110 @@
+[
+  {
+    "month": "2019-01",
+    "doc_count": 2378,
+    "mean_neg_sent": 0.397,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 20.91,
+        "docs": 638,
+        "share_pct": 26.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.75,
+        "docs": 229,
+        "share_pct": 9.6
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.17,
+        "docs": 64,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.15,
+        "docs": 85,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 1.94,
+        "docs": 117,
+        "share_pct": 4.9
+      }
+    ]
+  },
+  {
+    "month": "2019-02",
+    "doc_count": 1414,
+    "mean_neg_sent": 0.324,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 7.72,
+        "docs": 140,
+        "share_pct": 9.9
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 3.55,
+        "docs": 71,
+        "share_pct": 5.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 3.39,
+        "docs": 168,
+        "share_pct": 11.9
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.86,
+        "docs": 67,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.56,
+        "docs": 45,
+        "share_pct": 3.2
+      }
+    ]
+  },
+  {
+    "month": "2019-03",
+    "doc_count": 1756,
+    "mean_neg_sent": 0.303,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 3.15,
+        "docs": 71,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.71,
+        "docs": 79,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 2.03,
+        "docs": 82,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 1.97,
+        "docs": 23,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.5,
+        "docs": 107,
+        "share_pct": 6.1
+      }
+    ]
+  },
+  {
+    "month": "2019-04",
+    "doc_count": 1178,
+    "mean_neg_sent": 0.302,
+    "top_drivers": [
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 6.51,
+        "docs": 51,
+        "share_pct": 4.3
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.47,
+        "docs": 32,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.19,
+        "docs": 19,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 2.12,
+        "docs": 50,
+        "share_pct": 4.2
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.11,
+        "docs": 87,
+        "share_pct": 7.4
+      }
+    ]
+  },
+  {
+    "month": "2019-05",
+    "doc_count": 1217,
+    "mean_neg_sent": 0.333,
+    "top_drivers": [
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 2.59,
+        "docs": 21,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.5,
+        "docs": 39,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.39,
+        "docs": 29,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.01,
+        "docs": 22,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Post-ORD Life",
+        "lift": 1.88,
+        "docs": 31,
+        "share_pct": 2.5
+      }
+    ]
+  },
+  {
+    "month": "2019-06",
+    "doc_count": 1295,
+    "mean_neg_sent": 0.27,
+    "top_drivers": [
+      {
+        "topic": "Safety & Incidents",
+        "lift": 3.07,
+        "docs": 51,
+        "share_pct": 3.9
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 2.01,
+        "docs": 106,
+        "share_pct": 8.2
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.93,
+        "docs": 31,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.76,
+        "docs": 25,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "BMT Enlistment & Life",
+        "lift": 1.74,
+        "docs": 154,
+        "share_pct": 11.9
+      }
+    ]
+  },
+  {
+    "month": "2019-07",
+    "doc_count": 1896,
+    "mean_neg_sent": 0.322,
+    "top_drivers": [
+      {
+        "topic": "ICT Admin",
+        "lift": 6.03,
+        "docs": 45,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.96,
+        "docs": 72,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.33,
+        "docs": 155,
+        "share_pct": 8.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.11,
+        "docs": 44,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.95,
+        "docs": 45,
+        "share_pct": 2.4
+      }
+    ]
+  },
+  {
+    "month": "2019-08",
+    "doc_count": 1310,
+    "mean_neg_sent": 0.342,
+    "top_drivers": [
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 4.45,
+        "docs": 204,
+        "share_pct": 15.6
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 3.22,
+        "docs": 23,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.8,
+        "docs": 47,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "IPPT",
+        "lift": 2.72,
+        "docs": 59,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 2.2,
+        "docs": 40,
+        "share_pct": 3.1
+      }
+    ]
+  },
+  {
+    "month": "2019-09",
+    "doc_count": 1373,
+    "mean_neg_sent": 0.278,
+    "top_drivers": [
+      {
+        "topic": "BMT Enlistment & Life",
+        "lift": 1.92,
+        "docs": 181,
+        "share_pct": 13.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.86,
+        "docs": 28,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.8,
+        "docs": 41,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.71,
+        "docs": 47,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 1.69,
+        "docs": 12,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2019-10",
+    "doc_count": 1556,
+    "mean_neg_sent": 0.311,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.97,
+        "docs": 34,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.52,
+        "docs": 43,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 2.35,
+        "docs": 47,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.91,
+        "docs": 104,
+        "share_pct": 6.7
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.86,
+        "docs": 36,
+        "share_pct": 2.3
+      }
+    ]
+  },
+  {
+    "month": "2019-11",
+    "doc_count": 1756,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "ORD Admin",
+        "lift": 3.31,
+        "docs": 30,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 2.44,
+        "docs": 99,
+        "share_pct": 5.6
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 2.3,
+        "docs": 22,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 2.29,
+        "docs": 49,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 2.09,
+        "docs": 51,
+        "share_pct": 2.9
+      }
+    ]
+  },
+  {
+    "month": "2019-12",
+    "doc_count": 2274,
+    "mean_neg_sent": 0.241,
+    "top_drivers": [
+      {
+        "topic": "Enlistment Process",
+        "lift": 2.16,
+        "docs": 200,
+        "share_pct": 8.8
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 1.94,
+        "docs": 24,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.86,
+        "docs": 187,
+        "share_pct": 8.2
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.85,
+        "docs": 116,
+        "share_pct": 5.1
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.84,
+        "docs": 100,
+        "share_pct": 4.4
+      }
+    ]
+  },
+  {
+    "month": "2020-01",
+    "doc_count": 2395,
+    "mean_neg_sent": 0.273,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 3.5,
+        "docs": 29,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.99,
+        "docs": 58,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.97,
+        "docs": 64,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.94,
+        "docs": 189,
+        "share_pct": 7.9
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 1.8,
+        "docs": 17,
+        "share_pct": 0.7
+      }
+    ]
+  },
+  {
+    "month": "2020-02",
+    "doc_count": 2392,
+    "mean_neg_sent": 0.247,
+    "top_drivers": [
+      {
+        "topic": "IPPT",
+        "lift": 2.87,
+        "docs": 114,
+        "share_pct": 4.8
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.67,
+        "docs": 47,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.17,
+        "docs": 18,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 2.04,
+        "docs": 15,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.8,
+        "docs": 119,
+        "share_pct": 5.0
+      }
+    ]
+  },
+  {
+    "month": "2020-03",
+    "doc_count": 4160,
+    "mean_neg_sent": 0.234,
+    "top_drivers": [
+      {
+        "topic": "RSN (Navy)",
+        "lift": 4.61,
+        "docs": 59,
+        "share_pct": 1.4
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 2.33,
+        "docs": 50,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.71,
+        "docs": 133,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "BMT Enlistment & Life",
+        "lift": 1.69,
+        "docs": 481,
+        "share_pct": 11.6
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.67,
+        "docs": 307,
+        "share_pct": 7.4
+      }
+    ]
+  },
+  {
+    "month": "2020-04",
+    "doc_count": 2889,
+    "mean_neg_sent": 0.296,
+    "top_drivers": [
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 3.42,
+        "docs": 273,
+        "share_pct": 9.4
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 2.28,
+        "docs": 34,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.26,
+        "docs": 65,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.01,
+        "docs": 72,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.78,
+        "docs": 123,
+        "share_pct": 4.3
+      }
+    ]
+  },
+  {
+    "month": "2020-05",
+    "doc_count": 3453,
+    "mean_neg_sent": 0.253,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 3.26,
+        "docs": 39,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.32,
+        "docs": 88,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 2.07,
+        "docs": 172,
+        "share_pct": 5.0
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.93,
+        "docs": 60,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.88,
+        "docs": 20,
+        "share_pct": 0.6
+      }
+    ]
+  },
+  {
+    "month": "2020-06",
+    "doc_count": 3818,
+    "mean_neg_sent": 0.298,
+    "top_drivers": [
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.62,
+        "docs": 124,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.29,
+        "docs": 87,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.18,
+        "docs": 291,
+        "share_pct": 7.6
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.99,
+        "docs": 183,
+        "share_pct": 4.8
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 1.89,
+        "docs": 25,
+        "share_pct": 0.7
+      }
+    ]
+  },
+  {
+    "month": "2020-07",
+    "doc_count": 4791,
+    "mean_neg_sent": 0.235,
+    "top_drivers": [
+      {
+        "topic": "Personal Gear",
+        "lift": 4.5,
+        "docs": 35,
+        "share_pct": 0.7
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.47,
+        "docs": 147,
+        "share_pct": 3.1
+      },
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.36,
+        "docs": 193,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 1.63,
+        "docs": 27,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.53,
+        "docs": 162,
+        "share_pct": 3.4
+      }
+    ]
+  },
+  {
+    "month": "2020-08",
+    "doc_count": 4582,
+    "mean_neg_sent": 0.267,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.21,
+        "docs": 35,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 1.74,
+        "docs": 48,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.74,
+        "docs": 99,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.67,
+        "docs": 106,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 1.64,
+        "docs": 50,
+        "share_pct": 1.1
+      }
+    ]
+  },
+  {
+    "month": "2020-09",
+    "doc_count": 5261,
+    "mean_neg_sent": 0.238,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.53,
+        "docs": 317,
+        "share_pct": 6.0
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 2.96,
+        "docs": 48,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.2,
+        "docs": 405,
+        "share_pct": 7.7
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 2.12,
+        "docs": 67,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.59,
+        "docs": 339,
+        "share_pct": 6.4
+      }
+    ]
+  },
+  {
+    "month": "2020-10",
+    "doc_count": 4846,
+    "mean_neg_sent": 0.268,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.38,
+        "docs": 40,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 2.08,
+        "docs": 353,
+        "share_pct": 7.3
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 1.75,
+        "docs": 51,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.65,
+        "docs": 193,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 1.58,
+        "docs": 176,
+        "share_pct": 3.6
+      }
+    ]
+  },
+  {
+    "month": "2020-11",
+    "doc_count": 3938,
+    "mean_neg_sent": 0.25,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 2.83,
+        "docs": 67,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 1.88,
+        "docs": 105,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.67,
+        "docs": 108,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.56,
+        "docs": 148,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "SCDF & SPF",
+        "lift": 1.56,
+        "docs": 171,
+        "share_pct": 4.3
+      }
+    ]
+  },
+  {
+    "month": "2020-12",
+    "doc_count": 5361,
+    "mean_neg_sent": 0.197,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.08,
+        "docs": 282,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 2.73,
+        "docs": 45,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 2.23,
+        "docs": 197,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 2.21,
+        "docs": 117,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.62,
+        "docs": 352,
+        "share_pct": 6.6
+      }
+    ]
+  },
+  {
+    "month": "2021-01",
+    "doc_count": 4757,
+    "mean_neg_sent": 0.233,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.8,
+        "docs": 77,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 1.79,
+        "docs": 114,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 1.77,
+        "docs": 108,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Field & Combat Training",
+        "lift": 1.68,
+        "docs": 184,
+        "share_pct": 3.9
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.59,
+        "docs": 92,
+        "share_pct": 1.9
+      }
+    ]
+  },
+  {
+    "month": "2021-02",
+    "doc_count": 4472,
+    "mean_neg_sent": 0.256,
+    "top_drivers": [
+      {
+        "topic": "Vocation Guidance",
+        "lift": 5.06,
+        "docs": 372,
+        "share_pct": 8.3
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.41,
+        "docs": 97,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 2.39,
+        "docs": 71,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.82,
+        "docs": 25,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 1.67,
+        "docs": 55,
+        "share_pct": 1.2
+      }
+    ]
+  },
+  {
+    "month": "2021-03",
+    "doc_count": 5096,
+    "mean_neg_sent": 0.233,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.99,
+        "docs": 260,
+        "share_pct": 5.1
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 2.1,
+        "docs": 33,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.85,
+        "docs": 85,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.8,
+        "docs": 103,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.75,
+        "docs": 121,
+        "share_pct": 2.4
+      }
+    ]
+  },
+  {
+    "month": "2021-04",
+    "doc_count": 5619,
+    "mean_neg_sent": 0.247,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 3.67,
+        "docs": 124,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 3.21,
+        "docs": 203,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.41,
+        "docs": 22,
+        "share_pct": 0.4
+      },
+      {
+        "topic": "SCDF & SPF",
+        "lift": 2.27,
+        "docs": 355,
+        "share_pct": 6.3
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 2.1,
+        "docs": 66,
+        "share_pct": 1.2
+      }
+    ]
+  },
+  {
+    "month": "2021-05",
+    "doc_count": 5305,
+    "mean_neg_sent": 0.27,
+    "top_drivers": [
+      {
+        "topic": "IPPT",
+        "lift": 2.15,
+        "docs": 189,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 1.96,
+        "docs": 103,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.91,
+        "docs": 280,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.55,
+        "docs": 114,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.54,
+        "docs": 92,
+        "share_pct": 1.7
+      }
+    ]
+  },
+  {
+    "month": "2021-06",
+    "doc_count": 6941,
+    "mean_neg_sent": 0.233,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.1,
+        "docs": 249,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.95,
+        "docs": 122,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.92,
+        "docs": 368,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.9,
+        "docs": 582,
+        "share_pct": 8.4
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.8,
+        "docs": 70,
+        "share_pct": 1.0
+      }
+    ]
+  },
+  {
+    "month": "2021-07",
+    "doc_count": 6287,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "IPPT",
+        "lift": 1.84,
+        "docs": 192,
+        "share_pct": 3.1
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.74,
+        "docs": 302,
+        "share_pct": 4.8
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 1.72,
+        "docs": 139,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 1.47,
+        "docs": 15,
+        "share_pct": 0.2
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.36,
+        "docs": 183,
+        "share_pct": 2.9
+      }
+    ]
+  },
+  {
+    "month": "2021-08",
+    "doc_count": 6396,
+    "mean_neg_sent": 0.249,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.48,
+        "docs": 55,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.7,
+        "docs": 61,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.62,
+        "docs": 230,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.61,
+        "docs": 116,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.48,
+        "docs": 262,
+        "share_pct": 4.1
+      }
+    ]
+  },
+  {
+    "month": "2021-09",
+    "doc_count": 7787,
+    "mean_neg_sent": 0.23,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.19,
+        "docs": 291,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.85,
+        "docs": 289,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 1.67,
+        "docs": 78,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 1.66,
+        "docs": 21,
+        "share_pct": 0.3
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.5,
+        "docs": 322,
+        "share_pct": 4.1
+      }
+    ]
+  },
+  {
+    "month": "2021-10",
+    "doc_count": 7358,
+    "mean_neg_sent": 0.273,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.47,
+        "docs": 63,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.97,
+        "docs": 81,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 1.87,
+        "docs": 136,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.69,
+        "docs": 344,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Social & Interpersonal",
+        "lift": 1.58,
+        "docs": 536,
+        "share_pct": 7.3
+      }
+    ]
+  },
+  {
+    "month": "2021-11",
+    "doc_count": 7642,
+    "mean_neg_sent": 0.259,
+    "top_drivers": [
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 2.69,
+        "docs": 115,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.71,
+        "docs": 361,
+        "share_pct": 4.7
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.64,
+        "docs": 277,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Social & Interpersonal",
+        "lift": 1.44,
+        "docs": 507,
+        "share_pct": 6.6
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 1.4,
+        "docs": 37,
+        "share_pct": 0.5
+      }
+    ]
+  },
+  {
+    "month": "2021-12",
+    "doc_count": 8233,
+    "mean_neg_sent": 0.237,
+    "top_drivers": [
+      {
+        "topic": "RSN (Navy)",
+        "lift": 2.25,
+        "docs": 57,
+        "share_pct": 0.7
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 1.72,
+        "docs": 73,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.72,
+        "docs": 624,
+        "share_pct": 7.6
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.71,
+        "docs": 301,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 1.61,
+        "docs": 46,
+        "share_pct": 0.6
+      }
+    ]
+  },
+  {
+    "month": "2022-01",
+    "doc_count": 9189,
+    "mean_neg_sent": 0.275,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.89,
+        "docs": 191,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.86,
+        "docs": 281,
+        "share_pct": 3.1
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 1.8,
+        "docs": 90,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.74,
+        "docs": 320,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Conditions & Specialist Care",
+        "lift": 1.64,
+        "docs": 417,
+        "share_pct": 4.5
+      }
+    ]
+  },
+  {
+    "month": "2022-02",
+    "doc_count": 8038,
+    "mean_neg_sent": 0.325,
+    "top_drivers": [
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.9,
+        "docs": 289,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.14,
+        "docs": 258,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 2.06,
+        "docs": 110,
+        "share_pct": 1.4
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 1.61,
+        "docs": 21,
+        "share_pct": 0.3
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 1.41,
+        "docs": 113,
+        "share_pct": 1.4
+      }
+    ]
+  },
+  {
+    "month": "2022-03",
+    "doc_count": 9364,
+    "mean_neg_sent": 0.294,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.08,
+        "docs": 492,
+        "share_pct": 5.3
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.98,
+        "docs": 57,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 1.58,
+        "docs": 24,
+        "share_pct": 0.3
+      },
+      {
+        "topic": "Social & Interpersonal",
+        "lift": 1.54,
+        "docs": 663,
+        "share_pct": 7.1
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.49,
+        "docs": 490,
+        "share_pct": 5.2
+      }
+    ]
+  },
+  {
+    "month": "2022-04",
+    "doc_count": 7566,
+    "mean_neg_sent": 0.296,
+    "top_drivers": [
+      {
+        "topic": "Personal Gear",
+        "lift": 3.25,
+        "docs": 40,
+        "share_pct": 0.5
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.54,
+        "docs": 208,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 2.41,
+        "docs": 192,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 2.2,
+        "docs": 100,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.9,
+        "docs": 307,
+        "share_pct": 4.1
+      }
+    ]
+  },
+  {
+    "month": "2022-05",
+    "doc_count": 10153,
+    "mean_neg_sent": 0.316,
+    "top_drivers": [
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.73,
+        "docs": 96,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.1,
+        "docs": 192,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 1.78,
+        "docs": 271,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.78,
+        "docs": 633,
+        "share_pct": 6.2
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 1.68,
+        "docs": 88,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2022-06",
+    "doc_count": 10024,
+    "mean_neg_sent": 0.282,
+    "top_drivers": [
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 3.02,
+        "docs": 319,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.87,
+        "docs": 490,
+        "share_pct": 4.9
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.77,
+        "docs": 356,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.77,
+        "docs": 212,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.64,
+        "docs": 441,
+        "share_pct": 4.4
+      }
+    ]
+  },
+  {
+    "month": "2022-07",
+    "doc_count": 8864,
+    "mean_neg_sent": 0.297,
+    "top_drivers": [
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 3.64,
+        "docs": 340,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.08,
+        "docs": 30,
+        "share_pct": 0.3
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.93,
+        "docs": 320,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.68,
+        "docs": 178,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.67,
+        "docs": 316,
+        "share_pct": 3.6
+      }
+    ]
+  },
+  {
+    "month": "2022-08",
+    "doc_count": 9566,
+    "mean_neg_sent": 0.309,
+    "top_drivers": [
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.67,
+        "docs": 429,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.51,
+        "docs": 309,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "NS Culture & Humour",
+        "lift": 1.46,
+        "docs": 644,
+        "share_pct": 6.7
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.33,
+        "docs": 134,
+        "share_pct": 1.4
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.31,
+        "docs": 206,
+        "share_pct": 2.2
+      }
+    ]
+  },
+  {
+    "month": "2022-09",
+    "doc_count": 8625,
+    "mean_neg_sent": 0.29,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 2.14,
+        "docs": 314,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Medical Admin",
+        "lift": 1.67,
+        "docs": 395,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.61,
+        "docs": 188,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.54,
+        "docs": 293,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.53,
+        "docs": 74,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2022-10",
+    "doc_count": 6765,
+    "mean_neg_sent": 0.293,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 2.87,
+        "docs": 117,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 2.78,
+        "docs": 65,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.93,
+        "docs": 177,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.92,
+        "docs": 243,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 1.8,
+        "docs": 132,
+        "share_pct": 2.0
+      }
+    ]
+  },
+  {
+    "month": "2022-11",
+    "doc_count": 7087,
+    "mean_neg_sent": 0.277,
+    "top_drivers": [
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.63,
+        "docs": 247,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Medical Admin",
+        "lift": 1.56,
+        "docs": 303,
+        "share_pct": 4.3
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.5,
+        "docs": 112,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.49,
+        "docs": 143,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 1.47,
+        "docs": 264,
+        "share_pct": 3.7
+      }
+    ]
+  },
+  {
+    "month": "2022-12",
+    "doc_count": 7238,
+    "mean_neg_sent": 0.29,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.31,
+        "docs": 408,
+        "share_pct": 5.6
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.88,
+        "docs": 254,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.84,
+        "docs": 41,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.76,
+        "docs": 134,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Safety & Incidents",
+        "lift": 1.76,
+        "docs": 163,
+        "share_pct": 2.3
+      }
+    ]
+  },
+  {
+    "month": "2023-01",
+    "doc_count": 7083,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "NSF Pay",
+        "lift": 2.42,
+        "docs": 320,
+        "share_pct": 4.5
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 2.24,
+        "docs": 82,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.0,
+        "docs": 23,
+        "share_pct": 0.3
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 1.95,
+        "docs": 83,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.79,
+        "docs": 139,
+        "share_pct": 2.0
+      }
+    ]
+  },
+  {
+    "month": "2023-02",
+    "doc_count": 6922,
+    "mean_neg_sent": 0.343,
+    "top_drivers": [
+      {
+        "topic": "NSF Pay",
+        "lift": 4.61,
+        "docs": 597,
+        "share_pct": 8.6
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.0,
+        "docs": 150,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.95,
+        "docs": 362,
+        "share_pct": 5.2
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 1.78,
+        "docs": 123,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.64,
+        "docs": 141,
+        "share_pct": 2.0
+      }
+    ]
+  },
+  {
+    "month": "2023-03",
+    "doc_count": 8069,
+    "mean_neg_sent": 0.259,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 1.99,
+        "docs": 274,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.97,
+        "docs": 190,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Wellbeing & Anxiety",
+        "lift": 1.72,
+        "docs": 48,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.63,
+        "docs": 148,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.57,
+        "docs": 71,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2023-04",
+    "doc_count": 6887,
+    "mean_neg_sent": 0.281,
+    "top_drivers": [
+      {
+        "topic": "Personal Gear",
+        "lift": 4.92,
+        "docs": 55,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.27,
+        "docs": 187,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.13,
+        "docs": 161,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 1.99,
+        "docs": 91,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.72,
+        "docs": 161,
+        "share_pct": 2.3
+      }
+    ]
+  },
+  {
+    "month": "2023-05",
+    "doc_count": 7872,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 3.25,
+        "docs": 281,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.24,
+        "docs": 130,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "NSF Pay",
+        "lift": 1.97,
+        "docs": 290,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.61,
+        "docs": 142,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.5,
+        "docs": 66,
+        "share_pct": 0.8
+      }
+    ]
+  },
+  {
+    "month": "2023-06",
+    "doc_count": 9793,
+    "mean_neg_sent": 0.283,
+    "top_drivers": [
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.17,
+        "docs": 230,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.94,
+        "docs": 171,
+        "share_pct": 1.7
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.89,
+        "docs": 57,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 1.82,
+        "docs": 97,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 1.56,
+        "docs": 92,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2023-07",
+    "doc_count": 9385,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "Vocation Guidance",
+        "lift": 2.27,
+        "docs": 350,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 2.25,
+        "docs": 127,
+        "share_pct": 1.4
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 2.19,
+        "docs": 81,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.85,
+        "docs": 97,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.53,
+        "docs": 175,
+        "share_pct": 1.9
+      }
+    ]
+  },
+  {
+    "month": "2023-08",
+    "doc_count": 8138,
+    "mean_neg_sent": 0.295,
+    "top_drivers": [
+      {
+        "topic": "Personal Finance",
+        "lift": 2.45,
+        "docs": 120,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 1.79,
+        "docs": 153,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Rules & Violations",
+        "lift": 1.7,
+        "docs": 372,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.65,
+        "docs": 147,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 1.62,
+        "docs": 72,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2023-09",
+    "doc_count": 8180,
+    "mean_neg_sent": 0.259,
+    "top_drivers": [
+      {
+        "topic": "RSAF",
+        "lift": 2.79,
+        "docs": 246,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.63,
+        "docs": 295,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.44,
+        "docs": 282,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 1.42,
+        "docs": 60,
+        "share_pct": 0.7
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.39,
+        "docs": 136,
+        "share_pct": 1.7
+      }
+    ]
+  },
+  {
+    "month": "2023-10",
+    "doc_count": 7749,
+    "mean_neg_sent": 0.288,
+    "top_drivers": [
+      {
+        "topic": "Personal Gear",
+        "lift": 3.26,
+        "docs": 41,
+        "share_pct": 0.5
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.71,
+        "docs": 319,
+        "share_pct": 4.1
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.68,
+        "docs": 117,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.6,
+        "docs": 136,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.59,
+        "docs": 69,
+        "share_pct": 0.9
+      }
+    ]
+  },
+  {
+    "month": "2023-11",
+    "doc_count": 6265,
+    "mean_neg_sent": 0.276,
+    "top_drivers": [
+      {
+        "topic": "ORD Admin",
+        "lift": 2.1,
+        "docs": 68,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 2.08,
+        "docs": 73,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "Daily Camp Life",
+        "lift": 2.02,
+        "docs": 471,
+        "share_pct": 7.5
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.92,
+        "docs": 132,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 1.8,
+        "docs": 127,
+        "share_pct": 2.0
+      }
+    ]
+  },
+  {
+    "month": "2023-12",
+    "doc_count": 5893,
+    "mean_neg_sent": 0.285,
+    "top_drivers": [
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 2.02,
+        "docs": 525,
+        "share_pct": 8.9
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 1.65,
+        "docs": 107,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.58,
+        "docs": 224,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.42,
+        "docs": 294,
+        "share_pct": 5.0
+      },
+      {
+        "topic": "RSAF",
+        "lift": 1.42,
+        "docs": 90,
+        "share_pct": 1.5
+      }
+    ]
+  },
+  {
+    "month": "2024-01",
+    "doc_count": 6918,
+    "mean_neg_sent": 0.289,
+    "top_drivers": [
+      {
+        "topic": "ORD Countdown",
+        "lift": 4.91,
+        "docs": 373,
+        "share_pct": 5.4
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.92,
+        "docs": 303,
+        "share_pct": 4.4
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 1.7,
+        "docs": 66,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.58,
+        "docs": 262,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.53,
+        "docs": 212,
+        "share_pct": 3.1
+      }
+    ]
+  },
+  {
+    "month": "2024-02",
+    "doc_count": 6269,
+    "mean_neg_sent": 0.301,
+    "top_drivers": [
+      {
+        "topic": "ICT Admin",
+        "lift": 2.92,
+        "docs": 72,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.67,
+        "docs": 224,
+        "share_pct": 3.6
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.79,
+        "docs": 101,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.55,
+        "docs": 161,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.54,
+        "docs": 232,
+        "share_pct": 3.7
+      }
+    ]
+  },
+  {
+    "month": "2024-03",
+    "doc_count": 8418,
+    "mean_neg_sent": 0.32,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.7,
+        "docs": 205,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 2.48,
+        "docs": 502,
+        "share_pct": 6.0
+      },
+      {
+        "topic": "Conscription & National Duty",
+        "lift": 1.99,
+        "docs": 587,
+        "share_pct": 7.0
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.74,
+        "docs": 182,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.47,
+        "docs": 38,
+        "share_pct": 0.5
+      }
+    ]
+  },
+  {
+    "month": "2024-04",
+    "doc_count": 7425,
+    "mean_neg_sent": 0.306,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.2,
+        "docs": 120,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Injuries & Surgery",
+        "lift": 2.19,
+        "docs": 183,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 1.94,
+        "docs": 96,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.85,
+        "docs": 330,
+        "share_pct": 4.4
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.71,
+        "docs": 155,
+        "share_pct": 2.1
+      }
+    ]
+  },
+  {
+    "month": "2024-05",
+    "doc_count": 6862,
+    "mean_neg_sent": 0.273,
+    "top_drivers": [
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 3.59,
+        "docs": 181,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 2.69,
+        "docs": 111,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 2.4,
+        "docs": 233,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.12,
+        "docs": 174,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 1.89,
+        "docs": 67,
+        "share_pct": 1.0
+      }
+    ]
+  },
+  {
+    "month": "2024-06",
+    "doc_count": 6921,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "RSAF",
+        "lift": 3.46,
+        "docs": 258,
+        "share_pct": 3.7
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.1,
+        "docs": 107,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.83,
+        "docs": 39,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 1.81,
+        "docs": 125,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.7,
+        "docs": 193,
+        "share_pct": 2.8
+      }
+    ]
+  },
+  {
+    "month": "2024-07",
+    "doc_count": 7052,
+    "mean_neg_sent": 0.285,
+    "top_drivers": [
+      {
+        "topic": "Personal Gear",
+        "lift": 2.97,
+        "docs": 34,
+        "share_pct": 0.5
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 2.78,
+        "docs": 77,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 2.45,
+        "docs": 94,
+        "share_pct": 1.3
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.41,
+        "docs": 203,
+        "share_pct": 2.9
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 2.2,
+        "docs": 140,
+        "share_pct": 2.0
+      }
+    ]
+  },
+  {
+    "month": "2024-08",
+    "doc_count": 7760,
+    "mean_neg_sent": 0.305,
+    "top_drivers": [
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 3.58,
+        "docs": 250,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 1.61,
+        "docs": 92,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.6,
+        "docs": 172,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.48,
+        "docs": 156,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "SCDF & SPF",
+        "lift": 1.44,
+        "docs": 310,
+        "share_pct": 4.0
+      }
+    ]
+  },
+  {
+    "month": "2024-09",
+    "doc_count": 7945,
+    "mean_neg_sent": 0.279,
+    "top_drivers": [
+      {
+        "topic": "Documentation & Clearance",
+        "lift": 3.02,
+        "docs": 409,
+        "share_pct": 5.1
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 2.09,
+        "docs": 367,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.01,
+        "docs": 26,
+        "share_pct": 0.3
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.84,
+        "docs": 645,
+        "share_pct": 8.1
+      },
+      {
+        "topic": "Officer & Scholarship Paths",
+        "lift": 1.77,
+        "docs": 199,
+        "share_pct": 2.5
+      }
+    ]
+  },
+  {
+    "month": "2024-10",
+    "doc_count": 7240,
+    "mean_neg_sent": 0.298,
+    "top_drivers": [
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 3.0,
+        "docs": 291,
+        "share_pct": 4.0
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.73,
+        "docs": 296,
+        "share_pct": 4.1
+      },
+      {
+        "topic": "Physical & Medical Pre-NS",
+        "lift": 2.0,
+        "docs": 81,
+        "share_pct": 1.1
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 1.69,
+        "docs": 48,
+        "share_pct": 0.7
+      },
+      {
+        "topic": "Gender & Sexuality",
+        "lift": 1.58,
+        "docs": 103,
+        "share_pct": 1.4
+      }
+    ]
+  },
+  {
+    "month": "2024-11",
+    "doc_count": 7096,
+    "mean_neg_sent": 0.296,
+    "top_drivers": [
+      {
+        "topic": "NS Credits & Benefits",
+        "lift": 3.28,
+        "docs": 245,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.34,
+        "docs": 27,
+        "share_pct": 0.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 2.26,
+        "docs": 192,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 2.08,
+        "docs": 58,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 1.88,
+        "docs": 337,
+        "share_pct": 4.7
+      }
+    ]
+  },
+  {
+    "month": "2024-12",
+    "doc_count": 7000,
+    "mean_neg_sent": 0.28,
+    "top_drivers": [
+      {
+        "topic": "ORD Admin",
+        "lift": 3.52,
+        "docs": 127,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 3.36,
+        "docs": 128,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 1.85,
+        "docs": 51,
+        "share_pct": 0.7
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.6,
+        "docs": 139,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Time Off & Personal Life",
+        "lift": 1.52,
+        "docs": 254,
+        "share_pct": 3.6
+      }
+    ]
+  },
+  {
+    "month": "2025-01",
+    "doc_count": 7252,
+    "mean_neg_sent": 0.293,
+    "top_drivers": [
+      {
+        "topic": "Race & Religion",
+        "lift": 4.53,
+        "docs": 179,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 3.03,
+        "docs": 219,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 2.52,
+        "docs": 72,
+        "share_pct": 1.0
+      },
+      {
+        "topic": "ICT Structure & Life",
+        "lift": 2.44,
+        "docs": 448,
+        "share_pct": 6.2
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.12,
+        "docs": 25,
+        "share_pct": 0.3
+      }
+    ]
+  },
+  {
+    "month": "2025-02",
+    "doc_count": 5721,
+    "mean_neg_sent": 0.286,
+    "top_drivers": [
+      {
+        "topic": "ICT Admin",
+        "lift": 2.22,
+        "docs": 50,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "Personal Finance",
+        "lift": 2.06,
+        "docs": 71,
+        "share_pct": 1.2
+      },
+      {
+        "topic": "Field Gear & Kit",
+        "lift": 1.98,
+        "docs": 112,
+        "share_pct": 2.0
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 1.86,
+        "docs": 159,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "Duties & Responsibilities",
+        "lift": 1.73,
+        "docs": 212,
+        "share_pct": 3.7
+      }
+    ]
+  },
+  {
+    "month": "2025-03",
+    "doc_count": 8121,
+    "mean_neg_sent": 0.266,
+    "top_drivers": [
+      {
+        "topic": "RSN (Navy)",
+        "lift": 5.2,
+        "docs": 130,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 2.48,
+        "docs": 279,
+        "share_pct": 3.4
+      },
+      {
+        "topic": "Weight & Nutrition",
+        "lift": 1.87,
+        "docs": 185,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.63,
+        "docs": 180,
+        "share_pct": 2.2
+      },
+      {
+        "topic": "Camp & Personal Admin",
+        "lift": 1.36,
+        "docs": 221,
+        "share_pct": 2.7
+      }
+    ]
+  },
+  {
+    "month": "2025-04",
+    "doc_count": 7050,
+    "mean_neg_sent": 0.295,
+    "top_drivers": [
+      {
+        "topic": "Personal Gear",
+        "lift": 3.32,
+        "docs": 38,
+        "share_pct": 0.5
+      },
+      {
+        "topic": "Deferment & Disruption",
+        "lift": 2.56,
+        "docs": 133,
+        "share_pct": 1.9
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 2.4,
+        "docs": 210,
+        "share_pct": 3.0
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.96,
+        "docs": 187,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "Enlistment Process",
+        "lift": 1.67,
+        "docs": 479,
+        "share_pct": 6.8
+      }
+    ]
+  },
+  {
+    "month": "2025-05",
+    "doc_count": 7948,
+    "mean_neg_sent": 0.291,
+    "top_drivers": [
+      {
+        "topic": "Charges & Punishment",
+        "lift": 3.22,
+        "docs": 277,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Personal Gear",
+        "lift": 2.79,
+        "docs": 36,
+        "share_pct": 0.5
+      },
+      {
+        "topic": "Uniform & Dress",
+        "lift": 1.95,
+        "docs": 210,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 1.92,
+        "docs": 229,
+        "share_pct": 2.9
+      },
+      {
+        "topic": "Geopolitics & Defence",
+        "lift": 1.82,
+        "docs": 180,
+        "share_pct": 2.3
+      }
+    ]
+  },
+  {
+    "month": "2025-06",
+    "doc_count": 7838,
+    "mean_neg_sent": 0.281,
+    "top_drivers": [
+      {
+        "topic": "ICT Admin",
+        "lift": 2.24,
+        "docs": 69,
+        "share_pct": 0.9
+      },
+      {
+        "topic": "ORD Countdown",
+        "lift": 2.17,
+        "docs": 187,
+        "share_pct": 2.4
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.16,
+        "docs": 227,
+        "share_pct": 2.9
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 2.1,
+        "docs": 725,
+        "share_pct": 9.2
+      },
+      {
+        "topic": "Officer & NCO Training",
+        "lift": 1.9,
+        "docs": 330,
+        "share_pct": 4.2
+      }
+    ]
+  },
+  {
+    "month": "2025-07",
+    "doc_count": 8135,
+    "mean_neg_sent": 0.317,
+    "top_drivers": [
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 3.11,
+        "docs": 168,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Race & Religion",
+        "lift": 2.89,
+        "docs": 128,
+        "share_pct": 1.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.62,
+        "docs": 286,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.57,
+        "docs": 313,
+        "share_pct": 3.8
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.99,
+        "docs": 268,
+        "share_pct": 3.3
+      }
+    ]
+  },
+  {
+    "month": "2025-08",
+    "doc_count": 6878,
+    "mean_neg_sent": 0.237,
+    "top_drivers": [
+      {
+        "topic": "PES & Downgrade",
+        "lift": 1.72,
+        "docs": 451,
+        "share_pct": 6.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 1.71,
+        "docs": 158,
+        "share_pct": 2.3
+      },
+      {
+        "topic": "Vocation Guidance",
+        "lift": 1.59,
+        "docs": 180,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "ICT Admin",
+        "lift": 1.59,
+        "docs": 43,
+        "share_pct": 0.6
+      },
+      {
+        "topic": "Physical Training",
+        "lift": 1.48,
+        "docs": 141,
+        "share_pct": 2.1
+      }
+    ]
+  },
+  {
+    "month": "2025-09",
+    "doc_count": 6704,
+    "mean_neg_sent": 0.221,
+    "top_drivers": [
+      {
+        "topic": "ICT Admin",
+        "lift": 2.12,
+        "docs": 56,
+        "share_pct": 0.8
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.93,
+        "docs": 311,
+        "share_pct": 4.6
+      },
+      {
+        "topic": "RSN (Navy)",
+        "lift": 1.6,
+        "docs": 33,
+        "share_pct": 0.5
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.58,
+        "docs": 176,
+        "share_pct": 2.6
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 1.51,
+        "docs": 136,
+        "share_pct": 2.0
+      }
+    ]
+  },
+  {
+    "month": "2025-10",
+    "doc_count": 4685,
+    "mean_neg_sent": 0.234,
+    "top_drivers": [
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 2.14,
+        "docs": 100,
+        "share_pct": 2.1
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 1.68,
+        "docs": 85,
+        "share_pct": 1.8
+      },
+      {
+        "topic": "IPPT",
+        "lift": 1.62,
+        "docs": 126,
+        "share_pct": 2.7
+      },
+      {
+        "topic": "RSAF",
+        "lift": 1.41,
+        "docs": 71,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "ORD Admin",
+        "lift": 1.37,
+        "docs": 33,
+        "share_pct": 0.7
+      }
+    ]
+  },
+  {
+    "month": "2025-11",
+    "doc_count": 5693,
+    "mean_neg_sent": 0.253,
+    "top_drivers": [
+      {
+        "topic": "Romantic Relationships",
+        "lift": 2.36,
+        "docs": 201,
+        "share_pct": 3.5
+      },
+      {
+        "topic": "Charges & Punishment",
+        "lift": 2.35,
+        "docs": 145,
+        "share_pct": 2.5
+      },
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.1,
+        "docs": 160,
+        "share_pct": 2.8
+      },
+      {
+        "topic": "SAF Army\u2014Combat Arms",
+        "lift": 1.79,
+        "docs": 246,
+        "share_pct": 4.3
+      },
+      {
+        "topic": "Misconduct & Harassment",
+        "lift": 1.77,
+        "docs": 67,
+        "share_pct": 1.2
+      }
+    ]
+  },
+  {
+    "month": "2025-12",
+    "doc_count": 6346,
+    "mean_neg_sent": 0.257,
+    "top_drivers": [
+      {
+        "topic": "Regular & Contract Service",
+        "lift": 2.41,
+        "docs": 205,
+        "share_pct": 3.2
+      },
+      {
+        "topic": "SAF Army\u2014Support & Services",
+        "lift": 1.53,
+        "docs": 429,
+        "share_pct": 6.8
+      },
+      {
+        "topic": "RSAF",
+        "lift": 1.43,
+        "docs": 98,
+        "share_pct": 1.5
+      },
+      {
+        "topic": "PR & Foreign Nationals",
+        "lift": 1.42,
+        "docs": 90,
+        "share_pct": 1.4
+      },
+      {
+        "topic": "Rank & Structure",
+        "lift": 1.34,
+        "docs": 102,
+        "share_pct": 1.6
+      }
+    ]
+  }
+]

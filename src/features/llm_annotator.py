@@ -580,6 +580,252 @@ def run_holdout_eval():
 
 
 # ---------------------------------------------------------------------------
+# CoT (chain-of-thought) prompt variant — for v6 training data upgrade
+# ---------------------------------------------------------------------------
+COT_SYSTEM_PROMPT = """You are a sentiment classifier for Singapore National Service (NS) Reddit posts.
+
+Classify the AUTHOR'S emotional state — not the topic — as negative, neutral, or positive.
+
+NEGATIVE: author complains, criticises, resents, expresses frustration, bitterness, or sarcasm with clear personal emotional investment.
+NEUTRAL:  author shares facts, gives advice, or asks questions with no personal emotional stake. Reporting difficulty without editorialising = NEUTRAL.
+POSITIVE: author feels satisfied, proud, relieved, grateful, amused, or excited — humor, lighthearted remarks, and describing a chill/easy/relaxed experience all count.
+
+Key rules:
+1. Classify the AUTHOR'S ATTITUDE, not the topic. An author calmly reporting a rule or hardship without complaint = NEUTRAL. An author happily describing a lax or easy experience = POSITIVE.
+2. Mixed tone: weigh the DOMINANT emotion. If the overall vibe is positive/relaxed with one negative aside, choose POSITIVE.
+3. WHEN IN DOUBT between neutral and positive → choose POSITIVE. Jokes, laughter (LOL, lol, haha), Singlish positivity (shiok, lepak, chill) = positive.
+4. Indirect resentment or bitter warnings (e.g. "watch out for snitches", sarcasm) = NEGATIVE.
+5. Personal progress, achievement, or improvement = POSITIVE.
+6. A complaint phrased as a question is still NEGATIVE.
+7. Singlish slang (lah, leh, sian, tekan, shiok, ORD, encik) is normal NS vocabulary — read tone, not just words.
+
+First write one sentence explaining the dominant emotion the author expresses, then give your label.
+Reply with ONLY this JSON, nothing else:
+{"reason": "one sentence about the author's dominant emotion", "label": "negative"}
+{"reason": "one sentence about the author's dominant emotion", "label": "neutral"}
+{"reason": "one sentence about the author's dominant emotion", "label": "positive"}"""
+
+COT_FEW_SHOT_EXAMPLES = [
+    ("Just be careful for snitches lah, some people will report you for the smallest thing. Watch your back in camp.",
+     '{"reason": "Author gives a bitter warning driven by distrust and resentment toward fellow servicemen.", "label": "negative"}'),
+    ("During BMT the tekan sessions were intense. We would do pushups and leopard crawls. That\'s just how it works in the first few weeks.",
+     '{"reason": "Author describes training matter-of-factly with no personal complaint or praise.", "label": "neutral"}'),
+    ("Our sergeant told us to do 100 pushups then forgot to count halfway through lol. Easy day for us sia.",
+     '{"reason": "Author recounts the incident with amusement and relief — the dominant tone is lighthearted positivity.", "label": "positive"}'),
+    ("I see my IPPT timings decreasing steadily. Cut 30 seconds off my 2.4km run this week, shiok.",
+     '{"reason": "Author expresses pride and satisfaction at personal improvement.", "label": "positive"}'),
+    ("It was the most chill thing, our Encik was super lax and we could take offs whenever we wanted. Not exactly allowed but yeah, good times.",
+     '{"reason": "Author describes the posting warmly and with nostalgia — the dominant emotion is happiness and relief.", "label": "positive"}'),
+]
+
+
+def build_messages_cot(text: str) -> list:
+    """Build CoT few-shot message list for one chunk."""
+    messages = []
+    for example_text, example_response in COT_FEW_SHOT_EXAMPLES:
+        messages.append({"role": "user",      "content": example_text[:800]})
+        messages.append({"role": "assistant", "content": example_response})
+    messages.append({"role": "user", "content": str(text)[:1500]})
+    return messages
+
+
+def call_llm_cot(text: str, client, retries: int = 3) -> str | None:
+    """CoT variant — parses {"reason": "...", "label": "..."} response."""
+    parse_attempts = 0
+    rate_wait = 60
+
+    while parse_attempts < retries:
+        try:
+            resp = client.chat.completions.create(
+                model=API_MODEL,
+                messages=[{"role": "system", "content": COT_SYSTEM_PROMPT}]
+                         + build_messages_cot(text),
+                max_tokens=80,
+                temperature=0.0,
+            )
+            raw = resp.choices[0].message.content.strip()
+            if resp.usage:
+                _track(resp.usage)
+            parsed = json.loads(raw)
+            label = parsed.get("label", "").lower()
+            if label in ("negative", "neutral", "positive"):
+                rate_wait = 60
+                return label
+            print(f"  ⚠️  Unexpected label (attempt {parse_attempts+1}): {raw!r}")
+            parse_attempts += 1
+
+        except json.JSONDecodeError:
+            parse_attempts += 1
+            print(f"  ⚠️  JSON error attempt {parse_attempts}: {raw!r}")
+
+        except Exception as e:
+            err = str(e)
+            if "rate_limit" in err.lower() or "429" in err:
+                print(f"  Rate limit — waiting {rate_wait}s ...")
+                time.sleep(rate_wait)
+                rate_wait = min(rate_wait * 2, 300)
+            else:
+                parse_attempts += 1
+                print(f"  ⚠️  API error (attempt {parse_attempts}): {e}")
+                time.sleep(min(2 ** parse_attempts, 30))
+
+    return None
+
+
+def run_validate_cot():
+    """Validate the CoT prompt variant against human holdout. Compare kappa to baseline."""
+    try:
+        from sklearn.metrics import cohen_kappa_score, classification_report
+    except ImportError:
+        print("Run: pip install scikit-learn"); return
+
+    client  = get_client()
+    golden  = pd.read_csv(BLIND_ANN_PATH)
+    golden  = golden[golden["human_label"].notna() & (golden["human_label"] != "skip")].copy().reset_index(drop=True)
+
+    out = DATA_DIR / "llm_validation_cot.csv"
+
+    already_done = {}
+    if out.exists():
+        prev = pd.read_csv(out).dropna(subset=["llm_label"])
+        already_done = dict(zip(prev["chunk_id"], prev["llm_label"]))
+        if already_done:
+            print(f"Resuming — {len(already_done)} already labelled.")
+
+    remaining = golden[~golden["chunk_id"].isin(already_done)].copy().reset_index(drop=True)
+    print(f"CoT validation — {len(remaining)} rows with {API_MODEL} ...")
+    print(f"Estimated time: ~{len(remaining) * RATE_LIMIT_SLEEP / 60:.0f} min  |  est. cost: ~${len(remaining)*0.00025:.2f}\n")
+
+    new_labels, t0 = [], time.time()
+
+    for i, (_, row) in enumerate(remaining.iterrows()):
+        label = call_llm_cot(str(row["text"]), client)
+        new_labels.append(label)
+        time.sleep(RATE_LIMIT_SLEEP)
+
+        if (i + 1) % 25 == 0 or (i + 1) == len(remaining):
+            elapsed = time.time() - t0
+            rate    = (i + 1) / elapsed
+            eta     = (len(remaining) - i - 1) / rate
+            print(f"  {i+1}/{len(remaining)}  {rate*60:.1f} RPM  ETA {eta/60:.0f}min  [${_cost['total']:.3f} spent]")
+            partial = remaining.iloc[:i+1].copy()
+            partial["llm_label"] = new_labels
+            combined = pd.concat([
+                pd.DataFrame([{"chunk_id": cid, "llm_label": lbl} for cid, lbl in already_done.items()]),
+                partial[["chunk_id","llm_label"]].dropna(subset=["llm_label"])
+            ], ignore_index=True)
+            golden.merge(combined, on="chunk_id", how="left").dropna(subset=["llm_label"]).to_csv(out, index=False)
+
+    remaining["llm_label"] = new_labels
+    golden["llm_label"] = golden["chunk_id"].map(already_done).astype(object)
+    for _, row in remaining.iterrows():
+        golden.loc[golden["chunk_id"] == row["chunk_id"], "llm_label"] = row["llm_label"]
+
+    valid  = golden.dropna(subset=["llm_label"])
+    kappa  = cohen_kappa_score(valid["human_label"], valid["llm_label"])
+    acc    = (valid["human_label"] == valid["llm_label"]).mean()
+
+    # Load baseline kappa for comparison
+    baseline_kappa = None
+    baseline_path  = DATA_DIR / "llm_validation.csv"
+    if baseline_path.exists():
+        bv = pd.read_csv(baseline_path).dropna(subset=["llm_label"])
+        bv = bv[bv["human_label"].notna() & (bv["human_label"] != "skip")]
+        if len(bv) > 0:
+            baseline_kappa = cohen_kappa_score(bv["human_label"], bv["llm_label"])
+
+    print(f"\n{'═'*58}")
+    print(f"  CoT Validation — {API_MODEL}")
+    print(f"{'═'*58}")
+    print(f"  Rows evaluated : {len(valid)}")
+    print(f"  Accuracy       : {acc:.3f}  ({acc*100:.1f}%)")
+    print(f"  CoT Kappa      : {kappa:.3f}")
+    if baseline_kappa is not None:
+        delta = kappa - baseline_kappa
+        arrow = "▲" if delta > 0 else "▼"
+        print(f"  Baseline Kappa : {baseline_kappa:.3f}  ({arrow}{abs(delta):.3f} {'improvement' if delta > 0 else 'regression'})")
+
+    if kappa >= 0.80:
+        verdict = "✅  EXCELLENT — re-annotate training rows with CoT prompt (~$5)"
+    elif kappa >= 0.75:
+        verdict = "✅  GOOD — CoT helps; proceed with re-annotation"
+    elif baseline_kappa and kappa > baseline_kappa + 0.01:
+        verdict = f"⚠️  MARGINAL improvement over baseline — your call"
+    else:
+        verdict = "❌  No improvement — skip CoT re-annotation, use existing labels"
+    print(f"  Verdict        : {verdict}")
+
+    print(f"\n  Per-label (CoT vs human):")
+    for lbl in ["negative", "neutral", "positive"]:
+        sub   = valid[valid["human_label"] == lbl]
+        agree = (sub["llm_label"] == lbl).mean() if len(sub) else 0
+        print(f"    {lbl:<10}  {agree:.1%}  (n={len(sub)})")
+
+    print(f"\n{classification_report(valid['human_label'], valid['llm_label'], labels=['negative','neutral','positive'], digits=3)}")
+    valid.to_csv(out, index=False)
+    print(f"  Saved → {out}")
+    print(f"{'═'*58}\n")
+    return kappa
+
+
+# ---------------------------------------------------------------------------
+# Re-annotate training rows with CoT prompt (run if CoT kappa ≥ 0.80)
+# ---------------------------------------------------------------------------
+def run_annotate_cot(n: int):
+    """Re-annotate the existing LLM training rows using the CoT prompt.
+
+    Reads llm_annotation.csv, re-labels each row with the CoT prompt,
+    saves to llm_annotation_cot.csv.  Use this file in the Kaggle notebook
+    instead of llm_annotation.csv when CoT validation passes.
+    """
+    client = get_client()
+
+    if not LLM_ANN_PATH.exists():
+        print(f"Missing: {LLM_ANN_PATH.name} — run --annotate first"); return
+
+    existing = pd.read_csv(LLM_ANN_PATH).dropna(subset=["llm_label"])
+    print(f"Loaded {len(existing):,} rows from {LLM_ANN_PATH.name}")
+
+    out = DATA_DIR / "llm_annotation_cot.csv"
+    already_done = {}
+    if out.exists():
+        prev = pd.read_csv(out).dropna(subset=["llm_label"])
+        already_done = dict(zip(prev["chunk_id"], prev["llm_label"]))
+        print(f"Resuming — {len(already_done):,} already re-labelled.")
+
+    todo = existing[~existing["chunk_id"].isin(already_done)].copy().reset_index(drop=True)
+    if n > 0:
+        todo = todo.head(n)
+    print(f"Re-labelling {len(todo):,} rows with CoT prompt ...")
+    print(f"Est. cost: ~${len(todo)*0.00025:.2f}  |  Est. time: ~{len(todo)*RATE_LIMIT_SLEEP/3600:.1f}h\n")
+
+    records, t0 = [], time.time()
+    for i, (_, row) in enumerate(todo.iterrows()):
+        label = call_llm_cot(str(row["text"]), client)
+        r = row.to_dict()
+        r["llm_label"] = label
+        records.append(r)
+        time.sleep(RATE_LIMIT_SLEEP)
+
+        if (i + 1) % 250 == 0 or (i + 1) == len(todo):
+            elapsed = time.time() - t0
+            rate    = (i + 1) / elapsed
+            eta     = (len(todo) - i - 1) / rate
+            print(f"  [{(i+1)/len(todo)*100:>5.1f}%] {i+1:>6,}/{len(todo):,}  "
+                  f"{rate:.1f}/s  ETA {eta/3600:.1f}h  ${_cost['total']:.2f} — saved")
+            new_df = pd.DataFrame(records)
+            if out.exists():
+                combined = pd.concat([pd.read_csv(out), new_df], ignore_index=True).drop_duplicates("chunk_id")
+            else:
+                combined = new_df
+            combined.to_csv(out, index=False)
+
+    print(f"\nDone — {len(records):,} re-labelled.  Saved → {out}")
+    print(f"Total cost: ${_cost['total']:.3f}")
+    print(f"\nNext: update Kaggle notebook to read llm_annotation_cot.csv instead of llm_annotation.csv")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
@@ -588,8 +834,12 @@ def main():
     )
     parser.add_argument("--validate",      action="store_true",
                         help="Validate LLM vs human golden labels, compute Cohen's Kappa")
+    parser.add_argument("--validate-cot",  action="store_true",
+                        help="Validate CoT prompt variant — compare kappa to baseline")
     parser.add_argument("--annotate",      type=int, metavar="N",
                         help="Bulk annotate N chunks (run after --validate passes)")
+    parser.add_argument("--annotate-cot",  type=int, metavar="N", default=0,
+                        help="Re-annotate N training rows with CoT prompt (0=all); run after --validate-cot passes")
     parser.add_argument("--build-dataset", action="store_true",
                         help="Combine human + LLM labels into singbert_train.csv")
     parser.add_argument("--holdout-eval",  action="store_true",
@@ -598,8 +848,12 @@ def main():
 
     if args.validate:
         run_validate()
+    elif args.validate_cot:
+        run_validate_cot()
     elif args.annotate:
         run_annotate(args.annotate)
+    elif args.annotate_cot is not None and args.annotate_cot >= 0 and "--annotate-cot" in sys.argv:
+        run_annotate_cot(args.annotate_cot)
     elif args.build_dataset:
         run_build_dataset()
     elif args.holdout_eval:
