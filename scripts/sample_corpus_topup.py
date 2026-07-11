@@ -8,7 +8,7 @@ critical/uncommitted.
 Usage:
     python scripts/sample_corpus_topup.py --n 25000 --output transfer/corpus_topup.csv
 """
-import argparse, os
+import argparse, glob, os
 import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,12 +32,9 @@ def main():
     args = ap.parse_args()
 
     used_ids = set()
-    for f in [
-        "stage2a_silver_v2.csv", "stage2b_silver_v2.csv",
-        "corpus_topup.csv", "corpus_topup2.csv", "corpus_topup3.csv",
-        "corpus_topup_all_labelled.csv",
-    ]:
-        p = os.path.join(ROOT, "transfer", f)
+    fixed = ["stage2a_silver_v2.csv", "stage2b_silver_v2.csv", "corpus_topup_all_labelled.csv"]
+    globbed = glob.glob(os.path.join(ROOT, "transfer", "corpus_topup*.csv"))
+    for p in [os.path.join(ROOT, "transfer", f) for f in fixed] + globbed:
         if os.path.exists(p):
             used_ids |= set(pd.read_csv(p, usecols=["chunk_id"])["chunk_id"])
 
