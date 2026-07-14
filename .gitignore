@@ -1,4 +1,4 @@
-# Secrets — never commit
+# Secrets
 .env
 .env.local
 
@@ -21,51 +21,35 @@ __pycache__/
 
 # Jupyter
 .ipynb_checkpoints/
-Untitled*.ipynb
-Untitled1.ipynb
+
+# Claude Code
+.claude/
 
 # Scratch / legacy
 anaconda_projects/
 logs/
 
-# Deprecated / superseded code
-src/features/ns_filter.py
-src/analysis/
-
-# Old notebook versions (keep only final)
-notebooks/kaggle_topic_model.ipynb
-notebooks/kaggle_topic_model.py
-notebooks/kaggle_topic_model_recovery.ipynb
-notebooks/kaggle_topic_model_v2.ipynb
-notebooks/kaggle_comments_chunker.py
-
-# BERTopic save artifact (duplicate subdir)
-models/new/bertopic_fine/bertopic_fine/
-
-# Raw data (large ZST dumps)
+# ── Data: raw ZST dumps (1–1.2 GB each) ──────────────────────────────────────
 data/raw/
 
-# Intermediate parquets (large)
+# ── Data: interim parquets (cleaned but pre-chunked, up to 2 GB) ─────────────
 data/interim/
 
-# Old/superseded outputs
+# ── Data: old/superseded outputs ──────────────────────────────────────────────
 data/processed/old/
 models/old/
 
-# Large processed parquets (>100MB, use Kaggle/DVC instead)
-data/processed/new/*.parquet
-
-# Keep: CSVs, HTMLs, manual taxonomy parquet, annotation sample
-!data/processed/new/topic_keywords_fine.csv
-!data/processed/new/topic_keywords_coarse.csv
-!data/processed/new/dendrogram_manual.html
-!data/processed/new/dendrogram_bertopic.html
-!data/processed/new/hierarchical_topics_manual.parquet
-!data/processed/new/annotation_sample.parquet
-!data/processed/new/sentiment_audit.parquet
-
-# Large local artifacts — regenerate or pull from Kaggle instead
+# ── Large processed files (>100 MB GitHub limit) ─────────────────────────────
+# These must be regenerated from the pipeline or downloaded separately.
+# See README § "Large files not in this repository" for details.
+data/processed/new/comments_chunks.parquet
+data/processed/new/submissions_chunks.parquet
 data/processed/new/chunk_faiss.index
-models/new/singbert_v7/
-archive/
-.claude/
+
+# ── Model weights (1.2 GB SingBERT safetensors) ──────────────────────────────
+# Config/tokenizer files ARE tracked; download weights from HuggingFace or retrain.
+models/new/singbert_v7/model.safetensors
+models/new/singbert_v7/training_args.bin
+
+# BERTopic save artifact (duplicate subdir)
+models/new/bertopic_fine/bertopic_fine/

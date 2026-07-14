@@ -90,11 +90,15 @@ _tpl = go.layout.Template(layout=go.Layout(
         gridcolor=BORDER, gridwidth=1, linecolor=BORDER, linewidth=1,
         showline=True, tickcolor=BORDER, tickfont=dict(size=10, color=MUTED),
         zeroline=False, showgrid=False,
+        # automargin: the global margin l=0/b=0 otherwise clips tick labels
+        # clean off the SVG edge (invisible text, not just tight spacing)
+        automargin=True,
     ),
     yaxis=dict(
         gridcolor=BORDER, gridwidth=1, linecolor=BORDER, showline=False,
         tickcolor=BORDER, tickfont=dict(size=10, color=MUTED),
         zeroline=False, showgrid=True,
+        automargin=True,
     ),
     legend=dict(
         bgcolor="rgba(0,0,0,0)", borderwidth=0,
@@ -598,16 +602,31 @@ section[data-testid="stSidebar"] ~ div {{
     background-color: {SURF2} !important;
     color: {TXT} !important;
 }}
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] {{
+    background-color: transparent !important;
+}}
+[data-testid="stChatMessage"] .stMarkdown {{
+    background-color: transparent !important;
+}}
 </style>
 """, unsafe_allow_html=True)
 
 
 # ── Data ──────────────────────────────────────────────────────────────────────
-@st.cache_data
+# cache_resource (not cache_data): cache_data pickle-copies the ~200MB doc frame
+# on EVERY rerun (~0.25s per interaction). These frames are never mutated after
+# load, so zero-copy sharing is safe and makes every rerun snappy.
+@st.cache_resource(show_spinner="Loading data…")
 def load_all():
     doc     = pd.read_parquet(DATA_DIR / "doc_sentiment.parquet")
     _leaf_map = {float(k): v["name"] for k, v in TOPIC_LABELS.items()}
     doc["topic_leaf"] = doc["topic_id_fine"].map(_leaf_map)
+    # Precomputed sentiment flags: groupby aggs use ("is_neg","mean") instead of
+    # lambda x: (x=="neg").mean() — the lambda runs a Python loop per group and
+    # made the Topic Analysis hierarchy build take ~14s cold vs <1s vectorised.
+    doc["is_neg"] = (doc["sent_label"] == "neg").astype("float32")
+    doc["is_neu"] = (doc["sent_label"] == "neu").astype("float32")
+    doc["is_pos"] = (doc["sent_label"] == "pos").astype("float32")
     topic_s = pd.read_parquet(DATA_DIR / "topic_summary.parquet")
     div_raw = pd.read_parquet(DATA_DIR / "doc_divergence.parquet")
     div_v2  = pd.read_parquet(DATA_DIR / "doc_divergence_v2.parquet")
@@ -732,7 +751,7 @@ def _topic_event_hover(topic_macro: str, ym: str) -> str:
 
 
 # ── Population data (pre-aggregated, loads in <1s) ───────────────────────────
-@st.cache_data
+@st.cache_resource(show_spinner=False)
 def load_population_data():
     """Returns dict of pre-aggregated population tables built by scripts/build_population_stats.py"""
     P = DATA_DIR
@@ -910,6 +929,11 @@ def lay(fig, h=400, title=None, yt=None, xt=None, yf=None):
     if yf:
         kw["yaxis_tickformat"] = yf
     fig.update_layout(**kw)
+    # automargin: margin l=0 clips category labels on horizontal bar charts
+    # (they rendered outside the SVG's left edge, fully invisible). automargin
+    # expands margins only when tick labels need the space — no-op elsewhere.
+    fig.update_yaxes(automargin=True)
+    fig.update_xaxes(automargin=True)
     return fig
 
 
@@ -1032,10 +1056,22 @@ def build_net_sent_fig(split: bool, height: int = 420, smooth: int = 0) -> go.Fi
     return fig
 
 
+# Filtered doc accessor, keyed by scalars. cache_resource → zero-copy: the
+# treemap click path used to pass the full doc_ta DataFrame as a cache_data
+# param, which hashed all 549K rows (~1s) on every rerun with a selection.
+@st.cache_resource(show_spinner=False)
+def get_doc_ta(min_uv: int = 0, sub_filter: str = "All") -> pd.DataFrame:
+    out = doc if min_uv == 0 else doc[doc["total_upvotes_commit"] >= min_uv]
+    if sub_filter != "All":
+        out = out[out["subreddit"] == sub_filter]
+    return out
+
+
 @st.cache_data
-def _topic_time_series(filter_col: str, filter_val: str, base_df=None) -> pd.DataFrame:
+def _topic_time_series(filter_col: str, filter_val: str,
+                       min_uv: int = 0, sub_filter: str = "All") -> pd.DataFrame:
     """Shared monthly aggregation for macro / sub / cluster / leaf topic levels."""
-    _src = base_df if base_df is not None else doc
+    _src = get_doc_ta(min_uv, sub_filter)
     sub = _src[
         (_src[filter_col] == filter_val) &
         (_src["created_utc"] >= "2019-01-01")
@@ -1044,29 +1080,29 @@ def _topic_time_series(filter_col: str, filter_val: str, base_df=None) -> pd.Dat
     m = sub.groupby("year_month").agg(
         doc_count=("doc_id", "count"),
         unique_authors=("author", "nunique"),
-        pct_neg=("sent_label", lambda x: (x == "neg").mean()),
-        pct_pos=("sent_label", lambda x: (x == "pos").mean()),
-        pct_neu=("sent_label", lambda x: (x == "neu").mean()),
+        pct_neg=("is_neg", "mean"),
+        pct_pos=("is_pos", "mean"),
+        pct_neu=("is_neu", "mean"),
         mean_commit_net=("net_disposition", "mean"),
     ).reset_index().sort_values("year_month")
     m["net_sent"] = m["pct_pos"] - m["pct_neg"]
     return m
 
 
-def macro_time_series(topic_macro_name: str, base_df=None) -> pd.DataFrame:
-    return _topic_time_series("topic_macro", topic_macro_name, base_df)
+def macro_time_series(topic_macro_name: str, min_uv: int = 0, sub_filter: str = "All") -> pd.DataFrame:
+    return _topic_time_series("topic_macro", topic_macro_name, min_uv, sub_filter)
 
 
-def sub_time_series(topic_sub_name: str, base_df=None) -> pd.DataFrame:
-    return _topic_time_series("topic_sub", topic_sub_name, base_df)
+def sub_time_series(topic_sub_name: str, min_uv: int = 0, sub_filter: str = "All") -> pd.DataFrame:
+    return _topic_time_series("topic_sub", topic_sub_name, min_uv, sub_filter)
 
 
-def subsub_time_series(topic_sub_sub_name: str, base_df=None) -> pd.DataFrame:
-    return _topic_time_series("topic_sub_sub", topic_sub_sub_name, base_df)
+def subsub_time_series(topic_sub_sub_name: str, min_uv: int = 0, sub_filter: str = "All") -> pd.DataFrame:
+    return _topic_time_series("topic_sub_sub", topic_sub_sub_name, min_uv, sub_filter)
 
 
-def leaf_time_series(topic_leaf_name: str, base_df=None) -> pd.DataFrame:
-    return _topic_time_series("topic_leaf", topic_leaf_name, base_df)
+def leaf_time_series(topic_leaf_name: str, min_uv: int = 0, sub_filter: str = "All") -> pd.DataFrame:
+    return _topic_time_series("topic_leaf", topic_leaf_name, min_uv, sub_filter)
 
 
 
@@ -1074,47 +1110,43 @@ def leaf_time_series(topic_leaf_name: str, base_df=None) -> pd.DataFrame:
 # Analysis uses the filtered variants; computing the unfiltered set here burned
 # a 549K-row 4-level groupby on every cold start for nothing.
 
-# Diverging net_sent colour scale (red → grey → green). Fixed regardless of
-# theme — tile fills are always dark/saturated enough for white overlay text,
-# unlike SURF2 which goes near-white in light mode and breaks contrast.
-NET_SCALE = [
-    [0.0,  ACCENT],
-    [0.35, "#2A3F55"],
-    [0.5,  "#5C6B7A"],
-    [0.65, "#1A4A3A"],
-    [1.0,  GREEN],
-]
-
-# Treemap chrome (paper bg, gutters, colorbar) is fixed dark like NET_SCALE —
-# in light mode, a white panel behind deliberately-dark saturated tiles looks
-# like a broken/unstyled grid instead of an intentional dark viz panel.
-TM_BG     = "#0C1420"
-TM_BORDER = "#1B2D44"
-TM_MUTED  = "#7C93AE"
-TM_TEXT   = "#E8F0FA"
-
-
 def _hex_to_rgb(h: str) -> tuple:
     h = h.lstrip("#")
     return int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
 
 
-def net_color(val: float, lo: float = -0.6, hi: float = 0.15) -> str:
-    """Map a net_sent scalar to a hex colour using the diverging scale (theme-aware)."""
+def _diverging(val: float, neg_c: str, mid_c: str, pos_c: str,
+               lo: float = -0.6, hi: float = 0.15) -> str:
+    """Piecewise-linear diverging colour: val<=lo → neg_c, val>=hi → pos_c, midpoint → mid_c."""
     t = max(0.0, min(1.0, (val - lo) / (hi - lo)))
-    lo_c, mid_c, hi_c = _hex_to_rgb(ACCENT), _hex_to_rgb("#5C6B7A"), _hex_to_rgb(GREEN)
-    # interpolate: below 0.5 = accent→grey, above 0.5 = grey→green
+    lo_c, mid_rgb, hi_c = _hex_to_rgb(neg_c), _hex_to_rgb(mid_c), _hex_to_rgb(pos_c)
     if t < 0.5:
         frac = t / 0.5
-        r = int(lo_c[0] + frac * (mid_c[0] - lo_c[0]))
-        g = int(lo_c[1] + frac * (mid_c[1] - lo_c[1]))
-        b = int(lo_c[2] + frac * (mid_c[2] - lo_c[2]))
+        r = int(lo_c[0] + frac * (mid_rgb[0] - lo_c[0]))
+        g = int(lo_c[1] + frac * (mid_rgb[1] - lo_c[1]))
+        b = int(lo_c[2] + frac * (mid_rgb[2] - lo_c[2]))
     else:
         frac = (t - 0.5) / 0.5
-        r = int(mid_c[0] + frac * (hi_c[0] - mid_c[0]))
-        g = int(mid_c[1] + frac * (hi_c[1] - mid_c[1]))
-        b = int(mid_c[2] + frac * (hi_c[2] - mid_c[2]))
+        r = int(mid_rgb[0] + frac * (hi_c[0] - mid_rgb[0]))
+        g = int(mid_rgb[1] + frac * (hi_c[1] - mid_rgb[1]))
+        b = int(mid_rgb[2] + frac * (hi_c[2] - mid_rgb[2]))
     return f"#{r:02X}{g:02X}{b:02X}"
+
+
+def net_color(val: float, lo: float = -0.6, hi: float = 0.15) -> str:
+    """Map a net_sent scalar to a hex colour using the diverging scale (theme-aware)."""
+    return _diverging(val, ACCENT, "#5C6B7A", GREEN, lo, hi)
+
+
+# Treemap-specific light-mode palette: dark mode gets its vividness from
+# ACCENT/GREEN's already-bright hex (#FF3820/#00E896). Light mode's ACCENT/
+# GREEN (#B71C1C/#1B5E20) were tuned dark for white-text bar fills elsewhere —
+# pastel-blending those toward white just produces dusty, lifeless tones.
+# Use genuinely vivid stops instead, chosen so black text/borders still clear
+# WCAG AA (>=4.5:1) at every point on the scale.
+TM_LIGHT_NEG = "#EF4444"
+TM_LIGHT_MID = "#9AA5B1"
+TM_LIGHT_POS = "#22C55E"
 
 
 def sentiment_bar(row, width=180):
@@ -1133,9 +1165,18 @@ def sentiment_bar(row, width=180):
 
 
 def commit_label(v):
-    """Plain-language commitment label from raw score."""
+    """Plain-language commitment label from raw score (buyin axis)."""
     if v > 0.05: return "strongly committed"
     if v > 0.02: return "slightly committed"
+    if v > -0.02: return "neutral"
+    if v > -0.05: return "slightly uncommitted"
+    return "strongly uncommitted"
+
+
+def stance_label(v):
+    """Plain-language stance label from raw score (stance axis)."""
+    if v > 0.05: return "strongly supportive"
+    if v > 0.02: return "slightly supportive"
     if v > -0.02: return "neutral"
     if v > -0.05: return "slightly critical"
     return "strongly critical"
@@ -1167,7 +1208,7 @@ if current_page == "Overview":
         f'<p style="color:{MUTED};font-size:0.74rem;margin-top:-0.25rem;">'
         f'<b style="color:{CYAN};">Documents</b> = individual Reddit posts + comments (549K). &nbsp;'
         f'<b style="color:{CYAN};">Analysed Passages</b> = each document split into ~1–3 text segments for '
-        f'the 4-stage cascade commitment model (727K labelled). '
+        f'the NLP pipeline (737K passages). '
         f'<b style="color:{CYAN};">Neg : Pos Ratio</b> = for every 1 positive post, there are ~2 negative posts (neutral posts excluded).</p>',
         unsafe_allow_html=True,
     )
@@ -1556,7 +1597,7 @@ elif current_page == "Sentiment Trends":
 elif current_page == "Topic Analysis":
     page_header(
         "TOPIC ANALYSIS",
-        "17 macro · 52 sub · 112 cluster · 359 leaf topics · sentiment + commitment at every level",
+        "17 macro · 52 sub · 112 cluster · 359 leaf topics · sentiment + stance at every level",
     )
 
     # ── Upvote filter ─────────────────────────────────────────────────────────
@@ -1573,9 +1614,7 @@ elif current_page == "Topic Analysis":
         _tt_sub = st.selectbox("Subreddit filter", _ALL_SUBS_TT, index=0, key="tt_sub")
 
     # Apply upvote + subreddit filter to doc for this page's derived computations
-    doc_ta = doc if _min_uv == 0 else doc[doc["total_upvotes_commit"] >= _min_uv].copy()
-    if _tt_sub != "All":
-        doc_ta = doc_ta[doc_ta["subreddit"] == _tt_sub].copy()
+    doc_ta = get_doc_ta(_min_uv, _tt_sub)
     _uv_count = len(doc_ta)
     _uv_pct = _uv_count / len(doc)
     _filter_parts = []
@@ -1593,14 +1632,14 @@ elif current_page == "Topic Analysis":
 
     @st.cache_data
     def build_hierarchy_filtered(min_uv: int, sub_filter: str = "All"):
-        _base = doc_ta.dropna(subset=["topic_macro"]).copy()
+        _base = get_doc_ta(min_uv, sub_filter).dropna(subset=["topic_macro"])
         def _agg(df, groupby_cols):
             g = df.groupby(groupby_cols, observed=True)
             out = g.agg(
                 doc_count     = ("doc_id",           "count"),
-                pct_neg       = ("sent_label",        lambda x: (x == "neg").mean()),
-                pct_neu       = ("sent_label",        lambda x: (x == "neu").mean()),
-                pct_pos       = ("sent_label",        lambda x: (x == "pos").mean()),
+                pct_neg       = ("is_neg",            "mean"),
+                pct_neu       = ("is_neu",            "mean"),
+                pct_pos       = ("is_pos",            "mean"),
                 mean_unc      = ("pct_uncommitted",   "mean"),
                 mean_com      = ("pct_committed",     "mean"),
                 mean_crit     = ("pct_critical",      "mean"),
@@ -1609,6 +1648,7 @@ elif current_page == "Topic Analysis":
             ).reset_index()
             out["net_sent"]        = out["pct_pos"] - out["pct_neg"]
             out["mean_commit_net"] = out["mean_com"] - out["mean_unc"]
+            out["mean_stance_net"] = out["mean_sup"] - out["mean_crit"]
             return out
         m  = _agg(_base, ["topic_macro"])
         s  = _agg(_base.dropna(subset=["topic_sub"]),     ["topic_macro", "topic_sub"])
@@ -1632,14 +1672,14 @@ elif current_page == "Topic Analysis":
             pct_neg=float((h_m["pct_neg"]*w).sum()/total),
             pct_neu=float((h_m["pct_neu"]*w).sum()/total),
             pct_pos=float((h_m["pct_pos"]*w).sum()/total),
-            commit=float((h_m["mean_commit_net"]*w).sum()/total),
+            stance=float((h_m["mean_stance_net"]*w).sum()/total),
         ))
         for _, r in h_m.iterrows():
             nodes.append(dict(
                 id=r["topic_macro"], label=r["topic_macro"], parent="ALL",
                 value=int(r["doc_count"]), net_sent=r["net_sent"],
                 pct_neg=r["pct_neg"], pct_neu=r["pct_neu"], pct_pos=r["pct_pos"],
-                commit=r["mean_commit_net"],
+                stance=r["mean_stance_net"],
             ))
         for _, r in h_s.iterrows():
             nid = f"{r['topic_macro']}||{r['topic_sub']}"
@@ -1647,7 +1687,7 @@ elif current_page == "Topic Analysis":
                 id=nid, label=r["topic_sub"], parent=r["topic_macro"],
                 value=int(r["doc_count"]), net_sent=r["net_sent"],
                 pct_neg=r["pct_neg"], pct_neu=r["pct_neu"], pct_pos=r["pct_pos"],
-                commit=r["mean_commit_net"],
+                stance=r["mean_stance_net"],
             ))
         for _, r in h_ss_clean.iterrows():
             parent_id = f"{r['topic_macro']}||{r['topic_sub']}"
@@ -1656,7 +1696,7 @@ elif current_page == "Topic Analysis":
                 id=nid, label=r["topic_sub_sub"], parent=parent_id,
                 value=int(r["doc_count"]), net_sent=r["net_sent"],
                 pct_neg=r["pct_neg"], pct_neu=r["pct_neu"], pct_pos=r["pct_pos"],
-                commit=r["mean_commit_net"],
+                stance=r["mean_stance_net"],
             ))
         for _, r in h_l_clean.iterrows():
             parent_id = f"{r['topic_macro']}||{r['topic_sub']}||{r['topic_sub_sub']}"
@@ -1665,31 +1705,42 @@ elif current_page == "Topic Analysis":
                 id=nid, label=r["topic_leaf"], parent=parent_id,
                 value=int(r["doc_count"]), net_sent=r["net_sent"],
                 pct_neg=r["pct_neg"], pct_neu=r["pct_neu"], pct_pos=r["pct_pos"],
-                commit=r["mean_commit_net"],
+                stance=r["mean_stance_net"],
             ))
         return pd.DataFrame(nodes)
 
     tm_df_ta = build_treemap_filtered(_min_uv, _tt_sub)
 
     # ── Build trend datasets (from doc_ta so upvote + subreddit filters apply) ─
-    _ta_trend = doc_ta[doc_ta["created_utc"] >= "2019-01-01"].dropna(subset=["topic_macro"]).copy()
-    _ta_trend["year_month"] = _ta_trend["created_utc"].dt.to_period("M").astype(str)
-    _tt_dist = _ta_trend.groupby(["year_month", "topic_macro"]).agg(
-        doc_count=("doc_id", "count"),
-        unique_authors=("author", "nunique"),
-    ).reset_index()
-    _tt_sent = _ta_trend.groupby(["year_month", "topic_macro"]).agg(
-        doc_count=("doc_id", "count"),
-        pct_pos=("sent_label", lambda x: (x == "pos").mean()),
-        pct_neg=("sent_label", lambda x: (x == "neg").mean()),
-    ).reset_index()
-    _tt_sent["net_sentiment"] = _tt_sent["pct_pos"] - _tt_sent["pct_neg"]
+    # Cached — these groupbys were re-running on every widget interaction
+    # anywhere on this page (Streamlit reruns the whole script top-to-bottom
+    # per interaction), even ones on unrelated tabs. That's the "choppy" feel.
+    # cache_resource: ta_trend is ~500K rows — cache_data would pickle-copy it
+    # on every rerun of this page. Read-only downstream, so zero-copy is safe.
+    @st.cache_resource(show_spinner=False)
+    def build_topic_trends(min_uv: int, sub_filter: str = "All"):
+        _dta = get_doc_ta(min_uv, sub_filter)
+        ta_trend = _dta[_dta["created_utc"] >= "2019-01-01"].dropna(subset=["topic_macro"]).copy()
+        ta_trend["year_month"] = ta_trend["created_utc"].dt.to_period("M").astype(str)
+        tt_dist = ta_trend.groupby(["year_month", "topic_macro"]).agg(
+            doc_count=("doc_id", "count"),
+            unique_authors=("author", "nunique"),
+        ).reset_index()
+        tt_sent = ta_trend.groupby(["year_month", "topic_macro"]).agg(
+            doc_count=("doc_id", "count"),
+            pct_pos=("is_pos", "mean"),
+            pct_neg=("is_neg", "mean"),
+        ).reset_index()
+        tt_sent["net_sentiment"] = tt_sent["pct_pos"] - tt_sent["pct_neg"]
 
-    _tt_dist["quarter"] = pd.PeriodIndex(_tt_dist["year_month"], freq="M").asfreq("Q").astype(str)
-    _tt_qtr = _tt_dist.groupby(["quarter", "topic_macro"]).agg(doc_count=("doc_count","sum"), unique_authors=("unique_authors","sum")).reset_index()
-    _tt_qtr["rank"] = _tt_qtr.groupby("quarter")["doc_count"].rank(method="min", ascending=False).astype(int)
+        tt_dist["quarter"] = pd.PeriodIndex(tt_dist["year_month"], freq="M").asfreq("Q").astype(str)
+        tt_qtr = tt_dist.groupby(["quarter", "topic_macro"]).agg(doc_count=("doc_count","sum"), unique_authors=("unique_authors","sum")).reset_index()
+        tt_qtr["rank"] = tt_qtr.groupby("quarter")["doc_count"].rank(method="min", ascending=False).astype(int)
 
-    _topics = sorted(_tt_dist["topic_macro"].dropna().unique())
+        topics = sorted(tt_dist["topic_macro"].dropna().unique())
+        return ta_trend, tt_dist, tt_sent, tt_qtr, topics
+
+    _ta_trend, _tt_dist, _tt_sent, _tt_qtr, _topics = build_topic_trends(_min_uv, _tt_sub)
     _PALETTE = [
         "#00C4FF","#FF3820","#00E896","#FFB800","#C77DFF","#FF6B6B","#4ECDC4","#FFE66D",
         "#A8DADC","#F4A261","#2EC4B6","#E71D36","#FF9F1C","#CBFF8C","#8338EC","#FB5607",
@@ -1703,7 +1754,11 @@ elif current_page == "Topic Analysis":
     ])
 
     # ── Tab: Landscape (treemap) ───────────────────────────────────────────────
-    with tab_tm:
+    # st.fragment: treemap clicks / clear / back rerun ONLY this section instead
+    # of re-rendering all 7 tabs' charts — the difference between a ~2s and a
+    # sub-500ms click response.
+    @st.fragment
+    def _landscape_tab():
         st.markdown(
             f'<p style="color:{MUTED};font-size:0.8rem;">Size = document volume · '
             f'Colour = net sentiment (red → negative, green → positive). '
@@ -1726,17 +1781,34 @@ elif current_page == "Topic Analysis":
         _tm["rank"] = _tm["net_sent"].rank(method="min", ascending=True).astype(int)
         _n_total = len(_tm)
         # Build mixed-type customdata as list of lists
-        # idx: 0=pct_neg 1=pct_pos 2=commit 3=value 4=pct_neu 5=net_sent 6=bar_str 7=rank 8=n_total
-        def _commit_label(v):
-            if v > 0.05: return f"{v:+.3f} (net committed)"
-            if v < -0.05: return f"{v:+.3f} (net uncommitted)"
+        # idx: 0=pct_neg 1=pct_pos 2=stance 3=value 4=pct_neu 5=net_sent 6=bar_str 7=rank 8=n_total
+        def _stance_lbl(v):
+            if v > 0.05: return f"{v:+.3f} (net supportive)"
+            if v < -0.05: return f"{v:+.3f} (net critical)"
             return f"{v:+.3f} (neutral)"
         _cd = [
-            [r.pct_neg, r.pct_pos, _commit_label(r.commit), r.value, r.pct_neu, r.net_sent,
+            [r.pct_neg, r.pct_pos, _stance_lbl(r.stance), r.value, r.pct_neu, r.net_sent,
              r.bar_str, int(r["rank"]), _n_total]
             for _, r in _tm.iterrows()
         ]
 
+        # Discrete per-tile colors via the app's standard theme-aware diverging
+        # scale (same net_color() used by every bar chart) — the treemap now
+        # follows light/dark mode like everything else, instead of forcing a
+        # permanently-dark panel. Explicit symmetric range (not net_color()'s
+        # default asymmetric -0.6/+0.15) — the caption below promises
+        # "red → negative, green → positive" at a literal zero, so the grey
+        # midpoint must sit at net_sent == 0.
+        # Light mode: dedicated vivid stops (TM_LIGHT_*) — not the muted
+        # ACCENT/GREEN brand colours pastel-blended, which reads dull/lifeless
+        # against dark mode's genuinely bright #FF3820/#00E896.
+        if _LIGHT:
+            _tile_colors = [_diverging(v, TM_LIGHT_NEG, TM_LIGHT_MID, TM_LIGHT_POS, -0.6, 0.6)
+                            for v in _tm["net_sent"]]
+        else:
+            _tile_colors = [net_color(v, lo=-0.6, hi=0.6) for v in _tm["net_sent"]]
+        _tm_text_color = "#111111" if _LIGHT else "#FFFFFF"
+        _tm_line_color = "#111111" if _LIGHT else BG
         fig_tm = go.Figure(go.Treemap(
             ids=_tm["id"],
             labels=_tm["label"],
@@ -1745,17 +1817,8 @@ elif current_page == "Topic Analysis":
             branchvalues="total",
             customdata=_cd,
             marker=dict(
-                colors=_tm["net_sent"].tolist(),
-                colorscale=NET_SCALE,
-                cmid=0.0,
-                showscale=True,
-                colorbar=dict(
-                    title=dict(text="Net sent", font=dict(size=10, color=TM_MUTED)),
-                    tickformat="+.0%", thickness=12, len=0.55,
-                    tickfont=dict(size=9, color=TM_MUTED),
-                    bgcolor=TM_BG, bordercolor=TM_BORDER, borderwidth=1,
-                ),
-                line=dict(color=TM_BG, width=1.5),
+                colors=_tile_colors,
+                line=dict(color=_tm_line_color, width=1.5),
             ),
             hovertemplate=(
                 "<b>%{label}</b><br>"
@@ -1771,15 +1834,34 @@ elif current_page == "Topic Analysis":
                 "NEG %{customdata[0]:.0%}  ·  NEU %{customdata[4]:.0%}  ·  POS %{customdata[1]:.0%}"
                 "  ·  %{customdata[3]:,.0f} docs</span>"
             ),
-            # ponytail: fixed white, not TXT — tile fills (NET_SCALE) are always
-            # dark/saturated regardless of theme, so text must stay light.
-            textfont=dict(family="'Barlow Semi Condensed', sans-serif", size=12, color="#FFFFFF"),
+            textfont=dict(family="'Barlow Semi Condensed', sans-serif", size=12, color=_tm_text_color),
             textposition="top left",
         ))
+        # Manual colorbar (dummy invisible trace) — mirrors the tile stops
+        # exactly (vivid TM_LIGHT_* in light mode, ACCENT/grey/GREEN in dark).
+        _cb_stops = [TM_LIGHT_NEG, TM_LIGHT_MID, TM_LIGHT_POS] if _LIGHT else [ACCENT, "#5C6B7A", GREEN]
+        fig_tm.add_trace(go.Scatter(
+            x=[None], y=[None], mode="markers",
+            marker=dict(
+                size=0.001, showscale=True,
+                colorscale=[[0.0, _cb_stops[0]], [0.5, _cb_stops[1]], [1.0, _cb_stops[2]]],
+                cmin=-0.6, cmax=0.6, color=[0],
+                colorbar=dict(
+                    title=dict(text="Net sent", font=dict(size=10, color=MUTED)),
+                    tickformat="+.0%", thickness=12, len=0.55,
+                    tickfont=dict(size=9, color=MUTED),
+                    bgcolor=SURF, bordercolor=BORDER, borderwidth=1,
+                ),
+            ),
+            showlegend=False, hoverinfo="skip",
+        ))
         fig_tm.update_layout(
-            paper_bgcolor=TM_BG, plot_bgcolor=TM_BG, font=dict(color=TM_TEXT),
+            paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=TXT),
             height=520,
             margin=dict(l=0, r=0, t=10, b=0),
+            # The colorbar dummy scatter trace creates cartesian axes under the
+            # treemap; hide them or their stray 0–4 tick labels can render
+            xaxis=dict(visible=False), yaxis=dict(visible=False),
         )
 
         # ── Side-by-side: treemap left, analytics panel right ─────────────────
@@ -1866,10 +1948,12 @@ elif current_page == "Topic Analysis":
                 xanchor="right", yanchor="top", align="right")
             fig.update_layout(height=height, paper_bgcolor=_bg, plot_bgcolor="rgba(0,0,0,0.15)",
                 margin=dict(l=16, r=16, t=16, b=8), showlegend=False,
+                # automargin: l=16 clips the "-60%" y-tick labels off the edge
                 yaxis=dict(tickformat="+.0%", showgrid=True, gridcolor="rgba(255,255,255,0.08)",
                            tickfont=dict(size=9, color="rgba(255,255,255,0.6)"),
-                           zerolinecolor="rgba(255,255,255,0.2)"),
-                yaxis2=dict(showgrid=False, tickfont=dict(size=8, color="rgba(255,255,255,0.4)")),
+                           zerolinecolor="rgba(255,255,255,0.2)", automargin=True),
+                yaxis2=dict(showgrid=False, tickfont=dict(size=8, color="rgba(255,255,255,0.4)"),
+                            automargin=True),
                 xaxis2=dict(showgrid=False, tickfont=dict(size=8, color="rgba(255,255,255,0.5)")),
                 xaxis=dict(showgrid=False, showticklabels=False))
             fig.update_yaxes(secondary_y=True, row=2, col=1,
@@ -1887,13 +1971,13 @@ elif current_page == "Topic Analysis":
         def _resolve_sel(parts):
             n = len(parts)
             if n == 4:
-                name, ts, lbl = parts[3], leaf_time_series(parts[3], doc_ta), "▸▸▸▸ LEAF"
+                name, ts, lbl = parts[3], leaf_time_series(parts[3], _min_uv, _tt_sub), "▸▸▸▸ LEAF"
             elif n == 3:
-                name, ts, lbl = parts[2], subsub_time_series(parts[2], doc_ta), "▸▸▸ CLUSTER"
+                name, ts, lbl = parts[2], subsub_time_series(parts[2], _min_uv, _tt_sub), "▸▸▸ CLUSTER"
             elif n == 2:
-                name, ts, lbl = parts[1], sub_time_series(parts[1], doc_ta), "▸▸ SUB-TOPIC"
+                name, ts, lbl = parts[1], sub_time_series(parts[1], _min_uv, _tt_sub), "▸▸ SUB-TOPIC"
             elif n == 1:
-                name, ts, lbl = parts[0], macro_time_series(parts[0], doc_ta), "▸ TOPIC"
+                name, ts, lbl = parts[0], macro_time_series(parts[0], _min_uv, _tt_sub), "▸ TOPIC"
             else:
                 return None
             sel_id = "||".join(parts)
@@ -1905,7 +1989,7 @@ elif current_page == "Topic Analysis":
         if _is_deep:
             if st.button("← Back to topic map", key="tm_back"):
                 st.session_state["tm_sel_id"] = None
-                st.rerun()
+                st.rerun(scope="fragment")
             _r = _resolve_sel(_sel_parts)
             fig_imm = _build_trend_fig(_r["ts"], _r["net_v"], _r["net_v"] - _corpus_avg_net,
                                        _r["name"], _r["lbl"], _r["sel_id"], height=520,
@@ -1914,23 +1998,23 @@ elif current_page == "Topic Analysis":
 
         else:
             # ── MACRO / SUB / NONE: treemap always visible ─────────────────────
-            # Fixed-dark card frame — matches the treemap's own fixed-dark chrome
-            # (TM_BG/TM_BORDER) so light mode doesn't show a white halo around it.
-            st.markdown(
-                f'<div style="background:{TM_BG};border:1px solid {TM_BORDER};'
-                f'border-radius:10px;padding:10px 6px 0;">',
-                unsafe_allow_html=True,
-            )
             tm_event = st.plotly_chart(fig_tm, use_container_width=True,
                                        config=cfg, theme=None, on_select="rerun", key="treemap_sel")
-            st.markdown('</div>', unsafe_allow_html=True)
             if tm_event and tm_event.selection and tm_event.selection.get("points"):
                 pt  = tm_event.selection["points"][0]
                 sel = pt.get("id") or pt.get("label", "")
-                # Only rerun if selection actually changed — prevents flash loop
+                # Only act if selection actually changed — prevents flash loop
                 if sel and sel not in ("ALL", "", None) and sel != _sel:
                     st.session_state["tm_sel_id"] = sel
-                    st.rerun()
+                    if sel.count("||") >= 2:
+                        # cluster/leaf → immersive view replaces the treemap,
+                        # which is rendered above this point — needs a rerun
+                        st.rerun(scope="fragment")
+                    # macro/sub → trend chart renders below in this same pass;
+                    # skipping st.rerun() halves the click latency
+                    _sel       = sel
+                    _sel_parts = sel.split("||")
+                    _n_parts   = len(_sel_parts)
 
             # ── Trend chart below treemap when a macro or sub is selected ──────
             if _n_parts >= 1:
@@ -1942,15 +2026,19 @@ elif current_page == "Topic Analysis":
                     with _bc2:
                         if st.button("✕ Clear", key="tm_clear"):
                             st.session_state["tm_sel_id"] = None
-                            st.rerun()
+                            st.rerun(scope="fragment")
                     fig_below = _build_trend_fig(_r["ts"], _r["net_v"],
                                                  _r["net_v"] - _corpus_avg_net,
                                                  _r["name"], _r["lbl"], _r["sel_id"], height=360,
                                                  topic_macro=_sel_parts[0])
                     st.plotly_chart(fig_below, use_container_width=True, config=cfg, theme=None)
 
+    with tab_tm:
+        _landscape_tab()
+
     # ── Tab: Drill Down ────────────────────────────────────────────────────────
-    with tab_dd:
+    @st.fragment
+    def _drilldown_tab():
         # ── Level 1: macro ──────────────────────────────────────────────────
         st.markdown("#### Level 1 — Category")
         macro_sorted = h_macro_ta.sort_values("net_sent", ascending=True)
@@ -1965,7 +2053,7 @@ elif current_page == "Topic Analysis":
             customdata=list(zip(
                 macro_sorted["pct_neg"], macro_sorted["pct_pos"],
                 macro_sorted["doc_count"],
-                [commit_label(v) for v in macro_sorted["mean_commit_net"]]
+                [stance_label(v) for v in macro_sorted["mean_stance_net"]]
             )),
             hovertemplate=(
                 "<b>%{y}</b><br>Net sent: %{x:+.1%}<br>"
@@ -2005,7 +2093,7 @@ elif current_page == "Topic Analysis":
                 customdata=list(zip(
                     sub_data["pct_neg"], sub_data["pct_pos"],
                     sub_data["doc_count"],
-                    [commit_label(v) for v in sub_data["mean_commit_net"]]
+                    [stance_label(v) for v in sub_data["mean_stance_net"]]
                 )),
                 hovertemplate=(
                     "<b>%{y}</b><br>Net sent: %{x:+.1%}<br>"
@@ -2020,16 +2108,16 @@ elif current_page == "Topic Analysis":
             st.plotly_chart(fig_s, use_container_width=True, config=cfg, theme=None)
 
         with c2:
-            sc_colors = [ACCENT if v < 0 else GREEN for v in sub_data["mean_commit_net"]]
-            _commit_cd = [commit_label(v) for v in sub_data["mean_commit_net"]]
+            sc_colors = [ACCENT if v < 0 else GREEN for v in sub_data["mean_stance_net"]]
+            _stance_cd = [stance_label(v) for v in sub_data["mean_stance_net"]]
             fig_sc = go.Figure(go.Bar(
-                y=sub_data["topic_sub"], x=sub_data["mean_commit_net"],
+                y=sub_data["topic_sub"], x=sub_data["mean_stance_net"],
                 orientation="h", marker_color=sc_colors, marker_line_width=0,
-                customdata=_commit_cd,
+                customdata=_stance_cd,
                 hovertemplate="<b>%{y}</b><br>%{customdata}<extra></extra>",
             ))
             fig_sc.add_vline(x=0, line_color=BORDER, line_width=1)
-            lay(fig_sc, h=_l2h, xt="Commitment (support − critical)")
+            lay(fig_sc, h=_l2h, xt="Stance (supportive − critical)")
             fig_sc.update_layout(yaxis=dict(showgrid=False))
             st.plotly_chart(fig_sc, use_container_width=True, config=cfg, theme=None)
 
@@ -2083,7 +2171,7 @@ elif current_page == "Topic Analysis":
                     customdata=list(zip(
                         subsub_data["pct_neg"], subsub_data["pct_pos"],
                         subsub_data["doc_count"],
-                        [commit_label(v) for v in subsub_data["mean_commit_net"]]
+                        [stance_label(v) for v in subsub_data["mean_stance_net"]]
                     )),
                     hovertemplate=(
                         "<b>%{y}</b><br>Net: %{x:+.1%}<br>"
@@ -2126,7 +2214,7 @@ elif current_page == "Topic Analysis":
                         f'<span style="color:{TXT};font-size:0.78rem;">{row.topic_sub_sub}</span><br>'
                         f'{sentiment_bar(row)}<br>'
                         f'<span style="color:{MUTED};font-size:0.68rem;">'
-                        f'{row.doc_count:,} docs · {commit_label(row.mean_commit_net)}</span>'
+                        f'{row.doc_count:,} docs · {stance_label(row.mean_stance_net)}</span>'
                         f'</span>'
                         for row in subsub_data.sort_values("pct_neg", ascending=False).itertuples()
                     )
@@ -2165,7 +2253,7 @@ elif current_page == "Topic Analysis":
                             customdata=list(zip(
                                 leaf_data["pct_neg"], leaf_data["pct_pos"],
                                 leaf_data["doc_count"],
-                                [commit_label(v) for v in leaf_data["mean_commit_net"]]
+                                [stance_label(v) for v in leaf_data["mean_stance_net"]]
                             )),
                             hovertemplate=(
                                 "<b>%{y}</b><br>Net: %{x:+.1%}<br>"
@@ -2208,7 +2296,7 @@ elif current_page == "Topic Analysis":
                                 f'<span style="color:{TXT};font-size:0.78rem;">{row.topic_leaf}</span><br>'
                                 f'{sentiment_bar(row)}<br>'
                                 f'<span style="color:{MUTED};font-size:0.68rem;">'
-                                f'{row.doc_count:,} docs · {commit_label(row.mean_commit_net)}</span>'
+                                f'{row.doc_count:,} docs · {stance_label(row.mean_stance_net)}</span>'
                                 f'</span>'
                                 for row in leaf_data.sort_values("pct_neg", ascending=False).itertuples()
                             )
@@ -2224,7 +2312,7 @@ elif current_page == "Topic Analysis":
                         options=leaf_opts, key="dd_leaf",
                     )
 
-                    ts_leaf = leaf_time_series(sel_leaf, doc_ta)
+                    ts_leaf = leaf_time_series(sel_leaf, _min_uv, _tt_sub)
                     if not ts_leaf.empty:
                         dl1, dl2 = st.columns([3, 1], gap="large")
                         with dl1:
@@ -2278,9 +2366,9 @@ elif current_page == "Topic Analysis":
                                            font=dict(size=11, color=MUTED), x=0),
                                 showlegend=False,
                                 yaxis=dict(tickformat="+.0%", showgrid=True, gridcolor=BORDER,
-                                           tickfont=dict(size=9, color=MUTED)),
+                                           tickfont=dict(size=9, color=MUTED), automargin=True),
                                 yaxis2=dict(showgrid=True, gridcolor=BORDER,
-                                            tickfont=dict(size=8, color=MUTED)),
+                                            tickfont=dict(size=8, color=MUTED), automargin=True),
                                 xaxis=dict(showgrid=False, showticklabels=False),
                                 xaxis2=dict(showgrid=False, tickfont=dict(size=9, color=MUTED)),
                             )
@@ -2308,18 +2396,21 @@ elif current_page == "Topic Analysis":
                             f'{int(leaf_row["doc_count"]):,}</p>'
                             f'<hr style="border-color:{BORDER};margin:0.5rem 0;">'
                             f'<p style="color:{MUTED};font-size:0.6rem;letter-spacing:0.1em;'
-                            f'text-transform:uppercase;margin:0 0 2px;">Commitment</p>'
-                            f'<p style="color:{GREEN if float(leaf_row["mean_commit_net"])>0 else ACCENT};'
+                            f'text-transform:uppercase;margin:0 0 2px;">Stance</p>'
+                            f'<p style="color:{GREEN if float(leaf_row["mean_stance_net"])>0 else ACCENT};'
                             f'font-family:JetBrains Mono;font-size:0.85rem;margin:0;">'
-                            f'{commit_label(float(leaf_row["mean_commit_net"]))}</p>'
+                            f'{stance_label(float(leaf_row["mean_stance_net"]))}</p>'
                             f'</div>',
                             unsafe_allow_html=True,
                         )
 
+    with tab_dd:
+        _drilldown_tab()
+
     # ── Tab: Over Time ─────────────────────────────────────────────────────────
-    with tab_ot:
-        _ot_base = doc_ta[doc_ta["created_utc"] >= "2019-01-01"].copy()
-        _ot_base["year_month"] = _ot_base["created_utc"].dt.to_period("M").astype(str)
+    @st.fragment
+    def _overtime_tab():
+        _ot_base = _ta_trend  # same filter+year_month transform, already cached above
         _ot_topic_opts = sorted(_ot_base["topic_macro"].dropna().unique())
         _ot_interesting = [t for t in ["NS Policy & Society", "Vocations & Units", "BMT & Training", "NS Life & Culture"] if t in _ot_topic_opts]
         _ot_default = _ot_interesting[:4] if _ot_interesting else _ot_topic_opts[:4]
@@ -2373,8 +2464,8 @@ elif current_page == "Topic Analysis":
                 d = _ot_topic[_ot_topic["subreddit"] == sub]
                 d_m = d.groupby("year_month").agg(
                     doc_count=("doc_id", "count"),
-                    pct_pos=("sent_label", lambda x: (x == "pos").mean()),
-                    pct_neg=("sent_label", lambda x: (x == "neg").mean()),
+                    pct_pos=("is_pos", "mean"),
+                    pct_neg=("is_neg", "mean"),
                 ).reset_index().sort_values("year_month")
                 d_m["net_sent"] = d_m["pct_pos"] - d_m["pct_neg"]
                 d_m.loc[d_m["doc_count"] < 5, "net_sent"] = None
@@ -2395,8 +2486,12 @@ elif current_page == "Topic Analysis":
                 unsafe_allow_html=True,
             )
 
+    with tab_ot:
+        _overtime_tab()
+
     # ── Tab: Topic Rankings (bump chart) ─────────────────────────────────────
-    with tt_bump:
+    @st.fragment
+    def _rankings_tab():
         st.markdown(
             f'<p style="color:{MUTED};font-size:0.78rem;line-height:1.55;">'
             f'Rank 1 = most-discussed topic that quarter. Lines crossing = topics overtaking each other.</p>',
@@ -2436,8 +2531,12 @@ elif current_page == "Topic Analysis":
         )
         st.plotly_chart(fig_bump, use_container_width=True, config=cfg, theme=None)
 
+    with tt_bump:
+        _rankings_tab()
+
     # ── Tab: Volume by Topic ──────────────────────────────────────────────────
-    with tt_bar:
+    @st.fragment
+    def _volume_tab():
         _vol_topics = st.multiselect(
             "Topics (leave empty for all)", options=_topics, default=[], key="tt_vol_topics",
         )
@@ -2468,8 +2567,12 @@ elif current_page == "Topic Analysis":
         )
         st.plotly_chart(fig_bar, use_container_width=True, config=cfg, theme=None)
 
+    with tt_bar:
+        _volume_tab()
+
     # ── Tab: Sentiment by Topic ───────────────────────────────────────────────
-    with tt_sent_tab:
+    @st.fragment
+    def _sentiment_by_topic_tab():
         # Compute average net sentiment per topic for defaults & annotation
         _topic_avg_net = _tt_sent.groupby("topic_macro").apply(
             lambda g: (g["pct_pos"] - g["pct_neg"]).mean(), include_groups=False,
@@ -2512,8 +2615,12 @@ elif current_page == "Topic Analysis":
         )
         st.plotly_chart(fig_sent, use_container_width=True, config=cfg, theme=None)
 
+    with tt_sent_tab:
+        _sentiment_by_topic_tab()
+
     # ── Tab: Topic Drill-down ─────────────────────────────────────────────────
-    with tt_drill:
+    @st.fragment
+    def _topic_drill_tab():
         _drill_def = _topics.index("Pay & Benefits") if "Pay & Benefits" in _topics else 0
         _drill_topic = st.selectbox("Select topic", _topics, index=_drill_def, key="tt_drill_topic")
         _drill_dist = _tt_dist[_tt_dist["topic_macro"] == _drill_topic].sort_values("year_month")
@@ -2548,12 +2655,15 @@ elif current_page == "Topic Analysis":
                         line=dict(color=_topic_color.get(_drill_topic, CYAN), width=2),
                         hovertemplate="%{x}<br>Net: %{y:+.1%}<extra>3m avg</extra>"))
                     fig_dsent.add_hline(y=0, line_color=BORDER, line_width=1, line_dash="dot")
+                    # t=58 + title pinned to top: with t=36 the legend row sat on
+                    # top of the chart title
                     fig_dsent.update_layout(height=320, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                        margin=dict(l=0,r=0,t=36,b=0),
-                        title=dict(text="NET SENTIMENT TREND", font=dict(size=11, color=MUTED), x=0),
+                        margin=dict(l=0,r=0,t=58,b=0),
+                        title=dict(text="NET SENTIMENT TREND", font=dict(size=11, color=MUTED), x=0,
+                                   y=1, yanchor="top", pad=dict(t=6)),
                         yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED), tickformat="+.0%"),
                         xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED), tickangle=-35),
-                        legend=dict(orientation="h", y=1.12, x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"))
+                        legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"))
                     st.plotly_chart(fig_dsent, use_container_width=True, config=cfg, theme=None)
 
             if _tt_sub == "All":
@@ -2571,11 +2681,12 @@ elif current_page == "Topic Analysis":
                         fig_dsub.add_trace(go.Bar(x=_sd2["year_month"], y=_sd2["doc_count"], name=_sr,
                             marker_color=_sub_colors.get(_sr, MUTED), marker_line_width=0))
                     fig_dsub.update_layout(barmode="stack", height=300, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                        margin=dict(l=0,r=0,t=36,b=0),
-                        title=dict(text="VOLUME BY SUBREDDIT", font=dict(size=11, color=MUTED), x=0),
+                        margin=dict(l=0,r=0,t=58,b=0),
+                        title=dict(text="VOLUME BY SUBREDDIT", font=dict(size=11, color=MUTED), x=0,
+                                   y=1, yanchor="top", pad=dict(t=6)),
                         yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED)),
                         xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED), tickangle=-35),
-                        legend=dict(orientation="h", y=1.12, x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"))
+                        legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"))
                     st.plotly_chart(fig_dsub, use_container_width=True, config=cfg, theme=None)
 
                 with dc4:
@@ -2584,8 +2695,8 @@ elif current_page == "Topic Analysis":
                         _ss = _drill_ta[_drill_ta["subreddit"]==_sr].copy()
                         _ss_m = _ss.groupby("year_month").agg(
                             doc_count=("doc_id", "count"),
-                            pct_pos=("sent_label", lambda x: (x == "pos").mean()),
-                            pct_neg=("sent_label", lambda x: (x == "neg").mean()),
+                            pct_pos=("is_pos", "mean"),
+                            pct_neg=("is_neg", "mean"),
                         ).reset_index().sort_values("year_month")
                         _ss_m["net_sentiment"] = _ss_m["pct_pos"] - _ss_m["pct_neg"]
                         _ss_m.loc[_ss_m["doc_count"] < 5, "net_sentiment"] = None
@@ -2597,12 +2708,16 @@ elif current_page == "Topic Analysis":
                             hovertemplate=f"<b>{_sr}</b><br>%{{x}}<br>Net: %{{y:+.1%}}<extra></extra>"))
                     fig_ssub.add_hline(y=0, line_color=BORDER, line_width=1, line_dash="dot")
                     fig_ssub.update_layout(height=300, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                        margin=dict(l=0,r=0,t=36,b=0),
-                        title=dict(text="SENTIMENT BY SUBREDDIT", font=dict(size=11, color=MUTED), x=0),
+                        margin=dict(l=0,r=0,t=58,b=0),
+                        title=dict(text="SENTIMENT BY SUBREDDIT", font=dict(size=11, color=MUTED), x=0,
+                                   y=1, yanchor="top", pad=dict(t=6)),
                         yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED), tickformat="+.0%"),
                         xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED), tickangle=-35),
-                        legend=dict(orientation="h", y=1.12, x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"))
+                        legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"))
                     st.plotly_chart(fig_ssub, use_container_width=True, config=cfg, theme=None)
+
+    with tt_drill:
+        _topic_drill_tab()
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -2886,18 +3001,28 @@ elif current_page == "Divergence":
 
             col_mat, col_insight = st.columns([3, 2])
             with col_mat:
+                # Low end of the scale needs to read as a filled cell, not
+                # vanish into the plot background — SURF2 in light mode
+                # (#F5F5F5) is only a hair off white, so the near-zero cells
+                # were disappearing against the page. Dark mode's SURF2 is
+                # already a distinct navy against the near-black page, so it's
+                # left alone.
+                _heat_lo = "#CBD2D9" if _LIGHT else SURF2
                 fig = px.imshow(
                     pivot_pct,
                     labels=dict(x="Comment sentiment", y="Post sentiment", color="%"),
                     x=[slabel(l) for l in lo], y=[slabel(l) for l in lo],
-                    color_continuous_scale=[[0, SURF2],[0.4,"rgba(0,196,255,0.25)"],[1, CYAN]],
+                    color_continuous_scale=[[0, _heat_lo],[0.4,"rgba(0,196,255,0.25)"],[1, CYAN]],
                     text_auto=False,
                 )
                 lay(fig, h=360)
                 fig.update_coloraxes(showscale=False)
                 _pct_text = [[f"{pivot_pct.iloc[r,c]:.1f}%" for c in range(3)] for r in range(3)]
+                # No explicit textfont colour: plotly then auto-contrasts each
+                # cell label (black on bright cyan, white on dark navy). Forcing
+                # TXT made the dominant cell white-on-bright-cyan (≈2:1).
                 fig.update_traces(text=_pct_text, texttemplate="%{text}",
-                                  textfont=dict(size=13, family="JetBrains Mono", color=TXT))
+                                  textfont=dict(size=13, family="JetBrains Mono"))
                 st.plotly_chart(fig, use_container_width=True, config=cfg, theme=None)
 
             with col_insight:
@@ -3101,7 +3226,7 @@ elif current_page == "Commitment":
             _y_text = [f"{v:.2%}" for v in _y_ticks]
         fig.update_layout(
             height=height, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-            margin=dict(l=55, r=0, t=36, b=40),
+            margin=dict(l=55, r=0, t=58, b=40),
             yaxis=dict(showgrid=True, gridcolor=BORDER,
                        tickfont=dict(size=9, color=MUTED),
                        tickmode="array", tickvals=list(_y_ticks), ticktext=_y_text,
@@ -3109,7 +3234,9 @@ elif current_page == "Commitment":
             xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED), tickangle=-35,
                        tickmode="array", tickvals=list(jan_rows["year_month"]),
                        ticktext=[ym[:4] for ym in jan_rows["year_month"]]),
-            legend=dict(orientation="h", y=1.16, x=0,
+            # legend just above plot, title pinned to very top — callers that
+            # override title= keep clear of the legend row
+            legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0,
                         font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
         )
         return fig
@@ -3167,7 +3294,8 @@ elif current_page == "Commitment":
             fig_b = _make_axis_fig(tc_monthly, "buyin", _mode, height=340)
             fig_b.update_layout(
                 title=dict(text="BUYIN — UNCOMMITTED vs COMMITTED",
-                           font=dict(size=11, color=MUTED), x=0),
+                           font=dict(size=11, color=MUTED), x=0,
+                           y=1, yanchor="top", pad=dict(t=6)),
             )
             st.plotly_chart(fig_b, use_container_width=True, config=cfg, theme=None)
             st.markdown(
@@ -3181,7 +3309,8 @@ elif current_page == "Commitment":
             fig_s = _make_axis_fig(tc_monthly, "stance", _mode, height=340)
             fig_s.update_layout(
                 title=dict(text="STANCE — CRITICAL vs SUPPORTIVE",
-                           font=dict(size=11, color=MUTED), x=0),
+                           font=dict(size=11, color=MUTED), x=0,
+                           y=1, yanchor="top", pad=dict(t=6)),
             )
             st.plotly_chart(fig_s, use_container_width=True, config=cfg, theme=None)
             st.markdown(
@@ -3239,14 +3368,14 @@ elif current_page == "Commitment":
                 _y2_text = [f"{v:+.2f}" for v in _y2_ticks]
             fig_nd2.update_layout(
                 height=240, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                margin=dict(l=55, r=0, t=10, b=35),
+                margin=dict(l=55, r=0, t=34, b=35),
                 yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED),
                            tickmode="array", tickvals=list(_y2_ticks), ticktext=_y2_text,
                            title=dict(text=_nd2_ytitle, font=dict(size=9, color=MUTED))),
                 xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED), tickangle=-35,
                            tickmode="array", tickvals=list(_jan2_rows["year_month"]),
                            ticktext=[ym[:4] for ym in _jan2_rows["year_month"]]),
-                legend=dict(orientation="h", y=1.1, x=0,
+                legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0,
                             font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
             )
             st.plotly_chart(fig_nd2, use_container_width=True, config=cfg, theme=None)
@@ -3439,7 +3568,8 @@ elif current_page == "Commitment":
                  decline_chg, ".3f", positive_good=True)
             _kpi(kp2, "Recovery since trough", f"{int(trough['year'])}→{int(last_yr['year'])}",
                  recovery_chg, ".3f", positive_good=True)
-            _kpi(kp3, "Net vs baseline", yr_range, net_chg, ".3f", positive_good=True)
+            _kpi(kp3, "Net vs baseline", yr_range, net_chg, ".3f",
+                 positive_good=not worse_than_baseline)
 
             _first_y, _last_y = int(first_yr["year"]), int(last_yr["year"])
             _recovery_clause = (
@@ -3510,7 +3640,7 @@ elif current_page == "Commitment":
             _y_ticks = np.arange(_y_start, _y_end + _y_step / 2, _y_step)
             fig_ndm.update_layout(
                 height=340, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                margin=dict(l=55, r=0, t=10, b=40),
+                margin=dict(l=55, r=0, t=34, b=40),
                 yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED),
                            tickmode="array", tickvals=list(_y_ticks),
                            ticktext=[f"{v:+.2f}" for v in _y_ticks],
@@ -3518,7 +3648,7 @@ elif current_page == "Commitment":
                 xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED), tickangle=-35,
                            tickmode="array", tickvals=list(_jan_rows["year_month"]),
                            ticktext=[ym[:4] for ym in _jan_rows["year_month"]]),
-                legend=dict(orientation="h", y=1.08, x=0,
+                legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0,
                             font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
             )
             st.plotly_chart(fig_ndm, use_container_width=True, config=cfg, theme=None)
@@ -3546,14 +3676,15 @@ elif current_page == "Commitment":
                 ))
                 fig_nd.update_layout(
                     height=300, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                    margin=dict(l=45, r=0, t=36, b=30), barmode="group",
+                    margin=dict(l=45, r=0, t=58, b=30), barmode="group",
                     title=dict(text="COMMITTED vs UNCOMMITTED — ANNUAL",
-                               font=dict(size=11, color=MUTED), x=0),
+                               font=dict(size=11, color=MUTED), x=0,
+                               y=1, yanchor="top", pad=dict(t=6)),
                     yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED),
                                tickformat=".0%",
                                title=dict(text="% of chunks", font=dict(size=9, color=MUTED))),
                     xaxis=dict(showgrid=False, tickfont=dict(size=10, color=MUTED), type="category"),
-                    legend=dict(orientation="h", y=1.16, x=0,
+                    legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0,
                                 font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
                 )
                 st.plotly_chart(fig_nd, use_container_width=True, config=cfg, theme=None)
@@ -3637,14 +3768,15 @@ elif current_page == "Commitment":
             fig_coh.update_layout(
                 barmode="group", height=280,
                 template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-                margin=dict(l=40, r=0, t=36, b=50),
+                margin=dict(l=40, r=0, t=58, b=50),
                 title=dict(text="COMMITMENT BY POSTING COHORT",
-                           font=dict(size=11, color=MUTED), x=0),
+                           font=dict(size=11, color=MUTED), x=0,
+                           y=1, yanchor="top", pad=dict(t=6)),
                 yaxis=dict(ticksuffix="%", showgrid=True, gridcolor=BORDER,
                            tickfont=dict(size=9, color=MUTED),
                            title=dict(text="% of chunks", font=dict(size=9, color=MUTED))),
                 xaxis=dict(showgrid=False, tickfont=dict(size=9, color=TXT), type="category"),
-                legend=dict(orientation="h", y=1.12, x=0,
+                legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0,
                             font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
             )
             st.plotly_chart(fig_coh, use_container_width=True, config=cfg, theme=None)
@@ -3742,7 +3874,9 @@ elif current_page == "Population":
             height=420, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
             margin=dict(l=0, r=0, t=12, b=0),
             xaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED)),
-            yaxis=dict(showgrid=False, tickfont=dict(size=9, color=TXT),
+            # automargin: with margin.l=0 the flair labels rendered outside the
+            # SVG's left edge and were fully clipped (invisible)
+            yaxis=dict(showgrid=False, tickfont=dict(size=10, color=TXT), automargin=True,
                        autorange="reversed", categoryorder="total ascending"),
         )
         st.plotly_chart(fig_flair, use_container_width=True, config=cfg, theme=None)
@@ -3759,13 +3893,23 @@ elif current_page == "Population":
             name="Unique authors", mode="lines+markers",
             line=dict(color=CYAN, width=2), marker=dict(size=6),
             yaxis="y2", hovertemplate="%{x}: %{y:,} authors<extra></extra>"))
+        # Zero-anchor both axes and scale y2 so the authors line can never sit
+        # above the posts bars (authors ≤ posts — a line crossing over reads as
+        # "more authors than posts"). y2 max = y max × worst-case authors/posts
+        # ratio × 1.15 headroom → the line peaks at ~87% of the tightest bar.
+        _yr_pmax  = float(yr_plot["posts"].max())
+        _yr_ratio = float((yr_plot["authors"] / yr_plot["posts"].clip(lower=1)).max())
+        _yr_ymax  = _yr_pmax * 1.05
+        _yr_y2max = _yr_ymax * _yr_ratio * 1.15
         fig_yr.update_layout(
             height=420, template=_tpl, paper_bgcolor=SURF, plot_bgcolor=SURF, font=dict(color=MUTED),
-            margin=dict(l=0, r=40, t=12, b=0),
+            margin=dict(l=0, r=40, t=32, b=0),
             xaxis=dict(showgrid=False, tickfont=dict(size=9, color=MUTED)),
-            yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED), title="Posts"),
-            yaxis2=dict(overlaying="y", side="right", tickfont=dict(size=9, color=CYAN), title="Authors"),
-            legend=dict(orientation="h", y=1.08, x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
+            yaxis=dict(showgrid=True, gridcolor=BORDER, tickfont=dict(size=9, color=MUTED), title="Posts",
+                       range=[0, _yr_ymax]),
+            yaxis2=dict(overlaying="y", side="right", tickfont=dict(size=9, color=CYAN), title="Authors",
+                        range=[0, _yr_y2max], showgrid=False),
+            legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0, font=dict(size=9, color=MUTED), bgcolor="rgba(0,0,0,0)"),
         )
         st.plotly_chart(fig_yr, use_container_width=True, config=cfg, theme=None)
 
