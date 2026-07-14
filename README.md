@@ -118,7 +118,39 @@ These files exceed GitHub's 100 MB limit and are excluded via `.gitignore`:
 | `data/processed/new/chunk_faiss.index` | 2.1 GB | RAG chatbot | Run `python scripts/rag/build_index.py` |
 | `models/new/singbert_v7/model.safetensors` | 1.2 GB | Sentiment inference | Fine-tune via `notebooks/kaggle_finetune_singbert_v1.ipynb` or download from the fine-tuned model |
 
-The dashboard's 6 main pages (Overview, Sentiment Trends, Topic Analysis, Divergence, Commitment, Population) work without these files. Only the Sentinel Bot page requires the chunks parquets and FAISS index.
+---
+
+## What works out of the box after cloning
+
+GitHub enforces a 100 MB per-file hard limit. The 6 files listed above total ~8.5 GB and cannot be stored in the repository. All remaining pipeline outputs — the pre-computed parquets that power the dashboard — **are** included, so most of the dashboard works immediately after cloning.
+
+### Fully functional (all data included)
+
+| Page | Status | Notes |
+|------|--------|-------|
+| **Overview** | Works | All KPIs, sentiment-over-time chart, distribution chart, top negative topics |
+| **Sentiment Trends** | Works | All 5 sub-tabs (net sentiment, % negative, % positive, full stack, grievance amplification) |
+| **Topic Analysis** | Works | All 7 sub-tabs (treemap, drill-down, over time, rankings, volume, sentiment by topic, stance by topic) |
+| **Divergence** | Works | All 3 sub-tabs (tone shift matrix, community battlegrounds, opinion density) |
+| **Commitment** | Works | All 3 sub-tabs (commitment decline, signal detail, by topic) |
+| **Population** | Works | All visualisations (flairs, posting activity, subreddit breakdown, top authors) |
+
+### Not functional without additional setup
+
+| Page | What's missing | Why |
+|------|---------------|-----|
+| **Sentinel Bot** | `comments_chunks.parquet` (2.9 GB), `submissions_chunks.parquet` (460 MB), `chunk_faiss.index` (2.1 GB) | The RAG chatbot embeds the user's question and searches a FAISS index over all 737K chunk embeddings to retrieve relevant passages. The chunks parquets contain the full text of every chunk (needed to display retrieved results), and the FAISS index contains the 768-dimensional embedding vectors for similarity search. These three files alone total 5.4 GB — 54x GitHub's per-file limit. |
+| **Sentinel Bot** | `.env` with `ANTHROPIC_API_KEY` | Even with the data files present, the chatbot requires an Anthropic API key to call Claude Haiku for answer synthesis. |
+
+### Not functional: re-running the pipeline from scratch
+
+| Stage | What's missing | Why |
+|-------|---------------|-----|
+| Stages 1–2 (ingestion, cleaning) | `data/raw/*.zst` (1.9 GB) | Raw Reddit Pushshift dumps. Download from academic archives. |
+| Stage 3 (chunking) | `data/interim/*.parquet` (2.1 GB) | Cleaned intermediate data. Regenerate by running Stages 1–2. |
+| Stage 5a (sentiment inference) | `models/new/singbert_v7/model.safetensors` (1.2 GB) | Fine-tuned SingBERT model weights. The tokenizer and config files are included — only the 1.2 GB weights file is excluded. Retrain on Kaggle or download from the fine-tuned checkpoint. |
+
+Re-running the pipeline is not required to use the dashboard — all outputs are pre-computed and included.
 
 ---
 
