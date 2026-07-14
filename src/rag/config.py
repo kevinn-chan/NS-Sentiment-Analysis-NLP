@@ -47,7 +47,7 @@ MAX_CONTEXT_CHARS  = 10000  # ~2500 tokens; fits stats + timeline + events + chu
 MAX_CHUNK_TEXT_LEN = 300    # truncate each chunk text to this many chars in context
 
 # ── LLM synthesis ─────────────────────────────────────────────────────────────
-SYNTHESIS_MODEL    = "claude-haiku-4-5"   # fast + cheap; synthesis-only role
+SYNTHESIS_MODEL    = "llama-3.3-70b-versatile"  # Groq free tier (primary)
 SYNTHESIS_MAX_TOKENS = 600
 
 # ── Quantitative query defaults ───────────────────────────────────────────────

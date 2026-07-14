@@ -404,9 +404,10 @@ When a user asks a question, the RAG pipeline follows this flow:
    - Prioritises statistical context over raw chunks
 
 5. **Synthesis** (`src/rag/synthesizer.py`):
-   - Sends assembled context + user query to Anthropic Claude Haiku
+   - Sends assembled context + user query to the configured LLM backend
+   - The synthesizer checks for API keys in priority order: **Groq** (Llama 3.3 70B, free tier — primary) → **OpenAI** (GPT-4o-mini) → **Anthropic** (Claude Haiku). Only one key is needed.
    - System prompt instructs the model to cite statistics, reference specific time periods, and ground answers in the retrieved chunks
-   - Returns a concise, data-backed answer
+   - Returns a concise, data-backed answer via streaming
 
 ---
 

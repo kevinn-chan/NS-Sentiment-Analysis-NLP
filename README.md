@@ -14,7 +14,7 @@ NS Sentinel is an end-to-end NLP pipeline and interactive dashboard that analyse
 | **Commitment classification** | 4-stage cascade classifier on two independent axes: **Buyin** (committed ↔ uncommitted — personal investment in NS) and **Stance** (supportive ↔ critical — opinion on NS policy). Buyin F1 = 0.714, Stance F1 = 0.784 on a 727-row human gold set. |
 | **Topic modelling** | BERTopic with manual taxonomy: 359 leaf → 112 cluster → 52 sub → 17 macro topics. Full hierarchical treemap with drill-down. |
 | **Divergence analysis** | Post-vs-comment tone shift detection. Identifies threads where the community response differs from the original post's sentiment. |
-| **RAG chatbot** | FAISS retrieval over 737K chunks + Anthropic Claude synthesis. Answers both quantitative ("what % of posts about BMT are negative?") and qualitative ("what do people say about NS pay?") questions. |
+| **RAG chatbot** | FAISS retrieval over 737K chunks + Groq Llama 3.3 70B synthesis (free tier). Answers both quantitative ("what % of posts about BMT are negative?") and qualitative ("what do people say about NS pay?") questions. |
 | **Interactive dashboard** | 7-page Streamlit app with dark/light mode, subreddit + year filters, and full drill-down from macro topics to individual posts. |
 
 ---
@@ -97,11 +97,15 @@ The dashboard loads pre-computed parquets from `data/processed/new/`. All data f
 
 ### 3. Sentinel Bot (optional)
 
-The RAG chatbot requires three large files not included in the repository (see below), plus a `.env` file with your Anthropic API key:
+The RAG chatbot requires three large files not included in the repository (see below), plus a `.env` file with an LLM API key. The synthesizer checks for keys in this priority order:
 
 ```
-ANTHROPIC_API_KEY=sk-ant-...
+GROQ_API_KEY=gsk-...          # Primary — Groq Llama 3.3 70B (free tier, 7K requests/month)
+OPENAI_API_KEY=sk-...         # Fallback — GPT-4o-mini
+ANTHROPIC_API_KEY=sk-ant-...  # Fallback — Claude Haiku
 ```
+
+Only one key is needed. Groq is recommended as it provides free-tier access.
 
 ---
 
@@ -140,7 +144,7 @@ GitHub enforces a 100 MB per-file hard limit. The 6 files listed above total ~8.
 | Page | What's missing | Why |
 |------|---------------|-----|
 | **Sentinel Bot** | `comments_chunks.parquet` (2.9 GB), `submissions_chunks.parquet` (460 MB), `chunk_faiss.index` (2.1 GB) | The RAG chatbot embeds the user's question and searches a FAISS index over all 737K chunk embeddings to retrieve relevant passages. The chunks parquets contain the full text of every chunk (needed to display retrieved results), and the FAISS index contains the 768-dimensional embedding vectors for similarity search. These three files alone total 5.4 GB — 54x GitHub's per-file limit. |
-| **Sentinel Bot** | `.env` with `ANTHROPIC_API_KEY` | Even with the data files present, the chatbot requires an Anthropic API key to call Claude Haiku for answer synthesis. |
+| **Sentinel Bot** | `.env` with an LLM API key | Even with the data files present, the chatbot requires an API key for answer synthesis. Groq is the primary backend (Llama 3.3 70B, free tier — 7K requests/month). OpenAI and Anthropic are supported as fallbacks. Only one key is needed. |
 
 ### Not functional: re-running the pipeline from scratch
 
@@ -193,7 +197,7 @@ For a detailed walkthrough of every dashboard page, see [docs/dashboard_guide.md
 - **Topic modelling**: BERTopic with UMAP + HDBSCAN
 - **Commitment**: 4-stage cascade of fine-tuned SingBERT classifiers (trained on Kaggle T4 GPUs)
 - **Dashboard**: Streamlit + Plotly
-- **RAG**: FAISS vector search + Anthropic Claude Haiku synthesis
+- **RAG**: FAISS vector search + Groq Llama 3.3 70B synthesis (free tier; Anthropic/OpenAI fallbacks)
 - **Data source**: Reddit Pushshift dumps (ZST format), 3 subreddits, 2018–2025
 
 ---

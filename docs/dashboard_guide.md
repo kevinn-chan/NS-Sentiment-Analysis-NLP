@@ -35,7 +35,7 @@ The dashboard opens at `http://localhost:8501` in your default browser.
 - Python 3.10+
 - All packages in `requirements.txt` installed
 - Pre-computed data files in `data/processed/new/` (included in the repository except for the 3 large files listed in README)
-- For the Sentinel Bot page: a `.env` file with `ANTHROPIC_API_KEY=sk-ant-...`
+- For the Sentinel Bot page: a `.env` file with an LLM API key (`GROQ_API_KEY` recommended — free tier Llama 3.3 70B; `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` also supported)
 
 ---
 
@@ -317,7 +317,7 @@ Type a question in the chat input at the bottom. The bot can answer:
 2. For quantitative: stats are looked up from a pre-computed fact table
 3. For qualitative: your question is embedded and the 10 most relevant text chunks are retrieved via FAISS
 4. Topic digests, temporal narratives, and relevant events are assembled as context
-5. Claude Haiku synthesises a data-grounded answer from all the context
+5. Groq Llama 3.3 70B (or fallback LLM) synthesises a data-grounded answer from all the context
 6. The answer appears in the chat, with citations to specific data points
 
 ### Tips for best results
