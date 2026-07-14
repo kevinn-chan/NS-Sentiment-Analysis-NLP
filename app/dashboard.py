@@ -3129,10 +3129,9 @@ elif current_page == "Commitment":
     _crit= tc_f["n_crit"].sum()
     _sup = tc_f["n_sup"].sum()
 
-    m1, m2, m3 = st.columns(3)
-    with m1: st.metric("Total chunks", f"{_tot:,.0f}")
-    with m2: st.metric("Uncommitted / Committed", f"{_unc/_tot:.1%} / {_com/_tot:.1%}")
-    with m3: st.metric("Critical / Supportive",    f"{_crit/_tot:.1%} / {_sup/_tot:.1%}")
+    m1, m2 = st.columns(2)
+    with m1: st.metric("Uncommitted / Committed", f"{_unc/_tot:.1%} / {_com/_tot:.1%}")
+    with m2: st.metric("Critical / Supportive",    f"{_crit/_tot:.1%} / {_sup/_tot:.1%}")
 
     st.markdown("<hr>", unsafe_allow_html=True)
 
