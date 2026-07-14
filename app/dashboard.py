@@ -599,7 +599,7 @@ section[data-testid="stSidebar"] ~ div {{
     border: 1px solid {BORDER} !important;
 }}
 [data-testid="stChatMessage"] {{
-    background-color: {SURF2} !important;
+    background-color: transparent !important;
     color: {TXT} !important;
 }}
 [data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] {{
