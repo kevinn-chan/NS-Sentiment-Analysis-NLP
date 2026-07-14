@@ -47,7 +47,7 @@ ns_sentiment/
 │   ├── models/                   # Stage 4: BERTopic + topic taxonomy
 │   ├── analysis/                 # Stage 6–8: aggregation, divergence, temporal
 │   └── rag/                      # RAG chatbot components
-├── docs/
+├── User_Guide/
 │   ├── pipeline.md               # Detailed pipeline documentation
 │   └── dashboard_guide.md        # Dashboard user guide
 └── requirements.txt
@@ -72,7 +72,7 @@ ns_sentiment/
 | 9 | `app/dashboard.py` | Streamlit dashboard |
 | RAG | `scripts/rag/build_*.py` | Build FAISS index, topic digests, fact table |
 
-For detailed documentation of each stage, see [docs/pipeline.md](docs/pipeline.md).
+For detailed documentation of each stage, see [User_Guide/pipeline.md](User_Guide/pipeline.md).
 
 ---
 
@@ -185,7 +185,7 @@ Evaluated on a 727-row human gold set:
 
 ## Dashboard
 
-For a detailed walkthrough of every dashboard page, see [docs/dashboard_guide.md](docs/dashboard_guide.md).
+For a detailed walkthrough of every dashboard page, see [User_Guide/dashboard_guide.md](User_Guide/dashboard_guide.md).
 
 ![Dashboard screenshot — dark mode treemap](data/processed/new/topic_taxonomy_treemap.png)
 

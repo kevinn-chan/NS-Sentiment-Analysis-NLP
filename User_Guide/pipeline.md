@@ -344,7 +344,7 @@ Computed only over opinionated chunks (where `max(sent_neg, sent_pos) > 0.5`). T
 
 **Input**: All parquets from Stages 6–8, plus topic models, keywords, and RAG assets
 
-The dashboard is documented separately in [docs/dashboard_guide.md](dashboard_guide.md).
+The dashboard is documented separately in [User_Guide/dashboard_guide.md](dashboard_guide.md).
 
 ---
 

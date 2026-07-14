@@ -82,6 +82,7 @@ A line chart showing monthly net sentiment (% positive docs − % negative docs)
 - **Blue solid line**: Monthly net sentiment
 - **Amber dashed line**: 6-month rolling average (smoothed trend)
 - **Grey vertical bands**: Notable NS events (e.g., "CFC Aloysius Pang training death", "COVID-19 Circuit Breaker", "Russia-Ukraine War")
+- **Hover on any data point**: Displays a tooltip with a plain-language summary of what drove sentiment that month, plus the top 3 topics contributing to the sentiment shift (e.g., "Safety & Incidents (34%) · Conscription & National Duty (18%) · BMT Enlistment & Life (12%)"). This is powered by pre-computed monthly sentiment driver analysis.
 - **Toggle**: Switch between "Overall" (all subreddits combined) and "By subreddit" (separate lines per subreddit)
 - **Trend line dropdown**: Choose smoothing window (3-month, 6-month, 12-month, or none)
 
@@ -112,6 +113,7 @@ Deep-dive into sentiment over time with multiple views.
 ### Reading the charts
 
 - Each chart includes event annotation bands (grey vertical areas with labels)
+- **Hover over any data point** to see a natural-language summary of what drove sentiment that month and the top 3 contributing topics with their percentage share. This hover detail is available on all sentiment line charts (net sentiment, % negative, % positive).
 - The trend line (dashed) smooths out monthly noise — look at this for the overall direction
 - When "By subreddit" is selected, r/NationalServiceSG (amber) is typically more negative than r/singapore (blue) or r/askSingapore (green)
 - Low-volume months (< 30 docs) are hidden by default to prevent noisy spikes. Toggle "Show low-volume months" in the sidebar to include them.
