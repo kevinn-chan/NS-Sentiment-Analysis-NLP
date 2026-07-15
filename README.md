@@ -78,9 +78,11 @@ For detailed documentation of each stage, see [User_Guide/pipeline.md](User_Guid
 
 ## Quick start
 
-### 1. Install dependencies
+### 1. Clone and install
 
 ```bash
+git clone https://github.com/kevinn-chan/NS-Sentiment-Analysis-NLP.git
+cd NS-Sentiment-Analysis-NLP
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -93,11 +95,42 @@ python -m spacy download en_core_web_sm
 streamlit run app/dashboard.py
 ```
 
-The dashboard loads pre-computed parquets from `data/processed/new/`. All data files needed for the 6 main dashboard pages are included in this repository.
+The dashboard loads pre-computed parquets from `data/processed/new/`. All data files needed for the 6 main dashboard pages are included in this repository — **no extra downloads needed**.
 
-### 3. Sentinel Bot (optional)
+### 3. Full setup (Sentinel Bot + pipeline re-runs)
 
-The RAG chatbot requires three large files not included in the repository (see below), plus a `.env` file with an LLM API key. The synthesizer checks for keys in this priority order:
+The RAG chatbot and pipeline re-runs require large files that exceed GitHub's 100 MB limit. If you have access to a machine that already has the project (e.g., transferring to a new laptop), copy these files into the cloned repo:
+
+```bash
+# From the source machine, serve the project folder over the network:
+cd /path/to/ns_sentiment
+python -m http.server 8080
+
+# On the new machine, download the large files into the cloned repo:
+cd NS-Sentiment-Analysis-NLP
+
+# Required for Sentinel Bot (5.4 GB total):
+curl -o data/processed/new/comments_chunks.parquet    http://<source-ip>:8080/data/processed/new/comments_chunks.parquet
+curl -o data/processed/new/submissions_chunks.parquet http://<source-ip>:8080/data/processed/new/submissions_chunks.parquet
+curl -o data/processed/new/chunk_faiss.index          http://<source-ip>:8080/data/processed/new/chunk_faiss.index
+
+# Required for re-running sentiment inference (1.2 GB):
+curl -o models/new/singbert_v7/model.safetensors      http://<source-ip>:8080/models/new/singbert_v7/model.safetensors
+curl -o models/new/singbert_v7/training_args.bin      http://<source-ip>:8080/models/new/singbert_v7/training_args.bin
+
+# Required for re-running pipeline from scratch (3.9 GB total):
+mkdir -p data/raw data/interim
+curl -o data/raw/singapore_comments.zst               http://<source-ip>:8080/data/raw/singapore_comments.zst
+curl -o data/raw/singapore_submissions.zst             http://<source-ip>:8080/data/raw/singapore_submissions.zst
+curl -o data/raw/askSingapore_comments.zst             http://<source-ip>:8080/data/raw/askSingapore_comments.zst
+curl -o data/raw/askSingapore_submissions.zst          http://<source-ip>:8080/data/raw/askSingapore_submissions.zst
+curl -o data/raw/NationalServiceSG_comments.zst        http://<source-ip>:8080/data/raw/NationalServiceSG_comments.zst
+curl -o data/raw/NationalServiceSG_submissions.zst     http://<source-ip>:8080/data/raw/NationalServiceSG_submissions.zst
+curl -o data/interim/comments_raw.parquet              http://<source-ip>:8080/data/interim/comments_raw.parquet
+curl -o data/interim/submissions_raw.parquet           http://<source-ip>:8080/data/interim/submissions_raw.parquet
+```
+
+Finally, create a `.env` file in the project root with an LLM API key for the Sentinel Bot:
 
 ```
 GROQ_API_KEY=gsk-...          # Primary — Groq Llama 3.3 70B (free tier, 7K requests/month)
